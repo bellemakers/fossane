@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<calendar-time>
+	<date>
+		<year>2003</year>
+		<month>10</month>
+		<day>03</day>
+	</date>
+	<time>
+		<hour>01</hour>
+		<minute>50</minute>
+		<second>10</second>
+		<millisecond></millisecond>
+	</time>
+</calendar-time>

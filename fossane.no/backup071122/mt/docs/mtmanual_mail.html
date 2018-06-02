@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>MAIL THIS ENTRY</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: MAIL THIS ENTRY</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#mail this entry">MAIL THIS ENTRY</a></li>
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="mail this entry"></a>MAIL THIS ENTRY</h1>
+<p>Movable Type ships with a mailer program that can be used to implement a
+simple ``mail this entry'' feature on your site. By adding a small form to the
+individual entry pages on your site, you can allow your visitors to email
+links to those pages to friends, etc.</p>
+<p>To add this feature to your site, add the following to an archive template
+that you have associated with your Individual archives:</p>
+<pre>&lt;form method=&quot;post&quot; action=&quot;&lt;$MTCGIPath$&gt;mt-send-entry.cgi&quot;&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;entry_id&quot; value=&quot;&lt;$MTEntryID$&gt;&quot; /&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;_redirect&quot; value=&quot;&lt;$MTEntryLink archive_type=&quot;Individual&quot;$&gt;&quot; /&gt;
+Email this entry to:&lt;br /&gt;
+&lt;input name=&quot;to&quot; size=&quot;20&quot; /&gt;&lt;br /&gt;&lt;br /&gt;
+Your email address:&lt;br /&gt;
+&lt;input name=&quot;from&quot; size=&quot;20&quot; /&gt;&lt;br /&gt;&lt;br /&gt;
+Message (optional):&lt;br /&gt;
+&lt;textarea name=&quot;message&quot; rows=&quot;5&quot; cols=&quot;20&quot; wrap=&quot;virtual&quot;&gt;&lt;/textarea&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Send&quot; /&gt;
+&lt;/form&gt;
+</pre><p>Then save the template and rebuild your site.</p>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

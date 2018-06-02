@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Import Entries"> | <TMPL_VAR NAME=BLOG_NAME> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+function openManual (anchor) {
+    window.open('<TMPL_VAR NAME=STATIC_URI>docs/mtmanual_importing.html#' + anchor, 'manual', 'width=450,height=550,scrollbars=yes,status=yes,resizable=yes');
+}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td align="left" rowspan="5" valign="top">
+<TMPL_INCLUDE NAME=mininav.tmpl>
+</td>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500"><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=menu&blog_id=<TMPL_VAR NAME=BLOG_ID>"> <MT_TRANS phrase="[_1] Editing Menu" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"></a><font class="pagetitle">&gt; <MT_TRANS phrase="Import &amp; Export Entries"></font></td>
+</tr>
+
+
+<tr>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+
+<tr>
+<td valign="top" width="500">
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+	<tr>
+	<td valign="top" width="500"><font class="pagetitle"><MT_TRANS phrase="Import Entries"></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="5"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500"><p><font class="instructional"><MT_TRANS phrase="_USAGE_IMPORT"></font></p></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top">
+	<form method="get" action="<TMPL_VAR NAME=SCRIPT_URL>">
+	<input type="hidden" name="__mode" value="import">
+	<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+
+	<input type="checkbox" name="import_as_me" value="1"> <font class="title"><MT_TRANS phrase="Import entries as me">&nbsp;&nbsp;<a href="#" onclick="openManual('import_as_self')">(?)</a></font><br><br>
+
+	<font class="title"><MT_TRANS phrase="Password (required if creating new authors):"></font><br>
+	<input class="text-short" type="password" name="password"><br><br>
+
+	<font class="title"><MT_TRANS phrase="Default category for entries (optional):"> <a href="#" onclick="openManual('import_category')">(?)</a></font><br>
+	<select name="default_cat_id" style="width: 175px;">
+	<option value=""><MT_TRANS phrase="Select a category">
+	<TMPL_LOOP NAME=CATEGORY_LOOP>
+	<option value="<TMPL_VAR NAME=CATEGORY_ID>"><TMPL_VAR NAME=CATEGORY_LABEL>
+	</TMPL_LOOP>
+	</select><br><br>
+
+	<font class="title"><MT_TRANS phrase="Default post status for entries (optional):"> <a href="#" onclick="openManual('import_status')">(?)</a></font><br>
+	<select name="default_status" style="width: 175px;">
+	<option value=""><MT_TRANS phrase="Select a post status">
+	<option value="1"><MT_TRANS phrase="Draft">
+	<option value="2"><MT_TRANS phrase="Publish">
+	</select><br><br>
+
+	<font class="title"><MT_TRANS phrase="Start title HTML (optional):"> <a href="#" onclick="openManual('import_title_html')">(?)</a></font><br>
+	<input class="text-short" name="title_start"><br><br>
+
+	<font class="title"><MT_TRANS phrase="End title HTML (optional):"></font><br>
+	<input class="text-short" name="title_end"><br><br>
+
+	<input class="button-big" type="submit" value="<MT_TRANS phrase="Import Entries">">
+	</form>
+	</td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500"><font class="pagetitle"><MT_TRANS phrase="Export Entries"></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500"><p><font class="instructional"><MT_TRANS phrase="_USAGE_EXPORT_1"></font></p>
+
+	<p><font class="instructional"><MT_TRANS phrase="_USAGE_EXPORT_2" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"></font></p>
+
+	<p><a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=export&blog_id=<TMPL_VAR NAME=BLOG_ID>"><MT_TRANS phrase="Export Entries From [_1]" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"></a></p>
+	</td>
+	</tr>
+
+	<TMPL_IF NAME=HAVE_TANGENT>
+
+	<tr>
+	<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500"><font class="pagetitle"><MT_TRANS phrase="Export Entries to Tangent"></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500">
+	<p><font class="instructional"><MT_TRANS phrase="_USAGE_EXPORT_3" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"></font></p>
+
+	<p><a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=tangent_export&blog_id=<TMPL_VAR NAME=BLOG_ID>"><MT_TRANS phrase="Export Entries From [_1]" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"></a></p>
+	</td>
+	</tr>
+
+	</TMPL_IF>
+
+	</table>
+
+</td>
+</tr>
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+</table>
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

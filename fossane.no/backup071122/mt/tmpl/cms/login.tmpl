@@ -1,0 +1,112 @@
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title>MOVABLE TYPE :: Personal Publishing System</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+//-->
+</script>
+
+</head>
+
+<TMPL_IF NAME=IS_BOOKMARKLET>
+<body class="pop">
+<TMPL_ELSE>
+<body>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+</TMPL_IF>
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="<TMPL_IF NAME=IS_BOOKMARKLET>50<TMPL_ELSE>35</TMPL_IF>"></td>
+</tr>
+
+<tr>
+<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+<td width="400">
+
+<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+<TMPL_IF NAME=IS_BOOKMARKLET>
+<input type="hidden" name="__mode" value="view">
+<input type="hidden" name="_type" value="entry">
+<input type="hidden" name="is_bm" value="1">
+<input type="hidden" name="text" value="<TMPL_VAR NAME=TEXT>">
+<input type="hidden" name="link_href" value="<TMPL_VAR NAME=LINK_HREF>">
+<input type="hidden" name="link_title" value="<TMPL_VAR NAME=LINK_TITLE>">
+<input type="hidden" name="ping_url" value="<TMPL_VAR NAME=PING_URL ESCAPE=HTML>">
+<input type="hidden" name="bm_show" value="<TMPL_VAR NAME=BM_SHOW>">
+</TMPL_IF>
+
+<TMPL_IF NAME=ERROR>
+<p class="error-message"><TMPL_VAR NAME=ERROR></p>
+</TMPL_IF>
+
+<TMPL_IF NAME=LOGGED_OUT>
+<p class="message"><MT_TRANS phrase="Your Movable Type session has ended. If you wish to log in again, you can do so below."></p>
+</TMPL_IF>
+
+<font class="title"><MT_TRANS phrase="Username"><br><input name="username" size="20"><p>
+
+<font class="title"><MT_TRANS phrase="Password"><br><input type="password" name="password" size="20"><p>
+
+<font class="title"><MT_TRANS phrase="Remember me?"> <input type="checkbox" name="remember" value="1"><p>
+
+<input class="button" type="submit" value="<MT_TRANS phrase="Log In">">
+
+<br><br><font class="instructional"><a href="#" onClick="window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=start_recover', 'recover', 'width=370,height=200')"><MT_TRANS phrase="Forgot your password?"></a></font>
+
+</form>
+</td>
+</tr>
+
+</table>
+
+<!-- End main content -->
+
+<TMPL_IF NAME=IS_BOOKMARKLET>
+<TMPL_ELSE>
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</TMPL_IF>
+
+</body>
+</html>

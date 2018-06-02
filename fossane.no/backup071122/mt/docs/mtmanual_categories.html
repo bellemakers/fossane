@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>CATEGORIES</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: CATEGORIES</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#categories">CATEGORIES</a></li>
+	<ul>
+
+		<li><a href="#edit category screen">Edit Category Screen</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="categories"></a>CATEGORIES</h1>
+<p>Movable Type allows you to enter a list of categories, then assign one or more
+categories to each of your entries. This allows you to keep track of your
+entries from a maintenance standpoint--for example, when listing your entries
+you can choose to list entries only from a particular category--and it can
+also be used to provide a categorization structure to your archives.</p>
+<p>Each entry can be assigned one primary category and any number of secondary
+categories. The primary category is used when you wish to display information
+about only one of the categories to which an entry is assigned--for example,
+when using the <code>&lt;$MTEntryCategory$&gt;</code> tag. When you wish to display
+a list of all of the categories to which a post has been assigned, you can use
+the <code>&lt;MTEntryCategories&gt;</code> container.</p>
+<p>The difference between primary and secondary categories is not one of ranking
+but rather of usage--your secondary categories are not necessarily ``lesser''
+or ``lacking in importance'' when compared to your primary category. Rather, the
+difference is one of usage: the primary category is the category which will
+be displayed when using the <code>&lt;$MTEntryCategory$&gt;</code> tag, or when
+linking to the <code>Category</code> archive for an entry using
+<code>&lt;$MTEntryLink archive_type=&quot;Category&quot;$&gt;</code>.</p>
+<p>You can manage your list of categories in Movable Type by logging in,
+selecting a weblog, then clicking <i>Categories</i>. Add new categories by
+typing their labels into the empty text entry boxes; the system always shows
+five empty boxes, so if you fill up the first five, just press <code>SAVE</code> and
+you'll get five more.</p>
+<p>
+<h2><a name="edit category screen"></a>Edit Category Screen</h2>
+<p>By clicking the <i>Edit category attributes</i> link, you can edit some
+additional metadata regarding the category. You can associate a description
+with each of your categories. This description can then be used on your
+archive pages, for example, as introductory text describing that particular
+category and the entries within it.</p>
+<p>You can also manage TrackBack-related information for the category:</p>
+<ul>
+<li><strong><a name="item_TrackBack_URLs_to_ping"></a>TrackBack URLs to ping</strong><br>
+
+Use this field to associate a list of TrackBack URLs with a category. When
+you post a new entry into this category on your own site, each of the URLs
+you have listed will be pinged with information about this new entry.
+<p></p>
+<li><strong><a name="item_Accept_incoming_TrackBack_pings"></a>Accept incoming TrackBack pings</strong><br>
+
+When you turn on a category's ability to accept TrackBack pings, the system
+sets up a TrackBack item for this category so that remote sites will be able
+to send pings to your site, notifying you of new entries that fit within the
+category. These pings can then be displayed on your site, allowing you to
+build a repository of links relating to a particular subject.
+<p>After clicking the ``On'' checkbox, save the changes, and the system will give
+you the TrackBack URL that other users can use to ping your category.</p>
+<p></p>
+<li><strong><a name="item_Passphrase_Protection"></a>Passphrase Protection</strong><br>
+
+If you only wish to allow a certain set of users to send TrackBack pings to
+your category, you can set a passphrase for the category. Users who wish to
+send pings to your TrackBack-enabled category will need to know the
+passphrase in order to ping you.
+<p>This is a good way to enable ``private'' TrackBack items; even if someone can
+guess the TrackBack ID, he will not be able to send a ping unless he
+knows the passphrase.</p>
+<p>This is optional. If you do not set a passphrase, everyone will be able to
+ping you without providing a passphrase.</p>
+<p></p></ul>
+<p>You can set up category archiving in your weblog configuration--select a weblog,
+then click <i>Weblog Config</i>. In the <i>Archive Configuration</i>
+section, under <i>Archive Frequency</i> check the box next to <i>By Category</i>.</p>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+.home {
+ 	font-family: "Century Gothic", sans-serif;
+ 	font-size: 12px
+	}
+
+.home a {
+	color:#000000;
+	text-decoration:none
+	}
+
+.currentsection {
+ 	font-family: "Century Gothic", sans-serif;
+ 	font-size: 12px
+	}
+
+.currentsection a {
+	color:#000000;
+	text-decoration:none
+	}
+
+ .heading {
+ 	font-family: "Century Gothic", sans-serif;
+ 	font-size: 22px
+	}
+
+.pre-emphasize {
+	color:#ffffff
+	}
+
+.emphasize {
+	color:#333333;
+	font-size:1.5em
+	}
+
+.post-emphasize {
+	color:#ffffff
+	}
+
+.tree {
+	color:#a5ad94;
+	font-family:sans-serif;
+	font-size:0.8em
+	}
+
+.tree a {
+	color:#7d8868;
+	text-decoration:none;
+	}
+
+.tree a:hover {
+	color:#ffffff
+	}
+
+.updated {
+	color:#a5ad94;
+	font-family:sans-serif;
+	font-size:0.8em
+	}
+
+.colL {
+	font-family: "Century Gothic", sans-serif;
+	font-size:12px
+	}
+
+.colL a {
+	color:#3f4434;
+	text-decoration:none
+	}
+
+.colR {
+	font-family: "Century Gothic", sans-serif;
+	font-size: 12px
+	}
+
+.colR a {
+	color:#3f4434;
+	text-decoration:none
+	}
+	
+	

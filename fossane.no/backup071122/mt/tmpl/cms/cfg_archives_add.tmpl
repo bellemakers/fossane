@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Archiving"> | <MT_TRANS phrase="Configuration"> | <TMPL_VAR NAME=BLOG_NAME> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+//-->
+</script>
+
+</head>
+
+<body onload="window.focus()" class="pop">
+
+<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+<input type="hidden" name="__mode" value="cfg_archives_do_add">
+<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+
+<table border="0" cellspacing="0" padding="0">
+
+<tr>
+<td colspan="4" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="50"></td>
+</tr>
+
+<tr>
+<td rowspan="7" width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+<td colspan="2" width="100%" valign="top"><font class="instructional"><MT_TRANS phrase="_USAGE_ARCHIVING_3"></font></td>
+<td rowspan="7" width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+<td valign="top"><font class="instructional"><MT_TRANS phrase="Archive Type"></font></td>
+<td valign="top" width="100%">&nbsp;&nbsp;&nbsp;<select name="archive_type" class="menu-long">
+<option value="Individual"><MT_TRANS phrase="Individual">
+<option value="Daily"><MT_TRANS phrase="Daily">
+<option value="Weekly"><MT_TRANS phrase="Weekly">
+<option value="Monthly"><MT_TRANS phrase="Monthly">
+<option value="Category"><MT_TRANS phrase="Category">
+</select></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+<td valign="top"><font class="instructional"><MT_TRANS phrase="Template"></font></td>
+<td valign="top" width="100%">&nbsp;&nbsp;&nbsp;<select name="template_id" class="menu-long">
+<TMPL_LOOP NAME=TEMPLATES>
+<option value="<TMPL_VAR NAME=TEMPLATE_ID>"><TMPL_VAR NAME=TEMPLATE_NAME>
+</TMPL_LOOP>
+</select></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+<td colspan="2" align="right" valign="top"><input class="button" type="button" onClick="window.close()" value="<MT_TRANS phrase="Cancel">">&nbsp;<input class="button" type="submit" value="<MT_TRANS phrase="Add">"></td>
+</tr>
+
+</table>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+
+<calendar-time>
+	<date>
+		<year>2009</year>
+		<month>07</month>
+		<day>02</day>
+	</date>
+	<time>
+		<hour>12</hour>
+		<minute>00</minute>
+		<second>00</second>
+		<millisecond></millisecond>
+	</time>
+</calendar-time>

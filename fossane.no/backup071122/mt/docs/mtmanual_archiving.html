@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>ARCHIVING</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: ARCHIVING</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#archiving">ARCHIVING</a></li>
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="archiving"></a>ARCHIVING</h1>
+<p>Movable Type supports many archiving options: you can archive by date (daily,
+weekly, or monthly), by category, or by individual entry. This last option
+means that each entry will be placed on its own page. Each weblog can use
+multiple archive frequencies and types; for example, your weblog could use
+Daily, Monthly, and Category archiving. Archive types are selected in the
+<i>Weblog Config</i> screen, or can be chosen when creating a new weblog.
+Be aware, however, that the more archive options you choose for a particular
+weblog, the longer it will take to rebuild your files (<i>Rebuild</i>).</p>
+<p>If you do select multiple archive options, you must select a preferred
+archive type. The preferred archive type is used when constructing links to
+your entries--for permalinks, for example. A link can only point to one
+possible archive type; to set this type, set your Preferred Archive Type in
+the <i>Weblog Config</i> screen.</p>
+<p>You will need to create templates for each of your archive types. See
+<a href="./mtmanual_templates.html">TEMPLATES</a> for information on which templates apply to
+which archive types.</p>
+<p>No matter what type of archiving you use, you will likely wish to create a
+master list of all of your archives. In Movable Type, a master archive index
+is just a regular index template; however, instead of using the <code>MTEntries</code>
+tag--as you do with most other index templates--you instead use the
+<code>MTArchiveList</code> tag. This tag, and associated tags for use with creating a
+master archive index, are described <a href="./mtmanual_tags.html#archive templates and master archive index">here</a>.</p>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

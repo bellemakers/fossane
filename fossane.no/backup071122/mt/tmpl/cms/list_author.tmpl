@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Add/Edit Weblog Authors"> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+function doRemoveAuthors (f) {
+    var base = '<TMPL_VAR NAME=SCRIPT_URL>?__mode=delete_confirm&_type=author';
+    var url = '';
+    var e = f.id;
+    if (!e) return;
+    if (e.value && e.checked)
+        url += '&id=' + e.value;
+    else
+        for (i=0; i<e.length; i++)
+            if (e[i].checked)
+                url += '&id=' + e[i].value;
+    if (!url) {
+        alert('<MT_TRANS phrase="You did not select any authors to delete.">');
+        return false;
+    }
+    url = base + url;
+    window.open(url, 'confirm_delete', 'width=370,height=150');
+}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+<tr>
+<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="30"></td>
+</tr>
+
+<tr>
+<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+<td valign="top" width="500"><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=edit_permissions"> <MT_TRANS phrase="Add/Edit Weblog Authors"> &gt;</a><font class="pagetitle"> <MT_TRANS phrase="List &amp; Delete Authors"></font></td>
+</tr>
+
+<tr>
+<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+</tr>
+
+<tr>
+<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+<td valign="top" width="500">
+
+	<table border="0" cellspacing="0" cellpadding="3">
+	<form>
+
+	<tr>
+	<td colspan="4"><p><font class="instructional"><MT_TRANS phrase="_USAGE_AUTHORS"></font></p>
+
+<TMPL_IF NAME=SAVED_DELETED>
+	<p class="message"><MT_TRANS phrase="You have successfully deleted the authors from the Movable Type system."></p>
+
+</TMPL_IF>
+
+	</td>
+	</tr>
+
+	<tr>
+	<td width="175"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="175" height="1"></td>
+	<td width="191"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="191" height="1"></td>
+	<td width="65"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="65" height="1"></td>
+	<td width="45"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="45" height="1"></td>
+	</tr>
+
+	<tr>
+	<td width="175" valign="top" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Username"></font></td>
+	<td width="191" valign="top" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Email Address"></font></td>
+	<td width="65" valign="top" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Created By"></font></td>
+	<td width="45" valign="top" align="center" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Delete"></font></td>
+	</tr>
+
+	<TMPL_LOOP NAME=OBJECT_LOOP>
+	<tr>
+	<td width="175" valign="top" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="title"><a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=edit_permissions&author_id=<TMPL_VAR NAME=ID>"><TMPL_VAR NAME=NAME></a></font></td>
+	<td width="191" valign="top" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="title"><TMPL_VAR NAME=EMAIL></font></td>
+	<td width="65" valign="top" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="title"><TMPL_VAR NAME=ADDED_BY></font></td>
+	<td width="45" valign="top" align="center" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><TMPL_IF NAME=CAN_DELETE><input type="checkbox" name="id" value="<TMPL_VAR NAME=ID>"></TMPL_IF></td>
+	</tr>
+
+	</TMPL_LOOP>
+
+	<tr>
+	<td colspan="4"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+	</tr>
+
+	<tr>
+	<td colspan="4" align="right"><input onClick="doRemoveAuthors(this.form)" class="button" type="button" value="<MT_TRANS phrase="Delete">"></td>
+	</tr>
+
+	</form>
+	</table>
+		
+</td>
+</tr>
+</table>
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

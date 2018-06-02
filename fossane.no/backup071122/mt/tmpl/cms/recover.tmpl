@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title>MOVABLE TYPE :: Personal Publishing System</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+//-->
+</script>
+
+</head>
+
+<body class="pop">
+
+<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+<input type="hidden" name="__mode" value="recover">
+
+<table border="0" cellspacing="0" padding="0">
+
+<tr>
+<td colspan="3" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="50"></td>
+</tr>
+
+<TMPL_IF NAME=RECOVERED>
+<tr>
+<td width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+<td width="100%" valign="top"><font class="instructional"><MT_TRANS phrase="Your password has been changed, and the new password has been sent to your email address ([_1])." params="<TMPL_VAR NAME=EMAIL ESCAPE=HTML>"></font></td>
+<td width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</tr>
+
+<tr>
+<td colspan="3" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+<td colspan="2" align="right" valign="top"><input type="button" onClick="window.close()" value="<MT_TRANS phrase="Close">">&nbsp;</td>
+<td width="20" align="center" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</tr>
+
+<TMPL_ELSE>
+
+<tr>
+<td width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+<td width="100%" valign="top"><font class="instructional"><MT_TRANS phrase="Enter your Movable Type username:"></font></td>
+<td width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</tr>
+
+<tr>
+<td colspan="3" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+<td width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+<td width="100%" valign="top"><input name="name" class="short-text"></td>
+</tr>
+
+<tr>
+<td colspan="3" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+<td width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+<td width="100%" valign="top"><font class="instructional"><MT_TRANS phrase="Enter your birthplace:"></font></td>
+<td width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</tr>
+
+<tr>
+<td colspan="3" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+<td width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+<td width="100%" valign="top"><input name="hint" class="short-text"></td>
+</tr>
+
+<tr>
+<td colspan="3" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+<td colspan="2" align="right" valign="top"><input class="button" type="button" onClick="window.close()" value="<MT_TRANS phrase="Cancel">">&nbsp;<input class="button" type="submit" value="<MT_TRANS phrase="Recover">"></td>
+<td width="20" align="center" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</tr>
+
+</TMPL_IF>
+
+</table>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,312 @@
+<html>
+<head>
+<title>TRACKBACK</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: TRACKBACK</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#trackback">TRACKBACK</a></li>
+	<ul>
+
+		<li><a href="#setting up trackback">Setting up TrackBack</a></li>
+		<li><a href="#using trackback">Using TrackBack</a></li>
+		<li><a href="#trackback ping format">TrackBack Ping Format</a></li>
+		<li><a href="#reference documentation">Reference Documentation</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="trackback"></a>TRACKBACK</h1>
+<p>Movable Type's TrackBack system allows peer-to-peer communication and
+conversations
+between weblogs. Imagine that you write about a movie you just saw in an
+entry on your Movable Type-powered weblog. Another MT weblogger reads your
+entry, and wants to write an entry referencing your original post. He could
+just comment on your weblog, but he'd like to keep the post in his own
+database and host it on his site.</p>
+<p>Using TrackBack, the other weblogger can automatically send a ping to your
+weblog, indicating that he has written an entry referencing your original
+post. This accomplishes two things:</p>
+<ol>
+<li>
+On your site, you can automatically list all sites that have referenced a
+particular post, allowing visitors to your site to read the response on the
+other user's weblog.
+<p></p>
+<li>
+It provides a firm, explicit link between his entry and yours, as opposed
+to an implicit link (like a referrer log) that depends upon outside action
+(someone clicking on the link to your entry).
+<p></p></ol>
+<p>You can use TrackBack for more than just communication on particular entries,
+however. You can also associate TrackBack pings URLs with categories in your
+weblog. Whenever you post an entry to that category, the URLs you have
+associated will automatically be notified of your post. This allows remote
+sites to keep a repository of references to posts all around the web.</p>
+<p>For example, if you run a site about Perl, you might want to provide a
+repository of links to Perl articles on other weblogs. Using TrackBack, you
+can allow other weblogs to ping a particular category in your own weblog,
+whenever a new entry is posted that pertains to this category.</p>
+<p>These are just examples of TrackBack usage. TrackBack itself is a framework
+for peer-to-peer communication between weblogs; it can track cross-weblog
+discussions, it can provide remote content repositories, it can emulate
+guest authoring, etc. The technical side of TrackBack is very simple: when
+you want to notify a remote site of your existence, you send a ping to that
+site. The format of these pings (simple HTTP GET requests) is discussed
+<a href="#trackback ping format">below</a>. In the Movable Type implementation of
+TrackBack, we've added password protection to category pings, IP banning,
+automatic RSS output, and email notification of new pings.</p>
+<p>In other words: we want TrackBack to benefit, and to be useful to, more than
+just Movable Type users. We want to encourage integration of this feature
+into other weblog tools; that's why we have documented the ping format below
+and have tried to make the basic framework very simple. Feel free to
+email us (<a href="mailto:trackback@movabletype.org">trackback@movabletype.org</a>) if you have questions.</p>
+<p>
+<h2><a name="setting up trackback"></a>Setting up TrackBack</h2>
+<p>If you are a new Movable Type user, the TrackBack tags are included in the
+default templates, so you are ready to use it as soon as you install Movable
+Type. You can skip down to Step 5.</p>
+<p>If you are an existing MT user, you'll first need to set up your templates
+to handle TrackBack pings. Start at Step 1.</p>
+<ol>
+<li><strong><a name="item_Create_a_TrackBack_Listing_template%2E"></a>Create a TrackBack Listing template.</strong><br>
+
+In <i>List Templates</i>, edit the <i>TrackBack Listing template</i> and initialize
+it with the template body from the default templates. You can find that here:
+<pre>http://www.movabletype.org/default_templates.shtml#trackback
+</pre><p></p>
+<li><strong><a name="item_Update_your_stylesheet%2E"></a>Update your stylesheet.</strong><br>
+
+An entry's TrackBack pings are displayed in a popup window similar to that
+used for listing an entry's comments. The default template that you added
+in Step 1 uses some CSS styles new to version 2.2. If you are using one of
+the default styles provided with Movable Type, copy and paste in the updated
+version from the styles here:
+<pre>http://www.movabletype.org/default_styles.shtml
+</pre><p>If you have a custom stylesheet, you can either customize the <i>TrackBack
+Listing Template</i> to match your site's styles, or add new CSS styles to
+your stylesheet for the classes <i>.trackback-url</i>, <i>.trackback-body</i>, and
+<i>.trackback-post</i>.</p>
+<p></p>
+<li><strong><a name="item_Add_TrackBack_code_to_your_Main_Index_Template%2E"></a>Add TrackBack code to your Main Index Template.</strong><br>
+
+Add the following code in the &lt;script&gt; section of your Main Index
+Template:
+<pre>function OpenTrackback (c) {
+    window.open(c,
+                'trackback',
+                'width=480,height=480,scrollbars=yes,status=yes');
+}
+</pre><p>Now, inside of your &lt;MTEntries&gt; tag, add the following code to
+display a link to the TrackBack listings for each entry:</p>
+<pre>&lt;MTEntryIfAllowPings&gt;
+| &lt;a href=&quot;&lt;$MTCGIPath$&gt;mt-tb.cgi?__mode=view&amp;entry_id=&lt;$MTEntryID$&gt;&quot; onclick=&quot;OpenTrackback(this.href); return false&quot;&gt;TrackBack
+(&lt;$MTEntryTrackbackCount$&gt;)&lt;/a&gt;
+&lt;/MTEntryIfAllowPings&gt;
+</pre><p></p>
+<li><strong><a name="item_Add_TrackBack_ping_data_to_index_and_archive_templ"></a>Add TrackBack ping data to index and archive templates.</strong><br>
+
+In your Main Index Template and in your category and date-based archive
+templates, add the following tag directly after the main
+<code>&lt;MTEntries&gt;</code> tag:
+<pre>&lt;$MTEntryTrackbackData$&gt;
+</pre><p>Then, in your Individual Entry Archive Template, add this same tag anywhere
+in the template:</p>
+<pre>&lt;$MTEntryTrackbackData$&gt;
+</pre><p>When you rebuild, this will add the necessary information to your public
+files to allow Movable Type's bookmarklet to parse out entries that allow
+TrackBack and to grab the ping URL for those entries.</p>
+<p></p>
+<li><strong><a name="item_Create_a_TrackBack%2Denabled_bookmarklet%2E"></a>Create a TrackBack-enabled bookmarklet.</strong><br>
+
+A TrackBack-enabled bookmarklet is just a new version of the standard
+Movable Type bookmarklet, with one new feature: when you use the bookmarklet
+to post to your weblog, it will look at the current page in your browser
+to see if it has any entries that have enabled TrackBack. (It obtains this
+information using the tag we added in Step 4). If there are any entries,
+the bookmarklet will allow you to select from the list of TrackBack-enabled
+entries on that page that you can ping with your new post. When you post
+your new entry, Movable Type will ping the URL for the appropriate entry
+automatically, just as if you had entered the URL manually into the <i>URLs
+to Ping</i> box.
+<p>This simplifies the process of referencing a post on another site using
+TrackBack.</p>
+<p>If you are already using a bookmarklet, you will just need to recreate it
+using the same fields you are using now, plus the <i>TrackBack items</i>
+field. If you are not yet using a bookmarklet, you can create one.</p>
+<p>Go to the <i>Main menu</i>, then click on <i>Set Up Bookmarklets</i>. Follow the
+instructions to create the new bookmarklet, and be sure to include the
+<i>TrackBack items</i> field.</p>
+<p></p>
+<li><strong><a name="item_That%27s_it%21"></a>That's it!</strong><br>
+
+Now you're ready to start using the TrackBack system.
+<p>You can test your bookmarklet by going to the following page in your browser:</p>
+<pre>http://www.movabletype.org/trackback/
+</pre><p>Once your browser has loaded the page, click on your Movable Type
+bookmarklet. In the window that opens, you should see a pulldown menu at
+the top labelled <i>Select a TrackBack entry to ping:</i>. The menu contains
+a list of all of the TrackBack-enabled entries on the above page.</p>
+<p>If you see the menu, your bookmarklet is working, and you're ready to start
+using TrackBack!</p>
+<p>If you don't see that line, run <i>mt-check.cgi</i> to determine whether you
+have <i>LWP::UserAgent</i> installed. That module is required to use TrackBack.</p>
+<p></p></ol>
+<p>
+<h2><a name="using trackback"></a>Using TrackBack</h2>
+<p>TrackBack can be used in two general ways: to communicate between entries on
+different sites, or to communicate between categories on different sites.
+In addition, in each of these scenarios you can act as the content
+producer--where you are posting the entry--or you can act as the content
+gatherer--where you are gathering a list of entries posted regarding your
+TrackBack item (whether that be an entry or a category).</p>
+<ul>
+<li><strong><a name="item_Entry%2Dto%2DEntry_communication"></a>Entry-to-Entry communication</strong><br>
+
+<strong>As a content gatherer:</strong> When you post a new entry that you'd like to allow
+other users to ping, check the <i>Allow Pings</i> checkbox. The TrackBack URL
+will then be listed in the ``TrackBack'' popup window, as well as placed on
+your individual archive page in a &lt;link&gt; tag so that it can be
+automatically picked up by the Movable Type bookmarklet.
+<p><strong>As a content producer:</strong> When you post a new entry and would like to ping an
+entry on a remote web site, you can either post using the Movable Type
+bookmarklet you set up above in Step 5 in <i>Setting up TrackBack</i>, or you
+can manually add the TrackBack ping URL of the remote site into the <i>URLs
+to Ping</i> box on the new/edit entry screen.</p>
+<p></p>
+<li><strong><a name="item_Category%2Dto%2DCategory_communication"></a>Category-to-Category communication</strong><br>
+
+<strong>As a content gatherer:</strong> You can designate a category to ``allow pings''.
+This sets up a TrackBack item for this category so that remote sites will
+be able to send pings to your site, notifying you of new entries that fit
+within the category. These pings can then be displayed on your site, allowing
+you to build a repository of links relating to a particular subject.
+<p><strong>As a content producer:</strong> You can associate a list of TrackBack URLs with a
+category. When you post a new entry into this category on your own site, each
+of the URLs you have listed will be pinged with information about this new
+entry.</p>
+<p></p></ul>
+<p>When a ping is sent to a TrackBack item on your site, in addition to saving
+the ping in the Movable Type database, the system updates an RSS feed for
+the TrackBack item. The XML output is saved in a file in your Local Archive
+Path named <i>ID.xml</i>, where <i>ID</i> is the numeric ID of the TrackBack item.</p>
+<p>
+<h2><a name="trackback ping format"></a>TrackBack Ping Format</h2>
+<p>TrackBack uses a REST model for its pings in order to ensure that each
+TrackBack item has a unique URL (by the numeric ID of the TrackBack item).</p>
+<ul>
+<li><strong><a name="item_Sending_a_ping"></a>Sending a ping</strong><br>
+
+A request is made through HTTP GET to the ping URL, which generally looks
+like this:
+<pre>http://foo.com/mt/mt-tb.cgi?tb_id=ID
+</pre><p>where <code>ID</code> is the numeric ID of the TrackBack item. The request parameters
+are added on to the end of that URL, like this:</p>
+<pre>http://foo.com/mt/mt-tb.cgi?tb_id=ID&amp;title=TITLE&amp;url=URL
+</pre><p>etc. The possible query parameters are: <i>title</i> (title of the entry);
+<i>excerpt</i> (an excerpt of the entry, which, if longer than 255 characters,
+will be cropped to 252 characters and <code>...</code> added at the end); <i>url</i>
+(the permalink for the entry); and <i>blog_name</i> (the name of the weblog in
+which the entry is posted).</p>
+<p>A response is in a simple XML format to enable application-level error
+detection (HTTP-level errors will be returned as such--for example, if the
+TrackBack URL points to a non-existent location on the server, a <code>404</code>
+error will be returned from the ping).</p>
+<p>A successful ping will return the following response:</p>
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-1&quot;?&gt;
+&lt;response&gt;
+&lt;error&gt;0&lt;/error&gt;
+&lt;/response&gt;
+</pre><p>A failed ping will return the following response:</p>
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-1&quot;?&gt;
+&lt;response&gt;
+&lt;error&gt;1&lt;/error&gt;
+&lt;message&gt;The error message&lt;/message&gt;
+&lt;/response&gt;
+</pre><p>Applications should, of course, allow for the future addition of fields, if
+necessary. But the XML structure of the response will remain the same.</p>
+<p></p>
+<li><strong><a name="item_Retrieving_Pings"></a>Retrieving Pings</strong><br>
+
+To retrieve a list of pings made on a particular TrackBack item, use a
+URL in this format:
+<pre>http://foo.com/mt/mt-tb.cgi?tb_id=ID&amp;__mode=rss
+</pre><p>where <code>ID</code> is the numeric ID of the TrackBack item.</p>
+<p>The response to this request will either be an error in the same format as
+returned from the above request, or the list of TrackBack pings for that
+item in RSS markup, wrapped in <code>&lt;response&gt;</code> tags.</p>
+<p>For example:</p>
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-1&quot;?&gt;
+&lt;response&gt;
+&lt;error&gt;0&lt;/error&gt;
+&lt;rss version=&quot;0.91&quot;&gt;&lt;channel&gt;
+&lt;title&gt;TrackBack Test&lt;/title&gt;
+&lt;link&gt;http://this.is/the/trackback/item/link/&lt;/link&gt;
+&lt;description&gt;Description of the TrackBack item&lt;/description&gt;
+&lt;language&gt;en-us&lt;/language&gt;
+&lt;item&gt;
+&lt;title&gt;TrackBack Demo&lt;/title&gt;
+&lt;link&gt;http://this.is/the/permalink/&lt;/link&gt;
+&lt;description&gt;Excerpt&lt;/description&gt;
+&lt;/item&gt;
+&lt;/channel&gt;
+&lt;/rss&gt;&lt;/response&gt;
+</pre><p></p></ul>
+<p>
+<h2><a name="reference documentation"></a>Reference Documentation</h2>
+<p>Documentation on TrackBack-related elements are available here:</p>
+<ul>
+<li><strong><a name="item_TrackBack_tags"></a>TrackBack tags</strong><br>
+
+<ul>
+<li><strong><a name="item_%3CMTPings%3E_and_related_tags%7Cmtmanual_tags%2F%"></a><a href="./mtmanual_tags.html#trackback tags">&lt;MTPings&gt; and related tags</a></strong><br>
+
+<li><strong><a name="item_%3C%24MTEntryTrackbackCount%24%3E%7Cmtmanual_tags%"></a><a href="./mtmanual_tags.html#item_mtentrytrackbackcount">&lt;$MTEntryTrackbackCount$&gt;</a></strong><br>
+
+<li><strong><a name="item_%3C%24MTEntryTrackbackData%24%3E%7Cmtmanual_tags%2"></a><a href="./mtmanual_tags.html#item_mtentrytrackbackdata">&lt;$MTEntryTrackbackData$&gt;</a></strong><br>
+
+<li><strong><a name="item_%3CMTEntryIfAllowPings%3E%7Cmtmanual_tags%2Fitem_m"></a><a href="./mtmanual_tags.html#item_mtentryifallowpings">&lt;MTEntryIfAllowPings&gt;</a></strong><br>
+
+<li><strong><a name="item_%3C%24MTEntryTrackbackLink%24%3E%7Cmtmanual_tags%2"></a><a href="./mtmanual_tags.html#item_mtentrytrackbacklink">&lt;$MTEntryTrackbackLink$&gt;</a></strong><br>
+
+<li><strong><a name="item_%3C%24MTCategoryTrackbackLink%24%3E%7Cmtmanual_tag"></a><a href="./mtmanual_tags.html#item_mtcategorytrackbacklink">&lt;$MTCategoryTrackbackLink$&gt;</a></strong><br>
+
+</ul>
+<li><strong><a name="item_TrackBack_fields_on_the_new%2Fedit_entry_screen"></a>TrackBack fields on the new/edit entry screen</strong><br>
+
+<ul>
+<li><strong><a name="item_Allow_Pings%7Cmtmanual_entries%2Fitem_allow_pings"></a><a href="./mtmanual_entries.html#item_allow_pings">Allow Pings</a></strong><br>
+
+<li><strong><a name="item_URL"></a><a href="./mtmanual_entries.html#item_urls_to_ping">URL(s) to ping</a></strong><br>
+
+<li><strong><a name="item_Previous_pings_sent%7Cmtmanual_entries%2Fitem_prev"></a><a href="./mtmanual_entries.html#item_previous_pings_sent">Previous pings sent</a></strong><br>
+
+</ul>
+<li><strong><a name="item_TrackBack_fields_on_the_edit_category_screen"></a>TrackBack fields on the edit category screen</strong><br>
+
+<ul>
+<li><strong><a name="item_TrackBack_URLs_to_ping%7Cmtmanual_categories%2Fite"></a><a href="./mtmanual_categories.html#item_trackback_urls_to_ping">TrackBack URLs to ping</a></strong><br>
+
+<li><strong><a name="item_Accept_incoming_TrackBack_pings%7Cmtmanual_categor"></a><a href="./mtmanual_categories.html#item_accept_incoming_trackback_pings">Accept incoming TrackBack pings</a></strong><br>
+
+</ul>
+<li><strong><a name="item_IP_Banning%7Cmtmanual_weblog_config%2F%22IP_Bannin"></a><a href="./mtmanual_weblog_config.html#ip banning">IP Banning</a>: Ban users from sending TrackBack pings to your site</strong><br>
+
+<li><strong><a name="item_XML%2DRPC_interface%7Cmtmanual_programmatic%3A_mt%"></a><a href="./mtmanual_programmatic.html">XML-RPC interface</a>: mt.getTrackbackPings</strong><br>
+
+</ul>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

@@ -1,0 +1,261 @@
+<html>
+<head>
+<title>TEMPLATES</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: TEMPLATES</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#templates">TEMPLATES</a></li>
+	<ul>
+
+		<li><a href="#index templates">Index Templates</a></li>
+		<li><a href="#archive templates">Archive Templates</a></li>
+		<li><a href="#template modules">Template Modules</a></li>
+		<li><a href="#miscellaneous templates">Miscellaneous Templates</a></li>
+		<li><a href="#editing a template">Editing a Template</a></li>
+		<li><a href="#default templates">Default Templates</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="templates"></a>TEMPLATES</h1>
+<p>Templates in the Movable Type system are your method of defining the design
+and layout of your site. Templates describe where you want your content (that
+is, your entries and archives), what that content should look like, and so
+on. Generally your templates will be made up of HTML, interspersed with
+Movable Type template tags and variables (see <a href="./mtmanual_tags.html">TEMPLATE TAGS</a>),
+but this is not a technical limitation; you can use Movable Type to generate
+plain text, HTML with server-side includes, PHP, and any other text-based
+language.</p>
+<p>You can edit your weblog's templates, and define new templates, by logging in
+to Movable Type, selecting a weblog, then clicking <i>List &amp; Edit Templates</i>.</p>
+<p>There are several different types of templates in Movable Type.</p>
+<p>
+<h2><a name="index templates"></a>Index Templates</h2>
+<p>Index templates are your main entry listings. Unlike many other weblog
+management systems, Movable Type supports multiple index templates; this means
+that you can publish your main entry listings in several formats, for
+example, like one listing in HTML, and one in XML. By default, an index
+template displays the last <code>N</code> days worth of entries, where <code>N</code> is defined
+in your weblog configuration. For example, if you set the number of days
+displayed on the index to <code>7</code>, Movable Type will, by default, display all
+entries from the last 7 days on all of your index templates. Note that 7 days
+means the last 7 consecutive days, <i>not</i> necessarily the last 7 days on
+which you posted an entry. So if you have posted on just 3 of the last 7 days,
+only the posts from those 3 days will be listed on your main indexes.</p>
+<p>As mentioned above, displaying the last <code>N</code> days of entries is the default
+behavior for index templates; this behavior is customizable, however, through
+the <code>MTEntries</code> tag (see below); for example, you might set your RSS index
+(for RSS syndication) to display your last 15 entries, no matter the date.</p>
+<p>
+<h2><a name="archive templates"></a>Archive Templates</h2>
+<p>Archive templates define the look and feel or your weblog archives. For each
+archive type that you choose (see <a href="./mtmanual_archiving.html">ARCHIVING</a>), you can
+associate multiple archive templates with that archive type; this allows for
+different ``views'' of the same set of archived entries. For example, you might
+wish to create two different views of your monthly archives: a page containing
+each of the entries for a particular month, and a calendar view of that month.
+Or, you could use different templates to create hi-fi and lo-fi versions of
+your archives.</p>
+<p>When an archive type is rebuilt, all of the archive templates associated with
+the archive type are rebuilt--this allows you to automatically maintain
+several views of the same archived entries.</p>
+<p>Movable Type ships with three archive templates: one for the date-based
+archives (<code>Monthly</code>, <code>Weekly</code>, and <code>Daily</code>), one for your <code>Category</code>
+archives, and one for your <code>Individual</code> entry archives.</p>
+<p>To define a new Archive Template, go to <i>List &amp; Edit Templates</i>, and
+click <code>Create new archive template</code>. Name the template, then define the
+layout for the archive page using Movable Type <a href="./mtmanual_tags.html">template tags</a>.
+After you have saved the new archive template, go to the <i>Archiving</i> section
+of your <i>Weblog Configuration</i>, and click the <code>ADD NEW...</code> button; in the
+popup window, select the template you just created from the <i>Template:</i>
+pulldown menu, and select the archive type with which you'd like to associate
+that template from the <i>Archive Type:</i> menu. Then click <code>ADD</code>.</p>
+<p>
+<h2><a name="template modules"></a>Template Modules</h2>
+<p>Movable Type allows you to extract common chunks of HTML code into templates
+that you can then include in your other templates; in Movable Type, these
+common templates are called <code>Template Modules</code>. An example of the use for
+such a template might be a header that you use throughout your site. You
+can create a new template module called <code>Header</code>, paste in the common header
+code, then save the new template. You can then include this code in all of
+your other templates using the <code>MTInclude</code> tag:</p>
+<pre>&lt;$MTInclude module=&quot;Header&quot;$&gt;
+</pre><p>This tag will be replaced by the contents of the <code>Header</code> custom template.</p>
+<p>This allows you to keep all common code in one place, so that if you need to
+modify it, you only need to modify it in one place.</p>
+<p>
+<h2><a name="miscellaneous templates"></a>Miscellaneous Templates</h2>
+<p>These are the templates that don't fit as Index Templates, Archive Templates,
+or Custom Templates. Currently, the templates in this category are:</p>
+<ul>
+<li><strong><a name="item_Comment_Listing_Template"></a>Comment Listing Template</strong><br>
+
+This template defines the layout of your comments pages, if you choose to
+use popup windows for your comments (see <i>Comments</i>, above).
+<p></p>
+<li><strong><a name="item_Comment_Preview_Template"></a>Comment Preview Template</strong><br>
+
+This template defines the layout of your comment preview pages, if you choose
+to use comment previews (previews are enabled by default).
+<p></p>
+<li><strong><a name="item_Comment_Error_Template"></a>Comment Error Template</strong><br>
+
+This template is used to define the error your users see if, when they submit
+a comment, there is an error in their submission (name and email address are
+not filled out, invalid email address or URL, etc). You can use this template
+to let users fix the error in their comment submission, then post the comment.
+<p></p>
+<li><strong><a name="item_TrackBack_Listing_Template"></a>TrackBack Listing Template</strong><br>
+
+This template defines the layout of the popup window listing TrackBack
+pings sent on a particular entry in the system (see the
+<a href="./mtmanual_trackback.html">documentation on the TrackBack system</a>).
+<p></p>
+<li><strong><a name="item_Uploaded_Image_Popup_Template"></a>Uploaded Image Popup Template</strong><br>
+
+When you upload an image, you have the choice of creating a new entry with
+that image embedded or with a link to the image in a popup window. If you
+choose the latter, and if you have defined a layout for the <a href="#item_Uploaded_Image_Popup_Template"><code>Uploaded Image
+Popup Template</code></a>, an HTML file will automatically created that to contain the
+image in a popup window. There are three template tags that you can use in
+this template: <code>&lt;$MTImageURL$&gt;</code>, <code>&lt;$MTImageWidth$&gt;</code>, and
+<code>&lt;$MTImageHeight$&gt;</code>.
+<p></p></ul>
+<p>
+<h2><a name="editing a template"></a>Editing a Template</h2>
+<p>After selecting a template to edit in the <code>List &amp; Edit Templates</code>
+screen--either by clicking on the name of an index template or a template
+module, or by clicking the <code>EDIT</code> button for the archive or miscellaneous
+templates--you will be presented with the <code>Edit Template</code> screen. Depending
+on the type of template you are editing, or whether you are editing a template
+module, the template-editing screen will differ slightly in appearance. For
+example, only on an <code>Index Template</code> will you be able to assign an <a href="#item_Output_file"><code>Output
+file</code></a>.</p>
+<p>Here are the fields you may be presented with on the <code>Edit Template</code> screen:</p>
+<ul>
+<li><strong><a name="item_Name"></a>Name</strong><br>
+
+The name of the template, which will be used for identification purposes
+in the <code>List &amp; Edit Templates</code> screen. In addition, when including a
+template module using <code>&lt;MTInclude&gt;</code>, you will need to specify the
+name of the template module to include; that name will be the name that you
+enter here.
+<p>The template name is editable only for index templates and template modules;
+it is assigned automatically for archive and miscellaneous templates.</p>
+<p></p>
+<li><strong><a name="item_Output_file"></a>Output file</strong><br>
+
+When editing an index template, you must specify a filename where the output
+of the template will be stored. For example, the output file for your main
+index template might be <i>index.html</i>.
+<p>The output file applies only to index templates. It can be either a relative
+path (eg. <i>file.html</i>), in which case it is relative to your <i>Local Site
+Path</i>, or a full path rom the root of the filesystem (eg.
+<i>/full/path/to/file.html</i>).</p>
+<p></p>
+<li><strong><a name="item_Rebuild_this_template_automatically"></a>Rebuild this template automatically</strong><br>
+
+When editing an index template, you have the option of rebuilding the
+template automatically (every time you save an entry, rebuild all files, or
+rebuild indexes), or manually. Most of the time, you should just choose to
+rebuild an index template automatically. There are times, however--for example,
+when you are using index templates to manage primarily static content in your
+site--when you do not need to rebuild an index template every time you add a
+new entry. In such times, rebuilding static index templates needlessly slows
+down the process of adding a new entry.
+<p>Thus, you can use this option to turn off automatic rebuilding for an index
+template. If you turn off automatic rebuilding, the <strong>ONLY WAY</strong> to rebuild the
+index template is to click on its name in <i>List &amp; Edit Templates</i>, then
+click the <i>REBUILD</i> button below the text-editing box. This will force a
+rebuild of the particular index template.</p>
+<p></p>
+<li><strong><a name="item_Link_this_template_to_a_file"></a>Link this template to a file</strong><br>
+
+Often it is easier to edit the contents of a template outside of the Movable
+Type web application; for example, many people like using a text editor with
+code highlighting to edit their HTML. Linking a Movable Type template to an
+external file allows you to edit your templates using an external application,
+while keeping the copy of your template that is inside Movable Type in sync
+with the external file. The synchronization process works in both directions:
+when you load a template for editing, the linked file is checked for a more
+recent copy; and when you save a template through Movable Type, the linked file
+is updated with your changes.
+<p>The value of the linked filename should be either a full path on the
+filesystem to your external file, or a path relative to the <code>Local Site Path</code>
+for your weblog. The file extension cannot be: <i>.cgi</i>, <i>.pm</i>, <i>.pl</i>, or
+<i>.cfg</i>, for security purposes, and so you do not overwrite your Movable Type
+program files. For example, if you would like to maintain your <code>Main Index</code>
+template through an external editor, you might set the linked file to
+<i>index.html.tmpl</i>. You can then edit this file externally and save it to your
+webserver; when you rebuild, Movable Type will grab the latest version of the
+linked file <i>index.html.tmpl</i> and use that as the template (it will also
+update the copy of the template in the Movable Type database, so that the next
+time it needs the template, it can use the version in the database).</p>
+<p><strong>NOTE:</strong> when you create a new template without specifying a template body,
+and link it to a file that already exists, the contents of that file will be
+pulled in to the template. If you <i>do</i> specify a template body, however, and
+the linked file already exists, that linked file will be overwritten with the
+template body you specified.</p>
+<p>Linking a template to an external file is optional; you are free to maintain
+all of your templates through the Movable Type application itself, if you wish.</p>
+<p></p>
+<li><strong><a name="item_Template_body"></a>Template body</strong><br>
+
+The body of your template, containing template tags (see
+<a href="./mtmanual_tags.html">TEMPLATE TAGS</a>) and other markup (HTML, for example).
+<p></p></ul>
+<p>
+<h2><a name="default templates"></a>Default Templates</h2>
+<p>Movable Type ships with a set of default templates that are customizable
+through stylesheets; the same template markup can be made to look completely
+different by inserting a new stylesheet. You can view the default templates
+themselves at <a href="http://www.movabletype.org/default_templates.shtml">http://www.movabletype.org/default_templates.shtml</a> .</p>
+<p>To select a new style for your weblog, follow these instructions:</p>
+<ol>
+<li>
+Log in to Movable Type, select the weblog you wish to edit, then click
+<code>List &amp; Edit Templates</code>.
+<p></p>
+<li>
+In the list of Index Templates, you will see a template called <code>Stylesheet</code>;
+open this template for editing.
+<p></p>
+<li>
+The prebuilt stylesheets used to customize your pages are located at
+<a href="http://www.movabletype.org/default_styles.shtml">http://www.movabletype.org/default_styles.shtml</a> . On this page, you can view
+screenshots of each style; once you have selected the style you wish to use,
+copy the contents of the text box, and paste those contents into the
+<a href="#item_Template_body"><code>Template body</code></a> box of the template you opened for editing in Step 2.
+<p></p>
+<li>
+Press the <code>SAVE</code> button to save the new stylesheet.
+<p></p>
+<li>
+You will be prompted to rebuild your site; click the <code>REBUILD</code> link, select
+<code>Rebuild Indexes Only</code> from the pulldown menu, and click the <code>REBUILD</code>
+button.
+<p></p>
+<li>
+When the rebuild has completed, your site will now be using the new
+stylesheet.
+<p><strong>NOTE:</strong> some browsers (Internet Explorer for Windows, for one) refuse to
+reload a stylesheet from the webserver once they have fetched it once; if,
+when you view your site, nothing has changed, you should empty your browser
+cache and try again.</p>
+<p></p></ol>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

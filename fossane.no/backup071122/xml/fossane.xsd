@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by BS (S) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="fossane">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="languages">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="language" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="lang" type="xs:integer" use="required"/>
+									<xs:attribute name="longname" type="xs:string" use="required"/>
+									<xs:attribute name="shortname" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="universal">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="folderstructure">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="rootname" type="xs:anyURI"/>
+										<xs:element name="object" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="name" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="lang" type="xs:integer" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="object" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="name" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer" use="required"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="object" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="name" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:string">
+																							<xs:attribute name="lang" type="xs:integer" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="object" minOccurs="0" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="name" maxOccurs="unbounded">
+																							<xs:complexType>
+																								<xs:simpleContent>
+																									<xs:extension base="xs:string">
+																										<xs:attribute name="lang" type="xs:integer" use="required"/>
+																									</xs:extension>
+																								</xs:simpleContent>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="object" minOccurs="0" maxOccurs="unbounded">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="name" maxOccurs="unbounded">
+																										<xs:complexType>
+																											<xs:simpleContent>
+																												<xs:extension base="xs:string">
+																													<xs:attribute name="lang" type="xs:integer" use="required"/>
+																												</xs:extension>
+																											</xs:simpleContent>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="object" minOccurs="0" maxOccurs="unbounded">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="name" maxOccurs="unbounded">
+																													<xs:complexType>
+																														<xs:simpleContent>
+																															<xs:extension base="xs:string">
+																																<xs:attribute name="lang" type="xs:integer" use="required"/>
+																															</xs:extension>
+																														</xs:simpleContent>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																											<xs:attribute name="type" use="required">
+																												<xs:simpleType>
+																													<xs:restriction base="xs:string">
+																														<xs:enumeration value="FOLDER"/>
+																														<xs:enumeration value="file"/>
+																													</xs:restriction>
+																												</xs:simpleType>
+																											</xs:attribute>
+																											<xs:attribute name="id" type="xs:string" use="optional"/>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																								<xs:attribute name="type" use="required">
+																									<xs:simpleType>
+																										<xs:restriction base="xs:string">
+																											<xs:enumeration value="FOLDER"/>
+																											<xs:enumeration value="file"/>
+																										</xs:restriction>
+																									</xs:simpleType>
+																								</xs:attribute>
+																								<xs:attribute name="id" type="xs:string" use="optional"/>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																					<xs:attribute name="type" use="required">
+																						<xs:simpleType>
+																							<xs:restriction base="xs:string">
+																								<xs:enumeration value="FOLDER"/>
+																								<xs:enumeration value="file"/>
+																							</xs:restriction>
+																						</xs:simpleType>
+																					</xs:attribute>
+																					<xs:attribute name="id" type="xs:string" use="optional"/>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																		<xs:attribute name="type" use="required">
+																			<xs:simpleType>
+																				<xs:restriction base="xs:string">
+																					<xs:enumeration value="FOLDER"/>
+																					<xs:enumeration value="file"/>
+																				</xs:restriction>
+																			</xs:simpleType>
+																		</xs:attribute>
+																		<xs:attribute name="id" type="xs:string" use="optional"/>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+															<xs:attribute name="type" use="required">
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:enumeration value="FOLDER"/>
+																		<xs:enumeration value="file"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+															<xs:attribute name="id" type="xs:string" use="optional"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="type" use="required">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="FOLDER"/>
+															<xs:enumeration value="file"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="id" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="e-mail" type="xs:string"/>
+							<xs:element name="text">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="footer">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="updated" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="lang" type="xs:integer"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="translator" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="lang" type="xs:integer"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="webmaster">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="lang" type="xs:integer"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="copyright" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="lang" type="xs:integer"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="pictures" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="location" type="xs:anyURI"/>
+										<xs:element name="ALT-text">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="lang" type="xs:integer"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="page" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="text">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="title" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="lang" type="xs:integer"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="introduction" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="lang" type="xs:integer"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="maintext" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="para" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string"/>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="lang" type="xs:integer"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="pictures" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="location" type="xs:anyURI"/>
+										<xs:element name="ALT-text" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="lang" type="xs:integer"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:integer" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

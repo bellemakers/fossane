@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Preview your entry"> | <TMPL_VAR NAME=BLOG_NAME> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+<tr>
+<td align="left" rowspan="5" valign="top">
+<TMPL_INCLUDE NAME=mininav.tmpl>
+</td>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500"><font class="pagetitle"> <MT_TRANS phrase="Preview your entry"></font></td>
+</tr>
+
+<tr>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500">
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+	<tr>
+	<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500">
+
+		<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+		<input class="button-big" type="submit" name="reedit" value="<MT_TRANS phrase="Re-Edit this entry">">
+		<input class="button-big" type="submit" name="save" value="<MT_TRANS phrase="Save this entry">">
+		<input type="hidden" name="__mode" value="save_entry">
+		<TMPL_LOOP NAME=ENTRY_LOOP>
+		<input type="hidden" name="<TMPL_VAR NAME=DATA_NAME>" value="<TMPL_VAR NAME=DATA_VALUE>">
+		</TMPL_LOOP>
+
+		<TMPL_VAR NAME=PREVIEW_BODY>
+
+		</form>
+	</td>
+	</tr>
+
+	<tr>
+	<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="200"></td>
+	</tr>
+	</table>
+</td>
+</tr>
+</table>
+
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

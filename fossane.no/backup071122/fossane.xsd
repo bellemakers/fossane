@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by BS (S) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="fossane">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="languages">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="language" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="lang" type="xs:integer" use="required"/>
+									<xs:attribute name="longname" type="xs:string" use="required"/>
+									<xs:attribute name="shortname" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="universal">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="folderstructure">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="root" type="xs:anyURI"/>
+										<xs:element name="alternateroot" type="xs:anyURI"/>
+										<xs:element name="graphicsfolder" type="xs:string"/>
+										<xs:element ref="fileid" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element ref="folder" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="filestructure">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="file"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="text">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="meta" minOccurs="0"/>
+										<xs:element name="contactdetails" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="namecontact" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="lang" type="xs:integer"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="e-mail">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="heading" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="e-mail" type="xs:string" minOccurs="0"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="address">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="heading" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="name" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="addressline1" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="addressline2" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="postcode" minOccurs="0">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="place" minOccurs="0">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="country" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="phone">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="heading" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="phone" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="footer">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="updated" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="lang" type="xs:integer"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="translator" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="lang" type="xs:integer"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="webmaster">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="name">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="e-mail">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="copyright" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="lang" type="xs:integer"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="pictures" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="location" type="xs:anyURI"/>
+										<xs:element name="ALT-text">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="lang" type="xs:integer"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="page" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="text" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="meta" minOccurs="0"/>
+										<xs:element name="browsertitle" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="lang" type="xs:integer"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="heading" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="gifname" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="lang" type="xs:integer"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="alt-text" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="pre-emphasize" type="xs:string" minOccurs="0"/>
+																<xs:element name="emphasize" type="xs:string" minOccurs="0"/>
+																<xs:element name="post-emphasize" type="xs:string" minOccurs="0"/>
+															</xs:sequence>
+															<xs:attribute name="lang" type="xs:integer"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="introduction" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType mixed="true">
+												<xs:attribute name="lang" type="xs:integer"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="maintext" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="para" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string"/>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="lang" type="xs:integer"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="link" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="href" type="xs:anyURI"/>
+														<xs:attribute name="lang" type="xs:integer"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="prices" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="headings">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="productcolumn">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="description" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:string">
+																							<xs:attribute name="lang" type="xs:integer" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="pricecolumn" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="description" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:string">
+																							<xs:attribute name="lang" type="xs:integer" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="priceformat">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="before" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:string">
+																							<xs:attribute name="lang" type="xs:integer" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="after" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:string">
+																							<xs:attribute name="lang" type="xs:integer" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="product" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="description">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="descriptiontext" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:string">
+																							<xs:attribute name="lang" type="xs:integer" use="required"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="price" type="xs:decimal" maxOccurs="unbounded"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="bulletlist" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="listitem" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="itemtext" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="map" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="heading" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="lang" type="xs:integer"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="name"/>
+													<xs:element name="gifname" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="lang" type="xs:integer"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="starthref" type="xs:string"/>
+													<xs:element name="area" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="shape">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:enumeration value="default"/>
+																			<xs:enumeration value="rect"/>
+																			<xs:enumeration value="circle"/>
+																			<xs:enumeration value="poly"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="coords">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string"/>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="href">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string"/>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="alt" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="gallery" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="heading" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="lang" type="xs:integer"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="picture" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="thumb">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string"/>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="picture">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string"/>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="contactdetails" type="xs:boolean" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="pics" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="header" minOccurs="0">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="type" use="required">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="jpg"/>
+																	<xs:enumeration value="gif"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="introduction" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="UL" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="filename" minOccurs="0">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="type">
+																					<xs:simpleType>
+																						<xs:restriction base="xs:string">
+																							<xs:enumeration value="jpg"/>
+																							<xs:enumeration value="gif"/>
+																						</xs:restriction>
+																					</xs:simpleType>
+																				</xs:attribute>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="caption" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="UR" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="filename" minOccurs="0">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="type">
+																					<xs:simpleType>
+																						<xs:restriction base="xs:string">
+																							<xs:enumeration value="jpg"/>
+																							<xs:enumeration value="gif"/>
+																						</xs:restriction>
+																					</xs:simpleType>
+																				</xs:attribute>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="caption" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="number" type="xs:integer"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="para" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="UL" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="filename" minOccurs="0">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="type">
+																					<xs:simpleType>
+																						<xs:restriction base="xs:string">
+																							<xs:enumeration value="jpg"/>
+																							<xs:enumeration value="gif"/>
+																						</xs:restriction>
+																					</xs:simpleType>
+																				</xs:attribute>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="caption" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="UR" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="filename" minOccurs="0">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="type">
+																					<xs:simpleType>
+																						<xs:restriction base="xs:string">
+																							<xs:enumeration value="jpg"/>
+																							<xs:enumeration value="gif"/>
+																						</xs:restriction>
+																					</xs:simpleType>
+																				</xs:attribute>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="caption" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="lang" type="xs:integer"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="number" type="xs:integer"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:integer" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="fileType">
+		<xs:sequence>
+			<xs:element name="filename" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="lang" type="xs:integer"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="gifname" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="lang" type="xs:integer"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="altname" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="lang" type="xs:integer"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="iconheading" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="lang" type="xs:integer"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="file" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string"/>
+		<xs:attribute name="level">
+			<xs:simpleType>
+				<xs:restriction base="xs:integer">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="parent" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="file" type="fileType"/>
+	<xs:complexType name="folderType">
+		<xs:sequence>
+			<xs:element name="foldername" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="lang" type="xs:integer"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="folder" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="fileid" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="folder" type="folderType"/>
+	<xs:complexType name="fileidType">
+		<xs:sequence>
+			<xs:element ref="fileid" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="fileid">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="fileidType">
+					<xs:attribute name="id" type="xs:integer"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="metaType">
+		<xs:sequence>
+			<xs:element name="author" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="lang" type="xs:integer"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="keywords" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="lang" type="xs:integer"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="lang" type="xs:integer"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="meta" type="metaType"/>
+</xs:schema>

@@ -1,0 +1,115 @@
+<html>
+<head>
+<title>SANITIZE: CLEANING UP INCOMING DATA</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: SANITIZE: CLEANING UP INCOMING DATA</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#sanitize: cleaning up incoming data">SANITIZE: CLEANING UP INCOMING DATA</a></li>
+	<ul>
+
+		<li><a href="#default usage">Default Usage</a></li>
+		<li><a href="#overriding defaults">Overriding Defaults</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="sanitize: cleaning up incoming data"></a>SANITIZE: CLEANING UP INCOMING DATA</h1>
+<p><strong>Note:</strong> the following only applies if you have turned on the <i>Allow HTML
+in Comments</i> option in your weblog configuration preferences.</p>
+<p>When data is submitted by visitors to your site, that data should not
+necessarily be trusted. If you are allowing HTML in your comments, for
+example, visitors to your site could submit malicious HTML, or scripts
+in Javascript or PHP, to run code on your site. This code could do anything
+from reading cookies to reading private files on your server.</p>
+<p>To protect your site, Movable Type cleans up (``sanitizes'') any data
+submitted by visitors to your site. This includes any comment data and any
+TrackBack data. This cleanup is done to remove any code (HTML or otherwise)
+that could compromise the security of your site. The sanitization process
+works by only allowing certain HTML tags--any other tags, and all processing
+and scripting instructions (PHP, JSP, Javascript), are stripped.</p>
+<p>The default set of allowed HTML tags and attributes is: <code>a href</code>, <code>b</code>,
+<code>br</code>, <code>p</code>, <code>strong</code>, <code>em</code>, <code>ul</code>, <code>li</code>, <code>blockquote</code>. You can
+override this setting globally by setting the <i>GlobalSanitizeSpec</i> setting
+in the <i>mt.cfg</i> file; and you can override it on a per-weblog basis in your
+weblog configuration. <strong>Note:</strong> Unless you know what you're doing, it is
+recommended that you stick with the defaults.</p>
+<p>One other feature of the sanitization process is that it will add closing
+tags for any tags left open in the sanitized text. For example, if a visitor
+to your site opens a <code>&lt;b&gt;</code> tag and forgets the close it, the
+sanitize process will add a <code>&lt;/b&gt;</code> tag.</p>
+<p>
+<h2><a name="default usage"></a>Default Usage</h2>
+<p>By default, Sanitize is turned on automatically for the following tags:</p>
+<ul>
+<li><strong><a name="item_%3C%24MTCommentAuthor%24%3E"></a><code>&lt;$MTCommentAuthor$&gt;</code></strong><br>
+
+<li><strong><a name="item_%3C%24MTCommentEmail%24%3E"></a><code>&lt;$MTCommentEmail$&gt;</code></strong><br>
+
+<li><strong><a name="item_%3C%24MTCommentURL%24%3E"></a><code>&lt;$MTCommentURL$&gt;</code></strong><br>
+
+<li><strong><a name="item_%3C%24MTCommentBody%24%3E"></a><code>&lt;$MTCommentBody$&gt;</code></strong><br>
+
+<li><strong><a name="item_%3C%24MTPingTitle%24%3E"></a><code>&lt;$MTPingTitle$&gt;</code></strong><br>
+
+<li><strong><a name="item_%3C%24MTPingURL%24%3E"></a><code>&lt;$MTPingURL$&gt;</code></strong><br>
+
+<li><strong><a name="item_%3C%24MTPingBlogName%24%3E"></a><code>&lt;$MTPingBlogName$&gt;</code></strong><br>
+
+<li><strong><a name="item_%3C%24MTPingExcerpt%24%3E"></a><code>&lt;$MTPingExcerpt$&gt;</code></strong><br>
+
+</ul>
+<p>This means that you don't need to modify your templates in order to make
+these tags safe. If you want to turn off sanitize for one of these tags,
+you can use the <i>sanitize</i> attribute:</p>
+<pre>&lt;$MTPingTitle sanitize=&quot;0&quot;$&gt;
+</pre><p>
+<h2><a name="overriding defaults"></a>Overriding Defaults</h2>
+<p>To override the default sanitize specification, you should first make sure
+that you have a good reason for doing so. You should also make sure that
+you understand the format of the sanitize specification, described here.</p>
+<p>The sanitize spec consists of HTML tag names separated by commas. For each
+tag, you must also list any attributes that you wish to allow, separated
+by spaces. Some examples:</p>
+<p>This will allow <code>a</code> tags with the <code>href</code> attribute and <code>b</code> tags:</p>
+<pre>a href,b
+</pre><p>This will allow <code>p</code> tags and <code>br</code> tags:</p>
+<pre>p,br/
+</pre><p>Note the <code>/</code> in the <code>br/</code> tag in this example. That is necessary because
+of the tag-closing feature mentioned above: if the parser sees only an opening
+<code>&lt;br&gt;</code> tag, it will think that it needs to close this tag at the
+end of the sanitized text. Adding the <code>/</code> after the tag name tells the
+parser that this tag does not need a closing tag.</p>
+<p>Note that you must specify any allowed attributes for the tag, unless you
+want all of the attributes to be stripped. For example, if you allow the
+<code>a</code> tag, you would also want to allow the <code>href</code> attribute for that tag, or
+the following HTML:</p>
+<pre>&lt;a href=&quot;http://www.foo.com/&quot;&gt;
+</pre><p>would be turned into this:</p>
+<pre>&lt;a&gt;
+</pre><p>which probably isn't what you want.</p>
+<p>If you wish to allow a certain attribute for any HTML tag in which it might
+appear, use a <code>*</code> as the tag name, followed by the list of attributes. For
+example:</p>
+<pre>br/,p,blockquote,* style
+</pre><p>This will allow any of the following:</p>
+<pre>&lt;br style=&quot;...&quot; /&gt;
+&lt;p style=&quot;...&quot; /&gt;
+&lt;blockquote style=&quot;...&quot;&gt;
+</pre><p>Note that you must still explicitly list any <i>tags</i> that you want included;
+<code>*</code> just allows the <i>attribute</i> listed in any of those tags.</p>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

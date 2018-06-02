@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Categories"> | <TMPL_VAR NAME=BLOG_NAME> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+function doRebuild () {
+    window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=rebuild_confirm&blog_id=<TMPL_VAR NAME=BLOG_ID>', 'rebuild', 'width=400,height=200,resizable=yes');
+}
+
+function doEditAttributes (id) {
+    window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=category&blog_id=<TMPL_VAR NAME=BLOG_ID>&id=' + id, 'attributes', 'width=400,height=400,resizable=yes');
+}
+
+function doRemoveCategories (f) {
+    var base = '<TMPL_VAR NAME=SCRIPT_URL>?__mode=delete_confirm&_type=category&blog_id=<TMPL_VAR NAME=BLOG_ID>';
+    var url = '';
+    var e = f.delete_id;
+    if (!e) return;
+    if (e.value && e.checked)
+        url += '&id=' + e.value;
+    else
+        for (i=0; i<e.length; i++)
+            if (e[i].checked)
+                url += '&id=' + e[i].value;
+    if (!url) {
+        alert('<MT_TRANS phrase="You did not select any categories to delete.">');
+        return false;
+    }
+    url = base + url;
+    window.open(url, 'confirm_delete', 'width=370,height=150');
+}
+
+function listPings (id) {
+    window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=tb_cat_pings&blog_id=<TMPL_VAR NAME=BLOG_ID>&category_id=' + id, 'urls', 'width=450,height=350,resizable=yes,scrollbars=yes');
+}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td align="left" rowspan="5" valign="top">
+<TMPL_INCLUDE NAME=mininav.tmpl>
+</td>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500"><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=menu&blog_id=<TMPL_VAR NAME=BLOG_ID>"> <MT_TRANS phrase="[_1] Editing Menu" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"> &gt;</a><font class="pagetitle"> <MT_TRANS phrase="Edit Categories"></a></font></td>
+</tr>
+
+<tr>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500">
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+	<tr>
+	<td colspan="5" valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+	</tr>
+
+	<tr>
+	<td colspan="7" valign="top" width="500"><font class="instructional"><MT_TRANS phrase="_USAGE_CATEGORIES"></font></p>
+
+<TMPL_IF NAME=SAVED>
+	<p class="message"><MT_TRANS phrase="Your category changes and additions have been made."> <TMPL_IF NAME=CAN_REBUILD><MT_TRANS phrase="_USAGE_REBUILD"></TMPL_IF></p>
+</TMPL_IF>
+
+<TMPL_IF NAME=SAVED_DELETED>
+	<p class="message"><MT_TRANS phrase="You have successfully deleted the selected categories."></p>
+</TMPL_IF>
+	</td>
+	</tr>
+
+	<tr>
+	<td colspan="5" valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="10"></td>
+	</tr>
+
+	<tr>
+	<td width="255" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="255" height="1"></td>
+	<td width="10" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td width="195" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="195" height="1"></td>
+	<td width="10" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td width="30" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="30" height="1"></td>
+	</tr>
+
+	<tr>
+	<td width="255" valign="top"><font class="title"><MT_TRANS phrase="Categories"></font></td>
+	<td width="10" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td width="195" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="195" height="1"></td>
+	<td width="10" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td width="30" valign="top" align="center"><font class="title"><MT_TRANS phrase="Delete"></font></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top" colspan="5" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+	</tr>	
+
+	<tr>
+	<td valign="top" colspan="5"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>	
+	</tr>
+
+	<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+	<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+	<input type="hidden" name="__mode" value="save_cat">
+
+	<TMPL_LOOP NAME="CATEGORY_LOOP">
+	<tr>
+	<td valign="top"><input class="text-large" name="category-<TMPL_VAR NAME=CATEGORY_ID>" value="<TMPL_VAR NAME=CATEGORY_LABEL>"><br></td>
+	<td width="10" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="middle" width="195" valign="top"><TMPL_IF NAME=IS_OBJECT><font class="title"><b><a class="list" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=category&blog_id=<TMPL_VAR NAME=BLOG_ID>&id=<TMPL_VAR NAME=CATEGORY_ID>"><MT_TRANS phrase="Edit category attributes"></a></b></font><TMPL_ELSE>&nbsp;</TMPL_IF></td>
+	<td width="10" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="middle" width="30" valign="top" align="center"><TMPL_IF NAME=IS_OBJECT><input type="checkbox" name="delete_id" value="<TMPL_VAR NAME=CATEGORY_ID>"><TMPL_ELSE>&nbsp;</TMPL_IF></td>
+	</tr>
+
+	<TMPL_IF NAME=IS_OBJECT>
+
+	<tr>
+	<td class="title" colspan="5"><a class="list" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=list_entries&blog_id=<TMPL_VAR NAME=BLOG_ID>&filter=category_id&filter_val=<TMPL_VAR NAME=CATEGORY_ID>"><MT_TRANS phrase="[quant,_1,Entry,Entries]" params="<TMPL_VAR NAME=CATEGORY_ENTRYCOUNT>"></a> | <TMPL_IF NAME=HAS_TB><a class="list" href="#" onclick="listPings(<TMPL_VAR NAME=CATEGORY_ID>)"><MT_TRANS phrase="[quant,_1,TrackBack ping]" params="<TMPL_VAR NAME=CATEGORY_TBCOUNT>"></a> | </TMPL_IF><font class="title"> <MT_TRANS phrase="Created by [_1]" params="<TMPL_VAR NAME=CATEGORY_AUTHOR ESCAPE=HTML>"></font></td>
+	</tr>
+
+	<tr>
+	<td colspan="5"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="5" bgcolor="#DDDDDD"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+	</tr>
+
+	<tr>
+	<td colspan="5"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+	
+	</TMPL_IF>
+
+	</TMPL_LOOP>
+
+	<tr>
+	<td valign="top" colspan="5" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+	</tr>	
+
+	<tr>
+	<td valign="top" colspan="5"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>	
+	
+	<tr>
+	<td colspan="2"><input class="button-big" type="submit" value="<MT_TRANS phrase="Save">"></td>
+	<td colspan="3" align="right"><input onClick="doRemoveCategories(this.form)" class="button-big" type="button" value="<MT_TRANS phrase="Delete Checked">"></td>
+	</tr>
+
+	</form>
+
+	</table>
+
+</td>
+</tr>
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+</table>
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+<html>
+<head>
+<title>ENTRIES</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: ENTRIES</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#entries">ENTRIES</a></li>
+	<ul>
+
+		<li><a href="#entryediting shortcuts">Entry-Editing Shortcuts</a></li>
+		<li><a href="#customizing the entry editing screen">Customizing the Entry Editing Screen</a></li>
+		<li><a href="#powerediting mode">Power-Editing Mode</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="entries"></a>ENTRIES</h1>
+<p>Entries form the basis of your weblog; they are the content, whereas the
+templates (below) generally define how that content appears. You can create
+a new entry by logging in to Movable Type, selecting a weblog, then clicking
+<code>Create New Entry</code>. You can edit your existing entries by clicking <code>List
+&amp; Edit Entries</code>, then selecting an entry from that list.</p>
+<p>When creating a new entry, you will have the chance to set the following
+fields:</p>
+<ul>
+<li><strong><a name="item_Title"></a>Title</strong><br>
+
+The title of your entry does not necessarily have to appear on your weblog;
+it is required, however, for sorting and display purposes in Movable Type
+itself.
+<p></p>
+<li><strong><a name="item_Primary_Category"></a>Primary Category</strong><br>
+
+You can choose a primary category for your post for categorization or
+archiving purposes. Movable Type supports entries assigned to multiple
+categories, but there must always be one category that is the primary category
+for each entry; this allows you to use tags like <code>&lt;$MTEntryCategory$&gt;</code>
+to display information about a single category.
+<p>For more information on managing categories, see
+<a href="./mtmanual_categories.html">CATEGORIES</a>.</p>
+<p></p>
+<li><strong><a name="item_Entry_Body"></a>Entry Body</strong><br>
+
+<li><strong><a name="item_Extended_Entry"></a>Extended Entry</strong><br>
+
+Collectively these two fields make up the body of your entry. You can use
+the two fields however you like: you could split up your entry over the two
+fields, or you could completely ignore the <a href="#item_Extended_Entry"><code>Extended Entry</code></a> text and enter only
+the <a href="#item_Entry_Body"><code>Entry Body</code></a> text. Movable Type allows you to split up your entry for
+more flexibility in the display of that entry; for example, if you write very
+long entries, you may not want your entire entry on your index pages. You
+can use the two fields to control what gets displayed, and where.
+<p>Note that when the text of your entry and extended entry fields are output
+into your public weblog, paragraphs--blocks of text separated by two line
+breaks--will be automatically converted using the <i>Text Formatting</i>
+option you have selected. The default formatting is to enclose paragraphs
+within <code>&lt;p&gt;</code> and <code>&lt;/p</code>&gt;&gt; tags, and to convert line breaks
+to <code>&lt;br /&gt;</code> tags. If you do not want this formatting to occur,
+you can select <code>None</code> for the text formatting.</p>
+<p></p>
+<li><strong><a name="item_Excerpt"></a>Excerpt</strong><br>
+
+You can enter an excerpt from your entry, or use this field to provide a
+summary of the content therein. If you do not provide an excerpt, it will
+be automatically generated (when specified in a template using the
+<code>MTEntryExcerpt</code> tag) by selecting the first twenty (20) words from your
+entry, followed by an ellipsis.
+<p></p>
+<li><strong><a name="item_Keywords"></a>Keywords</strong><br>
+
+The Keywords field can hold whatever type of data you want to put in it; it
+is geared for holding metadata or keywords about your entry, and is not
+normally displayed on your public site (though you can display it using the
+<code>&lt;$MTEntryKeywords$&gt;</code> tag). It is searched when a user performs a
+public search on your site, so you can use it to tag entries with words
+that may not normally appear in the entry body.
+<p></p>
+<li><strong><a name="item_Post_Status"></a>Post Status</strong><br>
+
+Entries with <code>Status</code> set to <code>Draft</code> will not be published to your weblog.
+<p></p>
+<li><strong><a name="item_Allow_Comments"></a>Allow Comments</strong><br>
+
+Specifies whether you would like users to be able to post comments on this
+entry. There are three options: <code>None</code>, <code>Open</code>, or <code>Closed</code>. If you select
+<code>None</code>, visitors will not be able to post comments, nor will they be able
+to view existing comments. If you select <code>Open</code>, visitors will be able to
+both post and view existing comments. If you select <code>Closed</code>, visitors will
+be able to view existing comments, but not post new comments. This is useful
+when you wish to turn off commenting for an old post on your site, but you
+wish to leave up the old comments for posterity.
+<p></p>
+<li><strong><a name="item_Text_Formatting"></a>Text Formatting</strong><br>
+
+Specifies the text formatting option for this entry. For example, the
+<i>Convert Line Breaks</i> option encloses your paragraphs in <code>&lt;p&gt;</code>
+and <code>&lt;/p&gt;</code> tags, and converts line breaks to <code>&lt;br&gt;</code>
+tags. You can select a different formatting option for each entry in the
+system. The default for this entry is set in your weblog configuration under
+<i>Default Text Formatting for new entries</i>.
+<p></p>
+<li><strong><a name="item_Allow_Pings"></a>Allow Pings</strong><br>
+
+Specifies whethere you would like to enable this entry to receive
+<a href="./mtmanual_trackback.html">TrackBack</a> pings. This checkbox defines whether text
+inside of a <code>MTEntryIfAllowPings</code> area will be displayed (see <a href="./mtmanual_tags.html#item_mtentryifallowpings">documentation for the tag</a>).
+<p></p>
+<li><strong><a name="item_URLs_To_Ping"></a>URLs To Ping</strong><br>
+
+A list of TrackBack URLs that you would like to ping for this entry. This is
+for use when pinging a particular entry on a remote site--if you wish to
+ping a remote site every time you place an entry in a certain category,
+associate the <code>URL(s)</code> with that particular category. See
+<a href="./mtmanual_categories.html">Categories</a> for more details.
+<p></p>
+<li><strong><a name="item_Previous_Pings_Sent"></a>Previous Pings Sent</strong><br>
+
+A list of TrackBack pings previously sent for this entry. This includes both
+pings sent to remote entries <strong>and</strong> to remote categories (by associating a
+category in your weblog with one or more ping URLs).
+<p></p></ul>
+<p>You can use the <code>PREVIEW</code> button to preview your entry before posting;
+<code>CANCEL</code> will return you to the <i>List Entries</i> page.</p>
+<p>After you have saved a new entry, you will be transferred directly into
+editing mode for that entry. When editing an existing entry, you will have
+several new options:</p>
+<ul>
+<li><strong><a name="item_Authored_On"></a>Authored On</strong><br>
+
+Movable Type allows you to pre-date or post-date your entries by modifying the
+<code>Authored on</code> date and time for an entry. If you change this value, you
+<i>must</i> use the form <code>YYYY-MM-DD HH:MM:SS</code>; otherwise you will get an error.
+<p></p>
+<li><strong><a name="item_Assign_Multiple_Categories"></a>Assign Multiple Categories</strong><br>
+
+The <a href="#item_Assign_Multiple_Categories"><code>Assign Multiple Categories</code></a> link opens a popup window that allows you
+to manage the secondary categories to which your entry is assigned.
+<p></p>
+<li><strong><a name="item_Delete"></a>Delete</strong><br>
+
+You can delete an existing entry by pressing <code>DELETE ENTRY</code>; you will then be
+asked to confirm that you really wish to delete the entry. Agree, and your
+entry will be deleted.
+<p></p></ul>
+<p>Note that, upon saving an entry that is marked for <code>Publish</code>, your archives
+for that entry, along with all of your indexes, are automatically rebuilt.
+Thus you do not need to manually rebuild your files (see <i>REBUILDING FILES</i>,
+below) after posting a new entry, or after editing an existing entry.</p>
+<p>
+<h2><a name="entryediting shortcuts"></a>Entry-Editing Shortcuts</h2>
+<p>If you are using Movable Type on Internet Explorer for Windows, you can make
+use of a couple of keyboard shortcuts while editing your entries, to
+automatically insert HTML formatting tags. To use these shortcuts, select the
+text you wish to format in your entry, then press the appropriate keyboard
+shortcut combination:</p>
+<ul>
+<li><strong><a name="item_Bold_%2D_Ctrl%2DShift%2Db"></a>Bold - Ctrl-Shift-b</strong><br>
+
+<li><strong><a name="item_Italic_%2D_Ctrl%2DShift%2Di"></a>Italic - Ctrl-Shift-i</strong><br>
+
+<li><strong><a name="item_Underline_%2D_Ctrl%2DShift%2Du"></a>Underline - Ctrl-Shift-u</strong><br>
+
+<li><strong><a name="item_Hyperlink_%2D_Ctrl%2DShift%2Da"></a>Hyperlink - Ctrl-Shift-a</strong><br>
+
+</ul>
+<p>
+<h2><a name="customizing the entry editing screen"></a>Customizing the Entry Editing Screen</h2>
+<p>Movable Type allows you to customize the <i>New Entry</i> and <i>Edit Entry</i>
+screens to fit with your usage of the system. This customization is done on
+a per-author, per-weblog basis. In other words, as an author, you can have
+different screen layouts for each weblog that you post to; and when you
+customize the screens, your preferences will not trample over those of any
+of the other authors in the system.</p>
+<p>The system lets you choose between 2 predefined layouts (<i>Basic</i> and
+<i>Advanced</i>), or allows you to create a custom layout, where you choose the
+fields you would like displayed.</p>
+<ul>
+<li><strong><a name="item_Basic"></a>Basic</strong><br>
+
+As the name implies, <i>Basic</i> is the simplest possible layout. It displays
+editable fields for the entry title and entry body; a pulldown menu for the
+Post Status; and an uneditable authored-on date.
+<p></p>
+<li><strong><a name="item_Advanced"></a>Advanced</strong><br>
+
+<i>Advanced</i> displays all of the custom fields available: entry title, entry
+body, extended body, excerpt, Post Status, editable authored-on date,
+category selection menu, <i>Allow Comments</i> options, and <i>Text Formatting</i>
+options.
+<p><i>Advanced</i> is the default layout.</p>
+<p></p>
+<li><strong><a name="item_Custom"></a>Custom</strong><br>
+
+The <i>Custom</i> layout allows you the most flexibility; it allows you to choose
+exactly which fields you would like to appear on the <i>New</i> and <i>Edit Entry</i>
+screens. You can choose from any of the available fields listed above in
+<i>Advanced</i>.
+<p></p></ul>
+<p>In addition to configuring the fields that you would like displayed, you can
+also control the position of the button bar containing the <i>SAVE</i>,
+<i>PREVIEW</i>, and <i>DELETE</i> buttons. The button bar can be displayed either at
+the top of the page, above the entry-editing fields, or at the bottom, below
+the entry-editing fields.</p>
+<p>
+<h2><a name="powerediting mode"></a>Power-Editing Mode</h2>
+<p>There are times when you might wish to make changes in batch to your entries;
+for example, if you wish to change a number of entries from <code>Draft</code> status
+to <code>Publish</code>, or if you wish to assign categories to entries you have
+imported from another weblogging tool. In that case, you can use the Movable
+Type's power-editing mode to edit multiple entries at once. Select the weblog
+containing the entries you'd like to edit; then go to <code>List &amp; Edit Entries</code>;
+then click <code>Open power-editing mode</code>.</p>
+<p>The controls on the power-editing screen works just like the standard
+<code>List &amp; Edit Entries</code> screen. You can filter the list of entries that you are
+viewing by category, status, or author; and you can page through the entries
+using the <code>PREVIOUS</code> and <code>NEXT</code> buttons at the bottom. On this screen, you
+can edit the entry titles, categories, authored on dates, authors, and status
+fields; after making the desired changes, save your entries by clicking
+<code>SAVE</code>.</p>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

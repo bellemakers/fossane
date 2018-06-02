@@ -1,0 +1,144 @@
+<html>
+<head>
+<title>COMMENTS</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: COMMENTS</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#comments">COMMENTS</a></li>
+	<ul>
+
+		<li><a href="#comment previewing">Comment Previewing</a></li>
+		<li><a href="#comment submission errors">Comment Submission Errors</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="comments"></a>COMMENTS</h1>
+<p>Movable Type features a built-in comment system. You can edit existing
+comments for a particular entry by selecting that entry for editing, then
+looking in the <i>Edit Comments</i> area. Comments will be listed there; you can
+edit a comment by clicking on the name of the author, then editing the comment
+on the resulting page. You can delete comments by checking their checkboxes,
+then clicking <code>DELETE CHECKED</code>.</p>
+<p>The default templates that ship with Movable Type are comment-ready; in other
+words, you should be able to use comments in your weblog without editing any
+of the comment templates at all. The default templates are set up so that
+comments appear on both the popup comment window (linked from the <i>Main
+Index</i> template) and the individual archive pages. You can alter this behavior
+by altering the appropriate templates.</p>
+<p>Movable Type's comment system can be used in either of two ways (or both):</p>
+<ul>
+<li><strong><a name="item_Inline"></a>Inline</strong><br>
+
+If you use individual entry archives (see <a href="./mtmanual_archiving.html">ARCHIVING</a>),
+each archive page can include the comments on that particular entry. For
+example, you might use a template something like this:
+<pre>&lt;p&gt;&lt;font class=&quot;title&quot;&gt;&lt;$MTEntryTitle$&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;$MTEntryBody$&gt;
+&lt;MTComments&gt;
+&lt;$MTCommentBody$&gt;
+&lt;font class=&quot;post&quot;&gt;Posted by &lt;$MTCommentAuthorLink$&gt;.&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+&lt;/MTComments&gt;
+</pre><p>In fact, the default <i>Individual Entry Archive Template</i> contains this same
+structure.</p>
+<p></p>
+<li><strong><a name="item_Popup_Windows"></a>Popup Windows</strong><br>
+
+If you use any other type of archiving--in other words, a type of archiving
+where more than one entry is on an archive page--it may not make as much
+sense to include the comments inline. In that case, Movable Type supports
+dynamically-built popup windows for your comments (&amp;agrave; la Blog Voices and
+others). The default templates that ship with Movable Type support popup
+comments automatically with code like this in the <i>Comment Listing</i> template:
+<pre>&lt;MTComments&gt;
+&lt;$MTCommentBody$&gt;
+&lt;font class=&quot;post&quot;&gt;Posted by &lt;$MTCommentAuthorLink$&gt;.&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+&lt;/MTComments&gt;
+</pre><p>The following Javascript function is used to link to the comment popup window:</p>
+<pre>&lt;script language=&quot;javascript&quot;&gt;
+function OpenComments (c) {
+    window.open(c,
+               'comments',
+               'width=480,height=480,scrollbars=yes,status=yes');
+}
+&lt;/script&gt;
+</pre><p>And the following code invokes the Javascript function:</p>
+<pre>&lt;MTEntryIfAllowComments&gt;
+&lt;a href=&quot;&lt;$MTCGIPath$&gt;&lt;$MTCommentScript$&gt;?entry_id=&lt;$MTEntryID$&gt;&quot; onclick=&quot;OpenComments(this.href); return false&quot;&gt;Comments (&lt;$MTEntryCommentCount$&gt;)&lt;/a&gt;
+&lt;/MTEntryIfAllowComments&gt;
+</pre><p></p></ul>
+<p>Of course, in either of these scenarios, you will also want to provide a
+form for users to enter new comments. That form can look something like this:</p>
+<pre>&lt;form method=&quot;post&quot; action=&quot;&lt;$MTCGIPath$&gt;&lt;$MTCommentScript$&gt;&quot;&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;entry_id&quot; value=&quot;&lt;$MTEntryID$&gt;&quot;&gt;
+Name: &lt;input name=&quot;author&quot;&gt;&lt;p&gt;
+Email Address: &lt;input name=&quot;email&quot;&gt;&lt;p&gt;
+URL: &lt;input name=&quot;url&quot;&gt;&lt;p&gt;
+Body: &lt;textarea name=&quot;text&quot; rows=&quot;10&quot; cols=&quot;50&quot;&gt;&lt;/textarea&gt;&lt;p&gt;
+&lt;input type=&quot;submit&quot; name=&quot;preview&quot; value=&quot;PREVIEW&quot;&gt;
+&lt;input type=&quot;submit&quot; name=&quot;post&quot; value=&quot;POST&quot;&gt;
+&lt;/form&gt;
+</pre><p>If you are using static/inline comments, note that the sample form above will
+require the addition of one more hidden input field:</p>
+<pre>&lt;input type=&quot;hidden&quot; name=&quot;static&quot; value=&quot;1&quot;&gt;
+</pre><p>This tells the comments system that you are using inline comments, which will
+force a rebuild of the entry archives and of the index pages for your weblog,
+after a new comment is posted.</p>
+<p>Note that in either scenario--inline comments or popup comments--your index
+pages will be rebuilt after a new comment is added; this is to update the
+count of the number of comments on the entry (see the <code>MTEntryCommentCount</code>
+tag, in <a href="./mtmanual_tags.html">TEMPLATE TAGS</a>). In addition, if you are using inline
+comments, your archive pages for the entry will be rebuilt; this is to add
+the new comment to your individual entry archive page for the entry.</p>
+<p>
+<h2><a name="comment previewing"></a>Comment Previewing</h2>
+<p>Comment previews are built into Movable Type, so that your visitors can
+preview their comments before posting. Support for previews ships with the
+default templates built into the system; you can remove this support, if you
+wish, by removing the <code>PREVIEW</code> button from the comments form. The layout of
+the comment previews is defined using the <code>Comment Preview</code> template. You
+can use the <code>&lt;$MTCommentPreview*$&gt;</code> tags, along with the global tag
+attribute <code>encode_html</code>, to create an editable comment preview form; this
+allows users to preview their comment, then edit the comment being previewed,
+then post the comment. The default templates have an example of an editable
+comment preview template.</p>
+<p>When creating an editable comment preview template, you should always paste
+this hidden input field into the forms in your <code>Comment Preview</code> and
+<code>Comment Error</code> templates:</p>
+<pre>&lt;input type=&quot;hidden&quot; name=&quot;static&quot; value=&quot;&lt;$MTCommentPreviewIsStatic$&gt;&quot;&gt;
+</pre><p>This is a magical tag that tells the system whether a user is posting a
+comment from your individual archives, or from the comment popup window, so
+that the user can be redirected to the proper page after posting a comment.</p>
+<p>You can also list all of the previous comments posted to the entry, using the
+standard &lt;MTComments&gt; container tag:</p>
+<pre>Previous comments:
+&lt;MTComments&gt;
+&lt;$MTCommentBody$&gt;
+Posted by &lt;$MTCommentAuthorLink$&gt; at &lt;$MTCommentDate$&gt;
+&lt;/MTComments&gt;
+</pre><p>
+<h2><a name="comment submission errors"></a>Comment Submission Errors</h2>
+<p>If an error occurs when a comment is submitted--for example, if you have
+disallowed anonymous comments, and the user does not supply a name or email
+address--you can customize the error page that the user receives using the
+<code>Comment Error Template</code>. You can use this template to provide a form where
+users can fix whatever error has occurred in their submissions, then re-post
+(or preview) the comment. The default templates have an example of a
+<code>Comment Error Template</code>
+( <a href="http://www.movabletype.org/default_templates.shtml">http://www.movabletype.org/default_templates.shtml</a> ).</p>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

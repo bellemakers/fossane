@@ -1,0 +1,256 @@
+<html>
+<head>
+<title>PUBLIC SEARCH</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: PUBLIC SEARCH</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#public search">PUBLIC SEARCH</a></li>
+	<ul>
+
+		<li><a href="#search templates">Search Templates</a></li>
+		<li><a href="#search forms">Search Forms</a></li>
+		<li><a href="#alternate templates">Alternate Templates</a></li>
+		<li><a href="#converting from previous versions of mtsearch">Converting from previous versions of mt-search</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="public search"></a>PUBLIC SEARCH</h1>
+<p>Movable Type's public search interface is an integration of Jay Allen's
+mt-search add-on for Movable Type. The search engine supports two different
+types of search: straight keyword search and new comment search. The
+straight search supports boolean queries, phrase searching, and regular
+expression matching (if desired). The new comment search (actually, most of
+a ``listing'' than a search) lists all of the new comments posted on entries
+on your site in a specified interval.</p>
+<p>Search queries are logged in your site's activity log.</p>
+<p>
+<h2><a name="search templates"></a>Search Templates</h2>
+<p>Search templates are not managed like other templates in the Movable Type
+system, because they are not managed on a per-weblog basis, and thus do not
+make sense in the ``Templates'' section of the editing menu. Search templates
+are files in your <i>search_templates/</i> directory; this directory should be
+located in the same directory as <i>mt.cgi</i>.</p>
+<p>In your search templates, you can use a 
+<a href="./mtmanual_tags.html#search results tags">special set of template tags</a> to
+display the results for a search. You can also use most other Movable Type
+tags, although, of course, you must respect the context in which you are
+using the tags. In addition, since your search results page is dynamic and
+will be rebuilt every time anyone makes a search on your site, you should
+be careful about using any tags that would require a lot of server resources
+and time to build (for example, <code>&lt;MTArchiveList&gt;</code> or
+<code>&lt;MTCalendar&gt;</code>).</p>
+<p>You can also use the <code>&lt;MTInclude&gt;</code> tag in your search templates to
+include template modules or external files. You can even use tags like this,
+which require a weblog to be in context (because template modules are stored
+on a per-weblog basis), outside of the <code>&lt;MTSearchResults&gt;</code> container.
+However, there are caveats with this method, and
+you should be careful with using this if you have multiple weblogs. For
+example, if you use</p>
+<pre>&lt;$MTInclude module=&quot;Header&quot;$&gt;
+</pre><p>in a template, the system needs to know which weblog to look in for the module
+named <code>Header</code>. If there are search results found, the system will look in
+the weblog that is earliest alphabetically; if there are no search results,
+Movable Type will simply try to load a weblog from your database (the
+determination of the weblog that is chosen is undefined).</p>
+<p>This behavior may be refined in the future.</p>
+<p>
+<h2><a name="search forms"></a>Search Forms</h2>
+<p>The Movable Type default templates include a simple search form to search
+the weblogs on your site. This form looks like this:</p>
+<pre>&lt;form method=&quot;get&quot; action=&quot;&lt;$MTCGIPath$&gt;&lt;$MTSearchScript$&gt;&quot;&gt;
+&lt;label for=&quot;search&quot; accesskey=&quot;4&quot;&gt;Search this site:&lt;/label&gt;&lt;br /&gt;
+&lt;input id=&quot;search&quot; name=&quot;search&quot; size=&quot;20&quot; /&gt;&lt;br /&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Search&quot; /&gt;
+&lt;/form&gt;
+</pre><p>A full search form, with all options visible, would look something like
+this:</p>
+<pre>&lt;form method=&quot;post&quot; action=&quot;&lt;$MTCGIPath$&gt;&lt;$MTSearchScript$&gt;&quot;&gt;
+&lt;input size=&quot;30&quot; name=&quot;search&quot; value=&quot;&lt;$MTSearchString$&gt;&quot; /&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Search&quot; /&gt;&lt;br /&gt;
+&lt;input type=&quot;checkbox&quot; name=&quot;CaseSearch&quot; /&gt; Match case 
+&lt;input type=&quot;checkbox&quot; name=&quot;RegexSearch&quot; /&gt; Regex search&lt;br /&gt;
+&lt;b&gt;Search:&lt;/b&gt;
+&lt;input type=&quot;radio&quot; name=&quot;SearchElement&quot; value=&quot;entries&quot; /&gt; Entries 
+&lt;input type=&quot;radio&quot; name=&quot;SearchElement&quot; value=&quot;comments&quot; /&gt; Comments 
+&lt;input type=&quot;radio&quot; name=&quot;SearchElement&quot; value=&quot;both&quot; /&gt; Both &lt;br /&gt;
+&lt;b&gt;Sort By:&lt;/b&gt;
+&lt;select name=&quot;SearchSortBy&quot;&gt;
+&lt;option value=&quot;created_on&quot;&gt;Authored On Date&lt;/option&gt;
+&lt;option value=&quot;title&quot;&gt;Title&lt;/option&gt;
+&lt;/select&gt;&lt;br /&gt;
+&lt;b&gt;Sort Order:&lt;/b&gt;
+&lt;select name=&quot;ResultDisplay&quot;&gt;
+&lt;option value=&quot;ascend&quot;&gt;Ascending&lt;/option&gt;
+&lt;option value=&quot;descend&quot;&gt;Descending&lt;/option&gt;
+&lt;/select&gt;&lt;br /&gt;
+&lt;b&gt;Exclude Weblogs:&lt;/b&gt;
+&lt;MTBlogs&gt;
+&lt;input type=&quot;checkbox&quot; name=&quot;ExcludeBlogs&quot; value=&quot;&lt;$MTBlogID$&gt;&quot; /&gt; &lt;$MTBlogName$&gt;
+&lt;/MTBlogs&gt;&lt;br /&gt;
+&lt;b&gt;Search entries from:&lt;/b&gt;
+&lt;select name=&quot;SearchCutoff&quot;&gt;
+&lt;option value=&quot;9999999&quot;&gt;the beginning&lt;/option&gt;
+&lt;option value=&quot;7&quot;&gt;one week back&lt;/option&gt;
+&lt;option value=&quot;14&quot;&gt;two weeks back&lt;/option&gt;
+&lt;option value=&quot;30&quot;&gt;one month back&lt;/option&gt;
+&lt;option value=&quot;60&quot;&gt;two months back&lt;/option&gt;
+&lt;option value=&quot;90&quot;&gt;three months back&lt;/option&gt;
+&lt;option value=&quot;365&quot;&gt;one year back&lt;/option&gt;
+&lt;/select&gt;&lt;br /&gt;
+&lt;b&gt;Results per weblog:&lt;/b&gt;
+&lt;select name=&quot;MaxResults&quot;&gt;
+&lt;option value=&quot;5&quot;&gt;5&lt;/option&gt;
+&lt;option value=&quot;10&quot;&gt;10&lt;/option&gt;
+&lt;option value=&quot;25&quot;&gt;25&lt;/option&gt;
+&lt;option value=&quot;50&quot;&gt;50&lt;/option&gt;
+&lt;option value=&quot;100&quot;&gt;100&lt;/option&gt;
+&lt;option value=&quot;9999999&quot;&gt;All&lt;/option&gt;
+&lt;/select&gt;
+&lt;/form&gt;
+</pre><p>This search form gives the user more control over the parameters of the
+search, allowing him to specify constraints such as case-matching, or
+using a regular expression match instead of a boolean query. The search
+can also be confined to either entries or comments (or both). Note that
+a comment search is more time- and resource-intensive than an entry search.</p>
+<p>The above form also includes the ability to exclude certain weblogs from the
+search. This is useful if a visitor wishes to search only in one of your
+weblogs. As an alternative to the <i>Exclude Weblogs</i>, you could instead use
+the following:</p>
+<pre>&lt;b&gt;Include Weblogs:&lt;/b&gt;
+&lt;MTBlogs&gt;
+&lt;input type=&quot;checkbox&quot; name=&quot;IncludeBlogs&quot; value=&quot;&lt;$MTBlogID$&gt;&quot; /&gt; &lt;$MTBlogName$&gt;
+&lt;/MTBlogs&gt;&lt;br /&gt;
+</pre><p>This is essentially the inverse of the <i>Exclude Weblogs</i> setting, but may
+be preferable to you for whatever reason. For example, it makes it easier
+to create weblog-specific search results pages--instead of maintaining the
+lists of weblogs to exclude, you need only add this to the form:</p>
+<pre>&lt;input type=&quot;hidden&quot; name=&quot;IncludeBlogs&quot; value=&quot;&lt;$MTBlogID$&gt;&quot; /&gt;
+</pre><p><code>&lt;$MTBlogID$&gt;</code> always references the current weblog, so this search
+will always be restricted to just the weblog being viewed.</p>
+<p>The above search forms are used for the straight search. A full new
+comment search form might look like this:</p>
+<pre>&lt;form method=&quot;post&quot; action=&quot;&lt;$MTCGIPath$&gt;&lt;$MTSearchScript$&gt;&quot;&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;Type&quot; value=&quot;newcomments&quot; /&gt;
+&lt;b&gt;Exclude Weblogs:&lt;/b&gt;
+&lt;MTBlogs&gt;
+&lt;input type=&quot;checkbox&quot; name=&quot;ExcludeBlogs&quot; value=&quot;&lt;$MTBlogID$&gt;&quot; /&gt; &lt;$MTBlogName$&gt;
+&lt;/MTBlogs&gt;&lt;br /&gt;
+&lt;b&gt;Search entries from:&lt;/b&gt;
+&lt;select name=&quot;CommentSearchCutoff&quot;&gt;
+&lt;option value=&quot;9999999&quot;&gt;the beginning&lt;/option&gt;
+&lt;option value=&quot;7&quot;&gt;one week back&lt;/option&gt;
+&lt;option value=&quot;14&quot;&gt;two weeks back&lt;/option&gt;
+&lt;option value=&quot;30&quot;&gt;one month back&lt;/option&gt;
+&lt;option value=&quot;60&quot;&gt;two months back&lt;/option&gt;
+&lt;option value=&quot;90&quot;&gt;three months back&lt;/option&gt;
+&lt;option value=&quot;365&quot;&gt;one year back&lt;/option&gt;
+&lt;/select&gt;&lt;br /&gt;
+&lt;b&gt;Number of entries to return:&lt;/b&gt;
+&lt;select name=&quot;MaxResults&quot;&gt;
+&lt;option value=&quot;5&quot;&gt;5&lt;/option&gt;
+&lt;option value=&quot;10&quot;&gt;10&lt;/option&gt;
+&lt;option value=&quot;25&quot;&gt;25&lt;/option&gt;
+&lt;option value=&quot;50&quot;&gt;50&lt;/option&gt;
+&lt;option value=&quot;100&quot;&gt;100&lt;/option&gt;
+&lt;option value=&quot;9999999&quot;&gt;All&lt;/option&gt;
+&lt;/select&gt;&lt;br /&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Find new comments&quot; /&gt;
+&lt;/form&gt;
+</pre><p>
+<h2><a name="alternate templates"></a>Alternate Templates</h2>
+<p>Typically, when a search is performed the default search template
+(<i>default.tmpl</i>) is rendered in order to display the results (or, in the
+case of a new comment search, the template <i>comments.tmpl</i> is used). If
+you have multiple weblogs, though, and you are using the search tool for each
+of those weblogs, you might want the search results from one weblog to look
+different than the results from another weblog. Or, you might have several
+different versions of your public site: a graphics-heavy version for
+normal viewers, and a text-heavy version without graphics for handheld
+devices. You would like the search results to be consistent with the
+look and feel of the rest of your site, whichever version of the site your
+visitor is using.</p>
+<p>To do this, you can use <i>alternate templates</i>. For example, each weblog can
+have its own search results template that matches with its own design; or
+each version of your site can have <strong>its</strong> own search results template.</p>
+<ol>
+<li><strong><a name="item_Create_the_templates%2E"></a>Create the templates.</strong><br>
+
+For each different look and feel that you want, create a search results
+template, and put them in your <i>search_templates/</i> directory.
+<p></p>
+<li><strong><a name="item_Add_the_templates_to_your_configuration%2E"></a>Add the templates to your configuration.</strong><br>
+
+Open up your <i>mt.cfg</i> file in a text editor, and use the <i>AltTemplate</i>
+directive to configure the alternate templates. For example, if you have
+two weblogs (<code>Work</code> and <code>Play</code>), and you want each weblog to have its own
+template, you might add something like this:
+<pre>AltTemplate work work.tmpl
+AltTemplate play play.tmpl
+</pre><p></p>
+<li><strong><a name="item_Configure_the_search_form%2E"></a>Configure the search form.</strong><br>
+
+To tell Movable Type which template to use when building the search results
+pages, you use a hidden form input. Add this to the search form on your
+<code>Work</code> weblog, for example:
+<pre>&lt;input type=&quot;hidden&quot; name=&quot;Template&quot; value=&quot;work&quot; /&gt;
+</pre><p>(<strong>Note:</strong> if you wish to restrict the search to just this one weblog, you may
+also want to add</p>
+<pre>&lt;input type=&quot;hidden&quot; name=&quot;IncludeBlogs&quot; value=&quot;&lt;$MTBlogID$&gt;&quot; /&gt;
+</pre><p>to the form.)</p>
+<p></p></ol>
+<p>
+<h2><a name="converting from previous versions of mtsearch"></a>Converting from previous versions of mt-search</h2>
+<p>If you were using Jay's search engine, you'll need to convert to using the
+integrated version. Follow these steps:</p>
+<ol>
+<li><strong><a name="item_Upgrade_your_copy_of_Movable_Type%2E"></a>Upgrade your copy of Movable Type.</strong><br>
+
+You may have already done this, but you will need to upgrade to Movable Type
+version 2.5, which contains the integrated search engine.
+<p></p>
+<li><strong><a name="item_Copy_configuration_settings%2E"></a>Copy configuration settings.</strong><br>
+
+Now that the search engine has been integrated into Movable Type, there is
+no longer a need to use two separate configuration files (<i>mt-search.cfg</i>
+and <i>mt.cfg</i>). The new version of the search engine expects your search
+configuration in your standard <i>mt.cfg</i> file.
+<p>So, you will need to open up both <i>mt.cfg</i> and <i>mt-search.cfg</i> in a text
+editor, and copy all of the contents of <i>mt-search.cfg</i> into <i>mt.cfg</i>.</p>
+<p></p>
+<li><strong><a name="item_Update_your_AltTemplate_settings%2E"></a>Update your AltTemplate settings.</strong><br>
+
+The new version of search uses a simplified <i>AltTemplate</i> format and allows
+you to specify an infinite number of alternate templates. If you are
+currently using alternate templates with mt-search, you will need to change
+your <i>AltTemplateN</i> directives to <i>AltTemplate</i>. In other words, replace
+the number at the end of the directive. For example, if you had this:
+<pre>AltTemplate1 work work.tmpl
+</pre><p>you would change it to</p>
+<pre>AltTemplate work work.tmpl
+</pre><p></p>
+<li><strong><a name="item_Rename_your_TemplateDir_setting%2E"></a>Rename your TemplateDir setting.</strong><br>
+
+To eliminate confusion with the <i>TemplatePath</i> setting, the new version of
+search has renamed the <i>TemplateDir</i> setting to <i>SearchTemplatePath</i>. So
+if you had this:
+<pre>TemplateDir /path/to/search_templates
+</pre><p>you would change it to</p>
+<pre>SearchTemplatePath /path/to/search_templates
+</pre><p></p></ol>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

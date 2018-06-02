@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Rebuilding [_1]" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+//-->
+</script>
+
+</head>
+
+<body class="pop">
+
+<table border="0" cellspacing="0" padding="0">
+
+<tr>
+<td colspan="3" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="50"></td>
+</tr>
+
+<tr>
+<td width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+<td width="100%" valign="top"><p class="message"><TMPL_IF NAME=ALL><MT_TRANS phrase="All of your files have been rebuilt."><TMPL_ELSE><TMPL_IF NAME=IS_ONE_INDEX><MT_TRANS phrase="Your [_1] has been rebuilt." params="<TMPL_VAR NAME=TYPE ESCAPE=HTML>"><TMPL_ELSE><TMPL_IF NAME=IS_ENTRY><MT_TRANS phrase="Your [_1] has been rebuilt." params="<TMPL_VAR NAME=TYPE ESCAPE=HTML>"><TMPL_ELSE><MT_TRANS phrase="Your [_1] pages have been rebuilt." params="<TMPL_VAR NAME=TYPE ESCAPE=HTML>"></TMPL_IF></TMPL_IF></TMPL_IF> <a target="_blank" href="<TMPL_VAR NAME=BLOG_URL>"><MT_TRANS phrase="View your site">.</a></font> <TMPL_IF NAME=IS_ONE_INDEX><a target="_blank" href="<TMPL_VAR NAME=TMPL_URL>"><MT_TRANS phrase="View this page">.</a></p></TMPL_IF></td>
+<td width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</tr>
+
+<tr>
+<td colspan="3" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td colspan="2" align="right" valign="top"><input class="button" type="button" onClick="window.close()" value="<MT_TRANS phrase="Close">">&nbsp;<input class="button-big" type="button" onClick="window.location='<TMPL_VAR NAME=SCRIPT_URL>?__mode=rebuild_confirm&blog_id=<TMPL_VAR NAME=BLOG_ID>'" value="<MT_TRANS phrase="Rebuild Again">"></td>
+<td width="20" align="center" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</tr>
+
+</table>
+
+</body>
+</html>

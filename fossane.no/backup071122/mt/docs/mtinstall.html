@@ -1,0 +1,781 @@
+<html>
+<head>
+<title>mtinstall - Installing Movable Type</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type Installation Instructions</h3>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#requirements">REQUIREMENTS</a></li>
+	<li><a href="#installing movable type">INSTALLING MOVABLE TYPE</a></li>
+	<ul>
+
+		<li><a href="#downloading">Downloading</a></li>
+		<li><a href="#finding perl on your server">Finding Perl on your Server</a></li>
+		<li><a href="#installation directories">Installation Directories</a></li>
+		<li><a href="#configuration">Configuration</a></li>
+		<li><a href="#uploading files">Uploading Files</a></li>
+		<li><a href="#checking for perl modules">Checking for Perl Modules</a></li>
+		<li><a href="#initializing the system">Initializing the System</a></li>
+	</ul>
+
+	<li><a href="#running movable type">RUNNING MOVABLE TYPE</a></li>
+	<li><a href="#required/optional module installation steps">REQUIRED/OPTIONAL MODULE INSTALLATION STEPS</a></li>
+	<ul>
+
+		<li><a href="#if you need to install html::template">If you need to install HTML::Template</a></li>
+		<li><a href="#if you need to install image::size">If you need to install Image::Size</a></li>
+		<li><a href="#if you need to install file::spec">If you need to install File::Spec</a></li>
+		<li><a href="#if you need to install db_file">If you need to install DB_File</a></li>
+		<li><a href="#if you need to install dbd::mysql, dbd::pg, or dbd::sqlite">If you need to install DBD::mysql, DBD::Pg, or DBD::SQLite</a></li>
+		<li><a href="#if you need to install cgi::cookie">If you need to install CGI::Cookie</a></li>
+		<li><a href="#if you need to install lwp::useragent">If you need to install LWP::UserAgent</a></li>
+		<li><a href="#if you need to install soap::lite">If you need to install SOAP::Lite</a></li>
+		<li><a href="#if you need to install file::temp">If you need to install File::Temp</a></li>
+		<li><a href="#if you need to install image::magick">If you need to install Image::Magick</a></li>
+	</ul>
+
+	<li><a href="#additional notes">ADDITIONAL NOTES</a></li>
+	<ul>
+
+		<li><a href="#problems with f2s">Problems with f2s</a></li>
+		<li><a href="#version of perl on your server">Version of Perl on your server</a></li>
+		<li><a href="#unpacking .tar.gz archives">Unpacking .tar.gz Archives</a></li>
+		<li><a href="#using cgiwrap or suexec">Using cgiwrap or suexec</a></li>
+		<li><a href="#win32 configuration tips">Win32 Configuration Tips</a></li>
+		<li><a href="#protecting mt.cfg">Protecting mt.cfg</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="name"></a>NAME</h1>
+<p>mtinstall - Installing Movable Type</p>
+<p>
+<hr size="1" color="#CCCCCC">
+<h1><a name="synopsis"></a>SYNOPSIS</h1>
+<p>This document describes the process of installing the Movable Type system
+on your machine.</p>
+<p>
+<hr size="1" color="#CCCCCC">
+<h1><a name="requirements"></a>REQUIREMENTS</h1>
+<p>Movable Type requires the following:</p>
+<a name="require"></a><ul>
+<li>
+An account on a webserver that allows you to run custom CGI scripts. If you're
+not sure whether yours does, your hosting provider should know. The
+application itself is around 2 megabytes, but we suggest that you have at least
+25 megabytes of disk space available on your server to accommodate future
+files and posts.
+<p></p>
+<li>
+Perl installed on your server, version 5.004_04 or greater. <a href="#version of perl on your server">Don't know what version of Perl you have?</a>
+<p></p>
+<li>
+An FTP program to upload the necessary files to your webserver, or shell
+access if you wish to install the system from the shell.
+<p></p>
+<li>
+A web browser with Javascript enabled.
+<p></p></ul>
+<p>
+<hr size="1" color="#CCCCCC">
+<h1><a name="installing movable type"></a>INSTALLING MOVABLE TYPE</h1>
+<p>
+<h2><a name="downloading"></a>Downloading</h2>
+<p>The distribution can be downloaded from the Movable Type web site at
+<i><a href="http://www.movabletype.org/download.shtml">http://www.movabletype.org/download.shtml</a></i>.</p>
+<p>There are two versions of the Movable Type distribution available for
+download: one is bundled with all of the external libraries that you will
+need to run the system, whereas the other contains just the Movable Type
+system itself. If you know that your hosting provider has all of the
+modules already installed, download the ``lite'' version without the external
+libraries. Otherwise, the ``full'' version with external libraries included
+will make installation easier, because you will not have to worry about
+installing external libraries.</p>
+<p>After downloading, the file that you downloaded is saved in <i>.tar.gz</i> format;
+this is a compressed bundle containing the files in the Movable Type
+distribution. Unpack this archive.</p>
+<p>(<a href="#unpacking .tar.gz archives">Need help unpacking archives?</a>).</p>
+<p>
+<h2><a name="finding perl on your server"></a>Finding Perl on your Server</h2>
+<p>The following files are Perl scripts: <i>mt-add-notify.cgi</i>, <i>mt-check.cgi</i>,
+<i>mt-comments.cgi</i>, <i>mt-load.cgi</i>, <i>mt-send-entry.cgi</i>, <i>mt-tb.cgi</i>,
+<i>mt-search.cgi</i>, <i>mt.cgi</i>, <i>mt-xmlrpc.cgi</i>, and <i>mt-view.cgi</i>.
+The first line of each of these files must contain the path to Perl on your
+webserver; typically this is <i>#!/usr/bin/perl</i>. You may need to change this
+if Perl is at a different location on your webserver, such as
+<i>/usr/local/bin/perl</i>. If you do need to change the setting, take care not to
+remove the <code>-w</code> at the end of the first line in each file; this setting turns
+on warnings in Perl, and it is important that it be left on.</p>
+<p>To determine the location of Perl on your webserver, take a look at the
+support pages for your hosting service. Alternatively, if you have a shell
+(command line) account, and are familiar using it, you can log in to that
+account that type:</p>
+<pre>$ whereis perl
+</pre><p>This will give you the <code>location(s)</code> of Perl on your system.</p>
+<p><strong>Note:</strong> despite its extension, <i>mt-db-pass.cgi</i> is not a normal Perl script,
+so it should not contain the path to Perl.</p>
+<p>
+<h2><a name="installation directories"></a>Installation Directories</h2>
+<ul>
+<li><strong><a name="item_The_application"></a><strong>The application</strong></strong><br>
+
+Choose where on your webserver you would like to install Movable Type. This
+is the location that you will use (from your web browser) when using the
+Movable Type system.
+<p><i>If you will be installing Movable Type into your <i>cgi-bin</i>
+directory</i>, note that you will need to upload your static files--<i>images</i>,
+<i>docs</i>, and <i>styles.css</i>--into a directory <strong>outside</strong> of the <i>cgi-bin</i>.
+Static files cannot be left inside the <i>cgi-bin</i>, because the web server
+will try to execute them, rendering them unusable through the web interface.</p>
+<p>A solution is to create a new directory in your web-accessible area called
+<i>mt-static</i>, then upload <i>images</i>, <i>docs</i>, and <i>styles.css</i> into that
+directory. Note the URL corresponding to <i>mt-static</i>, because you will need
+to use it later when configuring the system in your <i>mt.cfg</i> file.</p>
+<a name="install_cgiwrap"></a><p><strong>TIP:</strong> You can make your Movable Type installation more secure if you run
+the system under <i>cgiwrap</i> or <i>suexec</i>. See these
+<a href="#using cgiwrap or suexec">tips on using cgiwrap or suexec</a> to find out if
+you have either of these tools.</p>
+<p></p>
+<li><strong><a name="item_The_database"></a><strong>The database</strong></strong><br>
+
+<i>If you plan to use Movable Type's MySQL or PostgreSQL database support:</i>
+<p>These require no external directories to be created.</p>
+<p><i>If you plan to use Movable Type's Berkeley DB support (the default):</i></p>
+<p>Choose where on your webserver you would like to store your Movable Type
+database files.</p>
+<p><i>If you are not installing into a <i>cgi-bin</i> directory</i>, it is advisable
+from a security standpoint to create the database
+directory outside of your web-accessible directories. This prevents web
+browsers from seeing any of your database content. For example, many hosted
+accounts have a home directory that is not web-accessible, then a
+<i>public_html</i> directory that is the root of your web-accessible area.
+Placing the database outside of the web-accessible area prevents web browsers
+from seeing your database content; placing it in the <i>cgi-bin</i> directory
+has the same effect.</p>
+<p><i>If you plan to use Movable Type's SQLite database support:</i></p>
+<p>SQLite stores your data in a single database file. However, it needs to be
+able to create that file itself, so you must store that file in a 
+world-writable directory. Thus, you should follow the
+guidelines above regarding Berkeley DB support for the location of the SQLite
+database directory.</p>
+<p></p>
+<li><strong><a name="item_Your_weblog_directories"></a><strong>Your weblog directories</strong></strong><br>
+
+You need to set up a directory where your weblog will be stored. This is the
+location that visitors to your web site will come to to read your weblog.
+You can also choose to store your weblog archives in a separate directory
+than your main weblog, if you wish.
+<p></p></ul>
+<p>
+<h2><a name="configuration"></a>Configuration</h2>
+<ol>
+<li><strong><a name="item_Open_mt%2Ecfg"></a><strong>Open mt.cfg</strong></strong><br>
+
+Find the file <i>mt.cfg</i> in the Movable Type folder that you downloaded, then
+open that file in a text editor.
+<p></p>
+<li><strong><a name="item_Configure_Movable_Type_URL%2E"></a><strong>Configure Movable Type URL.</strong></strong><br>
+
+Change the line starting
+with <i>CGIPath</i> to point to the URL where you chose to install Movable Type
+in <i>Installation Directories</i>.
+<p>For example, if you are installing Movable Type at
+<i><a href="http://www.your-site.com/movabletype/">http://www.your-site.com/movabletype/</a></i>, you would change the <i>CGIPath</i>
+line to</p>
+<pre>CGIPath http://www.your-site.com/movabletype/
+</pre><p><strong>NOTE:</strong> make sure that your URL contains a forward slash (<code>/</code>) at the end!</p>
+<p></p>
+<li><strong><a name="item_options"></a><strong>Configure Database options (for MySQL, PostgreSQL, or SQLite).</strong></strong><br>
+
+<i>If you are not using Movable Type's SQL database support, skip this step.</i>
+<p>In the text editor where you are editing <i>mt.cfg</i>, add these lines:</p>
+<pre>ObjectDriver driver_name
+Database database_name
+DBUser database_user
+</pre><p>where: <i>driver_name</i> is one of the following: <i>DBI::mysql</i>, <i>DBI::postgres</i>,
+or <i>DBI::sqlite</i>; <i>database_name</i> is the name of the SQL database where
+you wish to store your data, and <i>database_user</i> is the username used to
+connect to the database</p>
+<p>If your SQL database server is on a different host, you can use <i>DBHost</i>
+to specify the hostname:</p>
+<pre>DBHost database_host
+</pre><p>If your SQL database server is on the localhost, but the socket is not in a
+standard location, you can set the path to the socket using <i>DBSocket</i>:</p>
+<pre>DBSocket /path/to/mysql.sock
+</pre><p>If your SQL database server is on a different port than the default, you
+can set the port using <i>DBPort</i>:</p>
+<pre>DBPort port_number
+</pre><p><i>Note:</i> if you are using MySQL or PostgreSQL, the database that you specify
+<strong>must</strong> already exist--Movable Type cannot create it automatically!</p>
+<p><i>Note</i>: if you are using SQLite, no username is required, and
+<i>database_name</i> is the name of the database file. You can name the database
+file whatever you want--<i>mtdb</i> would be a good choice. Remember to include
+the name of the directory where you are storing the database file in the
+<i>database_name</i>. For example:</p>
+<pre>Database db/mtdb
+</pre><p></p>
+<li><strong><a name="item_directory"></a><strong>Configure path to Database directory (for Berkeley DB).</strong></strong><br>
+
+<i>If you are not using Movable Type's Berkeley DB support, skip this step.</i>
+<p>In the text editor where you are editing <i>mt.cfg</i>, change the line</p>
+<pre>DataSource ./db
+</pre><p>to instead read</p>
+<pre>DataSource /FULL/PATH/TO/DB
+</pre><p>where <i>/FULL/PATH/TO/DB</i> is replaced by the full filesystem path to the <i>db</i>
+directory you just created. For example, if you create the directory at
+<i>/home/melody/db</i>, the above line would read</p>
+<pre>DataSource /home/melody/db
+</pre><p></p>
+<li><strong><a name="item_Configure_path_to_Static_files%2E"></a><strong>Configure path to Static files.</strong></strong><br>
+
+<i>If you are not installing into the <i>cgi-bin</i>, skip this step.</i>
+<p>You need to set the <i>StaticWebPath</i> value in your <i>mt.cfg</i> file to the
+URL corresponding to the directory that you chose for your static files
+(<i>images</i>, <i>docs</i>, and <i>styles.css</i>). For example, if you chose to
+locate your static files at the root of your web-accessible area, you would
+add this line to <i>mt.cfg</i>:</p>
+<pre>StaticWebPath /mt-static/
+</pre><p></p>
+<li><strong><a name="item_Enable_security_features%2E"></a><strong>Enable security features.</strong></strong><br>
+
+<i>If your server does not have <i>cgiwrap</i> or <i>suexec</i>, skip this step.</i>
+<p>To enable the heightened security that cgiwrap and suexec provide, add the
+following lines to your <i>mt.cfg</i> file:</p>
+<pre>DBUmask 0022
+HTMLUmask 0022
+UploadUmask 0022
+DirUmask 0022
+</pre><p></p>
+<li><strong><a name="item_Save_and_exit_mt%2Ecfg%2E"></a><strong>Save and exit mt.cfg.</strong></strong><br>
+
+Then save the <i>mt.cfg</i> file, and exit the text editor.
+<p></p>
+<li><strong><a name="item_Set_your_SQL_database_password%2E"></a><strong>Set your SQL database password.</strong></strong><br>
+
+<i>If you are not using MySQL or PostgreSQL, skip this step.</i>
+<p>For security purposes, your SQL database password should not simply be placed
+in <i>mt.cfg</i>. Instead, you must set it in the file called <i>mt-db-pass.cgi</i>.</p>
+<p>Open <i>mt-db-pass.cgi</i> in a text editor. On this line:</p>
+<pre>database_password
+</pre><p>Replace <i>database_password</i> with the password used to connect to your
+SQL database.</p>
+<p>Then save the <i>mt-db-pass.cgi</i> file, and exit the text editor.</p>
+<p></p></ol>
+<p>
+<h2><a name="uploading files"></a>Uploading Files</h2>
+<ol>
+<li><strong><a name="item_Connect_to_your_webserver"></a>Connect to your webserver</strong><br>
+
+Open your FTP program and open an FTP connection to your web server.
+<p></p>
+<li><strong><a name="item_Upload_the_application"></a>Upload the application</strong><br>
+
+In your FTP program, if the directory where you chose to install Movable Type
+does not exist, create it. Then open that directory.
+<p>Upload all of the files in the Movable Type distribution to your webserver.</p>
+<p><i>If you are installing into the <i>cgi-bin</i>:</i> you should upload <i>images</i>,
+<i>docs</i>, and <i>styles.css</i> into the location you chose for your static
+files.</p>
+<p><strong>NOTE:</strong> be careful when doing this, as certain files must be uploaded in ASCII
+mode, whereas others must be uploaded in binary mode. If you get it wrong, the
+scripts <strong>WILL NOT WORK</strong>.</p>
+<p><strong>Upload these files/folders in ASCII mode:</strong> <i>docs</i>, <i>lib</i>, <i>extlib</i>,
+<i>mt.cfg</i>, <i>styles.css</i>, <i>tmpl</i>, <i>schemas</i>, <i>search_templates</i>,
+<i>plugins</i>, and all of the CGI scripts (<i>mt.cgi</i>, etc.).</p>
+<p><strong>Upload these files/folders in Binary mode:</strong> <i>images</i>.</p>
+<p></p>
+<li><strong><a name="item_Set_permissions"></a>Set permissions</strong><br>
+
+Set the permissions of all of the CGI scripts (files whose names end in
+<i>.cgi</i>) to 755.
+<p>Permissions set to 755 means that all users on the system have <code>Read</code> and
+<code>Execute</code> permissions; only the owner should have <code>Write</code> permissions.</p>
+<p>If your FTP client uses a graphical display for setting permissions, that
+display will look something like this:<br><br>
+<img src="755.gif" width="297" height="210"></p><p>If you are setting permissions through a Unix shell, simply use the command</p>
+<pre>$ chmod 755 mt*.cgi
+</pre><p></p>
+<li><strong><a name="item_Create_your_Movable_Type_database_directory"></a>Create your Movable Type database directory</strong><br>
+
+<i>If you are not using Berkeley DB or SQLite, skip this step.</i>
+<p>Open the directory you chose for the location of your Movable Type database.</p>
+<a name="setperms_db"></a><p>Create a new directory called <i>db</i>.</p>
+<p>If you are not running Movable Type under <i>cgiwrap</i> or <i>suexec</i>, set the
+permissions (CHMOD) of this directory <i>db</i> to 777.</p>
+<p>Permissions set to 777 means that all users on the system have <code>Read</code>,
+<code>Write</code>, and <code>Execute</code> permissions.</p>
+<p>If your FTP client uses a graphical display for setting permissions, that
+display will look something like this:<br><br>
+<img src="777.gif" width="297" height="210"></p><p>If you are setting permissions through a Unix shell, simply use the command</p>
+<pre>$ chmod 777 db
+</pre><p></p>
+<li><strong><a name="item_Create_your_weblog_directories"></a>Create your weblog directories</strong><br>
+
+Create the directory where you weblog files will be stored. This is the
+directory that you chose for the location of your weblog directories.
+<p>If you are not running Movable Type under <i>cgiwrap</i> or <i>suexec</i>, set the
+permissions of the directories you just created to 777 (see above for what
+this means).</p>
+<p></p></ol>
+<p>
+<h2><a name="checking for perl modules"></a>Checking for Perl Modules</h2>
+<p>Movable Type requires the presence of several standard Perl modules, separate
+from the Movable Type code itself. If you downloaded the ``full'' version of
+the Movable Type distribution, it came with all of the necessary modules,
+except for <i>DB_File</i>, <i>DBD::mysql</i>, and <i>Image::Magick</i> (these modules
+can not be distributed with Movable Type because they require compilation).
+To determine whether these modules are installed on your
+server--and to install them, if they are not already installed--follow the
+steps below.</p>
+<p>For the function of several optional features, Movable Type needs some optional
+Perl modules. These optional modules will be listed in Step 1 (below) under
+the heading <code>CHECKING FOR OPTIONAL MODULES</code>; if your webserver does not have
+an optional module, its purpose will be explained in relation to the Movable
+Type feature for which it is required. If you decide that you want to use these
+features, you will need to install these modules, as well; however, if you do
+not wish to use these features, you can ignore the missing modules.</p>
+<p>Open your web browser and point it at the URL for <i>mt-check.cgi</i> on your
+site. For example, if your site is <i><a href="http://www.your-site.com/">http://www.your-site.com/</a></i>, and you
+uploaded the Movable Type files into the <i>/mt</i> directory, you'd type
+<i><a href="http://www.your-site.com/mt/mt-check.cgi">http://www.your-site.com/mt/mt-check.cgi</a></i>.</p>
+<p><i>mt-check.cgi</i> is a Perl script that checks whether the required modules are
+installed on your server. If you get a 500 Internal Server Error when running
+this script, first check that you set the permissions to 755 (see above for
+what this means), and that you uploaded the file in ASCII mode. If these
+suggestions don't help, refer to <a href="./mtmanual_troubleshooting.html">Troubleshooting</a>.</p>
+<p>If the script runs successfully, it will say <code>CHECKING FOR REQUIRED MODULES</code>
+and so on. If the script reports that your server has all of the required
+modules installed, you can skip to <a href="#initializing the system">Initializing the System</a>.</p>
+<p>If you need to install any required modules, or if you wish to require some
+of the optional modules, install them now, using the following instructions:</p>
+<ul>
+<li><strong><a name="item_If_you_need_to_install_HTML%3A%3ATemplate"></a><a href="#if you need to install html::template">If you need to install HTML::Template</a></strong><br>
+
+<li><strong><a name="item_If_you_need_to_install_Image%3A%3ASize"></a><a href="#if you need to install image::size">If you need to install Image::Size</a></strong><br>
+
+<li><strong><a name="item_If_you_need_to_install_File%3A%3ASpec"></a><a href="#if you need to install file::spec">If you need to install File::Spec</a></strong><br>
+
+<li><strong><a name="item_If_you_need_to_install_CGI%3A%3ACookie"></a><a href="#if you need to install cgi::cookie">If you need to install CGI::Cookie</a></strong><br>
+
+<li><strong><a name="item_If_you_need_to_install_DB_File"></a><a href="#if you need to install db_file">If you need to install DB_File</a></strong><br>
+
+<li><strong><a name="item_If_you_need_to_install_DBD%3A%3Amysql"></a><a href="#if you need to install dbd::mysql">If you need to install DBD::mysql</a></strong><br>
+
+<li><strong><a name="item_If_you_need_to_install_LWP%3A%3AUserAgent"></a><a href="#if you need to install lwp::useragent">If you need to install LWP::UserAgent</a></strong><br>
+
+<li><strong><a name="item_If_you_need_to_install_SOAP%3A%3ALite"></a><a href="#if you need to install soap::lite">If you need to install SOAP::Lite</a></strong><br>
+
+<li><strong><a name="item_If_you_need_to_install_File%3A%3ATemp"></a><a href="#if you need to install file::temp">If you need to install File::Temp</a></strong><br>
+
+<li><strong><a name="item_If_you_need_to_install_Image%3A%3AMagick"></a><a href="#if you need to install image::magick">If you need to install Image::Magick</a></strong><br>
+
+</ul>
+<p>
+<h2><a name="initializing the system"></a>Initializing the System</h2>
+<p>Open your web browser and point it at the URL for <i>mt-load.cgi</i> on your
+site. For example, if your site is <i><a href="http://www.your-site.com/">http://www.your-site.com/</a></i>, and you
+uploaded the Movable Type files into the <i>/mt</i> directory, you'd type
+<i><a href="http://www.your-site.com/mt/mt-load.cgi">http://www.your-site.com/mt/mt-load.cgi</a></i>.</p>
+<p><i>mt-load.cgi</i> is a Perl script that loads initialization data into the
+Movable Type databases: an initial author, a weblog, and some starter templates.
+If you get a 500 Internal Server Error when running this script, first check
+that you set the permissions to 755 (see above for what this means), and that
+you uploaded the file in ASCII mode. If these suggestions don't help, refer
+to <a href="./mtmanual_troubleshooting.html">Troubleshooting</a>.</p>
+<p>If successful, <i>mt-load.cgi</i> will report its success. If unsuccessful, it
+will report the error that occurred; look in <a href="./mtmanual_troubleshooting.html#errors when running mtload.cgi">Troubleshooting</a> for instructions on how to fix the
+error.</p>
+<p><strong>VERY IMPORTANT SECURITY NOTE:</strong></p>
+<p>Afer running <i>mt-load.cgi</i> successfully, you should remove <i>mt-load.cgi</i> from
+the directory where you installed Movable Type. Failure to remove <i>mt-load.cgi</i>
+could enable someone else to create a weblog in your Movable Type installation,
+and possibly gain access to your data. FAILURE TO DELETE <i>mt-load.cgi</i>
+INTRODUCES A MAJOR SECURITY RISK. So you should delete it now.</p>
+<p>
+<hr size="1" color="#CCCCCC">
+<h1><a name="running movable type"></a>RUNNING MOVABLE TYPE</h1>
+<p>Now that you have installed the system, you are ready to start using it.</p>
+<ol>
+<li>
+Open your web browser and point it at the URL for <i>mt.cgi</i> on your site.
+<i>mt.cgi</i> is the main Movable Type application. For example, if your site is
+<i><a href="http://www.your-site.com/">http://www.your-site.com/</a></i>, and you installed the Movable Type application
+into the <i>/mt</i> directory, you'd type <i><a href="http://www.your-site.com/mt/mt.cgi">http://www.your-site.com/mt/mt.cgi</a></i>
+to access Movable Type.
+<p>You should see the Movable Type login prompt. If you do not, check your
+permissions, and check that you uploaded the CGI scripts using ASCII mode.
+If neither of these helps, take a look at
+<a href="./mtmanual_troubleshooting.html">Troubleshooting</a>.</p>
+<p></p>
+<li>
+Log in with the author name <code>Melody</code> and the password <code>Nelson</code>.
+<p></p>
+<li>
+The first thing you should do is change your author name and password. To
+do so, click <code>Edit your profile</code>, then change the author name and password
+there.
+<p></p>
+<li>
+The next thing to do is to configure your first weblog. A weblog called <code>First
+Weblog</code> already exists in the system; this weblog will help to give you a head
+start in setting up your first weblog in Movable Type. <code>First Weblog</code> comes
+with some pre-made templates; of course you can edit these templates, or delete
+them, or do whatever you like with them. But they are a good starting point,
+and will give you a sense of familiarity with the Movable Type template tags
+and structure.
+<p>To configure the weblog for your own purposes, click on the link to <code>First
+Weblog</code> under <code>Your existing weblogs</code>, then click on the link to <code>Weblog
+Config</code>. Change the name of the weblog to whatever you wish to call
+your weblog, and enter a description.</p>
+<p>Then, fill in the path and URL information (<code>Local Site Path</code>, <code>Site URL</code>,
+<code>Local Archive Path</code>, and <code>Archive URL</code>). Values for <code>Local Site Path</code> and
+<code>Site URL</code> are provided by default, to give you a sense of what the paths
+should look like; when setting the values of <code>Local Site Path</code> and <code>Local
+Archive Path</code>, it is best to use absolute paths (paths beginning with a <code>/</code>),
+rather than relative paths. Note that <i>all four</i> of these fields <i>must</i> be
+filled in. You should already have created the directories for your weblog
+(above, in <i>Create your weblog directories</i>). Fill in the local paths
+(site and archive) with the full paths to those directories. Then enter the
+appropriate URLs, corresponding to those directories.</p>
+<p>Edit any other configuration settings for your weblog; when you are done,
+press <code>SAVE</code>.</p>
+<p></p>
+<li>
+That's it! You're now ready to start posting entries to your weblog, editing
+templates, and so on.
+<p></p></ol>
+<p>
+<hr size="1" color="#CCCCCC">
+<h1><a name="required/optional module installation steps"></a>REQUIRED/OPTIONAL MODULE INSTALLATION STEPS</h1>
+<p>You only need to install modules not already installed on your system. Run
+<i>mt-check.cgi</i> (<a href="#checking for perl modules">Checking for Perl Modules</a>) to determine what modules
+you need.</p>
+<p>
+<h2><a name="if you need to install html::template"></a>If you need to install HTML::Template</h2>
+<ol>
+<li>
+Connect to your FTP server, and open the directory into which you installed
+Movable Type.
+<p>If a directory called <i>extlib</i> does not exist, create it. Then open that
+directory.</p>
+<p></p>
+<li>
+Download the file at this URL:
+<pre>http://www.movabletype.org/cpan/cpan-HTML-Template.tar.gz
+</pre><p></p>
+<li>
+Unpack the <i>.tar.gz</i> archive
+(<a href="#unpacking .tar.gz archives">Need help unpacking archives?</a>).
+<p></p>
+<li>
+In the <i>extlib</i> directory (see Step 2), create a new directory called <i>HTML</i>;
+open that directory; upload the file <i>Template.pm</i> from the
+<i>cpan-HTML-Template</i> archive into the new <i>HTML</i> directory. In other words,
+after uploading, <i>Template.pm</i> should be located at
+<i>extlib/HTML/Template.pm</i>.
+<p>Ignore the rest of the files in the archive.</p>
+<p></p></ol>
+<p>
+<h2><a name="if you need to install image::size"></a>If you need to install Image::Size</h2>
+<ol>
+<li>
+Connect to your FTP server, and open the directory into which you installed
+Movable Type.
+<p>If a directory called <i>extlib</i> does not exist, create it. Then open that
+directory.</p>
+<p></p>
+<li>
+Download the file at this URL:
+<pre>http://www.movabletype.org/downloads/Image/Size.pm
+</pre><p></p>
+<li>
+In the <i>extlib</i> directory on your webserver, create a new directory called
+<i>Image</i>, and open that directory.
+<p></p>
+<li>
+Upload the file <i>Size.pm</i> that you downloaded above into the new <i>Image</i>
+directory.
+<p></p>
+<li>
+After uploading, <i>Size.pm</i> should be located at <i>extlib/Image/Size.pm</i>.
+<p></p></ol>
+<p>
+<h2><a name="if you need to install file::spec"></a>If you need to install File::Spec</h2>
+<ol>
+<li>
+Connect to your FTP server, and open the directory into which you installed
+Movable Type.
+<p>If a directory called <i>extlib</i> does not exist, create it. Then open that
+directory.</p>
+<p></p>
+<li>
+Download the file at this URL:
+<pre>http://www.movabletype.org/cpan/cpan-File-Spec.tar.gz
+</pre><p></p>
+<li>
+Unpack the <i>.tar.gz</i> archive
+(<a href="#unpacking .tar.gz archives">Need help unpacking archives?</a>).
+<p></p>
+<li>
+In the <i>extlib</i> directory on your webserver, create a new directory called
+<i>File</i>, and open that directory.
+<p></p>
+<li>
+Upload the file <i>Spec.pm</i> into the new <i>File</i> directory.
+<p></p>
+<li>
+Upload the directory <i>Spec</i> into the new <i>File</i> directory.
+<p></p>
+<li>
+After uploading, <i>Spec.pm</i> should be located at <i>extlib/File/Spec.pm</i>, and
+<i>Spec</i> should be located at <i>extlib/File/Spec/</i>.
+<p></p></ol>
+<p>
+<h2><a name="if you need to install db_file"></a>If you need to install DB_File</h2>
+<p>If you are installing Movable Type on a
+Win32 machine on which you have administrative access, you can run the Perl
+Package Manager (PPM) to install DB_File. Select <code>Run...</code> from the Start
+Menu, then type <code>ppm</code> as the program to run. Once in PPM, you will get a
+prompt (<code>ppm&gt;</code>), at which you should type <code>install DB_File</code>:</p>
+<pre>ppm&gt; install DB_File
+</pre><p>If you are installing Movable Type on a Linux/Unix machine, you should ask
+your server administrator to install DB_File for you. If you are the
+administrator, you will first need to install the Berkeley DB libraries
+(download from <i><a href="http://www.sleepycat.com/">http://www.sleepycat.com/</a></i>), then install the DB_File
+Perl module (download from <i><a href="http://search.cpan.org/">http://search.cpan.org/</a></i>).</p>
+<p>
+<h2><a name="if you need to install dbd::mysql, dbd::pg, or dbd::sqlite"></a>If you need to install DBD::mysql, DBD::Pg, or DBD::SQLite</h2>
+<p>If your server does not have the required DBD module, you should first consider
+using Movable Type's Berkeley DB support (the default).</p>
+<p>Otherwise, you will need to contact your hosting provider and ask them to
+install the <i>DBI</i> module and whichever of the above modules is necessary to
+connect to your database. Note that your account will
+need access to a SQL database, apart from the existence of these modules,
+in order for you to use Movable Type's SQL database support.</p>
+<p>
+<h2><a name="if you need to install cgi::cookie"></a>If you need to install CGI::Cookie</h2>
+<ol>
+<li>
+Connect to your FTP server, and open the directory into which you installed
+Movable Type.
+<p>If a directory called <i>extlib</i> does not exist, create it. Then open that
+directory.</p>
+<p></p>
+<li>
+Download the file at this URL:
+<pre>http://www.movabletype.org/cpan/cpan-CGI.tar.gz
+</pre><p></p>
+<li>
+Unpack the <i>.tar.gz</i> archive
+(<a href="#unpacking .tar.gz archives">Need help unpacking archives?</a>).
+<p></p>
+<li>
+Upload the file <i>CGI.pm</i> and the directory <i>CGI</i> into the <i>extlib</i>
+directory.
+<p></p>
+<li>
+After uploading, <i>CGI.pm</i> should be located at <i>extlib/CGI.pm</i>, and <i>CGI/</i>
+should be located at <i>extlib/CGI/</i>.
+<p></p></ol>
+<p>
+<h2><a name="if you need to install lwp::useragent"></a>If you need to install LWP::UserAgent</h2>
+<ol>
+<li>
+Connect to your FTP server, and open the directory into which you installed
+Movable Type.
+<p>If a directory called <i>extlib</i> does not exist, create it. Then open that
+directory.</p>
+<p></p>
+<li>
+Download the following files:
+<pre>http://www.movabletype.org/cpan/cpan-LWP.tar.gz
+http://www.movabletype.org/cpan/cpan-URI.tar.gz
+</pre><p></p>
+<li>
+Unpack the <i>.tar.gz</i> archives
+(<a href="#unpacking .tar.gz archives">Need help unpacking archives?</a>).
+<p></p>
+<li>
+In the <i>cpan-LWP</i> directory, there is a directory called <i>lib</i>.
+Open it, and upload the file <i>LWP.pm</i> into your <i>extlib</i> directory (in
+ASCII mode). Then, also in ASCII mode, upload the directories <i>LWP</i>, <i>HTTP</i>,
+<i>Net</i>, and <i>WWW</i> into <i>extlib</i>.
+<p></p>
+<li>
+From the <i>cpan-URI</i> directory, upload the folder called <i>URI</i> and the file
+called <i>URI.pm</i> into <i>extlib</i> in ASCII mode.
+<p></p>
+<li>
+After uploading, your <i>extlib</i> directory should contain at least the
+following files and directories:
+<pre>extlib/LWP.pm
+extlib/LWP/
+extlib/HTTP/
+extlib/Net/
+extlib/WWW/
+extlib/URI.pm
+extlib/URI/
+</pre><p></p></ol>
+<p>
+<h2><a name="if you need to install soap::lite"></a>If you need to install SOAP::Lite</h2>
+<ol>
+<li>
+Connect to your FTP server, and open the directory into which you installed
+Movable Type.
+<p>If a directory called <i>extlib</i> does not exist, create it. Then open that
+directory.</p>
+<p></p>
+<li>
+Download the following file:
+<pre>http://www.movabletype.org/cpan/cpan-SOAP-Lite.tar.gz
+</pre><p></p>
+<li>
+Unpack the <i>.tar.gz</i> archive
+(<a href="#unpacking .tar.gz archives">Need help unpacking archives?</a>).
+<p></p>
+<li>
+In the <i>cpan-SOAP-Lite</i> directory, there is a directory called <i>lib</i>. Open
+it, and upload the directories <i>SOAP</i>, <i>XML</i>, and <i>XMLRPC</i> into your
+<i>extlib</i> directory (in ASCII mode).
+<p></p>
+<li>
+After uploading, your <i>extlib</i> directory should contain at least the
+following files and directories:
+<pre>extlib/SOAP/
+extlib/XML/
+extlib/XMLRPC/
+</pre><p></p></ol>
+<p>
+<h2><a name="if you need to install file::temp"></a>If you need to install File::Temp</h2>
+<ol>
+<li>
+Connect to your FTP server, and open the directory into which you installed
+Movable Type.
+<p>If a directory called <i>extlib</i> does not exist, create it. Then open that
+directory.</p>
+<p></p>
+<li>
+Download the file at this URL:
+<pre>http://www.movabletype.org/cpan/cpan-File-Temp.tar.gz
+</pre><p></p>
+<li>
+Unpack the <i>.tar.gz</i> archive
+(<a href="#unpacking .tar.gz archives">Need help unpacking archives?</a>).
+<p></p>
+<li>
+In the <i>extlib</i> directory on your webserver, create a new directory called
+<i>File</i> (unless a <i>File</i> directory already exists), and open that directory.
+<p></p>
+<li>
+Upload the file <i>Temp.pm</i> into the new <i>File</i> directory.
+<p></p>
+<li>
+After uploading, <i>Temp.pm</i> should be located at <i>extlib/File/Temp.pm</i>.
+<p></p></ol>
+<p>
+<h2><a name="if you need to install image::magick"></a>If you need to install Image::Magick</h2>
+<p>Installing <i>Image::Magick</i> requires compilation of the ImageMagick library,
+as well as installation of the Perl module that talks to this library. If you
+wish to have this module installed on your server, you will need to ask your
+system administrator to install it for you. Note that if you do not have
+<i>Image::Magick</i>, Movable Type will still work without a hitch--installation
+of <i>Image::Magick</i> is optional, and is needed only for creating thumbnails of
+uploaded images.</p>
+<p>
+<hr size="1" color="#CCCCCC">
+<h1><a name="additional notes"></a>ADDITIONAL NOTES</h1>
+<p>
+<h2><a name="problems with f2s"></a>Problems with f2s</h2>
+<p><strong>WARNING:</strong> problems have been reported when running Movable Type on f2s
+accounts. These problems have been disk-space-related; specifically, if your
+f2s account is low on disk space, you should be careful when running Movable
+Type, because running out of disk space while the database is being updated
+could corrupt your data. This error is almost always fixable, but it is
+certainly an annoyance. Note that this problem is not necessarily unique to
+either Movable Type or f2s; when applications run out of disk space while
+trying to update files, problems will often occur.</p>
+<p><a href="#require">Back to installation instructions</a></p><p>
+<h2><a name="version of perl on your server"></a>Version of Perl on your server</h2>
+<p>If you're not sure what version of Perl you have on your server, you can
+figure it out in one of three ways:</p>
+<ol>
+<li>
+Check the support documentation that your ISP (probably) provides.
+<p></p>
+<li>
+Ask your ISP.
+<p></p>
+<li>
+If you have shell access to your webserver, you can telnet into your server,
+then run the following command:
+<pre>$ perl -v
+</pre><p>This command will print out the version of Perl on your webserver.</p>
+<p></p></ol>
+<p><a href="#require">Back to installation instructions</a></p><p>
+<h2><a name="unpacking .tar.gz archives"></a>Unpacking .tar.gz Archives</h2>
+<p>Movable Type distributions, as well as the distributions for most of the
+required and optional Perl modules, are saved in <i>.tar.gz</i> format--these are
+Gzip-ed TAR archives. If you are on Unix, you can use <i>gunzip</i> and <i>tar</i> to
+unpack these archives. For example:</p>
+<pre>$ gunzip file.tar.gz
+$ tar -xvf file.tar
+</pre><p>If you are on a Macintosh, Stuffit Expander will unpack these archives. If
+you are on Windows, PKZip or Winzip (in classic mode) will do the job.</p>
+<p><strong>NOTE:</strong> if, after unzipping the Movable Type distribution archive, you find
+a folder without a directory structure--that is, a lot of files dumped into
+one folder, rather than grouped into sub-folders--then you will have trouble
+installing Movable Type. This problem usually signifies that you used Winzip's
+wizard mode to unzip the archives; if this is the case, make sure that you use
+Winzip in classic mode, as mentioned above.</p>
+<p>
+<h2><a name="using cgiwrap or suexec"></a>Using cgiwrap or suexec</h2>
+<p><i>cgiwrap</i> and <i>suexec</i> are special tools on the webserver that allow your CGI
+scripts to be executed as ``you'', rather than as the webserver. This simplifies
+Movable Type installation, because you no longer have to set permissions on
+your weblog or <i>db</i> directories (though you still need to set the permissions
+on the CGI scripts themselves); it is also more secure, because your weblog
+directories will be writeable only by you.</p>
+<p>You may need to check with your hosting provider to determine if your server
+has cgiwrap or suexec installed. Movable Type can make a guess as to whether
+it is supported, however. When you run <i>mt-check.cgi</i>, under the line
+reporting the version of Perl on your server, look for a line that says</p>
+<pre>(Probably) running under cgiwrap or suexec
+</pre><p>This indicates that your server probably has <i>cgiwrap</i> or <i>suexec</i>
+installed.</p>
+<p><a href="#install_cgiwrap">Back to installation instructions</a></p><p>
+<h2><a name="win32 configuration tips"></a>Win32 Configuration Tips</h2>
+<p>When configuring Movable Type for use on a Win32 server, you should keep in
+mind the following tip:</p>
+<ol>
+<li>
+When specifying full filesystem paths--for example, for the <i>DataSource</i>
+setting--some servers will require that you insert the drive letter at the
+front, and that you use backslashes. For example:
+<pre>DataSource d:\full\path\to\db
+</pre><p></p></ol>
+<p>
+<h2><a name="protecting mt.cfg"></a>Protecting mt.cfg</h2>
+<p>If you are not running Movable Type out of a <i>cgi-bin</i> directory, you may
+want to think about protecting your <i>mt.cfg</i> file by adding the following
+to an <i>.htaccess</i> file in the directory where you installed MT:</p>
+<pre>&lt;Files mt.cfg&gt;
+    &lt;Limit GET&gt;
+    deny from all
+    &lt;/Limit&gt;
+&lt;/Files&gt;
+</pre>
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

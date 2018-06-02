@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Edit Template"> | <TMPL_VAR NAME=BLOG_NAME> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+function doRebuild () {
+    window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=rebuild_confirm&blog_id=<TMPL_VAR NAME=BLOG_ID>', 'rebuild', 'width=400,height=200,resizable=yes');
+}
+
+function doRebuildOne (id) {
+    window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=rebuild_confirm&blog_id=<TMPL_VAR NAME=BLOG_ID>&tmpl_id=' + id, 'rebuild', 'width=400,height=200,resizable=yes');
+}
+
+function openManual (anchor) {
+    window.open('<TMPL_VAR NAME=STATIC_URI>docs/mtmanual_templates.html#' + anchor, 'manual', 'width=450,height=550,scrollbars=yes,status=yes,resizable=yes');
+}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td align="left" rowspan="5" valign="top">
+<TMPL_INCLUDE NAME=mininav.tmpl>
+</td>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500"><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=menu&blog_id=<TMPL_VAR NAME=BLOG_ID>"> <MT_TRANS phrase="[_1] Editing Menu" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"> &gt;</a><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=list&_type=template&blog_id=<TMPL_VAR NAME=BLOG_ID>"> <MT_TRANS phrase="List Templates"> &gt;</a><font class="pagetitle"><TMPL_IF NAME="NEW_OBJECT"> <MT_TRANS phrase="Create New Template"><TMPL_ELSE> <MT_TRANS phrase="Edit Template"></TMPL_IF></font></td>
+</tr>
+
+<tr>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500">
+
+<TMPL_IF NAME=SAVED>
+	<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td><p class="message"><MT_TRANS phrase="Your template changes have been saved."> <TMPL_IF NAME=CAN_REBUILD><MT_TRANS phrase="_USAGE_REBUILD"></TMPL_IF></p></td>
+	</tr>
+	</table>
+</TMPL_IF>
+
+	<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+	<input type="hidden" name="id" value="<TMPL_VAR NAME=ID>">
+	<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+	<input type="hidden" name="type" value="<TMPL_VAR NAME=TYPE>">
+	<input type="hidden" name="__mode" value="save">
+	<input type="hidden" name="_type" value="template">
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+	<TMPL_IF NAME=HAS_NAME>
+
+	<tr>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Template Name"><br>
+	<input class="text" name="name" value="<TMPL_VAR NAME=NAME>"></td>
+	</tr>
+
+	<TMPL_ELSE>
+
+	<tr>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Template Name"><br><b>
+	<TMPL_IF NAME=TYPE_COMMENTS>
+	<input type="hidden" name="name" value="Comment Listing Template">
+	<MT_TRANS phrase="Comment Listing Template">
+	</TMPL_IF>
+	<TMPL_IF NAME=TYPE_COMMENT_PREVIEW>
+	<input type="hidden" name="name" value="Comment Preview Template">
+	<MT_TRANS phrase="Comment Preview Template">
+	</TMPL_IF>
+	<TMPL_IF NAME=TYPE_COMMENT_ERROR>
+	<input type="hidden" name="name" value="Comment Error Template">
+	<MT_TRANS phrase="Comment Error Template">
+	</TMPL_IF>
+	<TMPL_IF NAME=TYPE_PINGS>
+	<input type="hidden" name="name" value="TrackBack Listing Template">
+	<MT_TRANS phrase="TrackBack Listing Template">
+	</TMPL_IF>
+	<TMPL_IF NAME=TYPE_POPUP_IMAGE>
+	<input type="hidden" name="name" value="Uploaded Image Popup Template">
+	<MT_TRANS phrase="Uploaded Image Popup Template">
+	</TMPL_IF>
+	</b></font>
+	</td>
+	</tr>
+
+	</TMPL_IF>
+
+	<TMPL_IF NAME=HAS_OUTFILE>
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Output File"><br>
+	<input class="text" name="outfile" value="<TMPL_VAR NAME=OUTFILE>"></td>
+	</tr>
+
+	</TMPL_IF>
+
+	<TMPL_IF NAME=HAS_REBUILD>
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="12"></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><input type="checkbox" name="rebuild_me" value="1"<TMPL_IF NAME=REBUILD_ME> checked</TMPL_IF>>&nbsp;<font class="title"><MT_TRANS phrase="Rebuild this template automatically when rebuilding index templates"> <a href="#" onclick="openManual('item_rebuild_this_template_automatically')">(?)</a></td>
+	</tr>
+	</TMPL_IF>
+
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Link this template to a file"> <a href="#" onclick="openManual('item_link_this_template_to_a_file')">(?)</a><br>
+	<input class="text" name="linked_file" value="<TMPL_VAR NAME=LINKED_FILE>"></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="title"><TMPL_IF NAME=TYPE_CUSTOM><MT_TRANS phrase="Module Body"><TMPL_ELSE><MT_TRANS phrase="Template Body"></TMPL_IF><br><textarea<TMPL_IF NAME=AGENT_MOZILLA> cols=""</TMPL_IF> class="width500" name="text" rows="20" wrap="virtual"><TMPL_VAR NAME=TEXT></textarea></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td align="right" valign="top"><TMPL_UNLESS NAME=NEW_OBJECT><TMPL_IF NAME=HAS_REBUILD><input class="button" type="button" onclick="doRebuildOne(<TMPL_VAR NAME=ID>)" value="<MT_TRANS phrase="Rebuild">">&nbsp;</TMPL_IF></TMPL_UNLESS><input class="button" type="submit" value="<MT_TRANS phrase="Save">"></td>
+	</tr>
+
+	</form>
+	</table>
+</td>
+</tr>
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+</table>
+
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

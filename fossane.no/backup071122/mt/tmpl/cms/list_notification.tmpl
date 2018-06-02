@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Edit notification list"> | <TMPL_VAR NAME=BLOG_NAME> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+function doRemoveNotifications (f) {
+    var base = '<TMPL_VAR NAME=SCRIPT_URL>?__mode=delete_confirm&_type=notification&blog_id=<TMPL_VAR NAME=BLOG_ID>';
+    var url = '';
+    var e = f.id;
+    if (!e) return;
+    if (e.value && e.checked)
+        url += '&id=' + e.value;
+    else
+        for (i=0; i<e.length; i++)
+            if (e[i].checked)
+                url += '&id=' + e[i].value;
+    if (!url) {
+        alert('<MT_TRANS phrase="You did not select any notification addresses to delete.">');
+        return false;
+    }
+    url = base + url;
+    window.open(url, 'confirm_delete', 'width=370,height=150');
+}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td align="left" rowspan="8" valign="top">
+<TMPL_INCLUDE NAME=mininav.tmpl>
+</td>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500"><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=menu&blog_id=<TMPL_VAR NAME=BLOG_ID>"> <MT_TRANS phrase="[_1] Editing Menu" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"> &gt;</a><font class="pagetitle"> <MT_TRANS phrase="Edit notification list"></font></td>
+</tr>
+
+<tr>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500">
+
+	<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+	<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+	<input type="hidden" name="__mode" value="save">
+	<input type="hidden" name="_type" value="notification">
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+	<tr>
+	<td width="500"><p><font class="instructional"><MT_TRANS phrase="_USAGE_NOTIFICATIONS"></font></p>
+
+<TMPL_IF NAME=SAVED>
+	<p class="message"><MT_TRANS phrase="You have added [_1] to your notification list." params="<TMPL_VAR NAME=SAVED ESCAPE=HTML>"></p>
+</TMPL_IF>
+
+<TMPL_IF NAME=SAVED_DELETED>
+	<p class="message"><MT_TRANS phrase="You have successfully deleted the selected notifications from your notification list."></p>
+</TMPL_IF>
+
+	</td>
+	</tr>
+
+	<tr>
+	<td width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="instructional"><MT_TRANS phrase="Email Address"><br>
+	<input name="email" value="<TMPL_VAR NAME=EMAIL>"></font></td>
+	</tr>
+
+	<tr>
+	<td width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="instructional"><MT_TRANS phrase="URL (Optional)"><br>
+	<input name="url" value="<TMPL_VAR NAME=URL>"></font></td>
+	</tr>
+
+	<tr>
+	<td width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><input class="button-big" type="submit" value="<MT_TRANS phrase="Add to List">"></td>
+	</tr>
+
+	<tr>
+	<td width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+	</tr>
+
+	</table>
+
+	</form>
+</td>
+</tr>
+
+<tr>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td width="500">
+
+	<table border="0" cellspacing="0" cellpadding="0">	
+
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="pagetitle"><MT_TRANS phrase="Notification list"></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="instructional"><MT_TRANS phrase="You have [quant,_1,user,users,no users] in your notification list." params="<TMPL_VAR NAME=OBJECT_COUNT>"></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+	</tr>
+
+	</table>
+
+	<table border="0" cellspacing="0" cellpadding="3">
+	<form>
+
+	<tr>
+	<td width="175"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="175" height="1"></td>
+	<td width="191"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="191" height="1"></td>
+	<td width="65"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="65" height="1"></td>
+	<td width="45"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="45" height="1"></td>
+	</tr>
+
+	<tr>
+	<td width="175" valign="top" bgcolor="#8199A4"><font class="title-padding"><MT_TRANS phrase="Email Address"></font></td>
+	<td width="191" valign="top" bgcolor="#8199A4"><font class="title-padding"><MT_TRANS phrase="URL"></font></td>
+	<td width="65" valign="top" bgcolor="#8199A4"><font class="title-padding"><MT_TRANS phrase="Date Added"></font></td>
+	<td width="45" valign="top" align="center" bgcolor="#8199A4"><font class="title-padding"><MT_TRANS phrase="Delete"></font></td>
+	</tr>
+
+	<TMPL_LOOP NAME=OBJECT_LOOP>
+	<tr>
+	<td width="175" valign="top" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="title"><TMPL_VAR NAME=EMAIL ESCAPE=HTML></font></td>
+	<td width="191" valign="top" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="title"><TMPL_VAR NAME=URL ESCAPE=HTML></font></td>
+	<td width="65" valign="top" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="title"><TMPL_VAR NAME=CREATED_ON_FORMATTED></font></td>
+	<td width="45" valign="top" align="center" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><input type="checkbox" name="id" value="<TMPL_VAR NAME=ID>"></td>
+	</tr>
+
+	</TMPL_LOOP>
+
+	<tr>
+	<td colspan="4"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+	</tr>
+
+	<tr>
+	<td colspan="4" align="right"><input onClick="doRemoveNotifications(this.form)" class="button" type="button" value="<MT_TRANS phrase="Delete">"></td>
+	</tr>
+
+	</form>
+	</table>
+
+</td>
+</tr>
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+</table>
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

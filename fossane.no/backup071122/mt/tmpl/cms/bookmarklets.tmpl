@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Bookmarklets"> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+	<tr>
+	<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+	<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+	</tr>
+
+	<tr>
+	<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="30"></td>
+	</tr>
+
+	<tr>
+	<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+	<td valign="top" width="500"><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><font class="pagetitle"> <MT_TRANS phrase="Bookmarklets"></font></td>
+	</tr>
+
+	<tr>
+	<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+	<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+	</tr>
+
+	<tr>
+	<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+	<td valign="top" width="500">
+<TMPL_IF NAME=HAVE_LINK>
+	<p><font class="instructional"><MT_TRANS phrase="_USAGE_BOOKMARKLET_3"></font></p>
+
+	<p><font class="instructional"><a href="<TMPL_VAR NAME=BM_JS>"><MT_TRANS phrase="Post to MT Weblog"></a></font></p>
+
+	<p><font class="instructional"><MT_TRANS phrase="_USAGE_BOOKMARKLET_4"></font></p>
+
+	<p><font class="instructional"><MT_TRANS phrase="_USAGE_BOOKMARKLET_5"></font></p>
+
+	<p><font class="instructional"><a href="<TMPL_VAR NAME=SCRIPT_URI>?__mode=reg_file&bm_show=<TMPL_VAR NAME=BM_SHOW>&bm_height=<TMPL_VAR NAME=BM_HEIGHT>"><MT_TRANS phrase="Add MT It! to Windows right-click menu"></a></font></p>
+
+<TMPL_ELSE>
+	<p><font class="instructional"><MT_TRANS phrase="_USAGE_BOOKMARKLET_1"></font></p>
+
+	<p><font class="instructional"><MT_TRANS phrase="_USAGE_BOOKMARKLET_2"></font></p>
+
+	<form method="get" action="<TMPL_VAR NAME=SCRIPT_URL>">
+	<input type="hidden" name="__mode" value="make_bm_link">
+
+	<table border="0" cellspacing="0" cellpadding="2">
+
+	<tr>
+	<td colspan="2"><font class="pagetitle"><MT_TRANS phrase="Include:"></font></td>
+	</tr>
+
+	<tr>
+	<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="2"></td>
+	</tr>
+
+	<tr>
+	<td><input type="checkbox" name="show" value="trackback"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="TrackBack items"></font></td>
+	</tr>
+
+	<tr>
+	<td><input type="checkbox" name="show" value="category"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Category"></font></td>
+	</tr>
+
+	<tr>
+	<td><input type="checkbox" name="show" value="allow_comments"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Allow Comments"></font></td>
+	</tr>
+
+	<tr>
+	<td><input type="checkbox" name="show" value="allow_pings"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Allow Pings"></font></td>
+	</tr>
+
+	<tr>
+	<td><input type="checkbox" name="show" value="convert_breaks"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Text Formatting"></font></td>
+	</tr>
+
+	<tr>
+	<td><input type="checkbox" name="show" value="excerpt"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Excerpt"></font></td>
+	</tr>
+
+	<tr>
+	<td><input type="checkbox" name="show" value="text_more"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Extended Entry"></font></td>
+	</tr>
+
+	<tr>
+	<td><input type="checkbox" name="show" value="keywords"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Keywords"></font></td>
+	</tr>
+
+	<tr>
+	<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="2"></td>
+	</tr>
+
+	<tr>
+	<td colspan="2"><input type="submit" class="button" value="<MT_TRANS phrase="Create">"></td>
+	</tr>
+
+	</table>
+
+	</form>
+</TMPL_IF>
+	</td>
+	</tr>
+</table>
+
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

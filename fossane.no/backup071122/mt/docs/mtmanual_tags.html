@@ -1,0 +1,1791 @@
+<html>
+<head>
+<title>TEMPLATE TAGS</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: TEMPLATE TAGS</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#template tags">TEMPLATE TAGS</a></li>
+	<ul>
+
+		<li><a href="#weblog data">Weblog Data</a></li>
+		<li><a href="#entry listings/archive pages">Entry Listings/Archive Pages</a></li>
+		<li><a href="#comments">Comments</a></li>
+		<li><a href="#comment previewing">Comment Previewing</a></li>
+		<li><a href="#archive templates and master archive index">Archive Templates and Master Archive Index</a></li>
+		<li><a href="#categoryrelated tags">Category-Related Tags</a></li>
+		<li><a href="#calendar display tags">Calendar Display Tags</a></li>
+		<li><a href="#trackback tags">TrackBack Tags</a></li>
+		<li><a href="#search results tags">Search Results Tags</a></li>
+		<li><a href="#miscellaneous tags">Miscellaneous Tags</a></li>
+		<li><a href="#global tag attributes">Global Tag Attributes</a></li>
+		<li><a href="#date tag formats">Date Tag Formats</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="template tags"></a>TEMPLATE TAGS</h1>
+<p>Movable Type templates are composed of special tags embedded within
+standard chunks of plain text (or HTML, as the case may be). Certain
+tags are ``container'' tags: they contain what might be called a
+subtemplate, a chunk of text and MT tags between two other MT tags.
+Typically a container tag represents either a loop or a conditional.</p>
+<p>Non-container tags are simple variable tags: they are placeholders for
+dynamic pieces of information.</p>
+<p>All Movable Type tags are enclosed within less-than greater-than signs,
+just like HTML tags. You can optionally insert a <code>$</code> inside these signs,
+like this:</p>
+<pre>&lt;$MTEntryBody$&gt;
+</pre><p>This can be useful to quickly determine whether a particular tag is an
+HTML tag or a Movable Type tag.</p>
+<p>Movable Type tags take attributes to modify their behavior. Tag attributes
+work similarly to HTML tag attributes: they are lists of <code>name=&quot;value&quot;</code> pairs,
+separated by spaces. For example:</p>
+<pre>&lt;MTEntries author=&quot;Foo&quot; category=&quot;Bar&quot;&gt;
+</pre><p>(Look at the <a href="#item_MTEntries"><code>MTEntries</code></a> documentation to determine what this does.)</p>
+<p>Attribute values <i>must</i> be enclosed in quotes; otherwise they will not be
+parsed correctly. When using attributes in a tag where you are using the
+<code>$</code> character after the start and before the end tags, you should place the
+attributes <i>before</i> the end <code>$</code> character. For example:</p>
+<pre>&lt;$MTEntryDate format=&quot;%B %e, %Y&quot;$&gt;
+</pre><p>Some tag attributes are global; they apply to all Movable Type variable
+substitution tags. Global attributes are discussed below in <a href="#global tag attributes">Global Tag Attributes</a>. Other attributes are tag-specific; they apply only to certain
+tags. These attributes are listed along with the tags that they apply to, below.</p>
+<p>Some Movable Type tags are context-sensitive. For example, it only makes
+sense to use an <a href="#item_MTComments"><code>MTComments</code></a> tag in the context of a particular entry:
+for example, in a <code>Comments Popup</code> template, or in an archive template
+designed for use with <a href="#item_Individual"><code>Individual</code></a> entry archives.</p>
+<p>
+<h2><a name="weblog data"></a>Weblog Data</h2>
+<ul>
+<li><strong><a name="item_MTBlogs"></a>MTBlogs</strong><br>
+
+A container tag representing a list of all of the weblogs in the system. This
+includes weblogs that you (as the person editing the template, or rebuilding
+the page) have access to, and those that you don't. You can use any of the
+<code>&lt;$MTBlog*$&gt;</code> tags inside of these container tags.
+<p></p>
+<li><strong><a name="item_MTBlogID"></a>MTBlogID</strong><br>
+
+The numeric ID of your weblog.
+<p></p>
+<li><strong><a name="item_MTBlogName"></a>MTBlogName</strong><br>
+
+The name of your weblog, as specified in the Weblog Configuration screen.
+<p></p>
+<li><strong><a name="item_MTBlogDescription"></a>MTBlogDescription</strong><br>
+
+The description of your weblog, as specified in the Weblog Configuration screen.
+<p></p>
+<li><strong><a name="item_MTBlogURL"></a>MTBlogURL</strong><br>
+
+The absolute URL of your weblog, as specified in the Weblog Configuration
+screen.
+<p></p>
+<li><strong><a name="item_MTBlogArchiveURL"></a>MTBlogArchiveURL</strong><br>
+
+The <code>Archive URL</code> of your weblog, as specified in the Weblog Configuration
+screen.
+<p></p>
+<li><strong><a name="item_MTBlogRelativeURL"></a>MTBlogRelativeURL</strong><br>
+
+The relative URL of your weblog, as extracted from the <i>Site URL</i> setting in
+your Weblog Configuration screen. This can be very useful in setting up staging
+versions of your site, because you do not have to hard-code any URLs into
+your templates.
+<p></p>
+<li><strong><a name="item_MTBlogSitePath"></a>MTBlogSitePath</strong><br>
+
+The <i>Local Site Path</i> of your weblog, as specified in the Weblog Configuration
+screen.
+<p></p>
+<li><strong><a name="item_MTBlogHost"></a>MTBlogHost</strong><br>
+
+The hostname piece of the absolute URL of your weblog. For example, if your
+<code>Site URL</code> (in the Weblog Configuration screen) were
+<i><a href="http://www.your-site.com/blog/">http://www.your-site.com/blog/</a></i>, the hostname piece would be
+<code>www.your-site.com</code>.
+<p></p>
+<li><strong><a name="item_MTBlogTimezone"></a>MTBlogTimezone</strong><br>
+
+The timezone you have selected for your weblog, displayed as an offset from UTC
+in <code>+|-hh:mm</code> format. For example, a timezone that is <code>4</code> hours ahead of
+UTC would be displayed as <code>+04:00</code>.
+<p></p>
+<li><strong><a name="item_MTBlogEntryCount"></a>MTBlogEntryCount</strong><br>
+
+The number of entries in the weblog.
+<p></p>
+<li><strong><a name="item_MTBlogCommentCount"></a>MTBlogCommentCount</strong><br>
+
+The number of comments in the weblog.
+<p></p>
+<li><strong><a name="item_MTBlogCCLicenseURL"></a>MTBlogCCLicenseURL</strong><br>
+
+The URL corresponding to information about the Creative Commons license that
+you have chosen.
+<p></p>
+<li><strong><a name="item_MTCCLicenseRDF"></a>MTCCLicenseRDF</strong><br>
+
+Outputs the machine-readable RDF corresponding to the Creative Commons
+license that you have chosen.
+<p>This tag is context-sensitive: if you use it in an entry context, the RDF
+will contain additional information relevant to the entry in question.
+Otherwise, it will contain generic weblog information.</p>
+<p></p>
+<li><strong><a name="item_MTBlogIfCCLicense"></a>MTBlogIfCCLicense</strong><br>
+
+A container tag whose contents will be evaluated if you have selected a
+Creative Commons license in your weblog configuration, and will not be
+evaluated otherwise.
+<p></p></ul>
+<p>
+<h2><a name="entry listings/archive pages"></a>Entry Listings/Archive Pages</h2>
+<ul>
+<li><strong><a name="item_MTEntries"></a>MTEntries</strong><br>
+
+A container tag representing a list of entries/posts from your weblog. The
+actual list of posts can be configured using the optional attributes to
+this tag. The default is to display the last <code>N</code> days of entries, where
+<code>N</code> is the number of days you have set in your configuration for this
+particular weblog. To alter this behavior, you can provide one of the
+following attributes:
+<ul>
+<li><strong><a name="item_lastn%3D%22N%22"></a>lastn=``N''</strong><br>
+
+Display the last <code>N</code> posts to this weblog, where <code>N</code> is some number greater
+than 0.
+<p></p>
+<li><strong><a name="item_offset%3D%22M%22"></a>offset=``M''</strong><br>
+
+When used with <code>lastn</code> (above), starts <code>M</code> entries from the most recent,
+then displays the <code>N</code> most recent posts. For example, if you use the following
+tag:
+<pre>&lt;MTEntries lastn=&quot;5&quot; offset=&quot;5&quot;&gt;
+...
+&lt;/MTEntries&gt;
+</pre><p>this will display entries 6-10 (inclusive).</p>
+<p><strong>NOTE:</strong> this only works when used with <code>lastn</code>.</p>
+<p></p>
+<li><strong><a name="item_category%3D%22category_name%22"></a>category=``category name''</strong><br>
+
+Display all posts from the category <code>category name</code>. Note that this can be a
+long list of entries, and you may want to use <code>lastn</code> to only display a
+certain number of entries.
+<p>If you wish to pull entries from several categories, or to restrict entries to
+those that are assigned to several categories, <code>category name</code> can include
+boolean <code>AND</code> and <code>OR</code> logic. Note that it can only include one or the other,
+however, so you cannot say <code>Foo AND Bar OR Baz</code>--that will not work. You can
+only say <code>Foo AND Bar AND ...</code> or <code>Foo OR Bar OR ...</code>.</p>
+<p>For example, if you wished to list all entries assigned to both <code>Foo</code> and
+<code>Bar</code> you could use:</p>
+<pre>&lt;MTEntries category=&quot;Foo AND Bar&quot;&gt;
+...
+&lt;/MTEntries&gt;
+</pre><p></p>
+<li><strong><a name="item_author%3D%22author_name%22"></a>author=``author name''</strong><br>
+
+Display all posts by the author <code>author name</code>. Note that this can be a long
+list of entries, and you may want to use <code>lastn</code> to only display a certain
+number of entries.
+<p></p>
+<li><strong><a name="item_days%3D%22N%22"></a>days=``N''</strong><br>
+
+Display all posts less than <code>N</code> days old.
+<p></p>
+<li><strong><a name="item_recently_commented_on%3D%22N%22"></a>recently_commented_on=``N''</strong><br>
+
+Display the <code>N</code> most recently commented-on entries. Each entry will appear in
+the list only once, so if, for example, a comment is posted to Entry A, then
+a comment to Entry B, then another to Entry A, there will be two entries
+displayed: Entry A, then Entry B.
+<p></p>
+<li><strong><a name="item_sort_order%3D%22ascend%7Cdescend%22"></a>sort_order=``ascend|descend''</strong><br>
+
+Specifies the sort order for this particular <code>&lt;MTEntries&gt;</code> tag; this
+can be used to override the globally set Sort Order for Entries, set in your
+weblog configuration. Valid values are <code>ascend</code> and <code>descend</code>.
+<p>In this context, <code>ascend</code> and <code>descend</code> do not mean only chronological order;
+this attribute can be used along with <code>sort_by</code> (below) to sort, for example,
+by entry title, either A to Z (<code>ascend</code>), or Z to A (<code>descend</code>).</p>
+<p>The default value is <code>descend</code>.</p>
+<p></p>
+<li><strong><a name="item_sort_by%3D%22field_name%22"></a>sort_by=``field name''</strong><br>
+
+Sort by a field other than the Authored On Date of the entry. Valid values for
+<code>field name</code> are <a href="#item_title"><code>title</code></a>, <code>status</code>, <code>modified_on</code>, <code>author_id</code>, or
+<a href="#item_excerpt"><code>excerpt</code></a>.
+<p>The most obvious use of this attribute might be to alphabetize your entries,
+rather than displaying them chronologically. For example, suppose that you are
+using Movable Type to display a dictionary site. You might wish to group your
+entries by letter, so you could create 26 categories, A through Z. To build a
+list of all of the entries in your dictionary, grouped by letter, and sorted
+alphabetically (assuming that you have entered the word or phrase as the title
+of each entry), you could do this:</p>
+<pre>&lt;MTCategories&gt;
+&lt;$MTCategoryLabel$&gt;&lt;br /&gt;
+&lt;MTEntries sort_by=&quot;title&quot; sort_order=&quot;descend&quot;&gt;
+&lt;a href=&quot;&lt;$MTEntryPermalink$&gt;&quot;&gt;&lt;$MTEntryTitle$&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;/MTEntries&gt;&lt;br /&gt;
+&lt;/MTCategories&gt;
+</pre><p></p></ul>
+<p><i>NOTE:</i> you can combine <code>lastn</code>, <code>category</code>, and <code>author</code> to filter the
+list of entries (<code>days</code>, however, should be used by itself; if it is used
+with any other attribute, the other attribute will override it). For example,
+you can supply both <code>lastn</code> and <code>category</code> to <a href="#item_MTEntries"><code>MTEntries</code></a>; doing this does
+just what you would expect: it displays the last N entries in a particular
+category. If you wished to filter that further, by author name, you could
+supply all three of <code>lastn</code>, <code>category</code>, and <code>author</code>:</p>
+<pre>&lt;MTEntries category=&quot;Fun&quot; author=&quot;Me&quot; lastn=&quot;10&quot;&gt;
+...
+&lt;/MTEntries&gt;
+</pre><p>This would display the last 10 entries by author <code>Me</code> in the category <code>Fun</code>.</p>
+<li><strong><a name="item_MTEntryTitle"></a>MTEntryTitle</strong><br>
+
+The title of this entry.
+<p></p>
+<li><strong><a name="item_MTEntryStatus"></a>MTEntryStatus</strong><br>
+
+The Post Status of this entry (either <code>draft</code> or <code>publish</code>). This isn't
+particularly useful in most situations, since on your weblog, only entries with
+a status of <code>publish</code> will be displayed. It is used when exporting your
+data through the Export Mechanism.
+<p></p>
+<li><strong><a name="item_MTEntryExcerpt"></a>MTEntryExcerpt</strong><br>
+
+The excerpt of this entry. If you have not provided an excerpt for this
+entry, the first 20 words of the entry, followed by an ellipsis (<code>...</code>)
+will be used, instead.
+<p>If you have provided an excerpt for the entry, note that line and paragraph
+breaks will not be converted unless you use the <code>convert_breaks</code> attribute to
+this tag:</p>
+<pre>Excerpt with line breaks converted:
+&lt;$MTEntryExcerpt convert_breaks=&quot;1&quot;$&gt;
+</pre><p></p>
+<li><strong><a name="item_MTEntryBody"></a>MTEntryBody</strong><br>
+
+The main text of this entry.
+<p>If you have turned on automatic line and paragraph break conversion by
+checking <code>Convert line breaks</code> for this entry, paragraphs--blocks of text
+separated by two line breaks--will be enclosed within &lt;p&gt; and
+&lt;/p&gt; tags, and for each single line break remaining, a &lt;br /&gt;
+tag will be inserted.</p>
+<p>Note that you can override the entry-specific <code>Text Formatting</code> setting
+by providing this tag with the <code>convert_breaks</code> attribute; if this attribute
+is present, it always overrides the entry setting. So, for example, if you
+have the entry setting turned on, but wish to turn it off for a specific
+instance of this tag, you can do so like this:</p>
+<pre>&lt;$MTEntryBody convert_breaks=&quot;0&quot;$&gt;
+</pre><p>Note also that if you want to display only the first N words in the entry
+body, you can use the <i>words</i> attribute. For example, the following will
+show the first 5 words of the entry body.</p>
+<pre>&lt;$MTEntryBody words=&quot;5&quot;$&gt;
+</pre><p>To find the first N words, HTML is first removed from the entry body, then
+the body split on whitespace.</p>
+<p></p>
+<li><strong><a name="item_MTEntryMore"></a>MTEntryMore</strong><br>
+
+The extended (``more...'') text of this entry.
+<p>If you have turned on automatic line and paragraph break conversion by
+checking <code>Convert line breaks</code> for this entry, paragraphs--blocks of text
+separated by two line breaks--will be enclosed within &lt;p&gt; and
+&lt;/p&gt; tags, and for each single line break remaining, a &lt;br /&gt;
+tag will be inserted.</p>
+<p>Note that you can override the entry-specific <code>Text Formatting</code> setting
+by providing this tag with the <code>convert_breaks</code> attribute; if this attribute
+is present, it always overrides the entry setting. So, for example, if you
+have the entry setting turned on, but wish to turn it off for a specific
+instance of this tag, you can do so like this:</p>
+<pre>&lt;$MTEntryMore convert_breaks=&quot;0&quot;$&gt;
+</pre><p></p>
+<li><strong><a name="item_MTEntryLink"></a>MTEntryLink</strong><br>
+
+An absolute URL pointing to the archive page containing this entry. If you have
+selected multiple archive types, the archive URL depends on the type you have
+selected as your <code>Preferred Archive Type</code>. This is the default behavior; to
+override it you can provide this tag with the attribute <code>archive_type</code>,
+setting it to the archive type you wish to link to.
+<p>For example, say that you have selected <a href="#item_Individual"><code>Individual</code></a> archiving as your
+<code>Preferred Archive Type</code>. The following tag:</p>
+<pre>&lt;$MTEntryLink$&gt;
+</pre><p>would produce a link to the individual entry archive page for this entry. That
+file name would be the ID of the entry, zero-padded to 6 digits, followed by
+your weblog's <code>Archive File Extension</code> (eg. <code>html</code>).</p>
+<p>If you had also enabled <code>By Category</code> archiving for this weblog, though, you
+might wish to link instead to the category archive for a particular entry. To
+do this, you could use this tag:</p>
+<pre>&lt;$MTEntryLink archive_type=&quot;Category&quot;$&gt;
+</pre><p>This tag would be substituted by a link to the category archive page for this
+entry.</p>
+<p>If you want true permalinks--that is, links that will always link to a
+particular entry, even when it is archived on a page with several other
+entries--you should use the <code>&lt;$MTEntryPermalink$&gt;</code> tag.</p>
+<p></p>
+<li><strong><a name="item_MTEntryPermalink"></a>MTEntryPermalink</strong><br>
+
+An absolute URL pointing to the archive page containing this entry, with an
+anchor (<code>#</code>) pointing to the actual entry (by ID). This is the same as
+<code>&lt;$MTEntryLink$&gt;</code>, but smarter, in that it includes the anchor in
+all cases except individual archives, where the anchor is redundant.
+<p>Like <code>&lt;$MTEntryLink$&gt;</code>, this tag takes an optional attribute
+<code>archive_type</code> to specify the archive type to link to.</p>
+<p></p>
+<li><strong><a name="item_MTEntryKeywords"></a>MTEntryKeywords</strong><br>
+
+The value of the <i>Keywords</i> field in the new/edit entry screen.
+<p></p>
+<li><strong><a name="item_MTEntryAuthor"></a>MTEntryAuthor</strong><br>
+
+The name of the author of this entry.
+<p></p>
+<li><strong><a name="item_MTEntryAuthorNickname"></a>MTEntryAuthorNickname</strong><br>
+
+The nickname of the author of this entry.
+<p></p>
+<li><strong><a name="item_MTEntryAuthorEmail"></a>MTEntryAuthorEmail</strong><br>
+
+The email address of the author of this entry.
+<p>If the <code>spam_protect</code> attribute is provided, the email address will be
+modified so as to prevent spambots from harvesting it. The web browser,
+however, will still display the email address properly. For example, if the
+email address is <code>foo@bar.com</code>, and you use</p>
+<pre>&lt;$MTEntryAuthorEmail spam_protect=&quot;1&quot;$&gt;
+</pre><p>the email address will be displayed as <code>foo&amp;#64;bar&amp;#46;com</code>.</p>
+<p></p>
+<li><strong><a name="item_MTEntryAuthorURL"></a>MTEntryAuthorURL</strong><br>
+
+The website URL of the author of this entry.
+<p></p>
+<li><strong><a name="item_MTEntryAuthorLink"></a>MTEntryAuthorLink</strong><br>
+
+A linked version of the author name. The rules for the linking are as follows:
+if the author has entered a URL, the author name is a link to that URL; if the
+author has entered an email address, but no URL, the author name is a link to
+the email address; if neither email address nor URL are entered, display the
+author name without a link.
+<p>You can override these rules by using the <i>show_email</i> and <i>show_url</i>
+attributes to the tag. For example, if you use</p>
+<pre>&lt;$MTEntryAuthorLink show_email=&quot;0&quot;$&gt;
+</pre><p>then the email address of the author will never be displayed. The logic then
+becomes: if the author has entered a URL, the author name will be a link to
+that URL; if no URL, display the author name without a link.</p>
+<p>If the <code>spam_protect</code> attribute is provided, and the email link is to be
+displayed, the email address will be modified so as to prevent spambots from
+harvesting it. The web browser, however, will still display the email address
+properly. For example, if the email address is <code>foo@bar.com</code>, and you use</p>
+<pre>&lt;$MTEntryAuthorLink spam_protect=&quot;1&quot;$&gt;
+</pre><p>the email address will be displayed as <code>foo&amp;#64;bar&amp;#46;com</code>.</p>
+<p></p>
+<li><strong><a name="item_MTEntryDate"></a>MTEntryDate</strong><br>
+
+The date of this entry. Like all date tags, this tag takes optional
+<code>format</code> and <code>language</code> attributes. See <a href="#date tag formats">Date Tag Formats</a> for more
+information.
+<p></p>
+<li><strong><a name="item_MTEntryCommentCount"></a>MTEntryCommentCount</strong><br>
+
+The number of comments on this entry.
+<p></p>
+<li><strong><a name="item_MTEntryTrackbackCount"></a>MTEntryTrackbackCount</strong><br>
+
+The number of TrackBack pings on this entry.
+<p></p>
+<li><strong><a name="item_MTEntryTrackbackData"></a>MTEntryTrackbackData</strong><br>
+
+An RDF dump of TrackBack data about this entry, for use by the bookmarklet.
+This dump will be invisible to a browser.
+<p></p>
+<li><strong><a name="item_MTEntryTrackbackLink"></a>MTEntryTrackbackLink</strong><br>
+
+If <i>Allow Pings</i> is turned on for this entry, the TrackBack ping URL that
+can be used to ping the entry.
+<p></p>
+<li><strong><a name="item_MTEntryTrackbackID"></a>MTEntryTrackbackID</strong><br>
+
+The numeric ID of the TrackBack item corresponding to this entry, if
+<i>Allow Pings</i> is turned on for the entry. This could be used to construct
+alternate TrackBack ping URLs, if you wanted to.
+<p></p>
+<li><strong><a name="item_MTEntryIfExtended"></a>MTEntryIfExtended</strong><br>
+
+A container tag: the contents of this container will be displayed if this
+entry has extended text associated with it. This can be useful on an index
+template for displaying a ``More...'' link, where you only wish to display
+this link if there is ``more'' text. You could use something like this:
+<pre>&lt;MTEntryIfExtended&gt;
+&lt;a href=&quot;&lt;$MTEntryLink$&gt;#&lt;$MTEntryID$&gt;&quot;&gt;More...&lt;/a&gt;
+&lt;/MTEntryIfExtended&gt;
+</pre><p></p>
+<li><strong><a name="item_MTEntryIfAllowComments"></a>MTEntryIfAllowComments</strong><br>
+
+A container tag: the contents of this container will be displayed if
+comments are allowed for this entry (that is, if the <code>Allow comments</code>
+setting is set to either <code>Open</code> or <code>Closed</code> in the <code>Edit entry</code> screen
+for this entry).
+You can use this to display a link to comments on this entry, but only
+(of course) if comments are allowed.
+<p>See the <i>Comments</i> section in <i>ENTRIES</i> (above) for examples of using this
+tag.</p>
+<p></p>
+<li><strong><a name="item_MTEntryIfCommentsOpen"></a>MTEntryIfCommentsOpen</strong><br>
+
+A container tag: the contents of this container will be displayed if
+<i>Allow Comments</i> is set to <code>Open</code> for this entry. You can use this to
+conditionally display the ``Post a comment'' form, for example.
+<p></p>
+<li><strong><a name="item_MTEntryIfAllowPings"></a>MTEntryIfAllowPings</strong><br>
+
+A container tag: the contents of this container will be displayed if
+TrackBack pings are allowed for this entry (that is, if the <code>Allow Pings</code>
+setting is turned on in the <code>Edit an entry</code> screen for this entry).
+<p>See the <a href="./mtmanual_trackback.html">TrackBack</a> documentation for examples of using
+this tag.</p>
+<p></p>
+<li><strong><a name="item_MTEntryID"></a>MTEntryID</strong><br>
+
+The numeric ID of this entry. This is useful for creating anchors for
+permalinks, and when linking to permalinks. By default the entry ID is not
+padded; in other words, for an entry with ID <code>8</code>, this tag will produce
+only the value <code>8</code>. Sometimes you would rather have your IDs padded; in
+that case, you can use the <i>pad</i> attribute to the <a href="#item_MTEntryID"><code>MTEntryID</code></a> tag:
+<pre>&lt;$MTEntryID pad=&quot;1&quot;$&gt;
+</pre><p>This will zero-pad the entry ID to six (6) digits, like <code>000008</code>.</p>
+<p></p>
+<li><strong><a name="item_MTEntryCategory"></a>MTEntryCategory</strong><br>
+
+The name of the primary category in which this entry has been placed.
+<p></p>
+<li><strong><a name="item_MTEntryCategories"></a>MTEntryCategories</strong><br>
+
+A container tag representing a list of all of the categories--including the
+primary category--to which entry belongs. Inside of this container you can use
+any of the <code>&lt;$MTCategory*$&gt;</code> tags
+(<a href="#categoryrelated tags">documentation</a>) to display information about each
+category.
+<p>You can supply this tag with the <i>glue</i> attribute to separate each of the
+categories with a string; this is useful when you wish to separate the
+category names with a comma, for example. Note that your the value of the
+<i>glue</i> attribute cannot contain either a single or double quote.</p>
+<p>For example:</p>
+<pre>This entry was posted in the following categories:
+&lt;MTEntryCategories glue=&quot;, &quot;&gt;
+&lt;a href=&quot;&lt;$MTCategoryArchiveLink$&gt;&quot;&gt;&lt;$MTCategoryLabel$&gt;&lt;/a&gt;
+&lt;/MTEntryCategories&gt;
+</pre><p></p>
+<li><strong><a name="item_MTEntryFlag"></a>MTEntryFlag</strong><br>
+
+The value of one of the boolean flags for this entry. Currently the two
+available flags are <code>convert_breaks</code> and <code>allow_comments</code>. If the flag value
+is true, the value <code>1</code> is displayed; otherwise, the value <code>0</code> is
+displayed. The flag name is passed along in the <code>flag</code> attribute. For
+example:
+<pre>&lt;$MTEntryFlag flag=&quot;allow_comments&quot;$&gt;
+</pre><p>This tag is used for exporting entry data through the Export mechanism;
+you probably will not need to use it yourself, in your templates.</p>
+<p></p>
+<li><strong><a name="item_MTEntryPrevious"></a>MTEntryPrevious</strong><br>
+
+A container tag that sets up a context in which all tags refer to the entry
+previous to the current entry. Inside of an <a href="#item_MTEntryPrevious"><code>MTEntryPrevious</code></a> context, for
+example, an &lt;$MTEntryTitle$&gt; tag refers to the title of the previous
+entry. After you end this context (with a &lt;/MTEntryPrevious&gt; tag),
+tags return to referring to the current entry.
+<p>See the documentation for <a href="#item_MTEntryNext"><code>MTEntryNext</code></a> (below) for an example of usage of
+this tag.</p>
+<p></p>
+<li><strong><a name="item_MTEntryNext"></a>MTEntryNext</strong><br>
+
+A container tag that sets up a context in which all tags refer to the next
+entry after the current entry. Inside of an <a href="#item_MTEntryNext"><code>MTEntryNext</code></a> context, for
+example, an &lt;$MTEntryTitle$&gt; tag refers to the title of the next
+entry. After you end this context (with a &lt;/MTEntryNext&gt; tag), tags
+return to referring to the current entry.
+<p>Here is an example of navigation that links to the previous and next entries,
+along with a link back to the main index for your weblog.</p>
+<pre>&lt;MTEntryPrevious&gt;
+&lt;a href=&quot;&lt;$MTEntryLink$&gt;&quot;&gt;&amp;lt;&amp;lt; &lt;$MTEntryTitle$&gt;&lt;/a&gt; |
+&lt;/MTEntryPrevious&gt;
+&lt;a href=&quot;&lt;$MTBlogURL$&gt;&quot;&gt;Main&lt;/a&gt;
+&lt;MTEntryNext&gt;
+| &lt;a href=&quot;&lt;$MTEntryLink$&gt;&quot;&gt;&lt;$MTEntryTitle$&gt; &amp;gt;&amp;gt;&lt;/a&gt;
+&lt;/MTEntryNext&gt;
+</pre><p></p>
+<li><strong><a name="item_MTDateHeader"></a>MTDateHeader</strong><br>
+
+A container tag: the contents of this container will be displayed only if
+this entry marks a new day in the list of entries. As such this is really
+only useful inside an <a href="#item_MTEntries"><code>MTEntries</code></a> container. For example:
+<pre>&lt;MTEntries&gt;
+  &lt;MTDateHeader&gt;
+    &lt;$MTEntryDate format=&quot;%B %e, %Y&quot;$&gt;
+  &lt;/MTDateHeader&gt;
+  Title: &lt;$MTEntryTitle$&gt;
+&lt;/MTEntries&gt;
+</pre><p></p>
+<li><strong><a name="item_MTDateFooter"></a>MTDateFooter</strong><br>
+
+A container tag: the contents of this container will be displayed only if
+this entry was posted on a different day than the following (next) entry.
+This can be used in combination with the <a href="#item_MTDateHeader"><code>MTDateHeader</code></a> tag to wrap all of
+your posts from a particular day in some sort of structure (a <code>div</code>, for
+example). Like <a href="#item_MTDateHeader"><code>MTDateHeader</code></a>, this tag is only useful inside an <a href="#item_MTEntries"><code>MTEntries</code></a>
+container. For example:
+<pre>&lt;MTEntries&gt;
+  &lt;MTDateHeader&gt;
+    &lt;div class=&quot;day&quot;&gt;
+    &lt;$MTEntryDate format=&quot;%B %e, %Y&quot;$&gt;
+  &lt;/MTDateHeader&gt;
+  Title: &lt;$MTEntryTitle$&gt;
+  &lt;MTDateFooter&gt;
+    &lt;/div&gt;
+  &lt;/MTDateFooter&gt;
+&lt;/MTEntries&gt;
+</pre><p></p>
+<li><strong><a name="item_MTEntriesHeader"></a>MTEntriesHeader</strong><br>
+
+A container tag: the contents of this container will be displayed only if
+this entry is the first entry listed in the <code>&lt;MTEntries&gt;</code> container.
+<p></p>
+<li><strong><a name="item_MTEntriesFooter"></a>MTEntriesFooter</strong><br>
+
+A container tag: the contents of this container will be displayed only if
+this entry is the last entry listed in the <code>&lt;MTEntries&gt;</code> container.
+This could be used, for example, to link to the preview entry's archive page
+from your index page. If you are using Daily archives, for example:
+<pre>&lt;MTEntries days=&quot;1&quot;&gt;
+...
+&lt;MTEntriesFooter&gt;
+&lt;MTEntryPrevious&gt;
+&lt;a href=&quot;&lt;$MTEntryLink archive_type=&quot;Daily&quot;$&gt;&quot;&gt;Previously: &lt;$MTEntryDate format=&quot;%A, %B %d, %Y&quot;$&gt;&lt;/a&gt;
+&lt;/MTEntryPrevious&gt;
+&lt;/MTEntriesFooter&gt;
+&lt;/MTEntries&gt;
+</pre><p></p></ul>
+<p>
+<h2><a name="comments"></a>Comments</h2>
+<ul>
+<li><strong><a name="item_MTComments"></a>MTComments</strong><br>
+
+A container tag representing a list of comments, either on a particular entry
+or in a particular weblog (depending on the presence of the <code>lastn</code> attribute,
+below).
+<p>If you provide this tag with the <a href="#item_lastn%3D%22N%22"><code>lastn=&quot;N&quot;</code></a> attribute, where <code>N</code> is the
+number of comments you would like displayed, it will list either the <code>N</code>
+most recent comments on the particular entry--if used in entry context--or
+the <code>N</code> most recent comments in your weblog, if used elsewhere.</p>
+<p>If you do not provide this tag with any attributes, <code>&lt;MTComments&gt;</code>
+will list all of the comments on the particular entry in context. This means,
+of course, that when using this tag without attributes, it must be used in an
+entry context: within <code>&lt;MTEntries&gt;</code>, in an <code>Individual entry archive
+template</code>, in a <code>Comment Preview template</code>, in a <code>Comment Listing template</code>,
+or in a <code>Comment Error template</code>.</p>
+<p>By default, the comments will be sorted in the order you have specified for
+the <i>Order of comments displayed</i> in your weblog configuration. You can
+override this setting by providing this tag with the <code>sort_order</code> attribute,
+the value of which should be either <i>ascend</i> or <i>descend</i>.</p>
+<p>For example, to display the 6 most recent comments made on any of the entries
+in your weblog, and sort them in reverse chronological order (most recent first),
+you can put the following into your Main Index Template:</p>
+<pre>&lt;MTComments lastn=&quot;6&quot; sort_order=&quot;descend&quot;&gt;
+&lt;p&gt;&lt;$MTCommentAuthor$&gt; said:&lt;br /&gt;
+&lt;$MTCommentBody$&gt;&lt;/p&gt;
+&lt;/MTComments&gt;
+</pre><p>For each comment in the list of comments, the text and tags inside the
+container will be displayed. Each of the tags below are used to display a
+particular variable piece of a comment.</p>
+<p></p>
+<li><strong><a name="item_MTCommentID"></a>MTCommentID</strong><br>
+
+The numeric ID of this comment. This is useful for creating anchors for
+comment permalinks, and when linking to permalinks. By default the comment ID
+is not padded; in other words, for a comment with ID <code>8</code>, this tag will
+produce only the value <code>8</code>. Sometimes you would rather have your IDs padded;
+in that case, you can use the <i>pad</i> attribute to the tag:
+<pre>&lt;$MTCommentID pad=&quot;1&quot;$&gt;
+</pre><p>This will zero-pad the comment ID to six (6) digits, like <code>000008</code>.</p>
+<p></p>
+<li><strong><a name="item_MTCommentEntryID"></a>MTCommentEntryID</strong><br>
+
+The numeric ID of the entry on which this comment was made. This is useful
+when using <code>&lt;MTComments lastn=&quot;N&quot;&gt;</code>, because it allows you to link to
+the particular entry on which the comment has been made.
+<p>This tag takes an optional <code>pad</code> attribute that works just like the <code>pad</code>
+attribute in <code>&lt;$MTCommentID$&gt;</code>, above.</p>
+<p></p>
+<li><strong><a name="item_MTCommentIP"></a>MTCommentIP</strong><br>
+
+The IP address of the author of this comment.
+<p></p>
+<li><strong><a name="item_MTCommentAuthor"></a>MTCommentAuthor</strong><br>
+
+The name of the author of this comment.
+<p></p>
+<li><strong><a name="item_MTCommentAuthorLink"></a>MTCommentAuthorLink</strong><br>
+
+A linked version of the author name. The rules for the linking are as follows:
+if the author has entered a URL, the author name is a link to that URL; if the
+author has entered an email address, but no URL, the author name is a link to
+the email address; if neither email address nor URL are entered, display the
+author name without a link.
+<p>You can override these rules by using the <i>show_email</i> and <i>show_url</i>
+attributes to the tag. For example, if you use</p>
+<pre>&lt;$MTCommentAuthorLink show_email=&quot;0&quot;$&gt;
+</pre><p>then the email address of the author will never be displayed. The logic then
+becomes: if the author has entered a URL, the author name will be a link to
+that URL; if no URL, display the author name without a link.</p>
+<p>This is useful when you want to force your visitors to leave their email
+addresses--that is, you have not checked the <i>Allow anonymous comments</i>
+checkbox in your weblog configuration--but you do not want to display these
+email addresses on your weblog.</p>
+<p>If the <code>spam_protect</code> attribute is provided, and the email link is to be
+displayed, the email address will be modified so as to prevent spambots from
+harvesting it. The web browser, however, will still display the email address
+properly. For example, if the email address is <code>foo@bar.com</code>, and you use</p>
+<pre>&lt;$MTCommentAuthorLink spam_protect=&quot;1&quot;$&gt;
+</pre><p>the email address will be displayed as <code>foo&amp;#64;bar&amp;#46;com</code>.</p>
+<p></p>
+<li><strong><a name="item_MTCommentEmail"></a>MTCommentEmail</strong><br>
+
+The email address of the author of this comment.
+<p>If the <code>spam_protect</code> attribute is provided, the email address will be
+modified so as to prevent spambots from harvesting it. The web browser,
+however, will still display the email address properly. For example, if the
+email address is <code>foo@bar.com</code>, and you use</p>
+<pre>&lt;$MTCommentEmail spam_protect=&quot;1&quot;$&gt;
+</pre><p>the email address will be displayed as <code>foo&amp;#64;bar&amp;#46;com</code>.</p>
+<p></p>
+<li><strong><a name="item_MTCommentURL"></a>MTCommentURL</strong><br>
+
+The URL of the author of this comment.
+<p></p>
+<li><strong><a name="item_MTCommentBody"></a>MTCommentBody</strong><br>
+
+The body of this comment. If you have selected <code>Convert line and paragraph
+breaks</code> in your weblog configuration, paragraphs--blocks of text separated by
+two line breaks--will be enclosed within &lt;p&gt; and &lt;/p&gt; tags,
+and for each single line breaks, a &amp;lt;br /&amp;gt; tag will be inserted.
+<p>Note that you can override the global <code>Convert line and paragraph breaks</code>
+setting by providing this tag with the <code>convert_breaks</code> attribute; if this
+attribute is present, it always overrides the global setting. So, for example,
+if you have the global setting turned on, but wish to turn it off for a
+specific instance of this tag, you can do so like this:</p>
+<pre>&lt;$MTCommentBody convert_breaks=&quot;0&quot;$&gt;
+</pre><p></p>
+<li><strong><a name="item_MTCommentDate"></a>MTCommentDate</strong><br>
+
+The date that this comment was entered on your site.  Like all date tags,
+this tag takes optional <code>format</code> and <code>language</code> attributes. See
+<a href="#date tag formats">Date Tag Formats</a> for more information.
+<p></p>
+<li><strong><a name="item_MTCommentOrderNumber"></a>MTCommentOrderNumber</strong><br>
+
+The numeric order of a particular comment in the list of comments for an
+entry, starting at <code>1</code>. Note that the order is dependent on the sort order
+(ascending or descending).
+<p></p>
+<li><strong><a name="item_MTCommentEntry"></a>MTCommentEntry</strong><br>
+
+A container tag representing the entry on which the comment was made. This
+allows you to use <code>&lt;$MTEntry*$&gt;</code> tags to refer to that entry. For
+example, you could do
+<pre>&lt;MTComments lastn=&quot;5&quot; sort_order=&quot;descend&quot;&gt;
+&lt;MTCommentEntry&gt;
+This comment was made on the entry &lt;$MTEntryTitle$&gt;.
+&lt;/MTCommentEntry&gt;
+&lt;/MTComments&gt;
+</pre><p></p></ul>
+<p>
+<h2><a name="comment previewing"></a>Comment Previewing</h2>
+<p>When creating the <code>Comment Preview Template</code> for use in previewing comments
+before they are posted to your site, you should use the following tags. All
+of these tags have the same meaning as the similarly-named tags in <code>Comments</code>,
+above; the only different is that these tags are used for the comment that
+you are previewing, whereas the others are used inside of an
+<code>&lt;MTComments&gt;</code> block.</p>
+<ul>
+<li><strong><a name="item_MTCommentPreviewAuthor"></a>MTCommentPreviewAuthor</strong><br>
+
+<li><strong><a name="item_MTCommentPreviewIP"></a>MTCommentPreviewIP</strong><br>
+
+<li><strong><a name="item_MTCommentPreviewAuthorLink"></a>MTCommentPreviewAuthorLink</strong><br>
+
+<li><strong><a name="item_MTCommentPreviewEmail"></a>MTCommentPreviewEmail</strong><br>
+
+<li><strong><a name="item_MTCommentPreviewURL"></a>MTCommentPreviewURL</strong><br>
+
+<li><strong><a name="item_MTCommentPreviewBody"></a>MTCommentPreviewBody</strong><br>
+
+<li><strong><a name="item_MTCommentPreviewDate"></a>MTCommentPreviewDate</strong><br>
+
+These tags all have the same meaning as the similarly-named tags in
+<code>Comments</code>, above.
+<p></p>
+<li><strong><a name="item_MTCommentPreviewIsStatic"></a>MTCommentPreviewIsStatic</strong><br>
+
+A magic hidden tag that you should use in your <code>Comment Preview</code> and <code>Comment
+Error</code> templates so that the system will know where to redirect your users
+after posting a comment. To use this tag, paste this hidden input field into
+the forms on your <code>Comment Preview</code> and <code>Comment Error</code> templates:
+<pre>&lt;input type=&quot;hidden&quot; name=&quot;static&quot; value=&quot;&lt;$MTCommentPreviewIsStatic$&gt;&quot;&gt;
+</pre><p></p>
+<li><strong><a name="item_MTCommentPreviewState"></a>MTCommentPreviewState</strong><br>
+
+<strong>NOTE:</strong> this tag is deprecated as of version 1.4 of Movable Type. The
+recommended method of creating comment previews is to use an editable form
+to allow users to edit the comment being previewed; when you do this, you
+should <strong>NOT</strong> use the <code>&lt;$MTCommentPreviewState$&gt;</code> tag.
+<p>A magic tag that you need to use on a comment preview page (the <code>Comment
+Preview Template</code>). This tag is substituted with all of the necessary comment
+data in order to post the comment, as well as knowledge of whether the comment
+is being posted from inline or popup comments.</p>
+<p></p></ul>
+<p>
+<h2><a name="archive templates and master archive index"></a>Archive Templates and Master Archive Index</h2>
+<p>The following template tags and variables apply to your archive pages and to
+your Master Archive Index.</p>
+<ul>
+<li><strong><a name="item_MTArchiveList"></a>MTArchiveList</strong><br>
+
+A container tag representing a list of all of your archive pages. For each
+archive page, you can use any of the tag variables below; in addition, you
+can use an <a href="#item_MTEntries"><code>MTEntries</code></a> tag to display information about each of the entries
+on this archive page. For example:
+<pre>&lt;MTArchiveList&gt;
+  &lt;a href=&quot;&lt;$MTArchiveLink$&gt;&quot;&gt;&lt;$MTArchiveDate$&gt;&lt;/a&gt;&lt;br&gt;
+  &lt;MTEntries&gt;
+    [&lt;$MTEntryTitle$&gt;]
+  &lt;/MTEntries&gt;
+  &lt;br&gt;&lt;br&gt;
+&lt;/MTArchiveList&gt;
+</pre><p>This will display a link to the archive page, followed by a list of titles
+of each of the entries on that page.</p>
+<p>This tag takes two attribute: <code>archive_type</code>, which specifies the type of
+archives to list; and <code>lastn</code>, which limits the number of archives listed.</p>
+<p>The attribute <code>archive_type</code> is optional; if omitted, the listing will
+use your Preferred Archive Type, or your Archive Type. The attribute is
+useful when you have selected more than one value for the weblog's Archive
+Type, and you wish to list the archives for an archive type other than your
+Preferred Archive Type. For example, if you have chosen to keep both
+<a href="#item_Individual"><code>Individual</code></a> and <a href="#item_Daily"><code>Daily</code></a> archives, and your Preferred Archive Type is
+<a href="#item_Individual"><code>Individual</code></a>, you can list your <a href="#item_Daily"><code>Daily</code></a> archives using this tag:</p>
+<pre>&lt;MTArchiveList archive_type=&quot;Daily&quot;&gt;
+...
+&lt;/MTArchiveList&gt;
+</pre><p><code>lastn</code> can be used to limit the number of archives in the list; for example,
+if you have 10 months worth of archives in your weblog, and you only wish to
+list the last 5, you can use this:</p>
+<pre>&lt;MTArchiveList archive_type=&quot;Monthly&quot; lastn=&quot;5&quot;&gt;
+...
+&lt;/MTArchiveList&gt;
+</pre><p></p>
+<li><strong><a name="item_MTArchiveLink"></a>MTArchiveLink</strong><br>
+
+An absolute URL link to this archive page.
+<p>By default, the link is to the archive page of the archive type currently
+being built; for example, when building a list of <a href="#item_Monthly"><code>Monthly</code></a> archives,
+<code>&lt;$MTArchiveLink&gt;</code> will generate a link to a particular <a href="#item_Monthly"><code>Monthly</code></a>
+archive. To override this behavior, you can specify the attribute
+<code>archive_type</code>, which should be set to one of the following values:
+<a href="#item_Individual"><code>Individual</code></a>, <a href="#item_Daily"><code>Daily</code></a>, <a href="#item_Weekly"><code>Weekly</code></a>, <a href="#item_Monthly"><code>Monthly</code></a>, or <a href="#item_Category"><code>Category</code></a>.</p>
+<p></p>
+<li><strong><a name="item_MTArchiveTitle"></a>MTArchiveTitle</strong><br>
+
+The ``title'' of this archive page. The value of this variable depends on the
+archive type:
+<ul>
+<li><strong><a name="item_Category"></a>Category</strong><br>
+
+The name of the category.
+<p></p>
+<li><strong><a name="item_Daily"></a>Daily</strong><br>
+
+The date, in <code>Month Day, YYYY</code> form.
+<p></p>
+<li><strong><a name="item_Weekly"></a>Weekly</strong><br>
+
+The range of dates in the week, in <code>Month Day, YYYY - Month Day, YYYY</code> form.
+<p></p>
+<li><strong><a name="item_Monthly"></a>Monthly</strong><br>
+
+The month, in <code>Month YYYY</code> form.
+<p></p>
+<li><strong><a name="item_Individual"></a>Individual</strong><br>
+
+The entry title.
+<p></p></ul>
+<p>Using <a href="#item_MTArchiveTitle"><code>MTArchiveTitle</code></a> in combination with <a href="#item_MTArchiveLink"><code>MTArchiveLink</code></a> is the easiest
+way to create your master archive index pages, because the <a href="#item_MTArchiveTitle"><code>MTArchiveTitle</code></a>
+value will adapt to whatever type of archiving you choose. For example:</p>
+<pre>&lt;MTArchiveList&gt;
+&lt;a href=&quot;&lt;$MTArchiveLink$&gt;&quot;&gt;&lt;$MTArchiveTitle$&gt;&lt;/a&gt;&lt;br&gt;
+&lt;/MTArchiveList&gt;
+</pre><p>No matter what archive type you choose, this will always display a useful
+list of your archive pages.</p>
+<li><strong><a name="item_MTArchiveCount"></a>MTArchiveCount</strong><br>
+
+The number of entries in a specific archive grouping; for example, if you are
+using Monthly archiving, this corresponds to the number of entries in this
+month. This tag should only be used inside of a <code>&lt;MTArchiveList&gt;</code>
+container, like this:
+<pre>&lt;MTArchiveList&gt;
+&lt;a href=&quot;&lt;$MTArchiveLink$&gt;&quot;&gt;&lt;$MTArchiveTitle$&gt; (&lt;$MTArchiveCount$&gt;)&lt;/a&gt;&lt;br&gt;
+&lt;/MTArchiveList&gt;
+</pre><p></p>
+<li><strong><a name="item_MTArchiveDate"></a>MTArchiveDate</strong><br>
+
+The starting date of this archive period. This only makes sense if you are
+listing <a href="#item_Daily"><code>Daily</code></a>, <a href="#item_Weekly"><code>Weekly</code></a>, or <a href="#item_Monthly"><code>Monthly</code></a> archives. This is a standard date
+tag; see below in <a href="#date tag formats">Date Tag Formats</a> for information on formatting the
+date.
+<p>You can use this tag inside of an <a href="#item_MTArchiveList"><code>MTArchiveList</code></a> container, and you can
+also use it in an archive template associated with a date-based archive type,
+<i>outside</i> of the <a href="#item_MTEntries"><code>MTEntries</code></a> tag. You can use this to display a header about
+the dates represented on a particular archive page--the month and year, for
+example:</p>
+<pre>&lt;$MTBlogName$&gt; Archives: &lt;$MTArchiveDate format=&quot;%B %Y&quot;$&gt;
+&lt;MTEntries&gt;
+...
+&lt;/MTEntries&gt;
+</pre><p></p>
+<li><strong><a name="item_MTArchiveDateEnd"></a>MTArchiveDateEnd</strong><br>
+
+The ending date of this archive period. This only makes sense if you are in
+a <a href="#item_Daily"><code>Daily</code></a>, <a href="#item_Weekly"><code>Weekly</code></a>, or <a href="#item_Monthly"><code>Monthly</code></a> archive context, and will fail in any
+other situation. This is a standard date tag; see below in <a href="#date tag formats">Date Tag Formats</a>
+for information on formatting the date.
+<p>You can use this tag in the same scenarios as the <code>&lt;$MTArchiveDate&gt;</code>
+tag.</p>
+<p></p>
+<li><strong><a name="item_MTArchiveCategory"></a>MTArchiveCategory</strong><br>
+
+The name of the category of this archive list. This only makes sense if you
+are listing <a href="#item_Category"><code>Category</code></a> archives.
+<p>You can use this tag inside of an <a href="#item_MTArchiveList"><code>MTArchiveList</code></a> container, and you can
+also use it in an archive template associated with your <a href="#item_Category"><code>Category</code></a> archives,
+<i>outside</i> of the <a href="#item_MTEntries"><code>MTEntries</code></a> tag. You can use this to display a header about
+the category of entries represented on a particular archive page. For example:</p>
+<pre>&lt;$MTBlogName$&gt; Archives: &lt;$MTArchiveCategory$&gt;
+&lt;MTEntries&gt;
+...
+&lt;/MTEntries&gt;
+</pre><p></p>
+<li><strong><a name="item_MTArchivePrevious"></a>MTArchivePrevious</strong><br>
+
+A container tag that sets up a context in which all tags refer to the archive
+previous to the current archive. Inside of an <a href="#item_MTArchivePrevious"><code>MTArchivePrevious</code></a> context, for
+example, an &lt;$MTArchiveTitle$&gt; tag refers to the title of the previous
+archive. After you end this context (with a &lt;/MTArchivePrevious&gt; tag),
+tags return to referring to the current archive.
+<p>This tag should be used in archive templates that you associate with <a href="#item_Daily"><code>Daily</code></a>,
+<a href="#item_Weekly"><code>Weekly</code></a>, or <a href="#item_Monthly"><code>Monthly</code></a> archives; if you want a similar behavior in your
+individual entry archives, take a look at the <code>&lt;MTEntryPrevious&gt;</code> tag.</p>
+<p>By default the ``previous'' archive is based on the type of archive on which the
+tag is found--for example, in a <a href="#item_Daily"><code>Daily</code></a> archive, the ``previous'' archive is
+the previous day with an entry. If you would like to override this
+behavior--for example, if you'd rather link to the previous month's
+archives--you can use the <code>archive_type</code> attribute (see below for an
+example).</p>
+<p>See the documentation for <code>&lt;MTArchiveNext&gt;</code> (below) for an example of
+usage of this tag.</p>
+<p></p>
+<li><strong><a name="item_MTArchiveNext"></a>MTArchiveNext</strong><br>
+
+A container tag that sets up a context in which all tags refer to the next
+archive after the current archive. Inside of an <a href="#item_MTArchiveNext"><code>MTArchiveNext</code></a> context, for
+example, an &lt;$MTArchiveTitle$&gt; tag refers to the title of the next
+archive. After you end this context (with a &lt;/MTArchiveNext&gt; tag), tags
+return to referring to the current archive.
+<p>This tag should be used in archive templates that you associate with <a href="#item_Daily"><code>Daily</code></a>,
+<a href="#item_Weekly"><code>Weekly</code></a>, or <a href="#item_Monthly"><code>Monthly</code></a> archives; if you want a similar behavior in your
+individual entry archives, take a look at the <code>&lt;MTEntryNext&gt;</code> tag.</p>
+<p>By default the ``next'' archive is based on the type of archive on which the
+tag is found--for example, in a <a href="#item_Daily"><code>Daily</code></a> archive, the ``next'' archive is
+the next day with an entry. If you would like to override this behavior--for
+example, if you'd rather link to the previous month's archives--you can use
+the <code>archive_type</code> attribute.</p>
+<p>Here is an example of navigation that links to the previous and next archives,
+along with a link back to the main index for your weblog.</p>
+<pre>&lt;MTArchivePrevious&gt;
+&lt;a href=&quot;&lt;$MTArchiveLink$&gt;&quot;&gt;&amp;lt;&amp;lt; &lt;$MTArchiveTitle$&gt;&lt;/a&gt; |
+&lt;/MTArchivePrevious&gt;
+&lt;a href=&quot;&lt;$MTBlogURL$&gt;&quot;&gt;Main&lt;/a&gt;
+&lt;MTArchiveNext&gt;
+| &lt;a href=&quot;&lt;$MTArchiveLink$&gt;&quot;&gt;&lt;$MTArchiveTitle$&gt; &amp;gt;&amp;gt;&lt;/a&gt;
+&lt;/MTArchiveNext&gt;
+</pre><p>Here is an example of navigation that could be used on a <a href="#item_Daily"><code>Daily</code></a> archive to
+link to the previous and next month's archives. This might be useful if you
+use a calendar on all of your <a href="#item_Daily"><code>Daily</code></a> archives, and want to link to the next
+and previous month's calendar.</p>
+<pre>&lt;MTArchivePrevious archive_type=&quot;Monthly&quot;&gt;
+&lt;a href=&quot;&lt;$MTArchiveLink archive_type=&quot;Monthly&quot;$&gt;&quot;&gt;&lt;$MTArchiveDate format=&quot;%b&quot;$&gt;&lt;/a&gt;
+&lt;/MTArchivePrevious&gt;
+&lt;MTArchiveNext archive_type=&quot;Monthly&quot;&gt;
+&lt;a href=&quot;&lt;$MTArchiveLink archive_type=&quot;Monthly&quot;$&gt;&quot;&gt;&lt;$MTArchiveDate format=&quot;%b&quot;$&gt;&lt;/a&gt;
+&lt;/MTArchiveNext&gt;
+</pre><p></p></ul>
+<p>
+<h2><a name="categoryrelated tags"></a>Category-Related Tags</h2>
+<p>The following tags can be used to display a list of the categories in your
+weblog, and information about each category (ID, label, etc.).</p>
+<ul>
+<li><strong><a name="item_MTCategories"></a>MTCategories</strong><br>
+
+A container tag representing a list of the categories in your weblog. For each
+category, you can use any of the tag variables below; in addition, you can use
+an <code>&lt;MTEntries&gt;</code> tag to display information about each of the entries
+in this category. For example:
+<pre>&lt;MTCategories&gt;
+  &lt;a href=&quot;&lt;$MTCategoryArchiveLink$&gt;&quot;&gt;&lt;$MTCategoryLabel$&gt;&lt;/a&gt;&lt;br&gt;
+  &lt;MTEntries&gt;
+  &lt;$MTEntryTitle$&gt;&amp;nbsp;
+  &lt;/MTEntries&gt;
+  &lt;br /&gt;&lt;br /&gt;
+&lt;/MTCategories&gt;
+</pre><p>This will display a link to each of your categories, each followed by a list of
+titles of the entries in that category.</p>
+<p>When a category does not contain any entries, by default that category will not
+be included in the list of categories; this is the default behavior because it
+mirrors the behavior of <code>&lt;MTArchiveList&gt;</code>. Note that this is advised
+if you are including links to your category archive pages, because archive
+pages are not generated for empty categories. Thus, the archive link for an
+empty category will be a broken link.</p>
+<p>If you would like to override this default behavior, you can provide this tag
+with the <code>show_empty</code> attribute. For example, these tags:</p>
+<pre>&lt;MTCategories show_empty=&quot;1&quot;&gt;
+&lt;$MTCategoryLabel$&gt;
+&lt;/MTCategories&gt;
+</pre><p>will display a list of <strong>all</strong> of your categories, even those that are empty.</p>
+<p></p>
+<li><strong><a name="item_MTCategoryID"></a>MTCategoryID</strong><br>
+
+The numeric ID of the category.
+<p></p>
+<li><strong><a name="item_MTCategoryLabel"></a>MTCategoryLabel</strong><br>
+
+The category label.
+<p></p>
+<li><strong><a name="item_MTCategoryArchiveLink"></a>MTCategoryArchiveLink</strong><br>
+
+A link to the archive page for this category. This only works if you have
+enabled <a href="#item_Category"><code>Category</code></a> archiving for your weblog; if you have not, you will get an
+error message when rebuilding your pages.
+<p></p>
+<li><strong><a name="item_MTCategoryDescription"></a>MTCategoryDescription</strong><br>
+
+The description for this category.
+<p></p>
+<li><strong><a name="item_MTCategoryCount"></a>MTCategoryCount</strong><br>
+
+The number of entries in this category.
+<p></p>
+<li><strong><a name="item_MTCategoryTrackbackLink"></a>MTCategoryTrackbackLink</strong><br>
+
+If this category has been set to <i>Accept incoming pings</i>, the TrackBack ping
+URL that can be used to ping the category. This tag can be used in any
+category context (category archive or inside <code>&lt;MTCategories&gt;</code>), or
+you can specify the category whose TrackBack link you want using the
+<i>category</i> attribute. For example:
+<pre>&lt;$MTCategoryTrackbackLink category=&quot;Foo Bar&quot;$&gt;
+</pre><p>If you specify the attribute, the tag can be used wherever you want to use it.</p>
+<p></p></ul>
+<p>
+<h2><a name="calendar display tags"></a>Calendar Display Tags</h2>
+<p>The following tags can be used to output a calendar display of your entries.
+The calendar display is not restricted to construction using HTML tables; the
+tags are sufficiently generic that you could use them to create a calendar in
+many different forms.</p>
+<ul>
+<li><strong><a name="item_MTCalendar"></a>MTCalendar</strong><br>
+
+A container tag representing a month-long calendar; the markup between the
+<code>&lt;MTCalendar&gt;</code> and <code>&lt;/MTCalendar&gt;</code> tags represents a single
+``cell'' in the calendar (which is either a day of the month or a blank cell
+representing a day in a different month).
+<p>This tag takes an optional attribute <code>month</code>, which, if present, specifies the
+desired calendar month and year. If the value of this attribute is the string
+<code>this</code>, the calendar will be created in the surrounding date context; this
+means that, for example, in an archive template, you can use</p>
+<pre>&lt;MTCalendar month=&quot;this&quot;&gt;
+...
+&lt;/MTCalendar&gt;
+</pre><p>to represent the calendar for the month of the archive currently being viewed.
+This will work for <a href="#item_Individual"><code>Individual</code></a>, <a href="#item_Daily"><code>Daily</code></a>, <a href="#item_Weekly"><code>Weekly</code></a>, and <a href="#item_Monthly"><code>Monthly</code></a> archives,
+not for <a href="#item_Category"><code>Category</code></a> archives.</p>
+<p>If the value of the <code>month</code> attribute is <code>last</code>, the calendar will be
+created for the previous month, relative to the current date.</p>
+<p>If you'd like to create a calendar for a specific month, you can use the
+<code>month</code> attribute to specify the exact month and year, in <code>YYYYMM</code> format
+(example: <code>200112</code>).</p>
+<p>If the <code>month</code> attribute is not provided, the calendar will display the
+current month.</p>
+<p>If you would like to only display entries from a certain category, you can
+specify the <code>category</code> attribute, giving it the name of the category. For
+example, this tag:</p>
+<pre>&lt;MTCalendar month=&quot;200201&quot; category=&quot;Foo&quot;&gt;
+...
+&lt;/MTCalendar&gt;
+</pre><p>will display all entries from January, 2002 in the category <code>Foo</code>.</p>
+<p></p>
+<li><strong><a name="item_MTCalendarDay"></a>MTCalendarDay</strong><br>
+
+The numeric day of the month (example: <code>1</code>). You can use this tag within the
+<code>&lt;MTCalendarIfEntries&gt;</code> and <code>&lt;MTCalendarIfNoEntries&gt;</code>
+containers.
+<p></p>
+<li><strong><a name="item_MTCalendarCellNumber"></a>MTCalendarCellNumber</strong><br>
+
+The number of the ``cell'' in the calendar; this number starts at <code>1</code> for the
+first cell in the top left corner of the calendar and increases as you move
+across the calendar horizontally.
+<p>This tag is different than <code>&lt;$MTCalendarDay$&gt;</code> (above) in that the
+latter tag applies only in a non-``blank'' cell (ie. an entry that represents a
+day in this particular month).</p>
+<p></p>
+<li><strong><a name="item_MTCalendarDate"></a>MTCalendarDate</strong><br>
+
+The timestamp of each day of the month; accepts the standard <code>format</code>
+attribute. If you only wish to display the numeric day, just use
+<code>&lt;$MTCalendarDay$&gt;</code>; you need only use this tag when you want more
+date/time information in the display.
+<p></p>
+<li><strong><a name="item_MTCalendarWeekHeader"></a>MTCalendarWeekHeader</strong><br>
+
+A container tag; the markup contained between <code>&lt;MTCalendarWeekHeader&gt;</code>
+and <code>&lt;/MTCalendarWeekHeader&gt;</code> will be displayed at the start of each
+week.
+<p></p>
+<li><strong><a name="item_MTCalendarWeekFooter"></a>MTCalendarWeekFooter</strong><br>
+
+A container tag; the markup contained between <code>&lt;MTCalendarWeekFooter&gt;</code>
+and <code>&lt;/MTCalendarWeekFooter&gt;</code> will be displayed at the end of each
+week.
+<p></p>
+<li><strong><a name="item_MTCalendarIfBlank"></a>MTCalendarIfBlank</strong><br>
+
+A container tag; the markup contained between <code>&lt;MTCalendarIfBlank&gt;</code>
+and <code>&lt;/MTCalendarIfBlank&gt;</code> will be displayed if the cell is a ``blank''
+cell--that is, if it does not represent a day in this month.
+<p></p>
+<li><strong><a name="item_MTCalendarIfEntries"></a>MTCalendarIfEntries</strong><br>
+
+A container tag; the markup contained between <code>&lt;MTCalendarIfEntries&gt;</code>
+and <code>&lt;/MTCalendarIfEntries&gt;</code> will be displayed if there are any
+entries from the day represented by this cell. You can use the
+<code>&lt;MTEntries&gt;</code> tag to list all of the entries on that particular day.
+<p>For example:</p>
+<pre>&lt;MTCalendarIfEntries&gt;
+    Entries from this day:
+    &lt;MTEntries&gt;
+    &lt;a href=&quot;&lt;$MTEntryLink$&gt;&quot;&gt;&lt;$MTEntryTitle$&gt;&lt;/a&gt;&lt;br /&gt;
+    &lt;/MTEntries&gt;
+&lt;/MTCalendarIfEntries&gt;
+</pre><p></p>
+<li><strong><a name="item_MTCalendarIfNoEntries"></a>MTCalendarIfNoEntries</strong><br>
+
+A container tag; the markup contained between <code>&lt;MTCalendarIfNoEntries&gt;</code>
+and <code>&lt;/MTCalendarIfNoEntries&gt;</code> will be displayed if there are no
+entries from the day represented by this cell.
+<p></p>
+<li><strong><a name="item_MTCalendarIfToday"></a>MTCalendarIfToday</strong><br>
+
+A container tag; the markup contained between <code>&lt;MTCalendarIfToday&gt;</code>
+and <code>&lt;/MTCalendarIfToday&gt;</code> will be displayed if the day represented
+by the calendar cell is the current date.
+<p></p></ul>
+<p>Here is the markup for a fairly standard calendar display; this will display
+a calendar for the current month.</p>
+<pre>&lt;table border=&quot;0&quot; cellspacing=&quot;4&quot; cellpadding=&quot;0&quot; summary=&quot;Monthly calendar&quot;&gt;
+&lt;caption&gt;&lt;$MTDate format=&quot;%B %Y&quot;$&gt;&lt;/caption&gt;
+&lt;tr&gt;
+&lt;th abbr=&quot;Sunday&quot; align=&quot;center&quot;&gt;Sun&lt;/th&gt;
+&lt;th abbr=&quot;Monday&quot; align=&quot;center&quot;&gt;Mon&lt;/th&gt;
+&lt;th abbr=&quot;Tuesday&quot; align=&quot;center&quot;&gt;Tue&lt;/th&gt;
+&lt;th abbr=&quot;Wednesday&quot; align=&quot;center&quot;&gt;Wed&lt;/th&gt;
+&lt;th abbr=&quot;Thursday&quot; align=&quot;center&quot;&gt;Thu&lt;/th&gt;
+&lt;th abbr=&quot;Friday&quot; align=&quot;center&quot;&gt;Fri&lt;/th&gt;
+&lt;th abbr=&quot;Saturday&quot; align=&quot;center&quot;&gt;Sat&lt;/th&gt;
+&lt;/tr&gt;
+&lt;MTCalendar&gt;
+&lt;MTCalendarWeekHeader&gt;&lt;tr&gt;&lt;/MTCalendarWeekHeader&gt;
+&lt;td &lt;MTCalendarIfToday&gt;bgcolor=&quot;#EEEEEE&quot;&lt;/MTCalendarIfToday&gt; align=&quot;center&quot;&gt;
+&lt;MTCalendarIfEntries&gt;&lt;MTEntries lastn=&quot;1&quot;&gt;&lt;a href=&quot;&lt;$MTEntryLink$&gt;&quot;&gt;&lt;$MTCalendarDay$&gt;&lt;/a&gt;&lt;/MTEntries&gt;&lt;/MTCalendarIfEntries&gt;
+&lt;MTCalendarIfNoEntries&gt;&lt;$MTCalendarDay$&gt;&lt;/MTCalendarIfNoEntries&gt;
+&lt;MTCalendarIfBlank&gt;&amp;nbsp;&lt;/MTCalendarIfBlank&gt;&lt;/td&gt;
+&lt;MTCalendarWeekFooter&gt;&lt;/tr&gt;&lt;/MTCalendarWeekFooter&gt;
+&lt;/MTCalendar&gt;
+&lt;/table&gt;
+</pre><p><strong>NOTE:</strong> the computation of the calendar display is relatively expensive, so if
+you wish to place the same calendar on every page of your site, it is advisable
+to create the calendar in an index template, then use server side includes or
+PHP (or any other dynamic webserver tool) to include that file in each of your
+pages.</p>
+<p>
+<h2><a name="trackback tags"></a>TrackBack Tags</h2>
+<p>These are tags related to the <a href="./mtmanual_trackback.html">TrackBack system</a>.</p>
+<ul>
+<li><strong><a name="item_MTPings"></a>MTPings</strong><br>
+
+A container tag that lists all of the pings either on a certain entry, a
+certain category, or in your entiree system .
+<p>If used within the context of an entry--for example, in the <i>TrackBack
+Listing Template</i>--this tag will list all of the TrackBack pings sent to that
+particular entry.</p>
+<p>If used in a template associated with a category archive, this tag will list
+all of the TrackBack pings sent to that category.</p>
+<p>If used in any other context, this tag will list all of the TrackBack pings
+sent to your system (unless provided with the <i>lastn</i> tag--see below).</p>
+<p>Additionally, you can provide this tag with the name of the category whose
+pings you wish to list using the <i>category</i> attribute:</p>
+<pre>&lt;MTPings category=&quot;Foo&quot;&gt;
+...
+&lt;/MTPings&gt;
+</pre><p>You can also provide this tag with <i>sort_order</i> and <i>lastn</i> attributes,
+which work the same way that they do with other Movable Type tags. The
+value of <i>sort_order</i> can be either <code>ascend</code> or <code>descend</code>. The value of
+<i>lastn</i> should be a positive integer to list the N most recent TrackBack
+pings.</p>
+<a name="mtpings_example"></a><p>For example, to display the last 15 pings in the category <code>Foo Bar</code> on the
+front page of your weblog, add the following to your Main Index Template:</p>
+<pre>&lt;MTPings category=&quot;Foo Bar&quot; lastn=&quot;15&quot;&gt;
+&lt;a href=&quot;&lt;$MTPingURL$&gt;&quot;&gt;&lt;$MTPingTitle$&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;/MTPings&gt;
+</pre><p></p>
+<li><strong><a name="item_MTPingID"></a>MTPingID</strong><br>
+
+The numeric ID of the TrackBack ping.
+<p></p>
+<li><strong><a name="item_MTPingTitle"></a>MTPingTitle</strong><br>
+
+The title sent in the TrackBack ping. Generally, this is the title of the
+remote entry.
+<p></p>
+<li><strong><a name="item_MTPingURL"></a>MTPingURL</strong><br>
+
+The URL sent in the TrackBack ping. Generally, this is the URL of the remote
+entry.
+<p></p>
+<li><strong><a name="item_MTPingExcerpt"></a>MTPingExcerpt</strong><br>
+
+The excerpt sent in the TrackBack ping.
+<p></p>
+<li><strong><a name="item_MTPingDate"></a>MTPingDate</strong><br>
+
+The date that this TrackBack ping was sent to your site.  Like all date tags,
+this tag takes optional <code>format</code> and <code>language</code> attributes. See
+<a href="#date tag formats">Date Tag Formats</a> for more information.
+<p></p>
+<li><strong><a name="item_MTPingBlogName"></a>MTPingBlogName</strong><br>
+
+The name of the weblog in which the entry was posted.
+<p></p>
+<li><strong><a name="item_MTPingIP"></a>MTPingIP</strong><br>
+
+The IP address of the host that sent the ping.
+<p></p>
+<li><strong><a name="item_MTPingsSent"></a>MTPingsSent</strong><br>
+
+A container tag representing the list of TrackBack pings sent from an
+entry. These are TrackBack ping URLs, not permalinks.
+<p>For example:</p>
+<pre>&lt;MTPingsSent&gt;
+URL: &lt;$MTPingsSentURL$&gt;&lt;br /&gt;
+&lt;/MTPingsSent&gt;
+</pre><p></p>
+<li><strong><a name="item_MTPingsSentURL"></a>MTPingsSentURL</strong><br>
+
+The URL for the ping, to be used within the <code>&lt;MTPingsSent&gt;</code> tag.
+<p></p></ul>
+<p>
+<h2><a name="search results tags"></a>Search Results Tags</h2>
+<p>The following tags can only be used in your search templates.</p>
+<ul>
+<li><strong><a name="item_MTSearchResults"></a>MTSearchResults</strong><br>
+
+A container tag representing the list of results for the search that was
+performed. Within this container tag, you can use any of the
+<code>&lt;$MTEntry*$&gt;</code> tags, because the entry represented by the search
+result will be in context. You can also use any <code>&lt;$MTBlog*$&gt;</code>
+tags to access data referring to the weblog in which the particular entry
+result was found.
+<p>For example:</p>
+<pre>&lt;MTSearchResults&gt;
+&lt;MTBlogResultHeader&gt;
+&lt;h2&gt;Results from &lt;$MTBlogName$&gt;&lt;/h2&gt;
+&lt;/MTBlogResultHeader&gt;
+&lt;h3&gt;&lt;a href=&quot;&lt;$MTEntryLink$&gt;#&lt;$MTEntryID pad=&quot;1&quot;$&gt;&quot;&gt;&lt;$MTEntryTitle$&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;$MTEntryExcerpt$&gt; &lt;$MTEntryEditLink$&gt;&lt;br /&gt;
+&lt;div class=&quot;posted&quot;&gt;Posted in &lt;$MTBlogName$&gt; on &lt;$MTEntryDate$&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/MTSearchResults&gt;
+</pre><p></p>
+<li><strong><a name="item_MTSearchResultCount"></a>MTSearchResultCount</strong><br>
+
+The number of results found for the search across all of the weblogs searched
+(that is, not a per-weblog result count).
+<p></p>
+<li><strong><a name="item_MTNoSearchResults"></a>MTNoSearchResults</strong><br>
+
+A container tag whose contents are displayed if a search is performed, but
+no results are found.
+<p>For example:</p>
+<pre>&lt;MTNoSearchResults&gt;
+&lt;h2&gt;Searched for &quot;&lt;$MTSearchString$&gt;&quot;&lt;/h2&gt;
+&lt;p&gt;No pages were found containing &quot;&lt;$MTSearchString$&gt;&quot;.&lt;/p&gt;
+&lt;/MTNoSearchResults&gt;
+</pre><p></p>
+<li><strong><a name="item_MTNoSearch"></a>MTNoSearch</strong><br>
+
+A container tag whose contents are displayed only if there is no search
+performed. This is the case if a visitor were to go directly to your
+<i>mt-search.cgi</i> page in his browser:
+<pre>http://YOURDOMAIN.COM/PATH-TO/mt-search.cgi
+</pre><p>Or, in the case of the new comment search, if the visitor went to</p>
+<pre>http://YOURDOMAIN.COM/PATH-TO/mt-search.cgi?Type=newcomments&amp;help=1
+</pre><p>A good use for this tag might be to display search instructions, or a more
+advanced search form.</p>
+<p>For example:</p>
+<pre>&lt;MTNoSearch&gt;
+&lt;h2&gt;Instructions&lt;/h2&gt;
+&lt;p&gt;... Some search instructions ...&lt;/p&gt;
+&lt;/MTNoSearch&gt;
+</pre><p></p>
+<li><strong><a name="item_MTBlogResultHeader"></a>MTBlogResultHeader</strong><br>
+
+When displaying standard search results (that is, results for searches that
+are not new comment searches), search results are grouped by the weblog in
+which the result was found.
+<p>This tag is a container tag whose contents are displayed if the search
+result in context is the first result in the weblog grouping. This is useful
+for displaying the name of the weblog, and perhaps a link to the main index
+for the weblog.</p>
+<p></p>
+<li><strong><a name="item_MTEntryEditLink"></a>MTEntryEditLink</strong><br>
+
+A link to edit the entry represented by the search result, if the user
+displaying the search results page is logged in to Movable Type and has
+permission to edit the entry listed.
+<p></p>
+<li><strong><a name="item_MTSearchString"></a>MTSearchString</strong><br>
+
+The HTML-encoded search query.
+<p></p></ul>
+<p>
+<h2><a name="miscellaneous tags"></a>Miscellaneous Tags</h2>
+<p>These are tags which really don't fit in any of the above categories.</p>
+<ul>
+<li><strong><a name="item_MTElse"></a>MTElse</strong><br>
+
+You can use <code>&lt;MTElse&gt;</code> tag to supply an ``else'' condition for any
+conditional tag. That is, generally any tag with <code>If</code> in its name (for
+example, <code>&lt;MTEntryIfExtended&gt;</code>). <code>&lt;MTElse&gt;</code> is a container
+tag whose contents will be displayed if the condition is <strong>not</strong> met. The
+<code>&lt;MTElse&gt;</code> container should be placed <strong>within</strong> the container of
+the conditional tag for which it is providing the ``else'' condition.
+<p>Here is an example of usage:</p>
+<pre>&lt;MTEntryIfExtended&gt;
+This entry has an extended body.
+&lt;MTElse&gt;
+This entry does not have an extended body.
+&lt;/MTElse&gt;
+&lt;/MTEntryIfExtended&gt;
+</pre><p></p>
+<li><strong><a name="item_MTInclude"></a>MTInclude</strong><br>
+
+Use the <a href="#item_MTInclude"><code>MTInclude</code></a> tag to include either a template module (see <i>Template
+Modules</i>, above, in <a href="./mtmanual_templates.html">TEMPLATES</a>), or an external file,
+into another template. <code>&lt;MTInclude&gt;</code> takes the following attributes:
+<ul>
+<li><strong><a name="item_module"></a>module</strong><br>
+
+The name of a template module as defined in your template listings. For
+example, if you have a common chunk of HTML that you use as a header in all of
+your templates, and you wish to manage this chunk through Movable Type, you
+can pull that chunk into a template module, name it <code>Header</code>, then include it
+using <code>&lt;MTInclude&gt;</code>:
+<pre>&lt;$MTInclude module=&quot;Header&quot;$&gt;
+</pre><p></p>
+<li><strong><a name="item_file"></a>file</strong><br>
+
+The path to an external file to include in your template. The path to the file
+can be a full filesystem path, or it can be the name of a file in either your
+<code>Local Site Path</code> directory, or your <code>Local Archive Path</code> directory. For
+example, if the file <i>foo.html</i> exists in your local site path directory,
+you can include it in a template like this:
+<pre>&lt;$MTInclude file=&quot;foo.html&quot;$&gt;
+</pre><p>This file is included in your template when <i>the page is rebuilt</i>; note that
+this behavior should not be confused with server side includes, which will
+include the external file every time the webserver serves a request for your
+page. After making changes to an external file that you are including through
+<code>&lt;MTInclude&gt;</code>, then, note that you will need to rebuild your pages to
+include the modified version of the page.</p>
+<p></p></ul>
+<li><strong><a name="item_MTLink"></a>MTLink</strong><br>
+
+You can use the <code>&lt;MTLink&gt;</code> tag to automatically generate the URL
+for an index template or an entry in the system. <code>&lt;MTLink&gt;</code> takes
+the following attributes:
+<ul>
+<li><strong><a name="item_template"></a>template</strong><br>
+
+The name of an index template as defined in your template listings. For
+example, if you'd like to generate a link to an about page template that
+you have called <code>About Page</code>, you could use:
+<pre>&lt;a href=&quot;&lt;$MTLink template=&quot;About Page&quot;$&gt;&quot;&gt;My About Page&lt;/a&gt;
+</pre><p></p>
+<li><strong><a name="item_entry_id"></a>entry_id</strong><br>
+
+The numeric ID of an entry that you'd like to link to. For example:
+<pre>&lt;a href=&quot;&lt;$MTLink entry_id=&quot;562&quot;$&gt;&quot;&gt;Link to a certain entry&lt;/a&gt;
+</pre><p></p></ul>
+<li><strong><a name="item_MTDate"></a>MTDate</strong><br>
+
+A standard date/time tag representing the current date and time at which the
+page is being rebuilt. You can use this for a <code>Last updated at</code> slug, for
+example:
+<pre>This page last updated at &lt;$MTDate format=&quot;%B %d, %Y %I:%M %p&quot;$&gt;.
+</pre><p></p>
+<li><strong><a name="item_MTGoogleSearch"></a>MTGoogleSearch</strong><br>
+
+Uses the Google API to obtain a list of search results for a particular
+query, or to list a set of pages that are similar to a particular page.
+<p>This tag can be given the following attributes:</p>
+<ul>
+<li><strong><a name="item_query"></a>query</strong><br>
+
+The search query.
+<p></p>
+<li><strong><a name="item_related"></a>related</strong><br>
+
+Tells Google to return pages similar to a certain page; the value can be
+either a URL, in which case the pages will be similar to that URL, or <code>1</code>,
+in which case the pages will be similar to your page (assuming that you have
+set your <i>Site URL</i> to the URL for your main page). See below for an
+example.
+<p></p>
+<li><strong><a name="item_title"></a>title</strong><br>
+
+If you use the attribute <i>title=``1''</i>, the query sent to Google will be the
+title of the current entry.
+<p></p>
+<li><strong><a name="item_excerpt"></a>excerpt</strong><br>
+
+If you use the attribute <i>excerpt=``1''</i>, the query sent to Google will be
+the excerpt of the current entry.
+<p></p>
+<li><strong><a name="item_keywords"></a>keywords</strong><br>
+
+If you use the attribute <i>keywords=``1''</i>, the query sent to Google will be
+the keywords of the current entry.
+<p></p>
+<li><strong><a name="item_results"></a>results</strong><br>
+
+The number of results to return; Google will currently not return more than
+10 results per query, so the maximum (currently) is <code>10</code>.
+<p></p></ul>
+<p>For example, to list the top 5 search results for the query <code>movable type</code>:</p>
+<pre>&lt;MTGoogleSearch query=&quot;movable type&quot; results=&quot;5&quot;&gt;
+&lt;a href=&quot;&lt;$MTGoogleSearchResult property=&quot;URL&quot;$&gt;&quot;&gt;&lt;$MTGoogleSearchResult property=&quot;title&quot;$&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;/MTGoogleSearch&gt;
+</pre><p>Or, for a list of pages similar to your page:</p>
+<pre>&lt;MTGoogleSearch related=&quot;1&quot;&gt;
+&lt;a href=&quot;&lt;$MTGoogleSearchResult property=&quot;URL&quot;$&gt;&quot;&gt;&lt;$MTGoogleSearchResult property=&quot;title&quot;$&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;/MTGoogleSearch&gt;
+</pre><p>Note that <i>query</i>, <i>related</i>, <i>title</i>, and <i>excerpt</i> are all mutually
+exclusive.</p>
+<p>Also note that if you use the Google Search tag in your Individual Archive
+Template, the list of search results will be generated whenever you save
+an entry. This can slow down the rebuilding process, and if you post quite a
+bit, or get a lot of comments on your site, you may exceed the number of
+queries per day that you are allowed by Google.</p>
+<p><strong>NOTE:</strong> usage of this tag requires that you have obtained a Google API key
+and pasted it into your weblog configuration, and that you have installed the
+<i>SOAP::Lite</i> and <i>LWP::UserAgent</i> modules (run <i>mt-check.cgi</i> to determine
+if you have these modules installed).</p>
+<li><strong><a name="item_MTGoogleSearchResult"></a>MTGoogleSearchResult</strong><br>
+
+An individual result of a Google API search (see <code>&lt;MTGoogleSearch&gt;</code>,
+above).
+<p>Takes one attribute, <i>property</i>, which specifies the field of the search
+result to be displayed (for example: title, URL, summary, etc.). The default
+<i>property</i> is <a href="#item_title"><code>title</code></a>.</p>
+<p>Valid values for <i>property</i> include: <code>summary</code>, <code>URL</code>, <code>snippet</code>,
+and <a href="#item_title"><code>title</code></a>.</p>
+<p></p>
+<li><strong><a name="item_MTSetVar"></a>MTSetVar</strong><br>
+
+Sets the value of a variable--you define the name of the variable using the
+<code>name</code> attribute, and the value using the <code>value</code> attribute. You can then
+retrieve the value of the variable using the tag <code>&lt;MTGetVar&gt;</code> (below).
+<p></p>
+<li><strong><a name="item_MTGetVar"></a>MTGetVar</strong><br>
+
+Gets the value of a variable and replaces the tag with the value of that
+variable; the name of the variable should be supplied in the <code>name</code> attribute
+to this tag. For example
+<p>For example, you can set the value of a variable <code>foo</code> in an outer template:</p>
+<pre>&lt;MTSetVar name=&quot;foo&quot; value=&quot;bar&quot;&gt;
+</pre><p>and then, in an included template module, grab the value of that variable:</p>
+<pre>&lt;MTGetVar name=&quot;foo&quot;&gt;
+</pre><p></p>
+<li><strong><a name="item_MTCGIPath"></a>MTCGIPath</strong><br>
+
+The URL path to the directory containing the Movable Type CGI scripts. This
+tag is substituted with the value of the <code>CGIPath</code> configuration file line
+(set during installation; see the Installation Instructions). <a href="#item_MTCGIPath"><code>MTCGIPath</code></a>
+makes linking to Movable Type CGI scripts--such as <i>mt-comments.cgi</i> and
+<i>mt-add-notify.cgi</i>--very simple; instead of having to type in the URL to
+these CGI scripts every time you use them in your templates, instead you
+should just use this tag. For example, when creating a form for posting
+comments:
+<pre>&lt;form method=&quot;post&quot; action=&quot;&lt;$MTCGIPath$&gt;&lt;$MTCommentScript$&gt;&quot;&gt;
+</pre><p></p>
+<li><strong><a name="item_MTCommentScript"></a>MTCommentScript</strong><br>
+
+The setting for <i>CommentScript</i> in your <i>mt.cfg</i> file; the default value
+is <i>mt-comments.cgi</i>.
+<p></p>
+<li><strong><a name="item_MTTrackbackScript"></a>MTTrackbackScript</strong><br>
+
+The setting for <i>TrackbackScript</i> in your <i>mt.cfg</i> file; the default value
+is <i>mt-tb.cgi</i>.
+<p></p>
+<li><strong><a name="item_MTStaticWebPath"></a>MTStaticWebPath</strong><br>
+
+The value of the <i>StaticWebPath</i> setting as set in <i>mt.cfg</i>.
+<p></p>
+<li><strong><a name="item_MTImageURL"></a>MTImageURL</strong><br>
+
+The absolute URL of the image that was uploaded, for use in the <code>Uploaded
+Image Popup Template</code>.
+<p></p>
+<li><strong><a name="item_MTImageWidth"></a>MTImageWidth</strong><br>
+
+The width of the image that was uploaded, for use in the <code>Uploaded Image
+Popup Template</code>.
+<p></p>
+<li><strong><a name="item_MTImageHeight"></a>MTImageHeight</strong><br>
+
+The height of the image that was uploaded, for use in the <code>Uploaded Image
+Popup Template</code>.
+<p></p>
+<li><strong><a name="item_MTErrorMessage"></a>MTErrorMessage</strong><br>
+
+This tag can be used only in the <code>Comment Error Template</code>; it will be
+replaced with the text of the error that occurred in the comment submission
+process (for example, an invalid or missing email address).
+<p></p>
+<li><strong><a name="item_MTVersion"></a>MTVersion</strong><br>
+
+The version of MT that you are running. Example: <code>2.0</code>.
+<p></p>
+<li><strong><a name="item_MTPublishCharset"></a>MTPublishCharset</strong><br>
+
+The value of the <i>PublishCharset</i> setting in <i>mt.cfg</i>; if not set, defaults
+to <code>iso-8859-1</code>.
+<p></p></ul>
+<p>
+<h2><a name="global tag attributes"></a>Global Tag Attributes</h2>
+<p>Global tag attributes can be used in any variable substitution tag (a tag that
+is replaced with a value--in contrast to a container tag, which ``contains'' a
+set of markup and other tags). However, this does not mean that they would
+necessarily <strong>make sense</strong> when used in any tag; it is up to the user to
+determine when using a particular tag attribute might not make practical sense.</p>
+<p>You should use a global attribute just as you would use a tag-specific
+attribute: as a <code>name=&quot;value&quot;</code> pair within the tag. For example:</p>
+<pre>&lt;$MTEntryExcerpt encode_html=&quot;1&quot;$&gt;
+</pre><p>This will be replaced with an HTML-encoded version of the excerpt.</p>
+<p>Here is a list of the global tag attributes:</p>
+<ul>
+<li><strong><a name="item_filters"></a>filters</strong><br>
+
+Lists a set of Text Formatting filters that will be applied to the tag
+value. The filter names should be the short names that uniquely identify
+the filters, not the long labels shown in the Text Formatting options.
+You can separate filter names with commas (<code>,</code>). If you specify multiple
+filters, they will be executed in the order in which you list them. For
+example, if you have defined a filter with the short name <i>wiki</i>, which
+runs a string through the <i>Text::WikiFormat</i> CPAN module, you could do
+this:
+<pre>&lt;$MTEntryTitle filters=&quot;wiki&quot;$&gt;
+</pre><p>to turn a title of <code>''This is a title''</code> into
+<code>&lt;em&gt;This is a title&lt;/em&gt;</code>.</p>
+<p></p>
+<li><strong><a name="item_encode_html"></a>encode_html</strong><br>
+
+When set to <code>1</code>, HTML-encodes the tag value. For example, if the value of the
+tag without this attribute were <code>Foo &amp; Bar -&gt; Baz</code>, the HTML-encoded
+version would be <code>Foo &amp;amp; Bar -&amp;gt; Baz</code>.
+<p>Example usage:</p>
+<pre>&lt;$MTEntryExcerpt encode_html=&quot;1&quot;$&gt;
+</pre><p></p>
+<li><strong><a name="item_encode_xml"></a>encode_xml</strong><br>
+
+When set to <code>1</code>, encodes into entities any characters that XML requires
+to be encoded. These are: <code>&amp;</code>, <code></code>, <code>&lt;</code>, and <code>&gt;</code>.
+For example, if the value of the tag without this attribute were
+<code>Foo &amp; Bar -&gt; Baz</code>, the XML-encoded version would be
+<code>Foo &amp;amp; Bar -&amp;gt; Baz</code>.
+<p>Example usage (in an RSS template);</p>
+<pre>&lt;item&gt;
+    &lt;title&gt;&lt;$MTEntryTitle encode_xml=&quot;1&quot;$&gt;&lt;/title&gt;
+</pre><p>Note: The difference between this and <i>encode_html</i> is that the latter
+encodes a much wider set of special characters into HTML entities, if you
+have the <i>HTML::Entities</i> module installed and you have not turned on the
+<i>NoHTMLEntities</i> option in <i>mt.cfg</i>.</p>
+<p></p>
+<li><strong><a name="item_encode_js"></a>encode_js</strong><br>
+
+When set to <code>1</code>, encodes the tag value into a format suitable for usage in
+a Javascript string value. For example, if the value of the tag without this
+attribute were <code>Foo &quot;Bar&quot; Baz's 1/2 Quux</code>, the encoded version would be
+<code>Foo \&quot;Bar\&quot; Baz\'s 1\/2 Quux</code>.
+<p>Example usage:</p>
+<pre>&lt;script language=&quot;javascript&quot;&gt;
+var str = '&lt;$MTEntryTitle encode_js=&quot;1&quot;$&gt;';
+&lt;/script&gt;
+</pre><p></p>
+<li><strong><a name="item_encode_php"></a>encode_php</strong><br>
+
+Encodes the tag value into a format suitable for usage in one of three PHP
+string values: single-quote, double-quote, or here document. The value of
+this tag attribute should be either <code>q</code> (single-quote), <code>qq</code> (double-quote),
+or <code>heredoc</code> (here document--note that <code>here</code> will also work for a here
+document).
+<p>Example <code>q</code> usage:</p>
+<pre>&lt;?php
+$str = '&lt;$MTEntryTitle encode_php=&quot;q&quot;$&gt;'
+?&gt;
+</pre><p>Example <code>heredoc</code> usage:</p>
+<pre>&lt;?php
+$str = &lt;&lt;&lt;HERE
+&lt;$MTEntryBody encode_php=&quot;heredoc&quot;$&gt;
+HERE;
+?&gt;
+</pre><p></p>
+<li><strong><a name="item_encode_url"></a>encode_url</strong><br>
+
+Encodes the tag value into a format suitable for usage in a URL. This involves
+encoding non-alphanumeric characters into their hex equivalents. For example,
+the string <code>foo bar</code> would be transformed into <code>foo%20bar</code>.
+<p>Example usage:</p>
+<pre>&lt;a href=&quot;/search?q=&lt;$MTEntryTitle encode_url=&quot;1&quot;$&gt;&quot;&gt;Search&lt;/a&gt;
+</pre><p>(Thanks to Scott Andrew LePera for providing the original example on which
+this is based.)</p>
+<p></p>
+<li><strong><a name="item_decode_html"></a>decode_html</strong><br>
+
+When set to <code>1</code>, decodes all HTML entities in the tag value. For example, if
+the value of the tag without this attribute were <code>foo&amp;lt;br&amp;gt;</code>,
+the version with decoded HTML entities would be <code>foo&lt;br&gt;</code>.
+<p>Example usage:</p>
+<pre>&lt;$MTEntryTitle decode_html=&quot;1&quot;$&gt;
+</pre><p></p>
+<li><strong><a name="item_decode_xml"></a>decode_xml</strong><br>
+
+When set to <code>1</code>, decodes all XML entities in the tag value. For example, if
+the value of the tag without this attribute were <code>foo&amp;lt;br&amp;gt;</code>,
+the version with decoded HTML entities would be <code>foo&lt;br&gt;</code>.
+<p>Example usage:</p>
+<pre>&lt;$MTEntryTitle decode_xml=&quot;1&quot;$&gt;
+</pre><p></p>
+<li><strong><a name="item_remove_html"></a>remove_html</strong><br>
+
+When set to <code>1</code>, strips all HTML tags from the tag value. For example,
+if the value of the tag without this attribute were <code>Foo&lt;br&gt; Bar</code>,
+the version without HTML tags would be <code>Foo Bar</code>.
+<p>Example usage:</p>
+<pre>&lt;$MTEntryTitle remove_html=&quot;1&quot;$&gt;
+</pre><p></p>
+<li><strong><a name="item_dirify"></a>dirify</strong><br>
+
+When set to <code>1</code>, ``dirifies'' the tag value. This means that the value of the
+tag is made suitable for usage in a file or directory name: the value is
+converted to lower case, HTML tags and entities are stripped, strange
+characters are stripped (where strange is defined as not included in the
+following set: alphanumeric characters, underscore (<code>_</code>), and whitespace),
+and whitespace is then converted to underscores (<code>_</code>).
+<p><i>dirify</i> also converts certain high-ASCII characters (accented characters,
+etc) to their low-ASCII characters, meaning that something like
+<code>crudit</code> will be converted to <code>crudite</code>.</p>
+<p>For example, if the value of the tag without this attribute were
+<code>Foo &quot;Baz&quot; is&lt;br&gt; Bar!</code>, the dirified version would be
+<code>foo_baz_is_bar</code>.</p>
+<p>Example usage:</p>
+<pre>&lt;$MTArchiveCategory dirify=&quot;1&quot;$&gt;
+</pre><p></p>
+<li><strong><a name="item_upper_case"></a>upper_case</strong><br>
+
+Upper-cases the tag value.
+<p>Example usage:</p>
+<pre>&lt;$MTEntryTitle upper_case=&quot;1&quot;$&gt;
+</pre><p></p>
+<li><strong><a name="item_lower_case"></a>lower_case</strong><br>
+
+Lower-cases the tag value.
+<p>Example usage:</p>
+<pre>&lt;$MTArchiveDate format=&quot;%B&quot; lower_case=&quot;1&quot;$&gt;
+</pre><p></p>
+<li><strong><a name="item_trim_to"></a>trim_to</strong><br>
+
+Trims the tag value to the first N characters, where N is specified as the
+value of the attribute.
+<p>Example usage:</p>
+<pre>&lt;$MTEntryTitle trim_to=&quot;15&quot;$&gt;
+</pre><p>The above tag will only display the first <code>15</code> characters in the entry title.</p>
+<p></p>
+<li><strong><a name="item_space_pad"></a>space_pad</strong><br>
+
+Pads the tag value with spaces so that the total length is N characters, where
+N is specified as the value of the attribute.
+<p>Example usage:</p>
+<pre>&lt;$MTCalendarDay space_pad=&quot;3&quot;$&gt;
+</pre><p>The above tag will pad the value <code>3</code> to ``<code>  3</code>''.</p>
+<p></p>
+<li><strong><a name="item_zero_pad"></a>zero_pad</strong><br>
+
+Pads the tag value with zeros so that the total length is N characters, where
+N is specified as the value of the attribute.
+<p>Example usage:</p>
+<pre>&lt;$MTCalendarDay zero_pad=&quot;5&quot;$&gt;
+</pre><p>The above tag will pad the value <code>8</code> to <code>00008</code>.</p>
+<p></p>
+<li><strong><a name="item_sprintf"></a>sprintf</strong><br>
+
+A general purpose <i>sprintf</i>-formatter. The value of the attribute should be
+the format string; the tag value will be passed in as the argument to
+<i>sprintf</i>. For example, <i>zero_pad</i> could be implemented as
+<pre>&lt;$MTCalendarDay sprintf=&quot;%05s&quot;$&gt;
+</pre><p></p>
+<li><strong><a name="item_sanitize"></a>sanitize</strong><br>
+
+Runs the sanitize filter on the text in question. If the value of the
+attribute is <code>1</code>, the default sanitize spec--for the weblog, or for the global
+settings--is used. If the value is <code>0</code>, sanitizing will be turned off for
+this tag. If the value is anything else, it will be treated as the sanitize
+spec to be used.
+<p>Example usage:</p>
+<pre>&lt;$MTEntryBody sanitize=&quot;a href&quot;$&gt;
+</pre><p>This would strip all HTML tags except for <code>&lt;a&gt;</code> (with the <code>href</code>
+attribute) from the entry body.</p>
+<p></p></ul>
+<p>
+<h2><a name="date tag formats"></a>Date Tag Formats</h2>
+<p>Movable Type uses standard <code>strftime</code> format strings to describe dates
+and times. (However, note that <code>strftime</code> itself is not actually used to
+perform the formatting.) In any date tag, you should use the <code>format</code>
+attribute to specify the format string, like this:</p>
+<pre>&lt;$MTDate format=&quot;%B %e, %Y %I:%M %p&quot;$&gt;
+</pre><p>The above format is actually the default format for English date formatting,
+and creates a date looking like this:</p>
+<pre>September 20, 2001 11:44 PM
+</pre><p>The language used in weekday names, month names, and AM/PM specifiers can be
+chosen in the Weblog Configuration as <code>Language for date display</code>. The default
+language used is <code>English</code>.</p>
+<p>You can override the default language setting by using the <code>language</code>
+attribute to specify the language; this will apply only for the particular
+date string that you are formatting. Here is the list of available language
+tags: <code>cz</code>, <code>dk</code>, <code>nl</code>, <code>en</code>, <code>fr</code>, <code>de</code>, <code>is</code>, <code>jp</code>, <code>it</code>, <code>no</code>,
+<code>pl</code>, <code>pt</code>, <code>si</code>, <code>es</code>, <code>fi</code>, <code>se</code>.</p>
+<p>Here is a list of the format specifiers.</p>
+<ul>
+<li><strong><a name="item_%a"></a>%a</strong><br>
+
+The abbreviated weekday name. Example: <code>Thu</code>.
+<p></p>
+<li><strong><a name="item_%A"></a>%A</strong><br>
+
+The full weekday name. Example: <code>Thursday</code>.
+<p></p>
+<li><strong><a name="item_%b"></a>%b</strong><br>
+
+The abbreviated month name. Example: <code>Sep</code>.
+<p></p>
+<li><strong><a name="item_%B"></a>%B</strong><br>
+
+The full month name. Example: <code>September</code>.
+<p></p>
+<li><strong><a name="item_%d"></a>%d</strong><br>
+
+The day of the month, two digits, padded with a <code>0</code> if necessary. Example:
+<code>09</code>.
+<p></p>
+<li><strong><a name="item_%e"></a>%e</strong><br>
+
+The day of the month, padded with a space if necessary. Example: <code> 9</code>.
+<p></p>
+<li><strong><a name="item_%H"></a>%H</strong><br>
+
+The hour, using a 24-hour clock (military time), two digits, padded with
+a <code>0</code> if necessary. Example: <code>16</code>.
+<p></p>
+<li><strong><a name="item_%I"></a>%I</strong><br>
+
+The hour, using a 12-hour clock, two digits, padded with a <code>0</code> if necessary.
+Example: <code>04</code>.
+<p></p>
+<li><strong><a name="item_%j"></a>%j</strong><br>
+
+The day of the year, three digits, padded with <code>0</code>s if necessary. Example:
+<code>056</code>.
+<p></p>
+<li><strong><a name="item_%k"></a>%k</strong><br>
+
+The hour, using a 24-hour clock (military time), two digits, padded with a
+space if necessary. Example: <code> 9</code>.
+<p></p>
+<li><strong><a name="item_%l"></a>%l</strong><br>
+
+The hour, using a 12-hour clock, two digits, padded with a space if
+necessary. Example: <code> 4</code>.
+<p></p>
+<li><strong><a name="item_%m"></a>%m</strong><br>
+
+The month, two digits, padded with a <code>0</code> if necessary. Example: <code>09</code>.
+<p></p>
+<li><strong><a name="item_%M"></a>%M</strong><br>
+
+The minute, two digits, padded with a <code>0</code> if necessary. Example: <code>02</code>.
+<p></p>
+<li><strong><a name="item_%p"></a>%p</strong><br>
+
+Either <code>AM</code> or <code>PM</code>.
+<p></p>
+<li><strong><a name="item_%S"></a>%S</strong><br>
+
+The second, two digits, padded with a <code>0</code> if necessary. Example: <code>04</code>.
+<p></p>
+<li><strong><a name="item_%x"></a>%x</strong><br>
+
+The language-aware date representation. For most languages, this is just
+the same as <i>%B %e, %Y</i>. Example: <code>September 6, 2002</code>.
+<p></p>
+<li><strong><a name="item_%X"></a>%X</strong><br>
+
+The language-aware time representation. For most languages, this is just
+the same as <i>%I:%M %p</i>. Example: <code>4:31 PM</code>.
+<p></p>
+<li><strong><a name="item_%y"></a>%y</strong><br>
+
+The year, two digits, padded with a <code>0</code> if necessary. Example: <code>01</code>.
+<p></p>
+<li><strong><a name="item_%Y"></a>%Y</strong><br>
+
+The year, four digits. Example: <code>2001</code>.
+<p></p></ul>
+<p><strong>NOTE:</strong> As of version 2.0 of Movable Type, <code>%Z</code> is no longer supported. If
+you want the timezone, take a look at the <code>&lt;$MTBlogTimezone$&gt;</code> tag.</p>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

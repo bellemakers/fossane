@@ -1,0 +1,491 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Add/Edit Weblog Authors"> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+<tr>
+<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="30"></td>
+</tr>
+
+<tr>
+<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+<td valign="top" width="500"><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><TMPL_IF NAME=SELECTED_AUTHOR_NAME><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=edit_permissions"> <MT_TRANS phrase="Add/Edit Weblog Authors"> &gt;</a><font class="pagetitle"> <MT_TRANS phrase="Edit Permissions"></font><TMPL_ELSE><font class="pagetitle"> <MT_TRANS phrase="Add/Edit Weblog Authors"></TMPL_IF></td>
+</tr>
+
+<tr>
+<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+</tr>
+
+<tr>
+<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+
+<td valign="top" width="500">
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+<TMPL_IF NAME=SELECTED_AUTHOR_NAME>
+	<!-- If there is an author selected to edit permissions, display these instructions. -->
+	<tr>
+	<td valign="top"><p><font class="instructional"><MT_TRANS phrase="_USAGE_PERMISSIONS_1" params="<TMPL_VAR NAME=SELECTED_AUTHOR_NAME ESCAPE=HTML>"></font></p>
+
+	<p><font class="instructional"><MT_TRANS phrase="_USAGE_PERMISSIONS_2"></font></p>
+
+<TMPL_IF NAME=SAVED>
+	<p class="message"><MT_TRANS phrase="Your changes to [_1]'s permissions have been saved. You can select another author to edit or return to the main Author menu." params="<TMPL_VAR NAME=SELECTED_AUTHOR_NAME ESCAPE=HTML>"></p>
+
+</TMPL_IF>
+
+<TMPL_IF NAME=SAVED_ADD_TO_BLOG>
+	<p class="message"><MT_TRANS phrase="[_1] has been successfully added to [_2]." params="<TMPL_VAR NAME=SELECTED_AUTHOR_NAME ESCAPE=HTML>%%<TMPL_VAR NAME=SAVED_ADD_TO_BLOG>"></p>
+</TMPL_IF>
+
+	</td>
+	</tr>
+
+<TMPL_ELSE>
+	<!-- If no author has been selected, display these instructions. -->
+	<tr>
+	<td valign="top"><font class="instructional"><MT_TRANS phrase="_USAGE_PERMISSIONS_3"></font></td>
+	</tr>
+</TMPL_IF>
+
+	<!-- "Select an author" + pulldown menu -->
+
+	<tr>
+	<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td valign="top">
+
+		<form method="get" action="<TMPL_VAR NAME=SCRIPT_URL>">
+		<input type="hidden" name="__mode" value="edit_permissions">
+
+		<table border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		<td valign="top"><font class="instructional"><MT_TRANS phrase="Select an author to edit:">&nbsp;</font></td>
+		<td valign="top"><select name="author_id">
+		<TMPL_LOOP NAME=AUTHOR_LOOP>
+		<option value="<TMPL_VAR NAME=AUTHOR_ID>"<TMPL_IF NAME=AUTHOR_SELECTED> selected</TMPL_IF>><TMPL_VAR NAME=AUTHOR_NAME>
+		</TMPL_LOOP>
+		</select></td>
+		<td valign="top">&nbsp;&nbsp;<input class="button" type="submit" value="<MT_TRANS phrase="Edit">"></td>
+		</tr>
+		</table>
+
+		</form>
+
+	</td>
+	</tr>
+
+	<tr>
+	<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+	</tr>
+
+	<tr>
+	<td><a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=list&_type=author"><MT_TRANS phrase="View complete list of authors"></a></td>
+	</tr>
+
+	<tr>
+	<td><font class="instructional"><MT_TRANS phrase="Delete, view, and edit authors via a complete list of authors in the system."></td>
+	</tr>
+
+	<tr>
+	<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+	</tr>
+
+	<tr>
+	<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+	</tr>
+
+<TMPL_IF NAME=SELECTED_AUTHOR_NAME>
+	<!-- If an author is selected, display permissions-editing rows for each weblog -->
+	<tr>
+	<td>
+
+		<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+		<input type="hidden" name="author_id" value="<TMPL_VAR NAME=EDIT_AUTHOR_ID>">
+		<input type="hidden" name="__mode" value="save_permissions">
+
+		<table border="0" cellspacing="0" cellpadding="0" width="500">
+
+		<tr>
+		<td width="40"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="40" height="1"></td>
+		<td width="230"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="230" height="1"></td>
+		<td width="230"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="230" height="1"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" colspan="3"><font class="pagetitle"><MT_TRANS phrase="General Permissions"></font></td>
+		</tr>
+
+		<tr>
+		<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" colspan="3"><input type="checkbox" name="can_create_blog" value="1"<TMPL_IF NAME=CAN_CREATE_BLOG> checked</TMPL_IF>> <font class="instructional"><MT_TRANS phrase="User can create new weblogs"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" colspan="3"><input type="checkbox" name="can_view_log" value="1"<TMPL_IF NAME=CAN_VIEW_LOG> checked</TMPL_IF>> <font class="instructional"><MT_TRANS phrase="User can view activity log"></td>
+		</tr>
+
+		<tr>
+		<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" colspan="3" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+		</tr>
+
+		<TMPL_LOOP NAME=BLOG_LOOP>
+
+		<tr>
+		<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" colspan="3"><font class="pagetitle"><MT_TRANS phrase="Weblog:"> <a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=menu&blog_id=<TMPL_VAR NAME=BLOG_ID>"><TMPL_VAR NAME=BLOG_NAME></a></font></td>
+		</tr>
+
+		<tr>
+		<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+		</tr>
+
+		<tr>
+		<td width="40">&nbsp;</td>
+		<td width="230">
+
+		<input type="hidden" name="role_mask-<TMPL_VAR NAME=BLOG_ID>" value="0">
+
+			<table border="0" cellspacing="5" cellpadding="0">
+
+			<TMPL_LOOP NAME=PERM_LOOP1>
+
+			<tr>
+			<td valign="top"><input type="checkbox" name="role_mask-<TMPL_VAR NAME=BLOG_ID>" value="<TMPL_VAR NAME=MASK>"<TMPL_IF NAME=HAVE_ACCESS> checked</TMPL_IF>></td>
+			<td valign="top"><font class="bold-label"><MT_TRANS phrase="<TMPL_VAR NAME=PROMPT>"></font></td>
+			</tr>
+
+			</TMPL_LOOP>
+
+			</table>
+
+		</td>
+		<td width="230">
+
+			<table border="0" cellspacing="5" cellpadding="0">
+
+			<TMPL_LOOP NAME=PERM_LOOP2>
+
+			<tr>
+			<td valign="top"><input type="checkbox" name="role_mask-<TMPL_VAR NAME=BLOG_ID>" value="<TMPL_VAR NAME=MASK>"<TMPL_IF NAME=HAVE_ACCESS> checked</TMPL_IF>></td>
+			<td valign="top"><font class="bold-label"><MT_TRANS phrase="<TMPL_VAR NAME=PROMPT>"></font></td>
+			</tr>
+
+			</TMPL_LOOP>
+
+			</table>
+
+		</td>
+		</tr>
+
+		<tr>
+		<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" colspan="3" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+		</tr>
+
+		</TMPL_LOOP>
+
+		<tr>
+		<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+		</tr>
+
+		<tr>
+		<td colspan="3" align="right"><input class="button" type="submit" value="<MT_TRANS phrase="Save">"></td>
+		</tr>
+
+		<tr>
+		<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" colspan="3" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+		</tr>
+
+		<tr>
+		<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+		</tr>
+
+		<tr>
+		<td colspan="3">
+
+			<table border="0" cellspacing="0" cellpadding="0">
+
+			<tr>
+			<td valign="top"><font class="instructional"><MT_TRANS phrase="Add user to an additional weblog:">&nbsp;</font></td>
+			<td valign="top"><select name="add_role_mask">
+			<option value=""><MT_TRANS phrase="Select a weblog">
+			<TMPL_LOOP NAME=BLOG_NO_ACCESS_LOOP>
+			<option value="<TMPL_VAR NAME=BLOG_ID>"><TMPL_VAR NAME=BLOG_NAME>
+			</TMPL_LOOP>
+			</select></td>
+			<td valign="top">&nbsp;&nbsp;<input class="button" type="submit" value="<MT_TRANS phrase="Add">"></td>
+			</tr>
+
+			</table>
+
+		</td>
+		</tr>
+
+		</table>
+
+		</form>
+
+	</td>
+	</tr>
+
+<TMPL_ELSE>
+	<!-- If no author has been selected, display the "Add an author" area -->
+
+	<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+	<input type="hidden" name="__mode" value="save">
+	<input type="hidden" name="_type" value="author">
+	<input type="hidden" name="created_by" value="<TMPL_VAR NAME=AUTHOR_ID>">
+
+	<tr>
+	<td align="top"><font class="pagetitle"><MT_TRANS phrase="Add an author"></td></td>
+	</tr>
+
+	<tr>
+	<td align="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td align="top"><font class="instructional"><MT_TRANS phrase="_USAGE_PERMISSIONS_4"></font></td>
+	</tr>
+
+	<tr>
+	<td align="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td align="top">
+
+		<table border="0" cellspacing="0" cellpadding="0">
+
+		<tr>
+		<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="200" height="1"></td>
+		<td valign="top" width="6"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+		<td valign="top" width="1"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+		<td valign="top" width="23"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="23" height="1"></td>
+		<td valign="top" width="240"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="240" height="1"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="200" height="1">
+
+			<table border="0" cellspacing="0" cellpadding="0">
+
+<TMPL_IF NAME=ERROR>
+			<tr>
+			<td valign="top"><p class="error-message"><TMPL_VAR NAME=ERROR></p></td>
+			</tr>
+</TMPL_IF>
+
+			<tr>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Username"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><input class="text-short" name="name" value="<TMPL_VAR NAME=AUTHOR_STATE_NAME>"></td>
+			</tr>
+
+			<tr>
+			<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Email Address"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><input class="text-short" name="email" value="<TMPL_VAR NAME=AUTHOR_STATE_EMAIL>"></td>
+			</tr>
+
+			<tr>
+			<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Website URL (optional)"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><input class="text-short" name="url" value="<TMPL_VAR NAME=AUTHOR_STATE_URL>"></td>
+			</tr>
+
+			<tr>
+			<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Password"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><input type="password" class="text-short" name="pass" value=""></td>
+			</tr>
+
+			<tr>
+			<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Password confirm"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><input type="password" class="text-short" name="pass_verify" value=""></td>
+			</tr>
+
+			</table>
+
+		</td>
+
+		<td valign="top" width="6"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="6" height="1"></td>
+		<td valign="top" width="1" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+		<td valign="top" width="23"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="23" height="1"></td>
+		<td valign="top" width="240">
+
+			<table border="0" cellspacing="0" cellpadding="0">	
+
+			<tr>
+			<td colspan="2" valign="top"><font class="instructional"><MT_TRANS phrase="This user will be associated with:"></font></td>
+			</tr>
+
+			<tr>
+			<td colspan="2" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="240" height="1"></td>
+			</tr>						
+
+			<tr>
+			<td colspan="2" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+			</tr>
+
+<TMPL_LOOP NAME=BLOG_NO_ACCESS_LOOP>
+			<tr>
+			<td valign="top" width="10"><input type="checkbox" name="add_to_blog" value="<TMPL_VAR NAME=BLOG_ID>"<TMPL_IF NAME=IS_CHECKED> checked</TMPL_IF>><p></td>
+			<td valign="top" width="230"><font class="title">&nbsp;<TMPL_VAR NAME=BLOG_NAME></font></td>
+			</tr>
+
+</TMPL_LOOP>
+
+			</table>
+		</td>
+		</tr>
+
+		<tr>
+		<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+		</tr>
+
+		<tr>
+		<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+		</tr>
+
+		<tr>
+		<td align="center" valign="top"><input class="button" type="submit" value="<MT_TRANS phrase="Save">"></td>
+		</tr>
+
+		</table>
+
+	</td>
+	</tr>
+
+	</form>
+</TMPL_IF>
+
+	</table>
+</td>
+</tr>
+</table>
+
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

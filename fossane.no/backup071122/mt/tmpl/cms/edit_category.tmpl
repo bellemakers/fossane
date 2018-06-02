@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Category: [_1]" params="<TMPL_VAR NAME=LABEL ESCAPE=HTML>"> | <TMPL_VAR NAME=BLOG_NAME> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+function listPings () {
+    window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=tb_cat_pings&blog_id=<TMPL_VAR NAME=BLOG_ID>&category_id=<TMPL_VAR NAME=ID>', 'urls', 'width=450,height=350,resizable=yes,scrollbars=yes');
+}
+
+function doRebuild () {
+    window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=rebuild_confirm&blog_id=<TMPL_VAR NAME=BLOG_ID>', 'rebuild', 'width=400,height=200,resizable=yes');
+}
+
+function openManual (anchor, page) {
+    if (!page)
+        page = 'categories';
+    window.open('<TMPL_VAR NAME=STATIC_URI>docs/mtmanual_' + page + '.html#' + anchor, 'manual', 'width=450,height=550,scrollbars=yes,status=yes,resizable=yes');
+}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td align="left" rowspan="5" valign="top">
+<TMPL_INCLUDE NAME=mininav.tmpl>
+</td>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500"><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=menu&blog_id=<TMPL_VAR NAME=BLOG_ID>"> <MT_TRANS phrase="[_1] Editing Menu" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"> &gt;</a><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=list_cat&blog_id=<TMPL_VAR NAME=BLOG_ID>"> <MT_TRANS phrase="Edit Categories"> &gt;</a><font class="pagetitle"> <MT_TRANS phrase="Category: [_1]" params="<TMPL_VAR NAME=LABEL ESCAPE=HTML>"></font></td>
+</tr>
+
+<tr>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500">
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+	<tr>
+	<td valign="top"><font class="instructional"><MT_TRANS phrase="Use this page to edit the attributes of the category [_1]. You can set a description for your category to be used in your public pages, as well as configuring the TrackBack options for this category." params="<TMPL_VAR NAME=LABEL ESCAPE=HTML>"></font></td>
+	</tr>
+
+	<tr>
+	<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+	<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+	<input type="hidden" name="__mode" value="save">
+	<input type="hidden" name="_type" value="category">
+	<input type="hidden" name="id" value="<TMPL_VAR NAME=ID>">
+
+	<TMPL_IF NAME=SAVED>
+        <tr>
+	<td><p class="message"><MT_TRANS phrase="Your category changes have been made."> <TMPL_IF NAME=CAN_REBUILD><MT_TRANS phrase="_USAGE_REBUILD"></TMPL_IF></p></td>
+	</tr>
+	</TMPL_IF>
+
+	<tr>
+	<td><font class="pagetitle"><MT_TRANS phrase="Category Name:"> <TMPL_VAR NAME=LABEL></font></td>
+	</tr>
+
+	<tr>
+	<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td><font class="pagetitle"><b><MT_TRANS phrase="Category Description"></b></font><br>
+	<textarea<TMPL_IF NAME=AGENT_MOZILLA> cols=""</TMPL_IF> class="width500" name="description" rows="5" wrap="virtual"><TMPL_VAR NAME=DESCRIPTION></textarea></td>
+	</tr>
+
+	<tr>
+	<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+	</tr>
+	
+	<tr>
+	<td valign="top" width="500"><font class="pagetitle"><MT_TRANS phrase="TrackBack Settings"></font></td>
+	</tr>
+	
+	<tr>
+	<td bgcolor="#666666" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+	</tr>
+		
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" bgcolor="#8199A4"><font class="title-padding"><MT_TRANS phrase="Outgoing Pings"></font></td>
+	</tr>
+	
+	<tr>
+	<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+	
+	<tr>
+	<td><font class="pagetitle"><MT_TRANS phrase="TrackBack URLs to ping"></font> <a href="#" onclick="openManual('item_trackback_urls_to_ping')">(?)</a>
+	<br><font class="instructional"><MT_TRANS phrase="Enter the URL(s) of the websites that you would like to ping each time you post an entry in this category. (Separate URLs with a carriage return.)"><br><br>
+	<textarea<TMPL_IF NAME=AGENT_MOZILLA> cols=""</TMPL_IF> class="short310" name="ping_urls" rows="5" wrap="virtual"><TMPL_VAR NAME=PING_URLS></textarea></td>
+	</tr>
+
+	<tr>
+	<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" bgcolor="#8199A4"><font class="title-padding"><MT_TRANS phrase="Incoming Pings"></font></td>
+	</tr>
+	
+	<tr>
+	<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td>
+	
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		
+		<tr>
+		<td valign="bottom"><font class="pagetitle"><MT_TRANS phrase="Accept incoming TrackBack pings?"></font> <a href="#" onclick="openManual('item_accept_incoming_trackback_pings')">(?)</a></td>
+		<TMPL_IF NAME=TB_URL>
+		<td valign="bottom"><a class="list" href="#" onclick="listPings()"><MT_TRANS phrase="View TrackBack pings for this category"></a></td>
+		</TMPL_IF>
+		</tr>
+		
+		<tr>
+		<td valign="top">
+		
+			<table border="0" cellspacing="0" cellpadding="0">
+			
+			<tr>
+			<td valign="top"><input type="radio" name="allow_pings" value="1"<TMPL_IF NAME=ALLOW_PINGS> checked</TMPL_IF>></td>
+			<td valign="top"><font class="instructional"><MT_TRANS phrase="On"></font></td>
+			<td valign="top">&nbsp;&nbsp;<input type="radio" name="allow_pings" value="0"<TMPL_UNLESS NAME=ALLOW_PINGS> checked</TMPL_UNLESS>></td>
+			<td valign="top"><font class="instructional"><MT_TRANS phrase="Off"></font></td>
+			</tr>
+			
+			</table>
+			
+		</td>
+		</tr>
+		
+		</table>
+
+	</td>
+	</tr>
+	
+	<TMPL_IF NAME=TB_URL>
+
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+	
+	<tr>
+	<td valign="top"><font class="pagetitle"><MT_TRANS phrase="Passphrase Protection (Optional)"> <a href="#" onclick="openManual('item_passphrase_protection')">(?)</a><br>
+	<input class="text-short" name="tb_passphrase" value="<TMPL_VAR NAME=TB_PASSPHRASE>">
+	</td>
+	</tr>
+
+	</TMPL_IF>
+
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+	
+	<tr>
+	<td bgcolor="#CCD5D9" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+	</tr>
+	
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+	
+	<TMPL_IF NAME=TB_URL>
+
+	<tr>
+	<td valign="top"><font class="pagetitle"><MT_TRANS phrase="TrackBack URL for this category"></font><br>
+	<font class="instructional"><MT_TRANS phrase="This is the URL that others will use to ping your weblog. If you wish for anyone to ping your weblog when they have a post specific to this category, post this URL publicly. If you choose to only allow a select group of individuals to ping, send this URL to them privately."></font><br>
+	<div style="padding:5px; margin-top:10px;border:1px solid #CCC;"><font class="title"><TMPL_VAR NAME=TB_URL></font></div></td>
+	</tr>
+	
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="instructional"><MT_TRANS phrase="To include a list of incoming pings in your Main Index Template, look here for sample code:"> <a href="#" onclick="openManual('mtpings_example', 'tags')">(?)</a></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	</TMPL_IF>
+
+	<tr>
+	<td align="center"><input class="button" type="submit" value="<MT_TRANS phrase="Save">"></td>
+	</tr>
+
+	</form>
+
+	</table>
+
+</td>
+</tr>
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+</table>
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

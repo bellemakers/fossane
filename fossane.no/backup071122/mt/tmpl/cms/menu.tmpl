@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td align="left" rowspan="5" valign="top">
+<TMPL_INCLUDE NAME=mininav.tmpl>
+</td>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500">
+<a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><font class="pagetitle"> <MT_TRANS phrase="[_1] Editing Menu" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"></font>
+</td>
+</tr>
+
+<tr>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+
+<td valign="top" width="500">
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+
+	<tr>
+	<td valign="top" width="230"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="230" height="1"></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top" width="260"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="260" height="1"></td>
+	</tr>			
+
+	<tr>
+	<td valign="top" colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="230" height="10"></td>
+	</tr>
+	
+	
+	<tr>
+	<td valign="top" width="230"><p>
+	<TMPL_IF NAME=WELCOME>
+	<TMPL_VAR NAME=WELCOME>
+	<TMPL_ELSE>
+	
+	<p><b><MT_TRANS phrase="Welcome to [_1]." params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"></b></p>
+
+	<p><MT_TRANS phrase="You can post and maintain your weblog by selecting an option from the menu located to the left of this message."></p>
+
+	<p><MT_TRANS phrase="If you need assistance, try:"><br><br>
+	
+	<a target="manual" href="<TMPL_VAR NAME=STATIC_URI>docs/mtmanual.html"><MT_TRANS phrase="Movable Type User Manual"></a><br> 
+	<a target="new" href="http://www.movabletype.org/support/ib3/ikonboard.cgi"><MT_TRANS phrase="Movable Type Support Forum"></a></p>
+
+	<TMPL_IF NAME=CAN_EDIT_CONFIG>
+
+	<p><MT_TRANS phrase="This welcome message is configurable."></p>
+	
+	<p><a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=cfg_prefs&blog_id=<TMPL_VAR NAME=BLOG_ID>#welcome_msg"><MT_TRANS phrase="Change this message."></a></p>
+
+	</TMPL_IF>
+
+	</TMPL_IF>
+
+	</p></td>
+	<td valign="top" width="10"></td>
+	<td valign="top" width="260">
+	
+	
+<div class="blogbox">
+		
+		<table align="center" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+		<tr>
+		<td valign="top" colspan="3">
+		<font class="pagetitle"><TMPL_VAR NAME=BLOG_NAME><br></font>
+		<font class="plain"><TMPL_VAR NAME=BLOG_DESCRIPTION></font></td>
+		</tr>
+
+		<tr>
+		<td valign="top"><font class="title"><MT_TRANS phrase="Entries:"> <b><TMPL_VAR NAME=NUM_ENTRIES></b></font></td>
+		<td valign="top"><font class="title"><MT_TRANS phrase="Comments:"> <b><TMPL_VAR NAME=NUM_COMMENTS></b></font></td>
+		<td valign="top"><font class="title"><MT_TRANS phrase="Authors:"> <b><TMPL_VAR NAME=NUM_AUTHORS></b></font></td>
+		</tr>
+
+		<tr>
+		<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+		</tr>
+
+		</table>
+		
+</div>
+		
+<div class="blogbox">
+
+		<table align="center" border="0" cellspacing="0" cellpadding="2" width="100%">
+		
+		<tr>
+		<td valign="top" colspan="3"><font class="pagetitle"><MT_TRANS phrase="Five Most Recent Entries"></font></td>
+		</tr>
+		
+		<tr>
+		<td valign="top" width="156"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="156" height="1"></td>
+		<td valign="top" width="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="2" height="1"></td>
+		<td valign="top" width="70"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="70" height="1"></td>				
+		</tr>
+
+		<TMPL_LOOP NAME=ENTRY_LOOP>
+		<tr>
+		<td valign="top" width="156" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><TMPL_IF NAME=HAS_EDIT_ACCESS><a class="list" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=entry&id=<TMPL_VAR NAME=ENTRY_ID>&blog_id=<TMPL_VAR NAME=ENTRY_BLOG_ID>"><TMPL_VAR NAME=ENTRY_TITLE></a><TMPL_ELSE><font class="title"><TMPL_VAR NAME=ENTRY_TITLE></font></TMPL_IF></td>
+		<td valign="top" width="2" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="2" height="1"></td>
+		<td valign="top" width="70" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="title"><TMPL_VAR NAME=ENTRY_CREATED_ON></font></td>
+		</tr>
+
+		</TMPL_LOOP>
+
+		</table>
+</div>		
+
+
+<TMPL_IF NAME=COMMENT_LOOP>
+
+<div class="blogbox">
+
+		<table align="center" border="0" cellspacing="0" cellpadding="2" width="100%">
+		
+		<tr>
+		<td valign="top" colspan="3"><font class="pagetitle"><MT_TRANS phrase="Five Most Recent Comments"></font></td>
+		</tr>
+		
+		<tr>
+		<td valign="top" width="156"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="156" height="1"></td>
+		<td valign="top" width="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="2" height="1"></td>
+		<td valign="top" width="70"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="70" height="1"></td>				
+		</tr>
+
+		<TMPL_LOOP NAME=COMMENT_LOOP>
+		<tr>
+		<td valign="top" width="156" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><TMPL_IF NAME=HAS_EDIT_ACCESS><a class="list" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=comment&id=<TMPL_VAR NAME=COMMENT_ID>&blog_id=<TMPL_VAR NAME=COMMENT_BLOG_ID>"><TMPL_VAR NAME=COMMENT_AUTHOR ESCAPE=HTML></a><TMPL_ELSE><font class="title"><TMPL_VAR NAME=COMMENT_AUTHOR ESCAPE=HTML></font></TMPL_IF></td>
+		<td valign="top" width="2" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="2" height="1"></td>
+		<td valign="top" width="70" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="title"><TMPL_VAR NAME=COMMENT_CREATED_ON></font></td>
+		</tr>
+
+		</TMPL_LOOP>
+
+		</table>
+</div>
+</TMPL_IF>
+
+
+<TMPL_IF NAME=PING_LOOP>
+<div class="blogbox">
+
+		<table align="center" border="0" cellspacing="0" cellpadding="2" width="100%">
+		
+		<tr>
+		<td valign="top" colspan="3"><font class="pagetitle"><MT_TRANS phrase="Five Most Recent Pings"></font></td>
+		</tr>
+		
+		<tr>
+		<td valign="top" width="156"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="156" height="1"></td>
+		<td valign="top" width="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="2" height="1"></td>
+		<td valign="top" width="70"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="70" height="1"></td>
+		</tr>
+
+		<TMPL_LOOP NAME=PING_LOOP>
+		<tr>
+		<td valign="top" width="156" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><a class="list" target="_blank" href="<TMPL_VAR NAME=PING_URL ESCAPE=HTML>"><TMPL_VAR NAME=PING_TITLE ESCAPE=HTML></a></td>
+		<td valign="top" width="2" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="2" height="1"></td>
+		<td valign="top" width="70" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="title"><TMPL_VAR NAME=PING_CREATED_ON></font></td>
+		</tr>
+
+		</TMPL_LOOP>
+
+		</table>
+</div>
+</TMPL_IF>
+
+	</td>
+	</tr>
+
+	</table>
+
+</td>
+</tr>
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+</table>
+
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

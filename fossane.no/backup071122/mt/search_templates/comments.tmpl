@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<$MTPublishCharset$>" />
+
+<title>Search Results</title>
+
+<link rel="stylesheet" href="<$MTBlogURL$>styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="<$MTBlogURL$>index.rdf" />
+</head>
+
+<body>
+
+<div id="banner">
+<h1><a href="<$MTBlogURL$>">Search Results</a></h1>
+</div>
+
+<div id="container">
+<div class="blog">
+
+<form method="post" action="<$MTCGIPath$><$MTSearchScript$>">
+<input type="hidden" name="Type" value="newcomments" />
+<input type="hidden" name="Template" value="comments" />
+
+<h3 class="title">Search for new comments from:</h3>
+<div class="comments-body">
+<select name="CommentSearchCutoff">
+<option value="9999999">the beginning
+<option value="7">one week back
+<option value="14">two weeks back
+<option value="30">one month back
+<option value="60">two months back
+<option value="90">three months back
+<option value="120">four months back
+<option value="150">five months back
+<option value="180">six months back
+<option value="365">one year back
+</select><br /><br />
+<input type="submit" value="Find new comments" />
+</div>
+
+</form>
+
+<MTSearchResults>
+	<div class="blogbody">
+	<h3 class="title"><a href="<$MTEntryPermalink$>"><$MTEntryTitle$></a></h3>
+	<$MTEntryExcerpt$> <$MTEntryEditLink$><br/>
+	<div class="posted">Posted in <$MTBlogName$> on <$MTEntryDate$></div>
+	</div>
+</MTSearchResults>
+
+<MTNoSearchResults>
+	<h2 class="date">No results found</h2>
+
+	<div class="blogbody">
+	<p>No new comments were found in the specified interval.</p>
+	</div>
+</MTNoSearchResults>
+
+<MTNoSearch>
+	<h2 class="date">Instructions</h2>
+
+	<div class="blogbody">
+	<p>Select the time interval that you'd like to search in, then click "Find new comments"</p>
+	</div>
+</MTNoSearch>
+
+</div>
+</div>
+
+</body>
+</html>

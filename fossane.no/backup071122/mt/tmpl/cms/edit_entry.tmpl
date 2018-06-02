@@ -1,0 +1,883 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Edit Entry"> | <TMPL_VAR NAME=BLOG_NAME> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+function doRemoveComments (f) {
+    var base = '<TMPL_VAR NAME=SCRIPT_URL>?__mode=delete_confirm&_type=comment&blog_id=<TMPL_VAR NAME=BLOG_ID>';
+    var url = '';
+    var e = f.comment_delete;
+    if (!e) return;
+    if (e.value && e.checked)
+        url += '&id=' + e.value;
+    else
+        for (i=0; i<e.length; i++)
+            if (e[i].checked)
+                url += '&id=' + e[i].value;
+    if (!url) {
+        alert('<MT_TRANS phrase="You did not select any comments to delete.">');
+        return false;
+    }
+    url = base + url;
+    window.open(url, 'confirm_delete', 'width=370,height=150');
+}
+
+function doRemovePings (f) {
+    var base = '<TMPL_VAR NAME=SCRIPT_URL>?__mode=delete_confirm&_type=ping&blog_id=<TMPL_VAR NAME=BLOG_ID>';
+    var url = '';
+    var e = f.ping_delete;
+    if (!e) return;
+    if (e.value && e.checked)
+        url += '&id=' + e.value;
+    else
+        for (i=0; i<e.length; i++)
+            if (e[i].checked)
+                url += '&id=' + e[i].value;
+    if (!url) {
+        alert('You did not select any pings to delete.');
+        return false;
+    }
+    url = base + url;
+    window.open(url, 'confirm_delete', 'width=390,height=150');
+}
+
+function listPreviousPings () {
+    window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=pinged_urls&entry_id=<TMPL_VAR NAME=ID>&blog_id=<TMPL_VAR NAME=BLOG_ID>', 'urls', 'width=370,height=200,resizable=yes,scrollbars=yes');
+}
+
+function editPlacements () {
+    window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=edit_placements&entry_id=<TMPL_VAR NAME=ID>&blog_id=<TMPL_VAR NAME=BLOG_ID>', 'placements', 'width=550,height=440,resizable=yes');
+}
+
+function doRemoveEntry () {
+    var url = '<TMPL_VAR NAME=SCRIPT_URL>?__mode=delete_confirm&_type=entry&id=<TMPL_VAR NAME=ID>&blog_id=<TMPL_VAR NAME=BLOG_ID>';
+    window.open(url, 'confirm_delete', 'width=370,height=150');
+}
+
+function doRebuild () {
+    window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=rebuild_confirm&blog_id=<TMPL_VAR NAME=BLOG_ID>', 'rebuild', 'width=400,height=200,resizable=yes');
+}
+
+function doRebuildThis () {
+    window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=start_rebuild&blog_id=<TMPL_VAR NAME=BLOG_ID>&next=0&type=entry-<TMPL_VAR NAME=ID>&entry_id=<TMPL_VAR NAME=ID>', 'rebuild', 'width=400,height=200,resizable=yes');
+}
+
+function doAddCategory (s) {
+    if (s.options[s.selectedIndex].text != '<MT_TRANS phrase="Add new category...">')
+        return;
+    window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=category_add&blog_id=<TMPL_VAR NAME=BLOG_ID>', 'category_add', 'width=400,height=200,resizable=yes');
+}
+
+function doAddCategoryItem (label, value) {
+    var s = document.forms['entry_form'].category_id;
+    var l = s.length;
+    s.options[s.length] = new Option(label, value);
+    s.length = l + 1;
+    s.selectedIndex = l;
+}
+
+function doViewLog () {
+    window.location = '<TMPL_VAR NAME=SCRIPT_URL>?__mode=view_log#last';
+}
+
+function openManual (anchor) {
+    window.open('<TMPL_VAR NAME=STATIC_URI>docs/mtmanual_entries.html#' + anchor, 'manual', 'width=450,height=550,scrollbars=yes,status=yes,resizable=yes');
+}
+
+function formatStr (v) {
+    if (!document.selection) return;
+    var str = document.selection.createRange().text;
+    if (!str) return;
+    document.selection.createRange().text = '<' + v + '>' + str + '</' + v + '>';
+}
+
+function insertLink () {
+    if (!document.selection) return;
+    var str = document.selection.createRange().text;
+    if (!str) return;
+    var my_link = prompt('<MT_TRANS phrase="Enter URL:">', 'http://');
+    if (my_link != null)
+        document.selection.createRange().text = '<a href="' + my_link + '">' + str + '</a>';
+}
+
+function mtShortCuts () {
+    if (event.ctrlKey != true) return;
+    if (event.keyCode == 1) insertLink();
+    if (event.keyCode == 2) formatStr('b');
+    if (event.keyCode == 9) formatStr('i');
+    if (event.keyCode == 21) formatStr('u');
+}
+
+var docs = new Array();
+<TMPL_LOOP NAME=TEXT_FILTERS>
+docs['<TMPL_VAR NAME=FILTER_KEY>'] = '<TMPL_VAR NAME=FILTER_DOCS>';
+</TMPL_LOOP>
+function openTFDocs () {
+    var s = document.forms['entry_form'].convert_breaks;
+    var key = s.options[s.selectedIndex].value;
+    if (url = docs[key]) {
+        if (url.indexOf('http://') == -1)
+            url = '<TMPL_VAR NAME=STATIC_URI>docs/' + url;
+        window.open(url, 'manual', 'width=450,height=550,scrollbars=yes,status=yes,resizable=yes');
+    } else {
+        return openManual('item_Text_Formatting');
+    }
+}
+
+//-->
+</script>
+
+</head>
+
+<body onkeypress="mtShortCuts()">
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td align="left" rowspan="<TMPL_IF NAME=NEW_OBJECT>6<TMPL_ELSE>7</TMPL_IF>" valign="top">
+<TMPL_INCLUDE NAME=mininav.tmpl>
+</td>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500"><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=menu&blog_id=<TMPL_VAR NAME=BLOG_ID>"> <MT_TRANS phrase="[_1] Editing Menu" params="<TMPL_VAR NAME=BLOG_NAME>"> &gt;</a><font class="pagetitle"><TMPL_IF NAME="NEW_OBJECT"> <MT_TRANS phrase="Create New Entry"><TMPL_ELSE> <MT_TRANS phrase="Edit Entry"></TMPL_IF></font></td>
+</tr>
+
+<tr>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<TMPL_UNLESS NAME=NEW_OBJECT>
+<tr>
+<td valign="top" align="right"><font class="pagetitle">
+<TMPL_IF NAME=PREVIOUS_ENTRY_ID>
+<a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=entry&id=<TMPL_VAR NAME=PREVIOUS_ENTRY_ID>&blog_id=<TMPL_VAR NAME=BLOG_ID>">&laquo; <MT_TRANS phrase="Previous"></a>&nbsp;|
+</TMPL_IF>
+<a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=list_entries&blog_id=<TMPL_VAR NAME=BLOG_ID>"><MT_TRANS phrase="List &amp; Edit Entries"></a>
+<TMPL_IF NAME=NEXT_ENTRY_ID>
+|&nbsp;<a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=entry&id=<TMPL_VAR NAME=NEXT_ENTRY_ID>&blog_id=<TMPL_VAR NAME=BLOG_ID>"><MT_TRANS phrase="Next">&raquo;</a>
+</TMPL_IF>
+</font></td>
+</tr>
+</TMPL_UNLESS>
+
+<tr>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500">
+
+<TMPL_IF NAME=SAVED_ADDED>
+	<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td><p class="message"><MT_TRANS phrase="Your entry has been saved. You can now make any changes to the entry itself, edit the authored-on date, edit comments, or send a notification."></p></td>
+	</tr>
+	</table>
+</TMPL_IF>
+
+<TMPL_IF NAME=SAVED_CHANGES>
+	<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td><p class="message"><MT_TRANS phrase="Your changes have been saved."></p></td>
+	</tr>
+	</table>
+</TMPL_IF>
+
+<TMPL_IF NAME=PING_ERRORS>
+	<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td><p class="error-message"><MT_TRANS phrase="One or more errors occurred when sending update or TrackBack pings."> <TMPL_IF NAME=CAN_VIEW_LOG><MT_TRANS phrase="_USAGE_VIEW_LOG"></TMPL_IF></p></td>
+	</tr>
+	</table>
+</TMPL_IF>
+
+<TMPL_IF NAME=SAVED_PREFS>
+	<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td><p class="message"><MT_TRANS phrase="Your customization preferences have been saved, and are visible in the form below."></p></td>
+	</tr>
+	</table>
+</TMPL_IF>
+
+<TMPL_IF NAME=SAVED_COMMENT>
+	<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td><p class="message"><MT_TRANS phrase="Your changes to the comment have been saved."> <TMPL_IF NAME=CAN_REBUILD><MT_TRANS phrase="_USAGE_REBUILD"></TMPL_IF></p></td>
+	</tr>
+	</table>
+</TMPL_IF>
+
+<TMPL_IF NAME=SAVED_NOTIFY>
+	<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td><p class="message"><MT_TRANS phrase="Your notification has been sent."></p></td>
+	</tr>
+	</table>
+</TMPL_IF>
+
+<TMPL_IF NAME=SAVED_DELETED>
+	<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td><p class="message"><MT_TRANS phrase="You have successfully deleted the checked comment(s)."> <TMPL_IF NAME=CAN_REBUILD><MT_TRANS phrase="_USAGE_REBUILD"></TMPL_IF></p></td>
+	</tr>
+	</table>
+</TMPL_IF>
+
+<TMPL_IF NAME=SAVED_DELETED_PING>
+	<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td><p class="message">You have successfully deleted the checked TrackBack ping(s). <TMPL_IF NAME=CAN_REBUILD><a href="#" onClick="doRebuild()">REBUILD</a><TMPL_ELSE>REBUILD</TMPL_IF> your indexes to see those deletions reflected on your public site.</p></td>
+	</tr>
+	</table>
+</TMPL_IF>
+
+	<form name="entry_form" method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+	<TMPL_IF NAME=NEW_OBJECT>
+	<input type="hidden" name="author_id" value="<TMPL_VAR NAME=AUTHOR_ID>">
+	<TMPL_ELSE>
+	<input type="hidden" name="id" value="<TMPL_VAR NAME=ID>">
+	</TMPL_IF>
+	<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+	<input type="hidden" name="__mode" value="save_entry">
+
+	<table border="0" cellspacing="0" cellpadding="0" width="500">
+
+	<TMPL_IF NAME=POSITION_BUTTONS_TOP>
+
+	<tr>
+	<td bgcolor="#999999" rowspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="7" height="1"></td>
+	<td bgcolor="#999999"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="7"></td>
+	<td bgcolor="#999999" rowspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="7" height="1"></td>
+	</tr>
+
+	<tr>
+	<td bgcolor="#999999" align="center">
+	<input class="button" type="submit" name="preview_entry" value="<MT_TRANS phrase="Preview">">&nbsp;&nbsp;
+	<input class="button" type="submit" value="<MT_TRANS phrase="Save">">&nbsp;&nbsp;
+	<TMPL_UNLESS NAME=NEW_OBJECT>
+	<input class="button-big" onClick="doRemoveEntry()" type="button" value="<MT_TRANS phrase="Delete Entry">">
+	</TMPL_UNLESS>
+	</td>
+	</tr>
+	
+	<tr>
+	<td bgcolor="#999999"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="7"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="3"></td>
+	</tr>
+
+	</TMPL_IF>
+	
+	<tr>
+	<td bgcolor="#F2F2F2" rowspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="7" height="1"></td>
+	<td bgcolor="#F2F2F2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="7"></td>
+	<td bgcolor="#F2F2F2" rowspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="7" height="1"></td>
+	</tr>
+	
+	<tr>
+	<td bgcolor="#F2F2F2">
+	
+		<table border="0" cellspacing="0" cellpadding="0">
+		
+		<tr>
+		<td valign="top" width="191"><font class="pagetitle"><MT_TRANS phrase="Title"></font></td>
+		<td valign="top" width="160"><font class="pagetitle"><TMPL_IF NAME=DISP_PREFS_BASIC><MT_TRANS phrase="Post Status"> <a href="#" onclick="openManual('item_post_status')">(?)</a><TMPL_ELSE><TMPL_IF NAME=DISP_PREFS_SHOW_CATEGORY><MT_TRANS phrase="Primary Category"></TMPL_IF></TMPL_IF></font></td>
+		<td valign="top" width="151">
+		<TMPL_UNLESS NAME=NEW_OBJECT>
+		<TMPL_IF NAME=DISP_PREFS_BASIC>
+		<font class="pagetitle"><MT_TRANS phrase="Authored On"></font>
+		</TMPL_IF>
+		</TMPL_UNLESS>
+		&nbsp;</td>
+		</tr>
+
+		<tr>
+		<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="3"></td>
+		</tr>
+	
+		<tr>
+		<td valign="top" width="191"><input class="text-short" name="title" value="<TMPL_VAR NAME=TITLE>"></td>
+		<TMPL_IF NAME=DISP_PREFS_BASIC>
+		<td valign="top" width="160"><select class="menu" name="status">
+		<option value="1"<TMPL_IF NAME="STATUS_DRAFT"> selected</TMPL_IF>><MT_TRANS phrase="Draft">
+		<option value="2"<TMPL_IF NAME="STATUS_PUBLISH"> selected</TMPL_IF>><MT_TRANS phrase="Publish">
+		</select></td>
+		<td valign="top" width="151"><font class="title"><TMPL_VAR NAME=CREATED_ON_FORMATTED></font></td>
+		<TMPL_ELSE>
+		<TMPL_IF NAME=DISP_PREFS_SHOW_CATEGORY>
+		<td valign="top" width="160"><select class="category" name="category_id" onchange="doAddCategory(this)">
+		<TMPL_LOOP NAME="CATEGORY_LOOP">
+		<option value="<TMPL_VAR NAME=CATEGORY_ID>"<TMPL_IF NAME="CATEGORY_IS_SELECTED"> selected</TMPL_IF>><TMPL_VAR NAME=CATEGORY_LABEL></option>
+		</TMPL_LOOP>
+		<TMPL_IF NAME=CAN_EDIT_CATEGORIES>
+		<option value=""><MT_TRANS phrase="Add new category..."></option>
+		</TMPL_IF>
+		</select></td>
+		<td valign="middle" width="151"><TMPL_UNLESS NAME=NEW_OBJECT><a href="javascript:editPlacements()"><img src="<TMPL_VAR NAME=STATIC_URI>images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/assign_multiple.gif" width="151" height="14" border="0"></a></TMPL_UNLESS></td>
+		</TMPL_IF>
+		</TMPL_IF>
+		</tr>
+	
+		</table>
+		
+		<table border="0" cellspacing="0" cellpadding="0">
+	
+		<tr>
+		<td colspan="2" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+		</tr>
+	
+		<tr>
+		<td width="402"><font class="pagetitle"><MT_TRANS phrase="Entry Body"></font></td>
+		<td width="98" align="right" valign="top">
+
+<script language="javascript">
+if (document.selection) {
+    document.write('<table border="0" cellspacing="0" cellpadding="0" width="107">');
+    document.write('<tr>');
+    document.write('<td width="24"><a href="javascript:formatStr(\'b\')"><img src="<TMPL_VAR NAME=STATIC_URI>images/bold-button.gif" alt="bold" width="24" height="18" border="0"></a></td>');
+    document.write('<td width="24"><a href="javascript:formatStr(\'i\')"><img src="<TMPL_VAR NAME=STATIC_URI>images/italic-button.gif" alt="italic" width="24" height="18" border="0"></a></td>');
+    document.write('<td width="24"><a href="javascript:formatStr(\'u\')"><img src="<TMPL_VAR NAME=STATIC_URI>images/underline-button.gif" alt="underline" width="24" height="18" border="0"></a></td>');
+    document.write('<td width="26"><a href="javascript:insertLink()"><img src="<TMPL_VAR NAME=STATIC_URI>images/url-button.gif" alt="link" width="26" height="18" border="0"></a></td>');
+    document.write('</tr>');
+    document.write('</table>');
+} else {
+    document.write('&nbsp;');
+}
+</script>
+	
+		</td>
+		</tr>
+	
+		<tr>
+		<td colspan="2" width="100%" valign="top"><textarea<TMPL_IF NAME=AGENT_MOZILLA> cols=""</TMPL_IF> class="width500" name="text" rows="<TMPL_IF NAME=DISP_PREFS_SHOW_EXTENDED>10<TMPL_ELSE>20</TMPL_IF>" wrap="virtual"><TMPL_VAR NAME=TEXT></textarea><p></td>
+		<tr>
+
+		<TMPL_IF NAME=DISP_PREFS_SHOW_EXTENDED>
+		<tr>
+		<td colspan="2" valign="top"><font class="pagetitle"><MT_TRANS phrase="Extended Entry"> <a href="#" onclick="openManual('item_main_entry_text')">(?)</a></font></td>
+		</tr>
+	
+		<tr>
+		<td colspan="2" valign="top"><textarea<TMPL_IF NAME=AGENT_MOZILLA> cols=""</TMPL_IF> class="width500" name="text_more" rows="15" wrap="virtual"><TMPL_VAR NAME=TEXT_MORE></textarea><p></td>
+		</tr>
+		</TMPL_IF>
+		
+		<TMPL_IF NAME=DISP_PREFS_SHOW_EXCERPT>
+		<tr>
+		<td colspan="2" valign="top"><font class="pagetitle"><MT_TRANS phrase="Excerpt"> <a href="#" onclick="openManual('item_excerpt')">(?)</a></font></td>
+		</tr>
+	
+		<tr>
+		<td colspan="2" valign="top"><textarea<TMPL_IF NAME=AGENT_MOZILLA> cols=""</TMPL_IF> class="width500" name="excerpt" rows="5" wrap="virtual"><TMPL_VAR NAME=EXCERPT></textarea><p></td>
+		</tr>
+		</TMPL_IF>
+
+		<TMPL_IF NAME=DISP_PREFS_SHOW_KEYWORDS>
+		<tr>
+		<td colspan="2" valign="top"><font class="pagetitle"><MT_TRANS phrase="Keywords"> <a href="#" onclick="openManual('item_keywords')">(?)</a></font></td>
+		</tr>
+	
+		<tr>
+		<td colspan="2" valign="top"><textarea<TMPL_IF NAME=AGENT_MOZILLA> cols=""</TMPL_IF> class="width500" name="keywords" rows="2" wrap="virtual"><TMPL_VAR NAME=KEYWORDS></textarea><p></td>
+		</tr>
+		</TMPL_IF>
+
+		</table>
+
+	</td>
+	</tr>
+
+	<tr>
+	<td bgcolor="#EEEEEE"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="7"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="3"></td>
+	</tr>
+
+	<TMPL_IF NAME=DISP_PREFS_BASIC>
+	<tr>
+	<td><input type="hidden" name="convert_breaks" value="<TMPL_VAR NAME=CONVERT_BREAKS>"><input type="hidden" name="allow_comments" value="<TMPL_VAR NAME=ALLOW_COMMENTS>"><input type="hidden" name="allow_pings" value="<TMPL_VAR NAME=ALLOW_PINGS>"></td>
+	</tr>
+	<TMPL_ELSE>
+
+	<tr>
+	<td colspan="3">
+	
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+		<td bgcolor="#DDDDDD" rowspan="4"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="7" height="1"></td>
+		<td bgcolor="#DDDDDD" colspan="<TMPL_VAR NAME=DISP_PREFS_BAR_COLSPAN>"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="7"></td>
+		<td></td>
+		<td bgcolor="#DDDDDD"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="7"></td>
+		<td bgcolor="#DDDDDD" rowspan="4"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="7" height="1"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" bgcolor="#DDDDDD"><font class="title"><MT_TRANS phrase="Post Status"> <a href="#" onclick="openManual('item_post_status')">(?)</a></font><br><select class="menu" name="status"><option value="1"<TMPL_IF NAME="STATUS_DRAFT"> selected</TMPL_IF>><MT_TRANS phrase="Draft"><option value="2"<TMPL_IF NAME="STATUS_PUBLISH"> selected</TMPL_IF>><MT_TRANS phrase="Publish"></select></td>
+	<TMPL_UNLESS NAME=NEW_OBJECT>
+	<TMPL_IF NAME=DISP_PREFS_SHOW_AUTHORED_ON>
+		<td valign="top" bgcolor="#DDDDDD"><font class="title"><MT_TRANS phrase="Authored On"> <a href="#" onclick="openManual('item_authored_on')">(?)</a></font><br>
+		<input type="hidden" name="created_on_old" value="<TMPL_VAR NAME=CREATED_ON_FORMATTED>">
+		<input class="text-short" name="created_on_manual" value="<TMPL_VAR NAME=CREATED_ON_FORMATTED>"><p></td>
+	<TMPL_ELSE>
+		<td valign="top" bgcolor="#DDDDDD"><font class="title"><MT_TRANS phrase="Authored On"></font><br>
+		<font class="title"><b><TMPL_VAR NAME=CREATED_ON_FORMATTED></b></font></td>
+	</TMPL_IF>
+	</TMPL_UNLESS>
+		<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+		<td bgcolor="#DDDDDD" rowspan="2">
+
+			<table border="0" cellspacing="0" cellpadding="0">
+	<TMPL_IF NAME=DISP_PREFS_SHOW_ALLOW_COMMENTS>
+			<tr>
+			<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="7" height="1"></td>
+			<td colspan="2"><font class="title"><MT_TRANS phrase="Allow Comments">: <a href="#" onclick="openManual('item_allow_comments'); return false">(?)</a></font><br><select name="allow_comments" class="menu">
+			<option value="0"<TMPL_IF NAME=ALLOW_COMMENTS_0> selected</TMPL_IF>><MT_TRANS phrase="None"></option>
+			<option value="1"<TMPL_IF NAME=ALLOW_COMMENTS_1> selected</TMPL_IF>><MT_TRANS phrase="Open"></option>
+			<option value="2"<TMPL_IF NAME=ALLOW_COMMENTS_2> selected</TMPL_IF>><MT_TRANS phrase="Closed"></option>
+			</select></td>
+			</tr>
+
+			<tr><td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td></tr>
+	<TMPL_ELSE>
+	<input type="hidden" name="allow_comments" value="<TMPL_VAR NAME=ALLOW_COMMENTS>">
+	</TMPL_IF>
+	
+	<TMPL_IF NAME=DISP_PREFS_SHOW_ALLOW_PINGS>
+			<tr>
+			<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="7" height="1"></td>
+			<td><input type="checkbox" name="allow_pings" value="1"<TMPL_IF NAME="ALLOW_PINGS"> checked</TMPL_IF>></td>
+			<td><font class="title"><MT_TRANS phrase="Allow Pings"> <a href="#" onclick="openManual('item_allow_pings')">(?)</a></font></td>
+			</tr>
+	<TMPL_ELSE>
+	<input type="hidden" name="allow_pings" value="<TMPL_VAR NAME=ALLOW_PINGS>">
+	</TMPL_IF>
+			</table>
+
+		</td>
+
+		</tr>
+
+		<tr>
+		<td bgcolor="#DDDDDD" valign="top" colspan="<TMPL_UNLESS NAME=NEW_OBJECT>2<TMPL_ELSE>1</TMPL_UNLESS>"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"><br>
+	<TMPL_IF NAME=DISP_PREFS_SHOW_CONVERT_BREAKS>
+		<font class="title"><MT_TRANS phrase="Text Formatting">:  <a href="#" onclick="openTFDocs(); return false">(?)</a><br><select name="convert_breaks" class="menu-long">
+<TMPL_LOOP NAME=TEXT_FILTERS>
+		<option value="<TMPL_VAR NAME=FILTER_KEY>"<TMPL_IF NAME=FILTER_SELECTED> selected</TMPL_IF>><TMPL_VAR NAME=FILTER_LABEL></option>
+</TMPL_LOOP>
+		</select>
+	<TMPL_ELSE>
+		<input type="hidden" name="convert_breaks" value="<TMPL_VAR NAME=CONVERT_BREAKS>">
+	</TMPL_IF>
+		</td>
+		</tr>
+
+		<tr>
+		<td bgcolor="#DDDDDD" colspan="<TMPL_VAR NAME=DISP_PREFS_BAR_COLSPAN>"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="7"></td>
+		<td></td>
+		<td bgcolor="#DDDDDD"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="7"></td>
+		</tr>
+		</table>
+	
+	</td>
+	</tr>
+	
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="3"></td>
+	</tr>
+
+	<TMPL_IF NAME=DISP_PREFS_SHOW_PING_URLS>
+	<tr>
+	<td colspan="3">
+
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+		<td bgcolor="#DDDDDD" rowspan="4"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="7" height="1"></td>
+		<td bgcolor="#DDDDDD" colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="7"></td>
+		<td bgcolor="#DDDDDD" rowspan="4"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="7" height="1"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" bgcolor="#DDDDDD"><font class="title"><MT_TRANS phrase="URLs to Ping"> <a href="#" onclick="openManual('item_urls_to_ping')">(?)</a></font></td>
+		<td bgcolor="#DDDDDD">&nbsp;</td>
+		</tr>
+
+		<tr>
+		<td valign="top" bgcolor="#DDDDDD"><textarea<TMPL_IF NAME=AGENT_MOZILLA> cols=""</TMPL_IF> class="short310" name="to_ping_urls" rows="3" wrap="virtual"><TMPL_VAR NAME=TO_PING_URLS></textarea></td>
+		<td valign="top" align="left" bgcolor="#DDDDDD"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="7"><br><a class="instructional" href="#" onclick="listPreviousPings()"><MT_TRANS phrase="Previous pings sent"></a> <a href="#" onclick="openManual('item_previous_pings_sent')">(?)</a></td>
+		</tr>
+
+		<tr>
+		<td bgcolor="#DDDDDD" colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="7"></td>
+		</table>
+
+	</td>
+	</tr>
+	</TMPL_IF>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="3"></td>
+	</tr>
+
+	</TMPL_IF>
+
+	<TMPL_IF NAME=POSITION_BUTTONS_BOTTOM>
+
+	<tr>
+	<td bgcolor="#999999" rowspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="7" height="1"></td>
+	<td bgcolor="#999999"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="7"></td>
+	<td bgcolor="#999999" rowspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="7" height="1"></td>
+	</tr>
+
+	<tr>
+	<td bgcolor="#999999" align="center">
+	<input class="button" type="submit" name="preview_entry" value="<MT_TRANS phrase="Preview">">&nbsp;&nbsp;
+	<input class="button" type="submit" value="<MT_TRANS phrase="Save">">&nbsp;&nbsp;
+	<TMPL_UNLESS NAME=NEW_OBJECT>
+	<input class="button-big" onClick="doRemoveEntry()" type="button" value="<MT_TRANS phrase="Delete Entry">">
+	</TMPL_UNLESS>
+	</td>
+	</tr>
+	
+	<tr>
+	<td bgcolor="#999999"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="7"></td>
+	</tr>
+
+	</TMPL_IF>
+
+	<tr>
+	<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3" align="right"><a class="instructional" href="#" onclick="window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=show_entry_prefs&blog_id=<TMPL_VAR NAME=BLOG_ID><TMPL_UNLESS NAME=NEW_OBJECT>&entry_id=<TMPL_VAR NAME=ID></TMPL_UNLESS>', 'display', 'width=500,height=500,scrollbars=yes'); return false"><MT_TRANS phrase="Customize the display of this page."></a></td>
+	</tr>
+	
+	</table>
+	</form>	
+
+</td>
+</tr>
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+</table>
+
+<TMPL_IF NAME=NEW_OBJECT>
+<TMPL_ELSE>
+
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="115" rowspan="5"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="50"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500"><font class="pagetitle"><MT_TRANS phrase="Advanced Options"></font></td>
+</tr>
+
+<tr>
+<td bgcolor="#666666" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+	
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+
+<td valign="top" width="500">
+
+<form>
+	<table border="0" cellspacing="0" cellpadding="3" width="500">
+	
+	<tr>
+	<td valign="top" width="150"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="150" height="1"></td>
+	<td valign="top" width="145"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="145" height="1"></td>
+	<td valign="top" width="150"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="150" height="1"></td>
+	<td valign="top" width="40"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="40" height="1"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="150" bgcolor="#8199A4"><font class="title-padding"><MT_TRANS phrase="Edit Comments"></font></td>
+	<td valign="top" width="145" bgcolor="#8199A4"><font class="title-padding"><MT_TRANS phrase="Author"></font></td>
+	<td valign="top" width="150" bgcolor="#8199A4"><font class="title-padding"><MT_TRANS phrase="Date Added"></font></td>
+	<td valign="top" width="40"  bgcolor="#8199A4"><font class="title-padding"><MT_TRANS phrase="Delete"></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="150" rowspan="<TMPL_VAR NAME=NUM_COMMENT_ROWS>"><font class="instructional"><MT_TRANS phrase="Click on the author's name to edit their comment. To delete, check the box to its right and then press the delete button."></font></td>
+	</tr>
+
+<TMPL_LOOP NAME=COMMENT_LOOP>
+	<tr>
+	<td valign="top" width="145" bgcolor="#<TMPL_IF NAME=COMMENT_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=comment&id=<TMPL_VAR NAME=COMMENT_ID>&blog_id=<TMPL_VAR NAME=BLOG_ID>"><TMPL_VAR NAME=COMMENT_AUTHOR ESCAPE=HTML></a></td>
+	<td valign="top" width="150" bgcolor="#<TMPL_IF NAME=COMMENT_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="instructional"><TMPL_VAR NAME=COMMENT_CREATED></font></td>
+	<td valign="top" width="40" bgcolor="#<TMPL_IF NAME=COMMENT_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><input type="checkbox" name="comment_delete" value="<TMPL_VAR NAME=COMMENT_ID>"></td>
+	</tr>
+
+</TMPL_LOOP>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="7"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3" valign="top" align="right" colspan="6"><input class="button-big" type="button" onClick="doRemoveComments(this.form)" value="<MT_TRANS phrase="Delete Checked">"></td>
+	</tr>
+
+	</table>
+</form>
+
+</td>
+</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td bgcolor="#CCD5D9" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+
+<td valign="top" width="500">
+
+<form>
+	<table border="0" cellspacing="0" cellpadding="3" width="500">
+	
+	<tr>
+	<td valign="top" width="150"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="150" height="1"></td>
+	<td valign="top" width="145"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="145" height="1"></td>
+	<td valign="top" width="150"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="150" height="1"></td>
+	<td valign="top" width="40"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="40" height="1"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="150" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Manage TrackBack Pings"></font></td>
+	<td valign="top" width="145" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Title"></font></td>
+	<td valign="top" width="150" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Date Added"></font></td>
+	<td valign="top" width="40"  bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Delete"></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="150" rowspan="<TMPL_VAR NAME=NUM_PING_ROWS>"><font class="instructional"><MT_TRANS phrase="To delete a ping, check the box to its right and then press the delete button."></font></td>
+	</tr>
+
+<TMPL_LOOP NAME=PING_LOOP>
+	<tr>
+	<td valign="top" width="130" bgcolor="#<TMPL_IF NAME=PING_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><a target="_blank" href="<TMPL_VAR NAME=PING_URL ESCAPE=HTML>"><TMPL_VAR NAME=PING_TITLE ESCAPE=HTML></a></td>
+	<td valign="top" width="150" bgcolor="#<TMPL_IF NAME=PING_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="instructional"><TMPL_VAR NAME=PING_CREATED></font></td>
+	<td valign="top" width="37"  bgcolor="#<TMPL_IF NAME=PING_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><input type="checkbox" name="ping_delete" value="<TMPL_VAR NAME=PING_ID>"></td>
+	</tr>
+
+</TMPL_LOOP>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3" valign="top" align="right"><input class="button-big" type="button" onClick="doRemovePings(this.form)" value="<MT_TRANS phrase="Delete Checked">"></td>
+	</tr>
+
+	</table>
+</form>
+
+</td>
+</tr>
+</table>
+<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+<input type="hidden" name="__mode" value="send_notify">
+<input type="hidden" name="entry_id" value="<TMPL_VAR NAME=ID>">
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+<TMPL_IF NAME=CAN_SEND_NOTIFICATIONS>
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+
+<td valign="top" width="500">
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+	<tr>
+	<td colspan="2" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+	
+	<tr>
+	<td colspan="2" bgcolor="#CCD5D9" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+	</tr>
+
+	<tr>
+	<td colspan="2" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+	
+	<tr>
+	<td valign="top" width="340"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="340" height="1"></td>
+	<td valign="top" width="150"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="150" height="1"></td>			
+	<tr>
+
+	<tr>
+	<td colspan="2" bgcolor="#8199A4"><font class="title-padding"><MT_TRANS phrase="Send a notification"></font></td>
+	</tr>
+
+	<tr>
+	<td  colspan="2" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr
+	
+	<tr>
+	<td colspan="2" valign="top"><font class="instructional-just"><MT_TRANS phrase="You can send a notification message to your group of readers. Just enter the email message that you would like to insert below the weblog entry's link. You have the option of including the excerpt indicated above or the entry in its entirety."></font></td>
+	</tr>
+
+	<tr>
+	<td colspan="2" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr
+	
+			
+	<tr>
+	<td valign="top"><textarea<TMPL_IF NAME=AGENT_MOZILLA> cols=""</TMPL_IF> class="short340" name="message" rows="7" wrap="virtual"><TMPL_VAR NAME=NOTIFICATION></textarea><p></td>
+	<td valign="top" align="right">
+	
+		<table border="0" cellspacing="0" cellpadding="0">
+
+		<tr>
+		<td colspan="2" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+		</tr>
+
+		<tr>
+		<td><input type="checkbox" name="send_excerpt" value="1"></td>
+		<td valign="top"><font class="title"><MT_TRANS phrase="Include excerpt"></font></td>
+		</tr>
+
+		<tr>
+		<td colspan="2" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+		</tr>
+
+		<tr>
+		<td><input type="checkbox" name="send_body" value="1"></td>
+		<td valign="top"><font class="title"><MT_TRANS phrase="Include entire entry body"></font></td>
+		</tr>
+
+		<tr>
+		<td colspan="2" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+		</tr>
+
+		<tr>
+		<td colspan="2" valign="top"><input class="button" type="submit" value="<MT_TRANS phrase="Send">"></td>
+		</tr>
+
+		</table>
+	</td>
+	</tr>
+
+	<tr>
+	<td colspan="2" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+	</tr
+	
+	
+	<tr>
+	<td colspan="2" valign="top"><font class="instructional"><MT_TRANS phrase="Note: If you chose to send the weblog entry, all added HTML will be included in the email."></font> </td>
+	</tr>
+			
+	</table>
+
+</td>
+</tr>
+</TMPL_IF>
+
+</table>
+</form>
+
+</TMPL_IF>
+
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

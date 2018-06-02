@@ -1,0 +1,409 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="List Templates"> | <TMPL_VAR NAME=BLOG_NAME> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+function doEditTemplate (type, id) {
+    var url = '<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=template&blog_id=<TMPL_VAR NAME=BLOG_ID>';
+    if (id)
+        url += '&id=' + id;
+    else if (type)
+        url += '&type=' + type;
+    window.location = url;
+}
+
+function doRemoveTemplates (f) {
+    var base = '<TMPL_VAR NAME=SCRIPT_URL>?__mode=delete_confirm&_type=template&blog_id=<TMPL_VAR NAME=BLOG_ID>';
+    var url = '';
+    var e = f.id;
+    if (!e) return;
+    if (e.value && e.checked)
+        url += '&id=' + e.value;
+    else
+        for (i=0; i<e.length; i++)
+            if (e[i].checked)
+                url += '&id=' + e[i].value;
+    if (!url) {
+        alert('<MT_TRANS phrase="You did not select any templates to delete.">');
+        return false;
+    }
+    url = base + url;
+    window.open(url, 'confirm_delete', 'width=370,height=150');
+}
+
+function doRebuild () {
+    window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=rebuild_confirm&blog_id=<TMPL_VAR NAME=BLOG_ID>', 'rebuild', 'width=400,height=200,resizable=yes');
+}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td align="left" rowspan="5" valign="top">
+<TMPL_INCLUDE NAME=mininav.tmpl>
+</td>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500"><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=menu&blog_id=<TMPL_VAR NAME=BLOG_ID>"> <MT_TRANS phrase="[_1] Editing Menu" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"> &gt;</a><font class="pagetitle"> <MT_TRANS phrase="List Templates"></font></td>
+</tr>
+
+<tr>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500">
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+	<tr>
+	<td colspan="9" valign="top"><font class="instructional"><MT_TRANS phrase="_USAGE_TEMPLATES"></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="10"></td>
+	</tr>
+
+<TMPL_IF NAME=SAVED_DELETED>
+	<tr>
+	<td colspan="9"><p class="message"><MT_TRANS phrase="You have successfully deleted the checked template(s)."> <TMPL_IF NAME=CAN_REBUILD><MT_TRANS phrase="_USAGE_REBUILD"></TMPL_IF></p></td>
+	</tr>
+</TMPL_IF>
+
+	<tr>		
+	<td valign="top" width="500">
+		
+		<table border="0" cellspacing="0" cellpadding="0" width="500">
+
+		<tr>
+		<td valign="top"><font class="pagetitle"><MT_TRANS phrase="Index templates"></font></td>
+		</tr>
+				
+		<tr>
+		<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+		</tr>
+								
+		<tr>
+		<td valign="top" align="right"><a  href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=template&type=index&blog_id=<TMPL_VAR NAME=BLOG_ID>"><MT_TRANS phrase="Create new index template"></a></td>
+		</tr>
+				
+		<tr>
+		<td valign="top">
+				
+			<table border="0" cellspacing="0" cellpadding="3">
+			<form>
+
+			<tr>
+			<td width="205"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="205" height="1"></td>
+			<td width="177"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="177" height="1"></td>
+	 		<td width="45"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="45" height="1"></td>
+	 		<td width="45"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="45" height="1"></td>
+	 		</tr>
+			 		
+			<tr>
+			<td width="205" valign="top" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Template Name"></font></td>
+			<td width="177" valign="top" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Output File"></font></td>
+			<td width="45" valign="top" align="center" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Rebuild?"></font></td>
+	 		<td width="45" valign="top" align="center" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Delete"></font></td>
+				    
+			<tr>
+			<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+			</tr>
+				    
+			<TMPL_LOOP NAME=OBJECT_INDEX_LOOP>
+			<tr>
+			<td width="205" valign="top" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="title"><a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=template&id=<TMPL_VAR NAME=ID>&blog_id=<TMPL_VAR NAME=BLOG_ID>"><TMPL_VAR NAME=NAME></a><br></font></td>
+			<td width="177" valign="top" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="title"><TMPL_VAR NAME=OUTFILE></font></td>
+	 		<td width="45" valign="top" align="center" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="title"><TMPL_IF NAME=REBUILD_ME><MT_TRANS phrase="Yes"><TMPL_ELSE><MT_TRANS phrase="No"></TMPL_IF></font></td>
+	 		<td width="45" valign="top" align="center" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><input type="checkbox" name="id" value="<TMPL_VAR NAME=ID>"></td>
+	 		</tr>
+			</TMPL_LOOP>
+
+			<tr>
+			<td colspan="4" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="3"></td>
+			</tr>
+				    
+			<tr>
+			<td colspan="4" align="right"><input class="button" type="button" onClick="doRemoveTemplates(this.form)" value="<MT_TRANS phrase="Delete">"></td>
+			</tr>
+
+			</form>
+
+	 		</table>
+				
+		</td>
+		</tr>
+				
+		<tr>
+		<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="30"></td>
+		</tr>
+								
+		<tr>
+		<td valign="top"><font class="pagetitle"><MT_TRANS phrase="Archive-Related Templates"></font></td>
+		</tr>
+				
+		<tr>
+		<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+		</tr>
+								
+		<tr>
+		<td valign="top" align="right"><a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=template&type=archive&blog_id=<TMPL_VAR NAME=BLOG_ID>"><MT_TRANS phrase="Create new archive template"></a></td>
+		</tr>
+				
+		<tr>
+		<td valign="top">
+				
+			<table border="0" cellspacing="0" cellpadding="3">
+			<form>
+
+			<tr>
+			<td width="437"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="437" height="1"></td>
+	 		<td width="45"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="45" height="1"></td>
+	 		</tr>
+			 		
+			<tr>
+			<td width="437" valign="top" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Template Name"></font></td>
+	 		<td width="45" valign="top" align="center" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Delete"></font></td>
+
+			<tr>
+			<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+			</tr>
+				    
+			<TMPL_LOOP NAME=OBJECT_ARCHIVE_LOOP>
+			<tr>
+			<td width="437" valign="top" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="title"><a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=template&id=<TMPL_VAR NAME=ID>&blog_id=<TMPL_VAR NAME=BLOG_ID>"><TMPL_VAR NAME=NAME></a><br></font></td>
+	 		<td width="45" valign="top" align="center" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><input type="checkbox" name="id" value="<TMPL_VAR NAME=ID>"></td>
+	 		</tr>
+			</TMPL_LOOP>
+
+			<tr>
+			<td colspan="2" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="3"></td>
+			</tr>
+				    
+			<tr>
+			<td colspan="2" align="right"><input class="button" type="button" onClick="doRemoveTemplates(this.form)" value="<MT_TRANS phrase="Delete">"></td>
+			</tr>
+
+			</form>
+
+	 		</table>
+				
+		</td>
+		</tr>
+
+		<tr>
+		<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="30"></td>
+		</tr>
+							
+		<tr>
+		<td valign="top"><font class="pagetitle"><MT_TRANS phrase="Miscellaneous Templates"></font></td>
+		</tr>
+				
+		<tr>
+		<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" width="500">
+
+			<form>
+		
+			<table border="0" cellspacing="0" cellpadding="0">
+					
+			<tr>
+			<td valign="top" colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>				
+					
+			<tr>
+			<td valign="top"><input class="button" onClick="doEditTemplate('comments', '<TMPL_VAR NAME=TEMPLATE_COMMENTS>')" type="button" value="<MT_TRANS phrase="Edit">">&nbsp;</td>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Comment Listing Template"></font></td>
+			</tr>
+	
+			<tr>
+			<td valign="top" colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>					
+
+			<tr>
+			<td valign="top"><input class="button" onClick="doEditTemplate('comment_preview', '<TMPL_VAR NAME=TEMPLATE_COMMENT_PREVIEW>')" type="button" value="<MT_TRANS phrase="Edit">">&nbsp;</td>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Comment Preview Template"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top" colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>					
+
+			<tr>
+			<td valign="top"><input class="button" onClick="doEditTemplate('comment_error', '<TMPL_VAR NAME=TEMPLATE_COMMENT_ERROR>')" type="button" value="<MT_TRANS phrase="Edit">">&nbsp;</td>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Comment Error Template"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top" colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>					
+
+			<tr>
+			<td valign="top"><input class="button" onClick="doEditTemplate('pings', '<TMPL_VAR NAME=TEMPLATE_PINGS>')" type="button" value="<MT_TRANS phrase="Edit">">&nbsp;</td>
+			<td valign="top"><font class="title"><MT_TRANS phrase="TrackBack Listing Template"></font></td>
+			</tr>
+	
+			<tr>
+			<td valign="top" colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>					
+
+			<tr>
+			<td valign="top"><input class="button" onClick="doEditTemplate('popup_image', '<TMPL_VAR NAME=TEMPLATE_POPUP_IMAGE>')" type="button" value="<MT_TRANS phrase="Edit">">&nbsp;</td>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Uploaded Image Popup Template"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top" colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>					
+
+			</table>
+
+			</form>
+				
+		</td>
+		</tr>
+
+		<tr>
+		<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="30"></td>
+		</tr>
+
+		<tr>
+		<td valign="top"><font class="pagetitle"><MT_TRANS phrase="Template Modules"></font></td>
+		</tr>
+				
+		<tr>
+		<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+		</tr>
+								
+		<tr>
+		<td valign="top" align="right"><a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=template&type=custom&blog_id=<TMPL_VAR NAME=BLOG_ID>"><MT_TRANS phrase="Create new template module"></a></td>
+		</tr>
+				
+		<tr>
+		<td valign="top">
+				
+			<table border="0" cellspacing="0" cellpadding="3">
+			<form>
+
+			<tr>
+			<td width="437"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="437" height="1"></td>
+	 		<td width="45"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="45" height="1"></td>
+	 		</tr>
+			 		
+			<tr>
+			<td width="437" valign="top" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Template Name"></font></td>
+	 		<td width="45" valign="top" align="center" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Delete"></font></td>
+				    
+			<tr>
+			<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+			</tr>
+				    
+			<TMPL_LOOP NAME=OBJECT_CUSTOM_LOOP>
+			<tr>
+			<td width="437" valign="top" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="title"><a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=template&id=<TMPL_VAR NAME=ID>&blog_id=<TMPL_VAR NAME=BLOG_ID>"><TMPL_VAR NAME=NAME></a><br></font></td>
+	 		<td width="45" valign="top" align="center" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><input type="checkbox" name="id" value="<TMPL_VAR NAME=ID>"></td>
+	 		</tr>
+			</TMPL_LOOP>
+
+			<tr>
+			<td colspan="3" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="3"></td>
+			</tr>
+				    
+			<tr>
+			<td colspan="3" align="right"><input class="button" type="button" onClick="doRemoveTemplates(this.form)" value="<MT_TRANS phrase="Delete">"></td>
+			</tr>
+
+			</form>
+
+	 		</table>
+
+		</td>
+		</tr>
+				
+		</table>
+								
+	</td>
+	</tr>
+	</table>
+</td>
+</tr>
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+</table>
+
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

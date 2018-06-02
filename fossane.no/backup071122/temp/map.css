@@ -1,0 +1,67 @@
+body {
+	padding:5px;
+	margin:5px
+	}
+
+.caption {
+	font-size:0.7em;
+	font-weight:bold;
+	font-family:sans-serif;
+	padding:3px
+	}
+
+/* ------ map ------ */
+
+.map {
+	position:relative
+	}
+
+.img {
+	padding:0
+	}
+
+.flagpole {
+	position:relative;
+	top:-20px;
+	font-size:0em;
+	}
+
+.pole {
+	position:absolute;
+	width:0px;
+	height:20px;
+	border-left-style:solid;
+	border-left-width:1px;
+	}
+
+.flag {
+	width:15px;
+	height:10px;
+	border-style:solid;
+	border-width:1px;
+	background-color:#ff0000
+	}
+
+.flag01 {
+	position:absolute;
+	left:306px;
+	top:282px;
+	}
+
+.flag01 {
+	position:absolute;
+	left:306px;
+	top:286px;
+	}
+
+.flag02 {
+	position:absolute;
+	left:337px;
+	top:415px;
+	}
+	
+.flag03 {
+	position:absolute;
+	left:111px;
+	top:619px;
+	}

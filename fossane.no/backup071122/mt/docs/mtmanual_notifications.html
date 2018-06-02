@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>NOTIFICATIONS</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: NOTIFICATIONS</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#notifications">NOTIFICATIONS</a></li>
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="notifications"></a>NOTIFICATIONS</h1>
+<p>At times, after posting a new entry, you may wish to send email to your
+readers, to inform them of the new entry. Movable Type makes this easy with
+its notification system. You can use the <i>mt-add-notify.cgi</i> program to
+provide a simple ``Notify me when new posts are added'' button, thus
+automating the process of adding users to your notification list. You can
+manage this list--either add a new address to your notification list, or
+delete addresses from that list--in the <i>Edit Notifications</i> section of
+Movable Type.</p>
+<p>Notifications are never sent automatically when you post a new entry. To send
+a notification to your readers on a particular entry, select that entry for
+editing. In the <i>Send a notification</i> section, enter the text of the message
+you would like to send. You can also include the excerpt from your entry, or
+the entire body of your entry, by checking either of the checkboxes to the
+right. The message sent to your readers will include a link to the entry,
+followed by the message that you enter.</p>
+<p>Movable Type comes with a simple CGI script designed to let visitors to your
+site add themselves to your notification list. You can use an HTML form to
+let visitors enter their email addresses, then submit, which will add them
+to the notification list. To use this script, insert this HTML code into one
+of your templates, where you would like the form to appear:</p>
+<pre>&lt;form method=&quot;post&quot; action=&quot;&lt;$MTCGIPath$&gt;mt-add-notify.cgi&quot;&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;blog_id&quot; value=&quot;&lt;$MTBlogID$&gt;&quot; /&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;_redirect&quot; value=&quot;&lt;$MTBlogURL$&gt;&quot; /&gt;
+&lt;input name=&quot;email&quot; size=&quot;20&quot; /&gt;
+&lt;input type=&quot;submit&quot; value=&quot;add&quot; /&gt;
+&lt;/form&gt;
+</pre><p>Then save the template and rebuild your site.</p>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

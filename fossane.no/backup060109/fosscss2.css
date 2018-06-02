@@ -1,0 +1,322 @@
+
+/* General Elements */
+/* ----------------------------------------------------- */
+
+body {
+	color:#000000;
+	margin:0;
+	padding:0;
+	background-color:#CFD3BD;
+	font-family: Century Gothic, sans-serif;
+	}
+
+a 	{
+	text-decoration:none;
+	color:#000000
+	}
+
+img {
+	border:0
+	}
+	
+/* Formatting Structure */
+/* ----------------------------------------------------- */
+
+#frame {
+	position:relative;
+	background-color:#CFD3BD;
+	}
+
+#colL {
+	position:absolute;
+	font-size:0.8em;
+	color:#CFD3BD
+	}
+
+#wrap {
+	position:relative;
+	padding-left:190px
+	}
+
+	
+/* Left column */
+/* ----------------------------------------------------- */
+
+#colL .lang {
+	width:185px;
+	margin-top:-10px;
+	margin-bottom:10px;
+	padding: 5px 2px 5px 3px;
+	background-color: #000000;
+	}
+
+#colL .lang img {
+	padding:2px;
+	}
+	
+#colL .currentsection {
+	position:relative;
+	display:block;
+	margin: 0 10px 10px 15px;
+	background-color:#000000;
+	border-style:solid;
+	border-color:#000000;
+	border-width:2px;
+	padding:5px;
+	width:140px;
+	}
+
+#colL .currentsection a {
+	color:#CFD3BD;
+	}	
+
+	
+#colL {
+	position:absolute;
+	left:0px;
+	padding-left:0px;
+	padding-right:10px;
+	padding-top:10px;
+	font-family: "Century gothic", sans-serif;
+	text-align:left;
+	z-index:1;
+
+	}
+
+
+#colL .link {
+	position:relative;
+	display:block;
+	margin: 0 10px 10px 25px;
+	background-color:#CFD3BD;
+	border-style:solid;
+	border-color:#000000;
+	border-width:2px;
+	padding:5px;
+	width:110px
+	}
+
+#colL .currentlink {
+	position:relative;
+	x-index:3;
+	background-color:#CFD3BD;
+	margin: 0 10px 10px 25px;
+	border-style:solid;
+	border-color:#000000;
+	border-width:2px;
+	padding:5px;
+	width:110px;
+	font-weight:bold
+	}
+	
+
+#colL .current {
+	font-weight:bold
+	}
+
+
+#colL .longlink {
+	position:relative;
+	display:block;
+	margin: 0 10px 10px 15px;
+	background-color:#000000;
+	border-style:solid;
+	border-color:#000000;
+	border-width:2px;
+	padding:5px;
+	width:140px;
+	}
+	
+#colL .longlink a {
+	color:#CFD3BD;
+	}	
+
+
+#colL .logo {
+	display:none
+	}
+	
+#colL .home {
+	position:relative;
+	display:block;
+	margin: 0 10px 10px 15px;
+	padding:5px;
+	width:150px
+	}	
+	
+.colR {
+	position:relative;
+	font-family: "Century Gothic", sans-serif;
+	width:120px;
+	padding:20px 10px 0px 20px;
+	text-align: left;
+	margin-top:-25px;
+	margin-left:15px;
+	margin-bottom:10px;
+	z-index:1;
+	color:#000000;
+	border-style:solid;
+	border-width:2px;
+	border-color:#000000;
+	z-index:-1
+	}
+
+#colR a {
+	text-decoration: none;
+	color:#000000
+	}
+	
+/* Main column */
+/* ----------------------------------------------------- */
+
+.backgroundpic {
+	background-color: url("http://www.fossane.no/grafikk/welcomeheading.jpg"); 
+	position:relative;
+	height:122px;
+	border-left-style:solid;
+	border-left-width:8px;
+	border-left-color:#000000;
+	}
+	
+#nav {
+	position:relative;
+	background-color:#000000;
+	color:#CFD3BD;
+	font-family: sans-serif;
+	font-size: 10pt;
+	top:0;
+	padding-left:2px;
+	padding-top:3px;
+	min-height:1.5em;
+	z-index:0;
+	}
+	
+#nav .tree {
+	color: #CFD3BD;
+	position:relative;
+	margin-left:15px;
+	margin-right:13em;
+	padding: 0 2px 2px 2px;
+	z-index:1;
+	}
+
+#nav .tree a {
+	color: #a5ad94;
+	text-decoration:none
+	}
+
+#nav .updated {
+	position:absolute;
+	font-style: italic;
+	right:15px;
+	top:3px;
+	z-index:0	
+	}
+
+.text {
+	position:relative;
+	padding-left:10px;
+	padding-right: 30px;
+	margin-bottom: 10px;
+	text-align:justify;
+ 	font-weight: 100;
+	padding-bottom:14px;
+	font-family: Century gothic, sans-serif;
+	background-color:#CFD3BD;
+	}
+	
+.introduction {
+	padding-top:10px;
+	
+	}
+
+.heading {
+	font-size:1.5em;
+	padding-top:10px;
+	padding-bottom:0.5em
+	}
+
+.heading .pre-emphasize {
+	color: #000000;
+	}
+
+.heading .emphasize {
+	color: #000000;
+	}
+	
+.heading .post-emphasize {
+	color: #000000;
+	}
+
+#colM img {
+	border-style:none;
+	}
+
+#colM .pics img {
+	border-style:solid;
+	border-width:1px
+	}
+
+#colM .maparea {
+	
+	}
+
+#colM .maparea img {
+	margin-bottom:20px;
+	display:inline;
+	margin:0;
+	border-style:none;
+	vertical-align:top;
+	padding-right:15px
+	}
+
+#colM .galleryarea {
+	}
+
+
+#colM .galleryarea .thumbs img {
+	display:inline;
+	border-style:solid;
+	border-width:1px;
+	border-color:#000000
+	}
+	
+#colM .pics .UL {
+	position:relative;
+	float:left;
+	margin: 0 10px 5px 0;
+	}
+
+#colM .pics .UR {
+	position:relative;
+	float:right;
+	margin: 0 0 5px 10px;
+	}
+	
+#colM .fifthlevel {
+	font-size:0.65em;
+	font-weight:bold;
+	text-align:left;	
+	}
+
+
+#colM .fifthlevel td {
+	font-family: Century gothic, sans-serif;
+	vertical-align:top;
+	width:80px;
+	height:80px
+	}
+
+#colM .fifthlevel td a {
+	text-decoration:none;
+	color:#000000
+	}
+	
+#colM #footer {
+	font-size:0.65em;
+	font-weight:bold;
+	border-top-style:solid;
+	border-top-width:3px;
+	padding-bottom:10px
+	}
+

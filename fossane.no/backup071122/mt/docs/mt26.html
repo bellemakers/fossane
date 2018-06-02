@@ -1,0 +1,216 @@
+<html>
+<head>
+<title>mt26 - Guide to the New Features in Movable Type 2.6</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type 2.6 Guide</h3>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#features">FEATURES</a></li>
+	<ul>
+
+		<li><a href="#text formatting">Text Formatting</a></li>
+		<li><a href="#creative commons licenses">Creative Commons Licenses</a></li>
+		<li><a href="#add new category..."><i>Add new category...</i></a></li>
+		<li><a href="#sanitize">Sanitize</a></li>
+		<li><a href="#<mtlink> tag"><code>&lt;MTLink&gt;</code> Tag</a></li>
+		<li><a href="#closing comments">Closing Comments</a></li>
+		<li><a href="#rsd support">RSD Support</a></li>
+		<li><a href="#uploading via xmlrpc">Uploading via XML-RPC</a></li>
+		<li><a href="#postgresql and sqlite database drivers">PostgreSQL and SQLite Database Drivers</a></li>
+		<li><a href="#miscellaneous notes">Miscellaneous Notes</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="name"></a>NAME</h1>
+<p>mt26 - Guide to the New Features in Movable Type 2.6</p>
+<p>
+<hr size="1" color="#CCCCCC">
+<h1><a name="synopsis"></a>SYNOPSIS</h1>
+<p>This document describes the new features in Movable Type 2.6, and the steps
+for upgrading users to take advantage of these features.</p>
+<p>
+<hr size="1" color="#CCCCCC">
+<h1><a name="features"></a>FEATURES</h1>
+<p>
+<h2><a name="text formatting"></a>Text Formatting</h2>
+<p>The new Text Formatting options expand the possibilities for formatting
+your entries. In older versions of Movable Type, the only option available
+was the <i>Convert Line Breaks</i> checkbox, which you could set either off or
+on. If on, paragraphs were wrapped in <code>&lt;p&gt;</code> tags, and line breaks
+were converted to <code>&lt;br /&gt;</code> tags.</p>
+<p>In Movable Type 2.6, you can now select from a variety of Text Formatting
+options. Plugin developers can add their own Text Formatting plugins. You
+can choose a different Text Formatting tool for each entry that you post,
+if you want. In addition, Text Formatting will be applied when you click
+``Preview'' to get a preview of your entry.</p>
+<p>To use Text Formatting plugins, you'll need to set up your <i>plugins</i>
+directory, if you haven't already.
+<a href="./mtmanual_programmatic.html#plugins">Instructions</a> on doing so are in the manual.
+If you're a new Movable Type user, your distribution will come with a
+<i>plugins</i> directory.</p>
+<p>Brad Choate has written a Text Formatting plugin to implement the
+functionality in Dean Allen's Textile tool. The Textile plugin is
+available now at <i><a href="http://www.bradchoate.com/past/mttextile.php">http://www.bradchoate.com/past/mttextile.php</a></i>.</p>
+<p>
+<h2><a name="creative commons licenses"></a>Creative Commons Licenses</h2>
+<p>You can now select a Creative Commons License to apply to your weblog. The
+appropriate metadata will be added to your weblog pages and your RSS files.</p>
+<p>If you are upgrading, follow the steps below to add the Creative Commons tags
+to your templates. If you are using the default templates and would rather
+just upgrade those to the new version, you can copy and paste the templates
+from <i><a href="http://www.movabletype.org/default_templates.shtml">http://www.movabletype.org/default_templates.shtml</a></i>.</p>
+<ol>
+<li><strong><a name="item_Add_metadata_to_your_Main_Index_template%2E"></a>Add metadata to your Main Index template.</strong><br>
+
+Edit your Main Index template, and add the following markup to the
+<code>&lt;head&gt;</code> section:
+<pre>&lt;MTBlogIfCCLicense&gt;
+&lt;$MTCCLicenseRDF$&gt;
+&lt;/MTBlogIfCCLicense&gt;
+</pre><p></p>
+<li><strong><a name="item_Add_license_statement_to_your_Main_Index_template%"></a>Add license statement to your Main Index template.</strong><br>
+
+Also in your Main Index template, add the following markup somewhere
+in the body. You can add this wherever you want the license statement to
+show up.
+<pre>&lt;MTBlogIfCCLicense&gt;
+&lt;div class=&quot;syndicate&quot;&gt;
+&lt;a href=&quot;&lt;$MTBlogCCLicenseURL$&gt;&quot;&gt;&lt;img alt=&quot;Creative Commons License&quot; border=&quot;0&quot; src=&quot;&lt;$MTBlogCCLicenseImage$&gt;&quot; /&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;MT_TRANS phrase=&quot;This weblog is licensed under a&quot;&gt; &lt;a href=&quot;&lt;$MTBlogCCLicenseURL$&gt;&quot;&gt;Creative Commons License&lt;/a&gt;.
+&lt;/div&gt;
+&lt;/MTBlogIfCCLicense&gt;
+</pre><p></p>
+<li><strong><a name="item_Add_metadata_to_your_RSS_1%2E0_template%2E"></a>Add metadata to your RSS 1.0 template.</strong><br>
+
+Copy the RSS 1.0 template from
+<i><a href="http://www.movabletype.org/default_templates.shtml#rss_10_index">http://www.movabletype.org/default_templates.shtml#rss_10_index</a></i>, and
+replace the RSS 1.0 template in the system.
+<p>Or, if you know what you're doing, add the following namespace to the
+template:</p>
+<pre>xmlns:cc=&quot;http://web.resource.org/cc/&quot;
+</pre><p>And add the following markup to the <code>&lt;channel&gt;</code> element:</p>
+<pre>&lt;MTBlogIfCCLicense&gt;
+&lt;cc:license rdf:resource=&quot;&lt;$MTBlogCCLicenseURL$&gt;&quot; /&gt;
+&lt;/MTBlogIfCCLicense&gt;
+</pre><p></p>
+<li><strong><a name="item_Add_metadata_to_your_Individual_Archive_template%2"></a>Add metadata to your Individual Archive template.</strong><br>
+
+Edit your Individual Archive template, and add the following markup to the
+<code>&lt;head&gt;</code> section:
+<pre>&lt;MTBlogIfCCLicense&gt;
+&lt;$MTCCLicenseRDF$&gt;
+&lt;/MTBlogIfCCLicense&gt;
+</pre><p></p></ol>
+<p>
+<h2><a name="add new category..."></a><i>Add new category...</i></h2>
+<p>On the New and Edit Entry screens, you can now add a new category without
+having to go to the Category screen. Select <i>Add new category...</i> from
+the <i>Primary Category</i> pulldown menu, then type in the new category name.
+The category will be added to the database and selected automatically.</p>
+<p>
+<h2><a name="sanitize"></a>Sanitize</h2>
+<p>Version 2.6 integrates Brad Choate's Sanitize plugin, adding an <i>mt.cfg</i>
+setting for a global default, and a per-weblog setting to override that
+default. Sanitize is also turned on automatically for the following tags:</p>
+<ul>
+<li><strong><a name="item_%3C%24MTCommentAuthor%24%3E"></a>&lt;$MTCommentAuthor$&gt;</strong><br>
+
+<li><strong><a name="item_%3C%24MTCommentEmail%24%3E"></a>&lt;$MTCommentEmail$&gt;</strong><br>
+
+<li><strong><a name="item_%3C%24MTCommentURL%24%3E"></a>&lt;$MTCommentURL$&gt;</strong><br>
+
+<li><strong><a name="item_%3C%24MTCommentBody%24%3E"></a>&lt;$MTCommentBody$&gt;</strong><br>
+
+<li><strong><a name="item_%3C%24MTPingTitle%24%3E"></a>&lt;$MTPingTitle$&gt;</strong><br>
+
+<li><strong><a name="item_%3C%24MTPingURL%24%3E"></a>&lt;$MTPingURL$&gt;</strong><br>
+
+<li><strong><a name="item_%3C%24MTPingBlogName%24%3E"></a>&lt;$MTPingBlogName$&gt;</strong><br>
+
+<li><strong><a name="item_%3C%24MTPingExcerpt%24%3E"></a>&lt;$MTPingExcerpt$&gt;</strong><br>
+
+</ul>
+<p>In other words, if you are upgrading and you want to make use of Sanitize
+(and you should, because it will make your site more secure), you don't need
+to alter your templates. More information about Sanitize is
+<a href="./mtmanual_sanitize.html">available here</a>.</p>
+<p>
+<h2><a name="<mtlink> tag"></a><code>&lt;MTLink&gt;</code> Tag</h2>
+<p>The <code>&lt;MTLink&gt;</code> tag can be used to easily generate links to index
+templates or entries (by entry ID).</p>
+<p>More information about the <code>&lt;MTLink&gt;</code> tag is
+<a href="./mtmanual_tags.html#item_mtlink">available here</a>.</p>
+<p>
+<h2><a name="closing comments"></a>Closing Comments</h2>
+<p>The <i>Allow Comments</i> checkbox has been turned into a three-item selection
+menu: <i>Open</i>, <i>None</i>, or <i>Closed</i>. <i>Open</i> and <i>None</i> are the same
+options that you had in previous versions of Movable Type. <i>Closed</i> allows
+you to leave up old comments but turn off new comments by removing the
+comment form from the page. If you have an old entry where you want to leave
+the comments up, for example, but don't want to allow new ones, this can
+be useful.</p>
+<p>To set it up, surround the comment posting form in your template with
+<code>&lt;MTEntryIfCommentsOpen&gt;</code> tags. For example:</p>
+<pre>&lt;MTEntryIfCommentsOpen&gt;
+&lt;form method=&quot;post&quot; ...&gt;
+...
+&lt;/form&gt;
+&lt;/MTEntryIfCommentsOpen&gt;
+</pre><p>
+<h2><a name="rsd support"></a>RSD Support</h2>
+<p>Movable Type's default templates now include an RSD file. RSD stands
+for Really Simple Discoverability; more information is available at
+<i><a href="http://archipelago.phrasewise.com/rsd">http://archipelago.phrasewise.com/rsd</a></i>. It provides metadata that allows
+XML-RPC clients to auto-discover the information needed to post to your
+weblog (the XML-RPC endpoint and your weblog ID).</p>
+<p>If you are upgrading:</p>
+<ol>
+<li><strong><a name="item_Create_the_RSD_template%2E"></a>Create the RSD template.</strong><br>
+
+Copy the RSD template body from
+<i><a href="http://www.movabletype.org/default_templates.shtml#rsd">http://www.movabletype.org/default_templates.shtml#rsd</a></i>,
+then create a new Index Template in your weblog, and paste in the RSD
+template body.
+<p></p>
+<li><strong><a name="item_Add_the_reference_to_the_RSD_template%2E"></a>Add the reference to the RSD template.</strong><br>
+
+Edit your Main Index template, and add the following to the <code>&lt;head&gt;</code>
+section:
+<pre>&lt;link rel=&quot;EditURI&quot; type=&quot;application/rsd+xml&quot; title=&quot;RSD&quot; href=&quot;&lt;$MTBlogURL$&gt;rsd.xml&quot; /&gt;
+</pre><p></p></ol>
+<p>
+<h2><a name="uploading via xmlrpc"></a>Uploading via XML-RPC</h2>
+<p>Movable Type now supports the <i>metaWeblog.newMediaObject</i> XML-RPC method
+for uploading files to your server. This allows you to use a desktop
+client like Kung-Log to upload a file.</p>
+<p>
+<h2><a name="postgresql and sqlite database drivers"></a>PostgreSQL and SQLite Database Drivers</h2>
+<p>In addition to MySQL, Movable Type 2.6 now supports PostgreSQL and SQLite
+databases as backends for Movable Type.</p>
+<p>
+<h2><a name="miscellaneous notes"></a>Miscellaneous Notes</h2>
+<ul>
+<li>
+In this new version, <i>encode_xml</i> now wraps values in CDATA if the value
+contains any markup or non-numeric entities. This could cause invalid RSS
+if you were using both CDATA and <i>encode_xml</i> together in your RSS
+templates. If you were, you should just use <i>encode_xml</i> instead, because
+it will now do the right thing.
+<p></p></ul>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

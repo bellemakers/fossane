@@ -1,0 +1,3157 @@
+<html>
+<head>
+<title>mtchanges - Revision history for Movable Type</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type Changelog</h3>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#changes">CHANGES</a></li>
+	<ul>
+
+		<li><a href="#2.64 (2003.05.28)">2.64 (2003.05.28)</a></li>
+		<li><a href="#2.63 (2003.02.23)">2.63 (2003.02.23)</a></li>
+		<li><a href="#2.62 (2003.02.16)">2.62 (2003.02.16)</a></li>
+		<li><a href="#2.61 (2003.02.16)">2.61 (2003.02.16)</a></li>
+		<li><a href="#2.6 (2003.02.13)">2.6 (2003.02.13)</a></li>
+		<li><a href="#2.51 (2002.10.29)">2.51 (2002.10.29)</a></li>
+		<li><a href="#2.5 (2002.10.08)">2.5 (2002.10.08)</a></li>
+		<li><a href="#2.21 (2002.06.28)">2.21 (2002.06.28)</a></li>
+		<li><a href="#2.2 (2002.06.26)">2.2 (2002.06.26)</a></li>
+		<li><a href="#2.11 (2002.05.03)">2.11 (2002.05.03)</a></li>
+		<li><a href="#2.1 (2002.05.02)">2.1 (2002.05.02)</a></li>
+		<li><a href="#2.0 (2002.03.20)">2.0 (2002.03.20)</a></li>
+		<li><a href="#2.0b6 (2002.03.12)">2.0b6 (2002.03.12)</a></li>
+		<li><a href="#2.0b5 (2002.02.27)">2.0b5 (2002.02.27)</a></li>
+		<li><a href="#2.0b4 (2002.02.25)">2.0b4 (2002.02.25)</a></li>
+		<li><a href="#2.0b3 (2002.02.23)">2.0b3 (2002.02.23)</a></li>
+		<li><a href="#2.0b2 (2002.02.20)">2.0b2 (2002.02.20)</a></li>
+		<li><a href="#2.0b1 (2002.02.18)">2.0b1 (2002.02.18)</a></li>
+		<li><a href="#1.4 (2002.01.07)">1.4 (2002.01.07)</a></li>
+		<li><a href="#1.31 (2001.12.13)">1.31 (2001.12.13)</a></li>
+		<li><a href="#1.3 (2001.12.11)">1.3 (2001.12.11)</a></li>
+		<li><a href="#1.2 (2001.11.04)">1.2 (2001.11.04)</a></li>
+		<li><a href="#1.1 (2001.10.22)">1.1 (2001.10.22)</a></li>
+		<li><a href="#1.00 (2001.10.08)">1.00 (2001.10.08)</a></li>
+		<li><a href="#0.10 (2001.10.06)">0.10 (2001.10.06)</a></li>
+		<li><a href="#0.09 (2001.10.06)">0.09 (2001.10.06)</a></li>
+		<li><a href="#0.08 (2001.10.03)">0.08 (2001.10.03)</a></li>
+		<li><a href="#0.07 (2001.10.02)">0.07 (2001.10.02)</a></li>
+		<li><a href="#0.06 (2001.10.01)">0.06 (2001.10.01)</a></li>
+		<li><a href="#0.05 (2001.09.30)">0.05 (2001.09.30)</a></li>
+		<li><a href="#0.04 (2001.09.27)">0.04 (2001.09.27)</a></li>
+		<li><a href="#0.03 (2001.09.26)">0.03 (2001.09.26)</a></li>
+		<li><a href="#0.02 (2001.09.25)">0.02 (2001.09.25)</a></li>
+		<li><a href="#0.01 (2001.09.23)">0.01 (2001.09.23)</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="name"></a>NAME</h1>
+<p>mtchanges - Revision history for Movable Type</p>
+<p>
+<hr size="1" color="#CCCCCC">
+<h1><a name="synopsis"></a>SYNOPSIS</h1>
+<p>This document contains the revision history for Movable Type. Names in
+parentheses indicate the names of <code>user(s)</code> who pointed out the bugs, suggested
+the features, etc.</p>
+<p>
+<hr size="1" color="#CCCCCC">
+<h1><a name="changes"></a>CHANGES</h1>
+<p>
+<h2><a name="2.64 (2003.05.28)"></a>2.64 (2003.05.28)</h2>
+<ul>
+<li>
+Replaced RSS 0.91 template in default templates with an RSS 2.0 template,
+from the RSS validator site. (Thanks to the RSS validator folks.)
+<p></p>
+<li>
+Fixed some XSS bugs (comments, TrackBack, notification addresses, and
+search queries). (Reported by Dumky and others)
+<p></p>
+<li>
+Fixed width of #content div in Clean stylesheet so that it doesn't require
+scrolling in Windows IE.
+<p></p>
+<li>
+Fixed TrackBack auto-discovery and text filters--auto-discovery is now
+done against the filtered entry body rather than the unfiltered body.
+(Timothy Appnel)
+<p></p>
+<li>
+Added <code>&lt;q&gt;</code> to list of special tags to be detected at paragraph
+starts and turn off line break conversion. (Todd Dominey)
+<p></p>
+<li>
+Moved Search button up next to search box to make it less likely to cause
+confusion and inadvertent clicking of REPLACE.
+<p></p>
+<li>
+Strip linefeed characters from text being previewed.
+<p></p>
+<li>
+Fixed Windows file-locking problem when deleting temp files (during
+uploading). Thanks to Scot Hacker for tracking down the problem.
+<p></p>
+<li>
+Fixed error in <i>mt.getPostCategories</i> where entry does not have
+primary category.
+<p></p>
+<li>
+Fixed bug where <i>Add new category...</i> is available to authors without
+category-editing permissions.
+<p></p>
+<li>
+Set excerpt properly using <i>get_excerpt</i> in notification messages and
+search results. (Brad Choate)
+<p></p>
+<li>
+Added support for alternate PostgreSQL ports. (Tim Beadle)
+<p></p>
+<li>
+Added documentation for <i>mt.supportedTextFilters</i>.
+<p></p>
+<li>
+Fixed another <i>pg_atoi</i> problem (this one when saving an entry from the
+preview screen).
+<p></p>
+<li>
+Language for Date Formatting is now applied properly to notification
+messages. Thanks to Jakub Kazecki for the changes.
+<p></p>
+<li>
+Fixed bug where order of <i>flerror</i> and <i>message</i> in XML-RPC ping responses
+mattered (it shouldn't). (cobra libre)
+<p></p></ul>
+<p>
+<h2><a name="2.63 (2003.02.23)"></a>2.63 (2003.02.23)</h2>
+<ul>
+<li>
+Fixed <i>faultCode</i>s returned from XML-RPC server to override the default
+<i>SOAP::Lite</i> value, which wasn't an <i>int</i> (it should be). (Adriaan
+Tijsseling)
+<p></p>
+<li>
+Fixed Javascript error with MT It! caused by Windows security update. Thanks
+to Phil Ringnalda for the fix.
+<p></p>
+<li>
+Creative Commons licenses can now be removed (but should be done so
+sparingly, as the licenses are designed to be irrevocable). Also, added
+more warning text before setting up a license. Thanks to Matt Haughey for
+the help.
+<p></p>
+<li>
+Added a <i>GenerateTrackBackRSS</i> option to <i>mt.cfg</i>, which determines whether
+the individual RSS files for TrackBack items are created.
+<p></p>
+<li>
+<i>mt-view.cgi</i> (and <i>Viewer.pm</i>) is now disabled by default, to emphasize
+its experimental status. To enable it, add <code>SafeMode 0</code> to <i>mt.cfg</i>.
+<p></p>
+<li>
+Fixed a Postgres bug with the seconds getting cut off of the Authored On
+timestamp.
+<p></p>
+<li>
+Fixed default search templates to use <code>&lt;$MTPublishCharset&gt;</code>.
+(Autrijus Tang)
+<p></p>
+<li>
+Fixed a bug with the <i>isPrimary</i> argument to the <i>mt.setPostCategories</i>
+method (XML-RPC).
+<p></p>
+<li>
+Fixed Creative Commons RDF (was missing <code>&lt;/rdf:RDF&gt;</code>). (Aaron
+Swartz)
+<p></p>
+<li>
+Auto-generated excerpts for sent and received TrackBacks now apply text
+formatting properly. (Brad Choate)
+<p></p>
+<li>
+Fixed bug where Postgres passwords were not used.
+<p></p>
+<li>
+Fixed bug with Berkeley DB to Postgres database conversion (<i>pg_atoi</i>
+problem). (Mike Chambers)
+<p></p>
+<li>
+<code>&lt;MTLink&gt;</code> now only tries to load index templates.
+<p></p>
+<li>
+Fixed rebuilds when using a localized version of MT.
+<p></p>
+<li>
+<i>Select</i> and <i>Add New Category...</i> on edit entry screen can now be
+translated.
+<p></p>
+<li>
+<i>None</i> and <i>Convert Line Breaks</i> text formatting options can now be
+translated.
+<p></p>
+<li>
+<i>New Comment</i> message subject can now be translated.
+<p></p>
+<li>
+Fixed bug where Next and Previous links on edit entry screen skipped
+drafts.
+<p></p>
+<li>
+Fixed bug where extended entry couldn't be set to the empty string from
+an XML-RPC client. (Adriaan Tijsseling)
+<p></p>
+<li>
+<i>IncludeBlogs</i> and <i>ExcludeBlogs</i> are now respected by <i>mt-view.cgi</i>.
+(Phil Ringnalda)
+<p></p>
+<li>
+<i>mt-view.cgi</i> no longer shows drafts. (Phil Ringnalda)
+<p></p></ul>
+<p>
+<h2><a name="2.62 (2003.02.16)"></a>2.62 (2003.02.16)</h2>
+<ul>
+<li>
+Fixed a security vulnerability.
+<p></p></ul>
+<p>
+<h2><a name="2.61 (2003.02.16)"></a>2.61 (2003.02.16)</h2>
+<ul>
+<li>
+Fixed extra update ping problem--if TrackBack ping URLs were added to the
+URLs to ping, the update pings would be sent again. No longer. (Phil
+Ringnalda)
+<p></p>
+<li>
+Fixed bug where turning on <code>NoHTMLEntities 1</code> would cause entities to be
+lost in entries.
+<p></p>
+<li>
+Added a <code>&lt;$MTEntryTrackbackID$&gt;</code> tag. Thanks to Christopher
+Laco for the patch.
+<p></p>
+<li>
+Added a <i>NoCDATA</i> setting to <i>mt.cfg</i> to turn off the CDATA encoding,
+if you don't like it.
+<p></p>
+<li>
+Fixed bug with PostgreSQL conversion, where after running <i>mt-db2sql.cgi</i>,
+sequences were not set to highest ID.
+<p></p>
+<li>
+Fixed character encoding problem, where utf8 characters would be corrupted
+in published pages.
+<p></p>
+<li>
+Fixed (for good) XHTML issues with search templates.
+<p></p>
+<li>
+Added a <i>NoOverride</i> setting to <i>mt.cfg</i>, to specify search settings that
+cannot be overriden by the search templates or the user.
+<p></p>
+<li>
+Language options in <i>Preferred Language</i> are now sorted by name.
+<p></p>
+<li>
+Added <i>ol</i> and <i>i</i> as allowed tags to the default sanitize spec.
+<p></p>
+<li>
+Fixed bug with text formatting not being applied for excerpts. Thanks to
+Brad Choate for the patch.
+<p></p>
+<li>
+Removed use of <i>Ping</i> in the ImageMagick MT driver, because it returns
+results in inconsistent forms; now use <i>Read</i> and <i>Get</i> instead. Thanks
+to Aaron Straup Cope for the pointer.
+<p></p>
+<li>
+Fixed bug where <i>convert_breaks=``1''</i> did not work if both the entry and
+weblog had break conversion turned off.
+<p></p>
+<li>
+Changed filter ordering in <i>MT::Template::Context::post_process_handler</i>
+so that Sanitize and <i>encode_xml</i> play more nicely. (Phil Ringnalda)
+<p></p>
+<li>
+Fixed unitialized value related to <i>$status_old</i>. (Phil Ringnalda)
+<p></p>
+<li>
+Don't overwrite original content when utf8-encoding for MD5 check in
+<i>MT::FileMgr::Local::content_is_updated</i>.
+<p></p>
+<li>
+Fixed <i>mt-upgrade25.cgi</i> to check if version is greater than or equal
+to 2.5, rather than only equal to 2.5.
+<p></p>
+<li>
+Comment and TrackBack notification messages are now properly localized.
+<p></p>
+<li>
+Fixed rebuild problem with perl 5.004_04 and Sanitize (use of <code>foreach</code>
+modifier).
+<p></p>
+<li>
+Added Estonian date formats. (Anti Veeranna)
+<p></p></ul>
+<p>
+<h2><a name="2.6 (2003.02.13)"></a>2.6 (2003.02.13)</h2>
+<ul>
+<li>
+Added Text Formatting options. Instead of a simple <i>Convert Line Breaks</i>
+checkbox, you can now set a different formatting option for each entry.
+Plugins can add new options to the Text Formatting menu, which allows for
+greater integration with the formatting within the system (for example,
+Text Formatting will be applied on the preview screen).
+<p></p>
+<li>
+Added PostgreSQL and SQLite database drivers.
+<p></p>
+<li>
+Incorporated Brad Choate's Sanitize plugin, adding an <i>mt.cfg</i> setting for
+a global default and a per-blog setting to override it. Sanitize is turned
+on automatically for the following tags:
+<ul>
+<li><strong><a name="item_%3C%24MTCommentAuthor%24%3E"></a><code>&lt;$MTCommentAuthor$&gt;</code></strong><br>
+
+<li><strong><a name="item_%3C%24MTCommentEmail%24%3E"></a><code>&lt;$MTCommentEmail$&gt;</code></strong><br>
+
+<li><strong><a name="item_%3C%24MTCommentURL%24%3E"></a><code>&lt;$MTCommentURL$&gt;</code></strong><br>
+
+<li><strong><a name="item_%3C%24MTCommentBody%24%3E"></a><code>&lt;$MTCommentBody$&gt;</code></strong><br>
+
+<li><strong><a name="item_%3C%24MTPingTitle%24%3E"></a><code>&lt;$MTPingTitle$&gt;</code></strong><br>
+
+<li><strong><a name="item_%3C%24MTPingURL%24%3E"></a><code>&lt;$MTPingURL$&gt;</code></strong><br>
+
+<li><strong><a name="item_%3C%24MTPingBlogName%24%3E"></a><code>&lt;$MTPingBlogName$&gt;</code></strong><br>
+
+<li><strong><a name="item_%3C%24MTPingExcerpt%24%3E"></a><code>&lt;$MTPingExcerpt$&gt;</code></strong><br>
+
+</ul>
+<li>
+Added an <code>&lt;MTLink&gt;</code> tag to automatically generate the URL for
+an index template or an entry (by entry ID).
+<p></p>
+<li>
+You can now add a new category from the <i>Primary Category</i> menu on the
+new/edit entry screen by choosing <i>Add new category...</i> from the menu.
+<p></p>
+<li>
+Added a <code>Closed</code> status for <i>Allow Comments</i> and turned it into a
+pulldown menu rather than a checkbox. This allows you to turn off new
+comment posting for an entry, but leave up the old comments.
+<p></p>
+<li>
+Added support for Creative Commons Licenses. You can select a license in
+your blog configuration, and the appropriate metadata will be set on your
+weblog index page and in your RSS 1.0 file.
+<p></p>
+<li>
+Added <i>metaWeblog.newMediaObject</i> implementation for uploading files via
+XML-RPC.
+<p></p>
+<li>
+Added an RSD template and a <code>&lt;link&gt;</code> tag referencing it, which
+simplifies XML-RPC client configuration. (Ben Hammersley)
+<p></p>
+<li>
+Localization improvements:
+<ul>
+<li>
+More strings have been abstracted to language packs, including those in the
+default templates, which means that they can now be localized.
+<p></p>
+<li>
+Password recovery, notification list, and comment/TrackBack notification
+messages can now all be localized in language packs.
+<p></p>
+<li>
+Added a tag for the <code>&lt;$MTPublishCharset$&gt;</code> setting from <i>mt.cfg</i>,
+if using a different encoding. Default templates now use this tag, which
+defaults to <code>iso-8859-1</code>.
+<p></p>
+<li>
+<i>PublishCharset</i> is now sent as the charset in notification messages and
+comment and TrackBack ping notifications.
+<p></p></ul>
+<li>
+<i>dirify</i> now converts certain high-ASCII characters (accented characters,
+etc) to their low-ASCII characters, meaning that something like
+<code>crudit</code> will be converted to <code>crudite</code>.
+<p></p>
+<li>
+Fixed problem with updating pages when file sizes are the same and MD5
+is not installed (now we compare file contents rather than sizes).
+<p></p>
+<li>
+Added <i>MT::PluginData</i>, a storage area for plugins. It uses the same
+data storage method being used by the rest of MT (eg Berkeley DB, MySQL,
+etc). Thanks to the mt-dev list for the idea.
+<p></p>
+<li>
+XML-RPC server now returns <i>int</i> instead of <i>boolean</i> for
+<i>mt_allow_comments</i> and <i>mt_allow_pings</i>.
+<p></p>
+<li>
+If comments are not allowed on an entry, they are now rejected at the core
+of the system, rather than just obfuscated by not putting up a form. This is
+a side effect of the new open/closed/none distinction.
+<p></p>
+<li>
+Changed comment forms in default templates to be more usable with respect to
+position of the ``Remember me'' elements. Thanks to Jeremy Hedley for the
+suggestions.
+<p></p>
+<li>
+In addition to removing any properly-formed HTML tags, <i>MT::Util::remove_html</i>
+now encodes any remaining <code>&lt;</code> characters into <code>&amp;lt;</code> entities.
+(Seth Woolley)
+<p></p>
+<li>
+Fixed problem with TrackBack auto-discovery and sending TB pings from entries
+created/edited via XML-RPC. Thanks to Annoying Old Guy for the debugging
+help and a patch.
+<p></p>
+<li>
+Fixed the non-HTML::Entities <i>encode_html</i> routine to not double-encode
+things that look like entities (numeric or otherwise).
+<p></p>
+<li>
+Added <i>PingInterface</i>, <i>PingProxy</i>, and <i>PingNoProxy</i> configuration
+settings for setting up proxy server info. Thanks to Christopher Laco for
+the patch.
+<p></p>
+<li>
+Improved <i>encode_xml</i> (and <i>decode_xml</i>). It now checks whether the
+string to be encoded looks like it contains HTML tags or entities, and
+wraps it in CDATA if it does. Thanks to Timothy Appnel for the code.
+<p></p>
+<li>
+Fixed bug in search engine where <i>SearchTemplatePath</i> setting could be
+overridden through the query string params. (Frank von Vliet)
+<p></p>
+<li>
+Made <i>MT::App</i> subclasses <i>Apache::Filter</i>-aware by using <i>filter_register</i>
+if <i>Filter</i> is turned on. Thanks to Christopher Laco for the patch.
+<p></p>
+<li>
+Fixed wide-character bug when using MD5, by utf8-encoding the data.
+Thanks to John @ John's Jottings for the patch.
+<p></p>
+<li>
+HTML in entry titles was not properly encoded in the main blog menu (it was
+on the list/edit entries screen). This is now fixed. (Richard Soderberg)
+<p></p>
+<li>
+Added note to installation docs on protecting <i>mt.cfg</i> with <i>.htaccess</i>
+file. (Patrick Gibson)
+<p></p>
+<li>
+<code>&lt;$MTCGIRelativeURL$&gt;</code> now returns the full <i>CGIPath</i> setting
+if it doesn't look like an absolute URL (rather than the empty string).
+<p></p>
+<li>
+Fixed bug in getting directory name on Win32 machines, where we were
+discarding the volume name. Now use <i>dirname</i> instead of <i>splitpath</i>.
+<p></p>
+<li>
+Errors that occur when sending pings are now logged in the activity log,
+and an error message placed on the saved entry screen.
+<p></p>
+<li>
+Fixed bug with password verification on certain FreeBSD versions of
+<code>crypt(3)</code> (where the implementation uses Blowfish), and made it work
+better in general by passing in the entire encrypted string and letting
+crypt deal with it (rather than trying to determine the salt).
+<p></p>
+<li>
+Fixed bug where <code>&lt;$MTCategoryCount$&gt;</code> would include a count of
+drafts in the category.
+<p></p>
+<li>
+Fixed bug where categories containing only drafts could still be listed by
+<code>&lt;MTCategories&gt;</code>. (girlie)
+<p></p>
+<li>
+Call <i>MT::Entry::permalink</i> in all places where it should be called (rather
+than building from <i>archive_url</i>, etc).
+<p></p>
+<li>
+Added <i>sort_by</i> and <i>sort_order</i> parameters to the search form, to
+allow for sorting within blogs in the search results.
+<p></p>
+<li>
+Added <i>month=``last''</i> attribute to the <code>&lt;MTCalendar&gt;</code> tag to
+easily create a calendar for the previous month. (wgriffin)
+<p></p>
+<li>
+Fixed bug where pings would not be sent after previewing an entry.
+<p></p>
+<li>
+If <i>PublishCharset</i> is set in <i>mt.cfg</i>, send it in the HTTP headers for
+search results, comments, and TrackBack.
+<p></p>
+<li>
+Added Slovak date formatting and fixed Czech formatting. (Bill Shakespeare)
+<p></p>
+<li>
+When setting form elements, the search script now uses <code>selected=&quot;1&quot;</code> and
+<code>checked=&quot;1&quot;</code> instead of just <code>selected</code> and <code>checked</code>, for the sake of
+validity.
+<p></p>
+<li>
+Added <i>mt.getRecentPostTitles</i>, which is a bandwidth-friendly version of
+<i>getRecentPosts</i>, returning only title, date, post ID, and the user ID of
+the creator. (Adriaan Tijsseling)
+<p></p>
+<li>
+The XML-RPC server now sends and receives the <i>mt_convert_breaks</i> field
+as a <i>String</i> value, rather than a <i>boolean</i>, to support the Text
+Formatting options.
+<p></p>
+<li>
+Keywords can now be set and retrieved via the XML-RPC server in the
+<i>mt_keywords</i> field.
+<p></p>
+<li>
+TrackBack ping URLs can be set via the XML-RPC server in
+<i>metaWeblog.newPost</i> and <i>metaWeblog.editPost</i>, in the <i>mt_tb_ping_urls</i>
+field.
+<p></p>
+<li>
+Added code to untaint plugin filenames. (sdelmont)
+<p></p>
+<li>
+Authors who do not have access to edit author permissions should not be able
+to get to the permission-editing screen, even manually. This is now fixed.
+(Jonathan Auer)
+<p></p>
+<li>
+<i>MT::Util::html_text_transform</i> (the default ``convert line breaks'' code)
+will no longer add <code>&lt;p&gt;</code> tags around paragraphs that start with
+certain HTML tags (<code>pre</code>, <code>table</code>, <code>ol</code>, <code>ul</code>, <code>pre</code>, <code>select</code>,
+<code>form</code>, and <code>blockquote</code>). (Phil Ringnalda)
+<p></p>
+<li>
+Linefeed (\r) characters are now stripped from templates and entries.
+<p></p>
+<li>
+<code>&lt;$MTArchiveTitle$&gt;</code> and <code>&lt;$MTArchiveLink$&gt;</code> now work in
+Individual Archive Templates, and they do what you'd expect.
+<p></p>
+<li>
+Fixed bug with inconsistent results for <code>&lt;$MTEntryCategory$&gt;</code>
+in search result templates.
+<p></p>
+<li>
+A search query containing only whitespace is no longer considered a search;
+instead, the <code>&lt;MTNoSearch&gt;</code> container is rendered.
+<p></p>
+<li>
+Refactored database code so that most of it can be shared amongst the
+database drivers.
+<p></p>
+<li>
+Patched German date formatting so that <i>%x</i> and <i>%X</i> are
+language-sensitive. (Alex)
+<p></p>
+<li>
+Fixed bug where an empty return value in an archive template would be
+treated as an error. (Jason Kottke)
+<p></p>
+<li>
+Added <code>&lt;br clear=&quot;all&quot; /&gt;</code> to the main index template to work
+around the IE problems. (Blake)
+<p></p>
+<li>
+Fixed bug with global attribute overloading, where both the overloaded and
+the overloader would be called. (Timothy Appnel)
+<p></p>
+<li>
+Added error checking for <code>eval &quot;use $user_class&quot;</code>. (Dennis Haney)
+<p></p>
+<li>
+Change mod_perl docs to have <i>extlib</i> added to <i>@INC</i>. (Dennis Haney)
+<p></p>
+<li>
+Changed all visible instances of <i>blog</i> to <i>weblog</i> in the system and in the
+documentation.
+<p></p>
+<li>
+Changed the <i>Convert line and paragraph breaks in comments</i> option into a
+Text Formatting selector to select a Text Formatting option. (Kristine
+Beeson)
+<p></p>
+<li>
+Moved the <i>Text Formatting</i> option on the new/edit entry screen down below
+the <i>Status</i> and <i>Authored On</i> elements.
+<p></p>
+<li>
+Fixed security hole where any author could create a blog. (Paul Hammond)
+<p></p>
+<li>
+Set tab order in comment templates using <i>tabindex</i>, so that tabbing from
+name to email address to URL to comment text field still works.
+(Kristine Beeson)
+<p></p>
+<li>
+Fix unitialized value warning with empty DB password. (Adam Kalsey)
+<p></p>
+<li>
+Provide empty <i>plugins</i> directory in full install. (Anil Dash)
+<p></p></ul>
+<p>
+<h2><a name="2.51 (2002.10.29)"></a>2.51 (2002.10.29)</h2>
+<ul>
+<li>
+Added Windows right-click bookmarklet functionality, where you can use a
+<code>Post to MT Blog</code> right click option to open the bookmarklet. Thanks to
+Anil Dash for the code.
+<p></p>
+<li>
+Added a generic <code>&lt;MTElse&gt;</code> tag, which can be used to supply an
+``else'' condition to any conditional. Thanks to Brad Choate for the code.
+<p></p>
+<li>
+Added an <code>&lt;$MTEntryPermalink$&gt;</code> tag, which does the right thing
+when displaying the link for an entry: if an individual archive, it is not
+followed by an anchor; otherwise, it is.
+<p></p>
+<li>
+When rebuilding files, only rewrite the original file if the content has
+changed. If the content is identical, leave the existing files in place,
+which won't update the modification time on the file. This allows better
+use of caching and conditional GETs when retrieving RSS (and other files).
+(Phil Ringnalda)
+<p></p>
+<li>
+Removed <code>&lt;lastBuildDate&gt;</code> from the default RSS 0.91 template and
+made <code>&lt;pubDate&gt;</code> what it should have been (the date of the most
+recent entry). This allows better use of caching and conditional GETs when
+retrieving RSS.
+<p></p>
+<li>
+Added a <i>no_colon</i> attribute to <code>&lt;$MTBlogTimezone$&gt;</code> to be used in
+constructing RFC822 dates, and fixed the format of <code>&lt;pubDate&gt;</code>.
+<p></p>
+<li>
+Fixed bug with password-protected TrackBack-enabled categories by changing
+the URL to stick the passphrase into the path_info.
+<p></p>
+<li>
+Fixed ImageMagick bug where older versions of Image::Magick would cause
+MT to give an error <code>Can't locate auto/Image/Magick/Resize.al</code> when
+creating a thumbnail. Thanks to Erin for the use of her server in figuring
+out the problem.
+<p></p>
+<li>
+Fixed bug with anchors in permalink URLs sent in TrackBack pings. (Brenna)
+<p></p>
+<li>
+Improved titles of MT screens so as to aid navigation, etc. (Justin Hall,
+and others)
+<p></p>
+<li>
+Added a <code>&lt;$MTSearchResultCount$&gt;</code> tag, which counts results across
+<strong>all</strong> blogs found in the search. (mcroft)
+<p></p>
+<li>
+Fixed bug with the TrackBack bookmarklet and single item TrackBack, where
+a typo was causing the checkbox with ping URL not to appear. (Anil)
+<p></p>
+<li>
+Set <i>charset</i> in HTTP header to the same encoding we set in the <code>meta</code>
+tag.
+<p></p>
+<li>
+Fixed problem with TrackBack URLs and servers that screw up the path info.
+<p></p>
+<li>
+Added <i>decode_xml</i> as a global tag attribute. (Timothy Appnel)
+<p></p>
+<li>
+Fixed bug where extra update pings would be sent on already-pinged entries,
+if the entries were saved from the preview screen.
+<p></p>
+<li>
+Added a <i>SafeMode</i> config setting, on by default, to check for security
+and/or other issues and disallow them, but which can be turned off.
+<p></p>
+<li>
+Disallow certain file extensions from being used in linked file templates,
+for security purposes: <i>.cgi</i>, <i>.pl</i>, <i>.pm</i>, and <i>.cfg</i>, if you're
+running in SafeMode. Thanks to Michael Croft for the note.
+<p></p>
+<li>
+Made ``Edit your Profile'' description clearer so that users know they select
+their language there. (Eduardo Arcos)
+<p></p>
+<li>
+Added <i>PublishCharset</i> option to mt.cfg to override the character encoding
+corresponding to your Preferred Language.
+<p></p>
+<li>
+Fixed bug with finding <i>ppmquant</i> when creating thumbnails of GIF images;
+<i>MT::Image</i> was looking only in the PATH.
+<p></p>
+<li>
+Changed text of <code>MORE...</code> link in default templates to <code>Continue reading
+E&lt;lt&gt;$MTEntryTitle$E&lt;gt&gt;</code>, to clearly identify the target of each link
+(for accessibility purposes). Thanks to Timothy J. Luoma for the suggestion.
+<p></p>
+<li>
+Fixed bug in import where auto-extracted titles were only copied, not cut
+out of the entry body. Also, fixed a bug where multi-line titles would not
+be recognized between ``title start'' and ``title end''.
+<p></p>
+<li>
+Added <i>CONFIGURATION SETTINGS</i> section to the manual with a description of
+all of the available <i>mt.cfg</i> settings.
+<p></p>
+<li>
+Fixed bug where archive config screen didn't work properly if it was viewed
+in a non-English language.
+<p></p>
+<li>
+Added a check for whether an alternate template (<i>AltTemplate</i>) has been
+specified for a given <i>Template</i> name in search. If not, give an error.
+The system previously gave a much more confusing error.
+<p></p>
+<li>
+Added option to <code>&lt;MTGoogleSearch&gt;</code> to pull query from entry
+keywords. (Jason Trommeter)
+<p></p>
+<li>
+Fixed <code>Can't use &quot;No title&quot; as a method name</code> bug (l10n-related).
+<p></p>
+<li>
+Fixed bug in <i>dc:date</i> in TrackBack RDF (no <code>T</code>). (Phil Ringnalda)
+<p></p>
+<li>
+You can now add the Keywords field to your bookmarklet.
+<p></p>
+<li>
+Keywords are now exported and imported properly.
+<p></p>
+<li>
+Fixed bug with <code>&lt;MTPings&gt;</code> showing all pings in the system if
+an entry doesn't have TrackBack enabled, but the tag is used.
+<p></p>
+<li>
+Fixed bug with the password recovery screen. (fmt)
+<p></p>
+<li>
+Added numeric check for limit to be used in SQL query. (Michael Stillwell)
+<p></p>
+<li>
+Fixed TrackBack URL when it contains a passphrase on category edit screen.
+<p></p>
+<li>
+Fixed <code>?</code> link for Local Archive Path in upload popup. It was showing the
+Local Site Path. (tylerted)
+<p></p>
+<li>
+Fixed a bug in <i>MT::ObjectDriver::DBM</i> that caused range searches not work
+when using join. This wasn't actually breaking anything in MT, but it was
+still a bug.
+<p></p>
+<li>
+Fixed a bug where <i>AdminCGIPath</i> was used where it shouldn've have been.
+(Jeremy Beker)
+<p></p>
+<li>
+Work around decimal places in old versions of MySQL with blog timezone.
+<p></p>
+<li>
+Fixed perl doc typo in <i>MT::Placement</i>. (Sen Nagata)
+<p></p></ul>
+<p>
+<h2><a name="2.5 (2002.10.08)"></a>2.5 (2002.10.08)</h2>
+<ul>
+<li>
+Localization: the MT interface can be available in multiple languages, on
+a per-author setting.
+<p></p>
+<li>
+Integrated Jay Allen's mt-search (Thanks, Jay!). We've made the following
+changes from version 1.31b:
+<ul>
+<li>
+Rewrote ``new comments search'' to make it more scalable (using
+<i>recently_commented_on</i> functionality)
+<p></p>
+<li>
+Added a search log through the Activity Log.
+<p></p>
+<li>
+Added search request throttling, to help against denial of service attacks.
+<p></p>
+<li>
+Merged <i>mt-search.cfg</i> directives into <i>mt.cfg</i>.
+<p></p>
+<li>
+Customized default search templates to use MT stylesheets.
+<p></p>
+<li>
+Including Template Modules using <code>&lt;MTInclude&gt;</code> tags now works,
+though you should be careful if you have more than one blog in the system.
+See the documentation for more details.
+<p></p>
+<li>
+Added an <i>IncludeBlogs</i> config setting and form field to allow for
+setting a list of blogs to include in the search (as an alternative to
+excluding a list of blogs). <i>IncludeBlogs</i> overrides <i>ExcludeBlogs</i>.
+<p></p>
+<li>
+Changed <i>AltTemplateN</i> directives to just <i>AltTemplate</i>. You can now set
+an infinite number of alternate templates.
+<p></p>
+<li>
+Renamed <i>TemplateDir</i> setting to <i>SearchTemplatePath</i> to avoid confusion
+with the <i>TemplatePath</i> setting.
+<p></p>
+<li>
+Reworked as an <i>MT::App</i> subclass.
+<p></p></ul>
+<li>
+Added ability to ping blo.gs and other services.
+<p></p>
+<li>
+Made default templates more accessible: added <i>summary</i> to calendar
+table; changed month name to a <code>&lt;caption&gt;</code> tag; changed day names
+to <code>&lt;th&gt;</code> headers and added abbreviations; blog title in banner
+is now linked back to main page; now use real header tags, eg <code>&lt;h1&gt;</code>;
+now use relative font sizes, eg <code>small</code>; use <code>&lt;label&gt;</code> on comment
+form elements. Thanks to Mark Pilgrim's 30 Days to a More Accessible Weblog.
+<p></p>
+<li>
+Image thumbnails can now be created using the NetPBM tools, if your system
+has those. Look at the <i>ImageDriver</i> and <i>NetPBMPath</i> settings in <i>mt.cfg</i>.
+The default is still to use ImageMagick.
+<p></p>
+<li>
+Added TrackBack auto-discovery, which can automatically find TrackBack ping
+URLs based on permalinks in entry bodies. These entries can then be pinged
+without any extra effort. Inspired in part by the pingback specification.
+<p></p>
+<li>
+Added a new stylesheet as the new default style for new blogs.
+<p></p>
+<li>
+Added a Keywords field to the new/edit entry screen, for storing search
+keywords/metadata, along with a <code>&lt;$MTEntryKeywords$&gt;</code> tag.
+<p></p>
+<li>
+Fixed RSS 1.0 template so that we're now using Dublin Core tags instead of
+RSS 0.9x extensions. Thanks to many concerned parties. :)
+<p></p>
+<li>
+Fixed a bug in the MySQL implementation with <i>recently_commented_on</i> when
+using MySQL 3.23.45 (or earlier?). Thanks to Adam Kalsey for the fix.
+<p></p>
+<li>
+TrackBack pings should now be sent using POST instead of GET.
+<p></p>
+<li>
+Added <code>encode_xml=&quot;1&quot;</code> to the <code>&lt;$MTEntryLink$&gt;</code> tags in the default
+RSS templates (to encode ampersands, among other things).
+<p></p>
+<li>
+Update pings (eg weblogs.com, blo.gs, MT, etc) are now sent <strong>only</strong> when an
+entry is either new (and published), or was previously a draft, and is now
+published.
+<p></p>
+<li>
+Send entry title in subject of notification messages.
+<p></p>
+<li>
+Added two new date formatting tags, <code>%x</code> and <code>%X</code>. The former displays
+the language-sensitive date, and the latter the language-sensitive time.
+<p></p>
+<li>
+Improved the default settings for <i>TemplatePath</i>, <i>ImportPath</i>,
+<i>PluginPath</i>, and <i>SearchTemplatePath</i>, so that they are now based on
+the detected directory where MT is run from, rather than just <i>./foo</i>
+(off of the current working directory).
+<p></p>
+<li>
+Added <code>&lt;MTBlogs&gt;</code>, a container tag to list all of the blogs in
+the system.
+<p></p>
+<li>
+Fixed thumbnail and HTML popup filenames when the uploaded image filename
+contains multiple <code>.</code> (periods). (Ask Bj&oslash;rn Hansen)
+<p></p>
+<li>
+<code>&lt;$MTCategory*$&gt;</code> tags can now be used in category archive file
+templates.
+<p></p>
+<li>
+<i>MT::Util::encode_xml</i> now encodes apostrophes for XML. (Timothy Appnel)
+<p></p>
+<li>
+All container tags in <i>MT::Template::Context</i> now propagate conditions
+properly. (Brad Choate)
+<p></p>
+<li>
+Added <i>sprintf</i> global tag attribute. Thanks to Brad Choate for the patch.
+<p></p>
+<li>
+Increased height of main entry text window if there is no extended entry.
+<p></p>
+<li>
+Changed RDF so that TrackBack ping URL is now in <i>trackback:ping</i>.
+Should be backwards-compatible.
+<p></p>
+<li>
+Added AdminCGIPath setting to use if <i>mt.cgi</i> URI is different than
+public URI (eg if you're using <i>https</i>).
+<p></p>
+<li>
+<code>&lt;$MTBlogEntryCount$&gt;</code> no longer includes entries marked Draft.
+(Brad Choate)
+<p></p>
+<li>
+Added <i>MT-&gt;version_number</i> for just the numeric portion of the version.
+<p></p>
+<li>
+Changed TrackBack ping URLs to use path info for TrackBack ID instead of
+query string. This allows using POST requests.
+<p></p>
+<li>
+Tags can now be used with XMLish <i>/</i> (forward slash) at the end, which
+allows using a tag both as a container and as a variable tag. Multiline
+attributes are also possible. Thanks to Brad Choate for the patch.
+<p></p>
+<li>
+Search and replace (within MT) can now search in keywords.
+<p></p>
+<li>
+Set default date formatting language to English if not set.
+<p></p>
+<li>
+Added optional <i>language</i> attribute to <code>&lt;$MT*Date$&gt;</code> tags,
+allowing you to override your per-blog language date formatting setting.
+(Justin Hall)
+<p></p>
+<li>
+Added entry title to comment and TrackBack ping notification messages.
+<p></p>
+<li>
+Added <code>&lt;MTPingsSent&gt;</code> container to list the TrackBack pings sent from
+a particular entry.
+<p></p>
+<li>
+Added <code>&lt;$MTBlogSitePath$&gt;</code>, the Local Site Path from blog config.
+<p></p>
+<li>
+Fixed bug with <i>OR</i> in part of category name when using boolean with
+<code>&lt;MTEntries category=&quot;Foo OR Bar&quot;&gt;</code>.
+<p></p>
+<li>
+Container tags can now be nested within container tags of the same name
+(eg <code>&lt;MTEntries&gt;</code> inside another <code>&lt;MTEntries&gt;</code>) without
+using a template module. Thanks to Brad Choate for the patch.
+<p></p>
+<li>
+Default <i>PingTimeout</i> setting is now 15 seconds instead of 10.
+<p></p>
+<li>
+Added checkbox in bookmarklet TrackBack item when there is just one TB-enabled
+entry. Thanks to Phil Ringnalda.
+<p></p>
+<li>
+Fixed bug with half timezones and MySQL by changing blog_server_offset
+column to a float.
+<p></p>
+<li>
+Improved security when deleting objects--now we perform the ``has-permissions?''
+check not only before displaying the option to delete in the UI, but also
+before deleting the actual object in the system.
+<p></p>
+<li>
+Fixed CGIMaxUpload example in <i>mt.cfg</i>; the underscore was causing the
+postmax to be set to 500 bytes, causing spurious <code>Uploaded file too large</code>
+errors.
+<p></p>
+<li>
+Daily, Weekly, and Monthly archives are now rebuilt in segments, N entries
+at a time, just like individual archives. N is based on a multiplier of
+the <i>EntriesPerRebuild</i> setting in <i>mt.cfg</i>.
+<p></p>
+<li>
+Moved all XML-RPC implementation methods into <i>MT::XMLRPCServer</i>, so that
+<i>mt-xmlrpc.cgi</i> is just a shell. This allows using the XML-RPC implementation
+with mod_perl.
+<p></p>
+<li>
+Added <i>mt_allow_comments</i>, <i>mt_allow_pings</i>, <i>mt_convert_breaks</i>,
+<i>mt_text_more</i>, and <i>mt_excerpt</i> extensions to the content struct in
+<i>metaWeblog.newPost</i> and <i>metaWeblog.editPost</i>, and to the return
+values in <i>metaWeblog.getPost</i> and <i>metaWeblog.getRecentPosts</i>.
+<p></p>
+<li>
+Only show ``5 most recent comments'' and ``5 most recent pings'' if there are
+any.
+<p></p>
+<li>
+Fixed bug with OR/AND booleans and categories: the OR/AND now respects the
+context in which it was used, and filters the list of entries already in
+context, rather than always listing all entries that match in the entire blog.
+Thanks to Ben Hatton and others.
+<p></p>
+<li>
+Added <i>CommentScript</i>, <i>TrackbackScript</i>, and <i>SearchScript</i> config
+variables to make it easier to configure MT for mod_perl or in situations
+where Perl scripts need <i>.pl</i> extensions.
+<p></p>
+<li>
+Documented the <i>words=``N''</i> attribute to <code>&lt;$MTEntryBody$&gt;</code>.
+<p></p>
+<li>
+When rebuilding an index template, the rebuilt screen now has a ``View
+this page'' link.
+<p></p>
+<li>
+List 5 most recent pings on the main menu for a blog.
+<p></p>
+<li>
+Now use <i>Resize</i> instead of <i>Scale</i> when scaling images using ImageMagick.
+Also, remove all profile information from the image. Thanks to Michael S
+for the patch.
+<p></p>
+<li>
+TrackBack pings are now imported and exported like comments.
+<p></p>
+<li>
+When exporting, make sure to set date language to English, so that exported
+AM and PM will be in English.
+<p></p>
+<li>
+<i>metaWeblog.newPost</i> and <i>metaWeblog.editPost</i> now accept a <i>dateCreated</i>
+parameter in the struct in ISO.8601 format to specify the authored-on date.
+Thanks to Bill Kearney for the reminder.
+<p></p>
+<li>
+If an author's password is NULL, <i>mt-db2mysql.cgi</i> now converts it to the
+empty string before sticking it in MySQL.
+<p></p>
+<li>
+<i>mt-check.cgi</i> now displays the version of the module installed.
+<p></p>
+<li>
+Attributes hash ref is now localized before being passed in template tag
+handlers, which means they can modify the list of attributes in a localized
+scope. Thanks to Brad Choate for the idea.
+<p></p>
+<li>
+Template parser now parses attributes with embedded <code>$</code> characters
+properly (like <code>&lt;$MTFoo bar=&quot;/baz$/&quot;$&gt;</code>). Thanks to Brad Choate
+for the pointer.
+<p></p>
+<li>
+Fixed bug with invalid (empty) ALLOW PINGS values.
+<p></p>
+<li>
+Added <code>title=&quot;page title&quot;</code> to link created in bookmarklet posting window.
+<p></p>
+<li>
+Added validity checking for URLs sent in TrackBack pings.
+<p></p>
+<li>
+Only load files in the plugin directory whose extensions are <i>.pl</i>.
+(staggernation)
+<p></p>
+<li>
+Added <i>show_email</i> and <i>show_url</i> to <code>&lt;$MTEntryAuthorLink$&gt;</code> and
+<code>&lt;$MTCommentAuthorLink$&gt;</code>. These let you control whether the email
+address or URL is displayed in a particular instance of the tag. (syndromes)
+<p></p>
+<li>
+Added the following languages for date formatting:
+<ul>
+<li><strong><a name="item_Japanese"></a>Japanese (Justin Hall)</strong><br>
+
+<li><strong><a name="item_Icelandic"></a>Icelandic (Einar Orn Einarsson, Ingvi)</strong><br>
+
+<li><strong><a name="item_Slovenian"></a>Slovenian (gandalfar)</strong><br>
+
+<li><strong><a name="item_Czechoslovakian"></a>Czechoslovakian (Johanka)</strong><br>
+
+<li><strong><a name="item_Danish"></a>Danish (henrik hammer berthelsen)</strong><br>
+
+</ul>
+<li>
+Link from bookmarklet now includes <i>title</i> attribute with title of page.
+(Todd Dominey)
+<p></p>
+<li>
+Fixed <i>postion</i> to <i>position</i> in the default stylesheet. (Doug Feuerbach)
+<p></p>
+<li>
+Added a link to the edit-entry screen on the edit-comment screen to edit the
+entry on which the comment was made.
+<p></p>
+<li>
+Fixed bug where author count could include authors who no longer have
+permissions on the blog.
+<p></p>
+<li>
+Added <i>mt.publishPost</i> method to XML-RPC interface to rebuild the files for
+a particular entry.
+<p></p>
+<li>
+Improved detection of MT directory (now detected from <i>Config</i> parameter to
+<i>MT::new</i>).
+<p></p>
+<li>
+Changed TrackBack entry pulldown in bookmarklet to <i>menu-long</i> style.
+(girlie)
+<p></p>
+<li>
+TrackBack RDF data is now enclosed in HTML comment tags.
+Added <i>comment_wrap</i> attribute to <code>&lt;$MTEntryTrackbackData$&gt;</code> to
+turn off this wrapping.
+<p></p>
+<li>
+Added namespace URLs to the <code>&lt;html&gt;</code> tags in the default templates.
+<p></p>
+<li>
+Fixed bug when importing data when using the MySQL version when ``import as
+me'' is unchecked. (Kristine)
+<p></p>
+<li>
+If the path you specify as your <i>DataSource</i> in <i>mt.cfg</i> does not exist,
+you will now get an error. This should help in figuring out installation
+problems, perhaps.
+<p></p>
+<li>
+Added <i>MT::Template::Context::add_global_filter</i> to add a global tag
+attribute.
+<p></p>
+<li>
+Added <i>NoLocking</i> config option for use on systems using Berkeley DB where
+<i>flock()</i> and <i>link()</i> are both unimplemented (some Windows systems). Not
+to be used unless one knows what one is doing. Thanks to dws for the patch.
+<p></p>
+<li>
+Added the <code>&lt;MTCommentEntry&gt;</code> tag, a container tag representing the
+entry on which a comment was posted. So you can use <code>&lt;$MTEntry*$&gt;</code>
+tags inside of that container referring to the entry.
+<p></p>
+<li>
+Fixed <i>dc:identifier</i> and URL sent in TrackBack ping so that they include
+the numeric ID for the permalink, if the preferred archive type is not
+individual.
+<p></p>
+<li>
+Added the <code>&lt;$MTStaticWebPath$&gt;</code> tag, which displays the value of
+the <i>StaticWebPath</i> that you've set in <i>mt.cfg</i>.
+<p></p>
+<li>
+The comment sort order you've chosen in Blog Config | Preferences is now
+used to sort the comments used in <code>&lt;MTComments lastn=&quot;N&quot;&gt;</code>. You
+can override this with the new <i>sort_order</i> attribute. Thanks to morbus
+for the patch.
+<p></p>
+<li>
+Changed order of tag initialization in <i>MT::Template::Context::init</i>. Now
+tags created in plugins are set after the defaults, which means you can
+override the default tags. This should, of course, be done with caution.
+Thanks to Jay Allen for the reasoning.
+<p></p>
+<li>
+Fixed compatibility problem with older versions of <i>DBD::mysql</i>, where
+the auto-increment column value is returned through <code>$dbh-&gt;{insertid}</code>,
+rather than <code>$dbh-&gt;{mysql_insertid}</code>.
+<p></p>
+<li>
+Added <i>MT::Template::Context::add_conditional_tag</i> to add a conditional
+tag. This makes it easy for plugins to add conditional tags.
+<p></p>
+<li>
+Fixed bug causing double slashes in <code>&lt;img&gt;</code> code for thumbnails.
+<p></p></ul>
+<p>
+<h2><a name="2.21 (2002.06.28)"></a>2.21 (2002.06.28)</h2>
+<ul>
+<li>
+Very important bug fix to MySQL schema: Changed all <i>*_created_on</i> columns
+to the <i>datetime</i> type instead of the <i>timestamp</i> type. The latter could
+have very bad effects if used within the MySQL shell (although through
+MT's libraries it is not a problem). Thanks to shanson for finding this.
+<p></p>
+<li>
+The plugin framework can now create container tags (thanks to Adam Kalsey
+for pointing out that it couldn't before).
+<p></p>
+<li>
+Added <i>encode_xml</i> global tag attribute to escape special XML characters.
+<p></p>
+<li>
+Changed default RSS templates to use <i>encode_xml=``1''</i> rather than
+<i>encode_html=``1''</i>, because the latter will encode characters into undefined
+XML entities.
+<p></p>
+<li>
+Added <i>encoding=``iso-8859-1''</i> to default RSS templates. This means that
+users using other encodings will have to change the RSS templates.
+<p></p>
+<li>
+Made <i>bind_columns</i> usage compatible with older versions of DBI that
+expect the attributes hashref as the first arg.
+<p></p>
+<li>
+Fixed bug with <i>Allow pings default</i> not being unchecked after pressing
+save. (Robyn)
+<p></p>
+<li>
+Fixed MySQL usage under mod_perl to look in the right spot for the
+<i>mt-db-pass.cgi</i> file. Thanks to Ask Bj&oslash;rn Hansen for the patch.
+<p></p>
+<li>
+Fixed <i>mt-load.cgi</i> to set <i>email</i> to the empty string, so that it's
+not NULL.
+<p></p>
+<li>
+Changed from using <code>lib-&gt;import</code> method back to <code>unshift @INC</code> because
+the former seemed to be causing problems for some people.
+<p></p></ul>
+<p>
+<h2><a name="2.2 (2002.06.26)"></a>2.2 (2002.06.26)</h2>
+<ul>
+<li>
+Added TrackBack, a peer-to-peer framework for communication between weblogs.
+Can track cross-weblog conversations/discussions, provides remote content
+repositories. Has password protection, IP banning, automatic RSS output, and
+email notification.
+<p></p>
+<li>
+Added MySQL backend support.
+<p></p>
+<li>
+Added the <code>&lt;$MTBlogRelativeURL$&gt;</code> tag to produce a relative URL to
+your main blog.
+<p></p>
+<li>
+Added <code>&lt;link&gt;</code> tag navigation (prev, next, start) to Individual
+and Date-based archive templates. Thanks to Mark Pilgrim.
+<p></p>
+<li>
+Strip HTML from author, email, and URL comment fields.
+<p></p>
+<li>
+Added <i>decode_html</i> global tag attribute to decode HTML entities.
+<p></p>
+<li>
+Added <i>title=``1''</i> and <i>excerpt=``1''</i> attributes to
+<code>&lt;MTGoogleSearch&gt;</code>. Thanks to Dave Sifry for the patch.
+<p></p>
+<li>
+Added the ability to easily add new tags via the <i>plugins</i> directory and
+the <i>MT::Template::Context::add_tag</i> method. Thanks to Felix S. Gallo for
+the idea.
+<p></p>
+<li>
+Improved text generated from uploaded image or file. (Brad Lauster)
+<p></p>
+<li>
+Changed appearance of pinging and rebuilding windows.
+<p></p>
+<li>
+Auto-select default post status when blog is selected in bookmarklet.
+<p></p>
+<li>
+Added <i>permaLink</i> element to the struct returned from <i>metaWeblog.getPost</i>
+and <i>metaWeblog.getRecentPosts</i>.
+<p></p>
+<li>
+Fixed bug with saving entry you created when you don't have rebuild
+permissions.
+<p></p>
+<li>
+Added <i>PingTimeout</i> setting.
+<p></p>
+<li>
+Split off rebuild and ping from save entry, so that they now occur on
+separate screens (though still automatically). This gives a better indication
+of status to the user, as well as enabling more ping options (like
+TrackBack).
+<p></p>
+<li>
+Added descriptions for categories and the
+<code>&lt;$MTCategoryDescription$&gt;</code> tag.
+<p></p>
+<li>
+If entry does not have title in search results, first 22 chars of body
+will be used instead.
+<p></p>
+<li>
+Fixed bug where entries saved as Draft would show up when using <code>OR</code> or
+<code>AND</code> in the <code>&lt;MTEntries category=&quot;...&quot;&gt;</code> tag.
+<p></p>
+<li>
+Fixed <code>related=&quot;1&quot;</code> google search.
+<p></p>
+<li>
+Added Finnish as a date formatting option. (skithund)
+<p></p>
+<li>
+Made <code>&lt;$MTEntryDate$&gt;</code> work in comment listing template.
+<p></p>
+<li>
+Standardized stylesheet links in default templates.
+<p></p>
+<li>
+Changed admin:generatorAgent to the proper format (a URI).
+<p></p>
+<li>
+Added &lt;link&gt; tag for RSS template to default main index.
+<p></p></ul>
+<p>
+<h2><a name="2.11 (2002.05.03)"></a>2.11 (2002.05.03)</h2>
+<ul>
+<li>
+Updated documentation on linking to comments.
+<p></p>
+<li>
+Fixed bug with <code>&lt;$MTCommentPreviewIsStatic$&gt;</code> tag causing build
+errors when previewing comments. (Introduced in 2.1)
+<p></p>
+<li>
+Fixed bug with <code>&lt;$MTArchiveCount$&gt;</code> not working properly for
+category archives.
+<p></p></ul>
+<p>
+<h2><a name="2.1 (2002.05.02)"></a>2.1 (2002.05.02)</h2>
+<ul>
+<li>
+Added <i>webMaster</i>, <i>language</i>, <i>lastBuildDate</i>, and <i>pubDate</i> to both
+RSS templates.
+<p></p>
+<li>
+Added <code>encode_html=&quot;1&quot;</code> to all RSS fields that didn't have it already.
+<p></p>
+<li>
+Added Norwegian dates.
+<p></p>
+<li>
+Added test for <i>mt-check.cgi</i> to determine whether we are running under
+cgiwrap or suexec.
+<p></p>
+<li>
+Added a new global tag attribute <i>encode_url</i> (thanks to Scott Andrew
+LePera and others for the idea).
+<p></p>
+<li>
+Changed the behavior of the <i>publish</i> flag in <i>blogger.newPost</i>; previously,
+if set to <code>false</code> the new entry would be saved as a draft. This was a bad
+idea, for various reasons. So now, no matter the value of the <i>publish</i>
+flag, the new entry is saved with post status == publish. It will just not be
+published until rebuilt manually. There is a new <i>mt.cfg</i> option,
+<i>NoPublishMeansDraft</i>, which when set to <code>1</code> enables the old behavior.
+<p></p>
+<li>
+<i>mt-xmlrpc.cgi</i> will now decode the <code>&amp;apos;</code> entity properly.
+<p></p>
+<li>
+Added <i>mt.getCategoryList</i>, <i>mt.getPostCategories</i>, and
+<i>mt.setPostCategories</i> to the XML-RPC API. Thanks to Daniel Drucker for
+the original implementation of these methods.
+<p></p>
+<li>
+Added a <i>metaWeblog.getRecentPosts</i> method, which is like the
+<i>blogger.getRecentPosts</i> method, but returns more information about each
+entry (equivalent to the data returned from <i>metaWeblog.getPost</i>), including
+the entry <i>title</i>.
+<p></p>
+<li>
+Changed <code>#calendar</code> to <code>.calendar</code> in default stylesheet to match with
+usage in the templates.
+<p></p>
+<li>
+Fixed date in notification messages to use MT date-formatting, which means
+that it will now work properly on systems that don't support <code>%e</code>, and
+that it will use the selected date formatting language from the blog config.
+<p></p>
+<li>
+Fix bug with categories not being created in import if a category of the
+same name exists in a different blog. (Jonathon Delacour)
+<p></p>
+<li>
+Silence warnings in <i>mt-xmlrpc.cgi</i> execution.
+<p></p>
+<li>
+The export mechanism now exports your Post Status, Allow Comments, and
+Convert Breaks values for each entry, and the import mechanism will import
+them. This means that when you use export-import to transfer data, this
+metadata will not get lost in the transfer.
+<p></p>
+<li>
+Added <code>&lt;$MTEntryFlag$&gt;</code> and <code>&lt;$MTEntryStatus$&gt;</code> tags. They
+are not particularly useful in templates, but they are used in the export
+mechanism.
+<p></p>
+<li>
+<i>mt-xmlrpc.cgi</i> will now look for <i>mt.cfg</i> using the full path to the file,
+rather than just in the current working directory.
+<p></p>
+<li>
+Added <i>HTMLPerms</i> and <i>UploadPerms</i> to give even more control over the
+permissions of files created by the system--this can be used if you are
+generating PHP files on a server that needs the execute bit set on PHP
+files, for example. Thanks to <a href="mailto:mval@axium.net">mval@axium.net</a> and <a href="mailto:mouse@axium.net.">mouse@axium.net.</a>
+<p></p>
+<li>
+Subjects of notification email messages will now be converted to 7-bit to
+comply with the regulation that mail headers should be 7-bit. (dotWisner)
+<p></p>
+<li>
+Added <code>Content-Transfer-Encoding: 8bit</code> to notification messages in case
+contents contain 8-bit-encoded data. (dotWisner)
+<p></p>
+<li>
+Fixed a long-standing bug with email notifications using <i>Mail::Sendmail</i>
+(the SMTP usage), where the notifications would not get sent. Now they will
+get sent.
+<p></p>
+<li>
+Added a <code>rebuild_me</code> flag to <i>MT::Template</i> so that index templates can be
+set to not automatically rebuild; in this case, they need to be rebuilt
+manually using the <code>REBUILD</code> button on the template-editing page.
+<p></p>
+<li>
+Added the ability to rebuild one index template at a time.
+<p></p>
+<li>
+Big rebuilding speedup by caching all placements for a particular blog in
+memory so that usage of <code>&lt;$MTEntryCategory$&gt;</code> should now be much
+faster. This requires the new <code>blog_id</code> column in <i>MT::Placement</i>, which
+is why we need to the <i>mt-upgrade201.cgi</i> script.
+<p></p>
+<li>
+When using Mozilla or NS 6, textareas should now wrap properly (finally).
+Thanks to Ask Bj&oslash;rn Hansen for the hack.
+<p></p>
+<li>
+Give an error message when rebuilding if an index template does not have an
+Output File set.
+<p></p>
+<li>
+Now use <code>spam_protect</code> in comment email tags in default templates.
+<p></p>
+<li>
+Added ``generator'' info to RSS 0.91 and RSS 1.0 index templates to idenfity
+Movable Type as the RSS generator.
+<p></p>
+<li>
+Fixed bug in import where importing comments using <code>NO ENTRY</code> could import
+comments into a different blog than the one intended.
+<p></p>
+<li>
+Fixed DOCTYPE URL in default templates.
+<p></p>
+<li>
+Speed boost: <code>&lt;MTArchiveList archive_type=&quot;Category&quot;&gt;</code> (and
+<code>&lt;MTCategories&gt;</code>) no longer load the list of entries in the category
+automatically; instead, they only load the list if you use an
+<code>&lt;MTEntries&gt;</code> tag inside of the container. Sample numbers: 10s for
+rebuilding the list 100 times before, 4s after the change.
+<p></p>
+<li>
+Added <i>mt.supportedMethods</i> method to <i>mt-xmlrpc.cgi</i>, to return a list of
+supported methods.
+<p></p>
+<li>
+In the ``view complete list of authors'' screen, you can now only delete
+authors who you have created, or yourself.
+<p></p>
+<li>
+<code>&lt;$MTEntryExcerpt convert_breaks=&quot;1&quot;$&gt;</code> will now properly add
+&lt;p&gt; and &lt;/p&gt; tags around an excerpt even if the excerpt is
+auto-generated.
+<p></p>
+<li>
+Added Google API hook for search and similar search in
+<code>&lt;MTGoogleSearch&gt;</code>.
+<p></p>
+<li>
+Added <code>&lt;MTEntriesHeader&gt;</code> and <code>&lt;MTEntriesFooter&gt;</code>. Thanks
+to wcowley for the patch.
+<p></p>
+<li>
+Now supports three <i>metaWeblog</i> methods: <i>newPost</i>, <i>editPost</i>, and
+<i>getPost</i>.
+<p></p>
+<li>
+Added note about using <i>PERL5LIB</i> in mod_perl setup instructions.
+<p></p>
+<li>
+When importing an entry, if it has comments listed in the import file,
+the <i>allow_comments</i> flag will automatically be set, even if the default is
+not to allow comments on new entries.
+<p></p>
+<li>
+The <code>offset</code> attribute to <code>&lt;MTEntries&gt;</code> will now work even when
+there is already a list of entries in context, which means that you can use it
+like this:
+<pre>&lt;MTArchiveList archive_type=&quot;Monthly&quot;&gt;
+&lt;$MTArchiveTitle$&gt;
+&lt;MTEntries lastn=&quot;2&quot;&gt;&lt;$MTEntryTitle$&gt;&lt;br /&gt;&lt;/MTEntries&gt;
+&lt;MTEntries lastn=&quot;2&quot; offset=&quot;2&quot;&gt;&lt;$MTEntryTitle$&gt;&lt;br /&gt;&lt;/MTEntries&gt;
+&lt;/MTArchiveList&gt;
+</pre><p></p>
+<li>
+The file extension for popup HTML files generated from uploaded images is
+now determined by the archive file extension, if set, and <code>.html</code> otherwise.
+<p></p>
+<li>
+You can now use absolute paths in the <i>Output file</i> setting for index
+templates.
+<p></p>
+<li>
+Updated documentation on MT import format.
+<p></p>
+<li>
+If no format is provided to a date tag (eg. <code>&lt;$MTDate$&gt;</code>), the
+default format used is now influenced by the language setting.
+<p></p>
+<li>
+Wrote documentation for the <i>MT::Util</i> utility functions.
+<p></p>
+<li>
+Rewrote <i>MT::Util::wdays_from_ts</i> so that the weekday is calculated
+internally, rather than relying on <i>Time::Local</i> to convert an MT timestamp
+into epoch seconds to get the weekday. This allows usage of dates before
+1970 and after 2037 in MT.
+<p></p>
+<li>
+<i>Syndicate this site</i> link in default templates now links to RSS 1.0.
+<p></p>
+<li>
+Fixed bug with <code>&lt;$MTArchiveCategory$&gt;</code> not showing the right
+category.
+<p></p>
+<li>
+Fixed bug with thumbnail URL with windows pathnames.
+<p></p>
+<li>
+Added half-timezones: <code>UTC+9.5</code>, <code>UTC+6.5</code>, <code>UTC+5.5</code>, <code>UTC+3.5</code>,
+<code>UTC-3.5</code>.
+<p></p>
+<li>
+Changed name of bookmarklet window from <code>MTpost</code> to <code>_blank</code> so that multiple
+windows can be opened at once.
+<p></p>
+<li>
+Add a <code>/</code> to the end of the <i>StaticWebPath</i> value if it doesn't already have
+one at the end.
+<p></p>
+<li>
+Made it clearer that saving the secondary categories does not rebuild.
+<p></p>
+<li>
+Fixed month names (Feb, Dec) for French dates, and Sunday for Swedish. Also,
+now just use AM/PM instead of du matin/du soir.
+<p></p>
+<li>
+Fixed link to export in <i>Import &amp; Export Entries</i>.
+<p></p>
+<li>
+Changed Comment popup link in default templates so that it will work even
+without Javascript.
+<p></p>
+<li>
+Changed <code>{spam_protect}</code> to <code>{'spam_protect'}</code>, <code>{m}</code> to <code>{'m'}</code>, and
+<code>{y}</code> to <code>{'y'}</code> so as not to cause errors in the (very old) 5.004_04
+version of Perl.
+<p></p>
+<li>
+Fixed permissions in <i>755.gif</i> image in docs.
+<p></p>
+<li>
+Fixed bug where directories were not being automatically created on OS X;
+turns out OS X doesn't like <code>/</code> at the end of a directory in <i>mkdir()</i>.
+<p></p>
+<li>
+Fixed <i>encode_php</i> (which I broke). Thanks to Brad Choate.
+<p></p>
+<li>
+Added <i>NoHTMLEntities</i> option to the <i>mt.cfg</i> option to specify whether
+<i>HTML::Entities</i> should be used in encoding characters into entities.
+<p></p>
+<li>
+Added the <i>glue</i> attribute to <code>&lt;MTEntryCategories&gt;</code>.
+<p></p>
+<li>
+Added the ability to use the <i>static</i> input field in comments to pass
+through a URL to redirect to after posting a comment. Thanks to Boxes &amp;
+Arrows for the idea.
+<p></p>
+<li>
+Fixed cookie path when <i>mt.cgi</i> is at the root of a server, like
+<i><a href="http://www.foo.com/mt.cgi">http://www.foo.com/mt.cgi</a></i>.
+<p></p>
+<li>
+Power edit window now resizable.
+<p></p>
+<li>
+Removed <strong>-T</strong> from <i>mt.cfg</i> and <i>mt-send-entry.cgi</i>.
+<p></p></ul>
+<p>
+<h2><a name="2.0 (2002.03.20)"></a>2.0 (2002.03.20)</h2>
+<ul>
+<li>
+Fixes for typos, broken links, etc.
+<p></p>
+<li>
+Fixed truncated <code>Delete</code> and <code>Cancel</code> buttons on edit comment screen.
+<p></p>
+<li>
+Fixed Mac IE problem in multiple category selection screen--when selecting
+all of the options in the left box, the right box would jump around on the
+screen. Fixed by adding a dummy category when the source box is going to be
+empty.
+<p></p>
+<li>
+<code>Preferred Archive Type</code> option will now only show archive types that you
+have selected in <code>Archiving</code>.
+<p></p>
+<li>
+Added a <code>changes saved</code> method after saving in power edit.
+<p></p>
+<li>
+Made <code>&lt;MTComments lastn=&quot;N&quot;&gt;</code> work when placed in entry context; it
+will only display the last <code>N</code> comments from that particular entry.
+<p></p></ul>
+<p>
+<h2><a name="2.0b6 (2002.03.12)"></a>2.0b6 (2002.03.12)</h2>
+<ul>
+<li>
+Added docs for entry screen customization.
+<p></p>
+<li>
+If editable authored-on date is not to be displayed on customized entry
+screen, display an uneditable version instead (because this is useful
+information).
+<p></p>
+<li>
+Fixed bug with creating thumbnails on Windows (<i>binmode</i> issue).
+<p></p>
+<li>
+Fixed bug where <code>&lt;$MTArchiveTitle$&gt;</code> on category archive would display
+incorrect category label (because it was retrieving the label from the first
+entry's primary category).
+<p></p>
+<li>
+Fixed bug where convert line breaks and allow comments values would not be
+set to default when using Custom entry screen settings without those two
+checkboxes.
+<p></p>
+<li>
+Fixed bookmarklet login bug that was introduced in 2.0b4 or somewhere.
+<p></p>
+<li>
+Power edit and list &amp; edit entries now only show authors that are
+registered for the particular blog.
+<p></p>
+<li>
+Added the <code>encode_php</code> global tag attribute (thanks to Brad Choate for the
+patch).
+<p></p>
+<li>
+Fixed bug with saving profile without setting a password (introduced in
+2.0b4).
+<p></p>
+<li>
+Moved setting of global app variables back into <i>load_tmpl</i>, because some
+other parts of the code call it directly, bypassing <i>build_page</i>.
+<p></p>
+<li>
+<i>mt-xmlrpc.cgi</i> now checks if it has <i>XML::Parser</i>; if not, it uses this
+knowledge to determine whether or not to decode HTML entities.
+<p></p>
+<li>
+Fixed bug in date/time-formatting: times in the hour of 12 PM were being
+displayed as 12 AM.
+<p></p></ul>
+<p>
+<h2><a name="2.0b5 (2002.02.27)"></a>2.0b5 (2002.02.27)</h2>
+<ul>
+<li>
+New and edit entry screens are now modular and customizable; you can set the
+fields you'd like to appear, and set where you would like the button bar (top
+or bottom of page).
+<p></p>
+<li>
+Increased width of Category pull-down in bookmarklet window.
+<p></p>
+<li>
+The form you get after you've uploaded a file will no longer submit in err
+when you press return; all submits are through the buttons using JS anyway,
+so the form submit is now disabled.
+<p></p>
+<li>
+Changed error screen so that there are now 2 buttons: <i>CLOSE</i> and <i>GO
+BACK</i>. So it's clearer what happens when you click the buttons.
+<p></p>
+<li>
+Refactored <i>build_page</i> and <i>load_tmpl</i> code; CMS-specific logic now goes
+into <i>MT::App::CMS::build_page</i>, and parameter-setting goes into
+<i>MT::App::build_page</i>. So <i>load_tmpl</i> now just loads the template.
+<p></p>
+<li>
+Fix import so that new imported entries get <code>Convert Line Breaks</code> set
+properly.
+<p></p>
+<li>
+When listing Five most recent entries on editing menu, grab first 22
+characters of entry body if no entry title.
+<p></p></ul>
+<p>
+<h2><a name="2.0b4 (2002.02.25)"></a>2.0b4 (2002.02.25)</h2>
+<ul>
+<li>
+Added <code>border=&quot;0&quot;</code> for thumbnail image after choosing popup image; also
+fixed the invalid XHTML.
+<p></p>
+<li>
+Fix thumbnail creation error by providing <i>Image::Magick</i> with the image
+format on <i>$magick</i> object creation.
+<p></p>
+<li>
+Fix bug on category-editing page where an error will be displayed if the user
+who created a category has been deleted.
+<p></p>
+<li>
+When creating a new author, give an error if no password is provided.
+<p></p>
+<li>
+Fix bug with <i>Convert Line Breaks</i> being unchecked for pre-2.0 entries even
+if the default in blog config is set to on.
+blog
+<p></p>
+<li>
+Cache format hashes for dates after creating them.
+<p></p>
+<li>
+Added another speed enhancement, particularly for large archive pages, by
+caching the <i>MT::TemplateMap</i> preferred object for an archive type.
+<p></p>
+<li>
+Moved excerpt below entry body and extended entry body in bookmarklet window
+to match layout on edit/new entry pages.
+<p></p></ul>
+<p>
+<h2><a name="2.0b3 (2002.02.23)"></a>2.0b3 (2002.02.23)</h2>
+<ul>
+<li>
+New <code>New Entry</code> and <code>Upload File</code> icons for left nav.
+<p></p>
+<li>
+Added troubleshooting section for <i>mt-load.cgi</i> and <i>DataSource</i> errors.
+<p></p>
+<li>
+Added <code>Post Status</code> pulldown to import so that <code>&quot;Status&quot; default</code> in blog
+config can be overriden. Added help links to import options.
+<p></p>
+<li>
+Added Javascript validation for every DELETE button that deletes items from a
+list; if nothing is checked, now gives a JS alert.
+<p></p>
+<li>
+HTML-formatting buttons (bold, italic, URL, etc.) will now only show up when
+using a browser that supports them.
+<p></p>
+<li>
+<i>mt-upgrade.cgi</i> now detects if MT databases are already upgraded; if so,
+it stops, and doesn't try to upgrade again.
+<p></p>
+<li>
+When running under mod_perl, use <i>Apache::Request</i> instead of <i>CGI.pm</i>,
+because it's faster, less bulky, etc. Required changes to any code calling
+<i>CGI.pm</i> functions other than <i>param</i>.
+<p></p>
+<li>
+Deleting entries from the power edit screen will now return you back to the
+power edit screen (as opposed to list &amp; edit entries).
+<p></p>
+<li>
+Saving the power edit screen will now maintain the same page that you were on
+when you saved, rather than starting back at the beginning.
+<p></p>
+<li>
+Fixed a bug in <i>MT::ObjectDriver::DBM</i> where offset would not be applied
+when using a join.
+<p></p>
+<li>
+Fixed heights on power-edit input boxes and on thumbnail boxes.
+<p></p>
+<li>
+Fixed Monthly rebuild slowness (thanks to Norch for the shell access so I
+could debug it). Turns out it was due to some unimplemented short-circuit
+logic. In addition, templatemaps are now cached to speed up rebuild even
+further.
+<p></p>
+<li>
+Category and author Filter pulldowns are now sorted alphabetically.
+<p></p>
+<li>
+Fixed Email Address =&gt; IP Address on IP Banning screen.
+<p></p>
+<li>
+Fixed help links (broken when help file names were shortened).
+<p></p></ul>
+<p>
+<h2><a name="2.0b2 (2002.02.20)"></a>2.0b2 (2002.02.20)</h2>
+<ul>
+<li>
+Sort categories and authors in power-edit screen.
+<p></p>
+<li>
+Changed input box styles back to 20px so that they are not too small in
+Windows.
+<p></p>
+<li>
+Added caching of templates when rebuilding archives; this means that for
+each archive type, each archive template need only be loaded once. Hopefully
+this will improve performance.
+<p></p>
+<li>
+Fixed bug where <code>Convert Line Breaks</code> setting was not applied to preview
+page.
+<p></p>
+<li>
+Shortened manual split page names so that they don't get truncated.
+<p></p>
+<li>
+Export now exports in ascending chronological order. (morbus, and others)
+<p></p>
+<li>
+Added &lt;p&gt; and &lt;/p&gt; around the welcome message on the editing
+menu, so that anything typed in (even without adding HTML) will get the
+proper type formatting.
+<p></p>
+<li>
+Untaint template's linked file path; we allow anything, assuming that the
+user who set it up knows what he/she is doing. (Norch)
+<p></p>
+<li>
+Fixed <i>recently_commented_on</i>, which was broken because it was resorting the
+entries into the wrong order.
+<p></p>
+<li>
+Fix warning when select <code>all entries</code> for limit pulldown on list &amp; edit
+entries.
+<p></p>
+<li>
+Added bookmarklet config option to include <code>Convert Line Breaks</code> checkbox on
+bookmarklet window.
+<p></p>
+<li>
+Fixed bug where <code>Convert Line Breaks</code> would not get set when posting from
+bookmarklet. (RoyalTS)
+<p></p>
+<li>
+Fixed bug with German date/time display. (RoyalTS)
+<p></p>
+<li>
+Fixed typo in <i>mtchanges.html</i>. (morbus)
+<p></p></ul>
+<p>
+<h2><a name="2.0b1 (2002.02.18)"></a>2.0b1 (2002.02.18)</h2>
+<ul>
+<li>
+Lots of changes to the UI: leftnav, topnav, edit-entry screen, new-entry
+screen, etc.
+<p></p>
+<li>
+Blog Editing Menu has now changed greatly to provide space for a welcome
+message (editable in blog config), blog stats, and links to 5 most recent
+posts and comments.
+<p></p>
+<li>
+Added the ability to do NFS-safe database locking using <i>.lock</i> files and
+<i>link()</i>. This is not something most people should worry about; if it
+affects you, it's likely that you will know it. :) Thanks to Kelsey Cummings
+for ideas and code.
+<p></p>
+<li>
+<code>Hold</code> and <code>Release</code> are now <code>Draft</code> and <code>Publish</code>.
+<p></p>
+<li>
+<code>&lt;MTEntries lastn=&quot;1&quot;&gt;</code> within calendar should display the most
+recent post from that day, not the earliest. Fixed.
+<p></p>
+<li>
+In old versions, search and replace would not work unless you had the
+permission to edit all entries. Now it does--if you don't have permission to
+edit a particular entry, it is just not searched/replaced.
+<p></p>
+<li>
+Added notes on Win32 installation, cgiwrap install, <i>cgi-bin</i> install, etc.
+Added example pictures of set permissions window in FTP program.
+<p></p>
+<li>
+When posting a comment, if comment text is not provided the system will give
+an error.
+<p></p>
+<li>
+Split up manual into sections, one HTML page per section.
+<p></p>
+<li>
+<code>encode_js</code> no longer encodes <code>/</code> characters, because there is no reason
+to do so.
+<p></p>
+<li>
+Added thumbnail creation interface (requires <i>Image::Magick</i>) for creating
+thumbnails of images uploaded through the system.
+<p></p>
+<li>
+Added the ability to select a language other than English for date formatting
+and display.
+<p></p>
+<li>
+Added a script for ``mail this entry''
+<p></p>
+<li>
+Added boolean AND/OR logic to the <code>&lt;MTEntries&gt;</code> <code>category</code> attribute.
+<p></p>
+<li>
+Added power-editing interface.
+<p></p>
+<li>
+Status of imported entries will now be set to the default status assigned in
+blog configuration (rather than always Release, as was the case before).
+<p></p>
+<li>
+Changed <code>class=&quot;container&quot;</code> to <code>id=&quot;container&quot;</code> in default templates.
+(Thanks to Brad Lauster)
+<p></p>
+<li>
+Added graphical editing shortcuts to bookmarklet window.
+<p></p>
+<li>
+Use <i>HTML::Entities</i> for HTML-entity encoding if it's available; if not, use
+the standard routines we've been using.
+<p></p>
+<li>
+Added <code>&lt;$MTBlogEntryCount$&gt;</code> and <code>&lt;$MTBlogCommentCount$&gt;</code>.
+<p></p>
+<li>
+Added RSS 1.0 template to the default templates. Thanks to Rael Dornfest for
+sending it.
+<p></p>
+<li>
+Added <code>&lt;$MTBlogTimezone$&gt;</code> tag, which displays the timezone as an
+offset from UTC in <code>+|-hh:mm</code> format.
+<p></p>
+<li>
+Added the <code>&lt;$MTArchiveDateEnd$&gt;</code> tag, which represents the end date of
+a date-based archive (<code>Daily</code>, <code>Weekly</code>, or <code>Monthly</code>) and thus can only be
+used in a date-based context. It is a standard date tag, in that it accepts a
+<code>format</code> attribute like any other date tag.
+<p></p>
+<li>
+Made <code>archive_type</code> attribute to <code>&lt;MTArchivePrevious&gt;</code> and <code>Next</code>
+work.
+<p></p>
+<li>
+Fixed graphical editing shortcuts so that if nothing is selected, nothing
+happens--this will prevent the issue where empty tags are added at the top of
+the page when nothing is selected.
+<p></p>
+<li>
+Added comment IP banning.
+<p></p>
+<li>
+Split configuration screen into 4 screens: core setup, preferences, archive
+setup, IP banning.
+<p></p>
+<li>
+Added the ability to assign multiple archive templates to a single archive
+type; added an interface for associating archive templates with archive types,
+added <code>MT::TemplateMap</code> object, etc.
+<p></p>
+<li>
+Improved error message when an error occurs reading <i>mt.cfg</i>, or when the
+file cannot be found.
+<p></p>
+<li>
+Fixed bug where <code>&lt;MTEntries lastn=&quot;N&quot;&gt;</code> on a <code>Category Archive</code> would
+grab the wrong set of entries (not in the correct order).
+<p></p>
+<li>
+Changed notification message sending so that only one will be sent to the
+author of the entry, rather than <code>N / 20</code>, where <code>N</code> is the number of
+notification addresses on the list.
+<p></p>
+<li>
+Added more sort and display options to <code>&lt;MTEntries&gt;</code>:
+<code>recently_commented_on</code> attribute, and <code>sort</code> and <code>sort_by</code> options.
+<p></p>
+<li>
+Fixed parsing response from <i>weblogs.com</i> ping, which changed formats slightly
+and broke the regular expression.
+<p></p>
+<li>
+Added ability to truly delete categories.
+<p></p>
+<li>
+Now use a better hack to get non-UTF8 data in <i>mt-xmlrpc.cgi</i>: we run the
+data through <code>$foo = pack 'C0A*', $foo</code>, which strips the UTF8 encoding and
+flag. So at least we can now use XML::Parser, if it's there.
+<p></p>
+<li>
+Added <code>lastn</code> attribute to <code>&lt;MTComments&gt;</code>.
+<p></p>
+<li>
+Added <code>&lt;$MTCommentEntryID$&gt;</code>.
+<p></p>
+<li>
+Added <code>offset</code> attribute to <code>&lt;MTEntries&gt;</code>.
+<p></p>
+<li>
+A category archive page will no longer be generated for non-categorized
+entries (in 1.x an empty archive page with the name <i>cat_.html</i> would be
+generated).
+<p></p>
+<li>
+Added <i>MT::App::print</i> and <i>MT::App::send_http_header</i>, both of which do
+the Right Thing under either CGI or mod_perl.
+<p></p>
+<li>
+Fixed script name detection in <i>MT::App::script</i>, particularly under
+mod_perl.
+<p></p>
+<li>
+Eliminated <i>mt-export.cgi</i> and <i>mt-import.cgi</i> by moving import and export
+into the <i>MT::App::CMS</i> class (with some modifications to enable them to
+still run with unbuffered output).
+<p></p>
+<li>
+Added <code>ImportPath</code> directive to <i>mt.cfg</i>; defaults to <i>./import</i>, and
+allows setting the path to the <i>import</i> directory.
+<p></p>
+<li>
+When a new entry is posted, the activity log will now be updated with the
+author and entry ID.
+<p></p>
+<li>
+Added IP address logging for comments, along with new tags
+<code>&lt;$MTCommentIP$&gt;</code> and <code>&lt;$MTCommentPreviewIP$&gt;</code>.
+<p></p>
+<li>
+Moved all comment code from <i>mt-comments.cgi</i> to <i>MT::App::Comments</i>, a new
+app subclass of <i>MT::App</i>.
+<p></p>
+<li>
+Changed calendar in default templates to add <code>&lt;span class=&quot;calendar&quot;&gt;</code>
+into every cell.
+<p></p>
+<li>
+Split up individual entry rebuild into segments of N entries at a time so as
+not to kill servers. (40 entries at a time is the default.)
+<p></p>
+<li>
+Force rebuild window to focus when it loads.
+<p></p>
+<li>
+Fixed bug where an apostrophe (<code>'</code>) in an author name would cause a JS error
+on List &amp; Edit Entries.
+<p></p>
+<li>
+Added <code>&lt;$MTBlogArchiveURL$&gt;</code>, the blog Archive URL.
+<p></p>
+<li>
+Added <code>&lt;MTCategories&gt;</code> and <code>&lt;$MTCategory*$&gt;</code> tags to list
+all categories.
+<p></p>
+<li>
+<code>&lt;MTArchiveList archive_type=&quot;Category&quot;&gt;</code> is now the same thing as
+<code>&lt;MTCategories&gt;</code>. Also, categories are listed in alphabetical order.
+<p></p>
+<li>
+Added <code>&lt;MTEntryCategories&gt;</code> to list all categories to which an entry
+belongs.
+<p></p>
+<li>
+<code>&lt;$MTEntryCategory$&gt;</code> now displays the entry's primary category.
+<p></p>
+<li>
+Added the <code>category</code> attribute to <code>&lt;MTCalendar&gt;</code> to only display
+entries from a certain category in the calendar.
+<p></p>
+<li>
+In <code>&lt;MTEntries&gt;</code>, if a list of entries is already in context (for
+example, in a date-based archive template), <code>category</code> and <code>author</code> can now
+be used to filter that list.
+<p></p>
+<li>
+Added <code>lastn</code> attribute to <code>&lt;MTArchiveList&gt;</code>.
+<p></p>
+<li>
+All file-management operations are now abstracted out to the <i>MT::FileMgr</i>
+class.
+<p></p>
+<li>
+Added <code>public_key</code> field for author.
+<p></p>
+<li>
+Made the rebuilding entry failed error message more verbose--now it contains
+the name of the entry on which the rebuild failed. Useful when tracking down
+problems with entries. (David Gagne)
+<p></p>
+<li>
+Fixed a bug in the XML-RPC code where HTML entities would not be decoded;
+thought the XML parser was doing this. But it wasn't.
+<p></p>
+<li>
+In the List Notifications screen, the notification records will now be sorted
+by email address.
+<p></p>
+<li>
+Added <code>spam_protect</code> attribute to all tags which can show the user's email
+address to protect from spambots.
+<p></p>
+<li>
+Added <code>&lt;$MTVersion$&gt;</code> tag.
+<p></p>
+<li>
+Added single-quoting where warnings were popping up in Perl 5.004_04.
+<p></p>
+<li>
+Added docs about <code>%Z</code> (timezone) date tag format.
+<p></p>
+<li>
+Added an index on entry <code>modified_on</code> column.
+<p></p></ul>
+<p>
+<h2><a name="1.4 (2002.01.07)"></a>1.4 (2002.01.07)</h2>
+<ul>
+<li>
+New default templates no longer use &amp;lt;label&amp;gt; tag in the <code>Remember info?</code>
+checkbox for the ``remember me'' JS, because it was breaking XHTML validation.
+<p></p>
+<li>
+Fixed Linked File Templates so that, when linking a template to a new file
+that doesn't yet exist, the permissions will be set correctly (based on umask
+settings in mt.cfg).
+<p></p>
+<li>
+Added new default templates and made them customizable by stylesheets.
+<p></p>
+<li>
+Added the <code>Comment Error Template</code> to specify the layout of the page a user
+receives when there is an error with his/her comment submission (eg. an
+invalid or missing email address).
+<p></p>
+<li>
+Usage of <code>&lt;$MTCommentPreviewState$&gt;</code> in the <code>Comment Preview
+Template</code> is now deprecated; handling of this tag will not be removed from
+MT, because existing users are certainly still using it. But it is no longer
+recommended as the best method for comment previewing (instead see the new
+default templates for editable comment previews).
+<p></p>
+<li>
+Changed the &amp;lt;title&amp;gt; tags of the default templates so that they are more
+descriptive by default of the content in the page (and no longer just
+<code>MOVABLE TYPE : TEMPLATE</code>).
+<p></p>
+<li>
+Added <code>&lt;MTGetVar&gt;</code> and <code>&lt;MTSetVar&gt;</code> for use in passing
+around values to template modules, etc. (Yaacov Akiba Slama)
+<p></p>
+<li>
+Added troubleshooting docs on fixing ``Moved hosts, can't login'' DB problems.
+<p></p>
+<li>
+Added an editable comment preview form to the Comment Preview default template,
+using <code>encode_html=&quot;1&quot;</code> and <code>convert_breaks=&quot;0&quot;</code>.
+<p></p>
+<li>
+Added <code>&lt;MTArchiveNext&gt;</code> and <code>&lt;MTArchivePrevious&gt;</code> containers
+for displaying links to the next and previous date-based archives,
+respectively.
+<p></p>
+<li>
+Added <code>encode_js</code> filter. (Yaacov Akiba Slama)
+<p></p>
+<li>
+Added <code>zero_pad</code> and <code>space_pad</code> filters.
+<p></p>
+<li>
+Fixed bug where, when posting via bookmarklet, <code>allow comments</code> on a new entry
+would be turned off even if the default is set to true, in the situation
+where the <code>allow comments</code> checkbox is not included on the bookmarklet.
+(Volker Weber)
+<p></p>
+<li>
+Fixed a bug in <i>mt-check.cgi</i> where the module description (and reason for
+inclusion) would not be displayed.
+<p></p>
+<li>
+Changed <code>%l</code> to <code>%I</code> in the default date/time format string, because
+<code>%l</code> is unsupported in some <i>strftime</i> implementations.
+<p></p>
+<li>
+Removed <code>&lt;a name=&quot;comments&quot;&gt;</code> from the default Comment Listing
+template, as this was causing problems with the form of the same name.
+<p></p>
+<li>
+Added a <code>convert_breaks</code> attribute to the <code>&lt;$MTEntryBody$&gt;</code>,
+<code>&lt;$MTEntryMore$&gt;</code>, and <a href="#item_%3C%24MTCommentBody%24%3E"><code>&lt;$MTCommentBody$&gt;</code></a> tags. This allows
+you to override the <code>Convert line and paragraph breaks</code> on a case-by-case
+basis, if desired.
+<p></p>
+<li>
+Added <code>&lt;MTCalendar&gt;</code> and associated tags for a monthly calendar
+display of entries.
+<p></p>
+<li>
+Now, if <i>default-templates.pl</i> cannot be found by <i>mt-load.cgi</i>, the actual
+error message will be given, which can be useful for determining path errors.
+<p></p>
+<li>
+Fixed bug where using <code>&lt;MTArchiveList&gt;</code> and <code>&lt;MTEntries&gt;</code>
+within an <code>Individual archive template</code> would overwrite the entry object in
+the stash.
+<p></p>
+<li>
+Added <code>trim_to</code> global tag attribute. (morbus)
+<p></p>
+<li>
+You can now use <code>lastn=&quot;N&quot;</code> in an <code>&lt;MTEntries&gt;</code> tag within an
+<code>&lt;MTArchiveList&gt;</code> container to only display the last N entries within
+a certain archive grouping; for example, to display the last N entries in each
+category.
+<p></p>
+<li>
+Index templates and template modules are now sorted alphabetically in <code>List
+Templates</code>. (morbus)
+<p></p>
+<li>
+Added <code>remove_html</code> global tag attribute. (morbus)
+<p></p>
+<li>
+<code>dirify</code> now strips HTML tags (eg. &lt;br&gt;) and entities (eg.
+&amp;amp;). (morbus)
+<p></p>
+<li>
+In import dates, AM/PM is now optional; if not present the hour will be
+treated as on a 24-hour clock.
+<p></p>
+<li>
+Fixed bug where setting <code>words in excerpt</code> to <code>0</code> would not work properly
+(ie. excerpt would still be generated using 20 words).
+<p></p>
+<li>
+Made upload popup link <code>onclick</code> attribute <code>return false</code>.
+<p></p>
+<li>
+Added index on comments for <i>created_on</i> column.
+<p></p>
+<li>
+Added &lt;$MTCommentID$&gt; tag.
+<p></p>
+<li>
+Fixed small comment bugs: if URL or email address was completely undefined
+(not blank, but undefined), this would cause a <code>Build error</code>; and the
+PreviewURL, PreviewAuthor, and PreviewEmail tags were not using the correct
+Comment context.
+<p></p>
+<li>
+Fixed error message (<code>importing</code> =&gt; <code>exporting</code>) in <i>mt-export.cgi</i>.
+<p></p>
+<li>
+Fixed error message when opening up index template file fails (error message
+included <code>tempfile</code>).
+<p></p>
+<li>
+Now require at least version <code>0.8</code> of <code>File::Spec</code>, because of the use of
+<code>splitpath</code> (below). Changed <i>mt-check.cgi</i> to reflect this.
+<p></p>
+<li>
+Use <code>File::Spec-&gt;splitpath</code> to split up path into directories and
+filename; this should fix a bug on Windows when rebuilding files.
+<p></p></ul>
+<p>
+<h2><a name="1.31 (2001.12.13)"></a>1.31 (2001.12.13)</h2>
+<ul>
+<li>
+Fixed nasty bug that occurred when using ``Link this file to a template''
+feature, and manifested when rebuilding indexes, causing the rebuild process
+to hang.
+<p></p>
+<li>
+Fixed discepancies in <code>Creating a new blog</code> section in manual.
+<p></p>
+<li>
+Fixed typo in search and replace link to export feature.
+<p></p>
+<li>
+Fixed bug that occurs when two <code>entry_id</code> input fields are present (because
+of list vs. scalar context--now force scalar context).
+<p></p>
+<li>
+Fixed bug where, after uploading a file without an extra path, its URL would
+contain an extra forward slash (<code>/</code>) (same with popup HTML URL).
+<p></p></ul>
+<p>
+<h2><a name="1.3 (2001.12.11)"></a>1.3 (2001.12.11)</h2>
+<ul>
+<li>
+Fixed bug where <code>days=&quot;N&quot;</code> would override <code>category=&quot;Foo&quot;</code> in
+<code>&lt;MTEntries&gt;</code> tag. (cwodtke)
+<p></p>
+<li>
+Added DBM file locking (shared lock when reading, exclusive when writing).
+<p></p>
+<li>
+Export process now exports excerpts, and import now imports them.
+<p></p>
+<li>
+When you upload a file, if a file by that name (at that location) already
+exists, you now get a confirmation screen to overwrite the file, or not.
+(Requires that File::Temp is installed.)
+<p></p>
+<li>
+Added search and replace functionality.
+<p></p>
+<li>
+You can now upload files into specific directories beneath the Local Site
+Path and Local Archive Path.
+<p></p>
+<li>
+When reading from DB files, <code>MT::ObjectDriver::DBM</code> will now open the DBM
+files in read-only mode, rather than read-write mode.
+<p></p>
+<li>
+Fixed bug where <code>&lt;$MTInclude$&gt;</code> of a template module would not
+propagate conditions down to the template module contents; this meant that
+conditional statements like <code>&lt;MTIfEntryIfExtended&gt;</code> would not work in
+a template module. Now they do.
+<p></p>
+<li>
+Added Javascript ``Remember me'' to default templates (Individual Archive
+Template and Comment Listing).
+<p></p>
+<li>
+Added <code>&lt;$MTBlogHost$&gt;</code> tag, which prints out the host part of the
+Site URL config setting. For comment cookies.
+<p></p>
+<li>
+After uploading a file, in addition to being able to create a new entry with
+a link to the file/embedded image, you can now just view the HTML that would
+have been used in that new entry. This is useful when uploading multiple files
+per entry.
+<p></p>
+<li>
+Fixed logout page so username and <code>Logout</code> link are no longer displayed in
+the navigation bar.
+<p></p>
+<li>
+Converting paragraph and line breaks is now set separately for entries and
+comments. (If you are upgrading, make sure to turn this on for all blogs
+that you want it on for, because it is a <strong>separate</strong> setting.)
+<p></p>
+<li>
+Added Archive File Templates, which allows you to specify the output file for
+a particular archive type, using regular MT template tags, allowing better
+organization of archive directories.
+<p></p>
+<li>
+Changed XML RSS default template so that title and excerpt are now HTML-encoded
+to prevent XML errors.
+<p></p>
+<li>
+Introduced four new global tag attributes: <code>encode_html</code>, <code>dirify</code>,
+<code>lower_case</code>, and <code>upper_case</code>.
+<p></p>
+<li>
+In new comment notification email, added a link to the comments on the entry.
+<p></p>
+<li>
+Added <code>debug</code> <code>MailTransfer</code> setting, which just writes out the mail message
+to STDERR.
+<p></p>
+<li>
+When emailing comments in <i>mt-comments.cgi</i>, if the user leaving the comment
+enters an email address, use that for the <i>From:</i> address in the email message.
+<p></p>
+<li>
+Reorganized default config file to provide descriptions of config settings,
+more instructional text, etc.
+<p></p>
+<li>
+Added <code>NoTempFiles</code> config file option to turn off use of temp files when
+writing output files.
+<p></p>
+<li>
+Added link to <code>Edit this entry</code> after posting an entry via the bookmarklet.
+<p></p>
+<li>
+Noted IE bug (<code>Content-Type</code> override) that can cause export problems.
+<p></p>
+<li>
+Added the <code>convert_breaks</code> attribute to the <code>&lt;$MTEntryExcerpt$&gt;</code> tag.
+<p></p>
+<li>
+Excerpt is now created on the fly when sending a notification, if you haven't
+entered an excerpt for an entry.
+<p></p>
+<li>
+Fixed List &amp; Edit Entries so that unprivileged authors are not allowed to
+delete entries.
+<p></p>
+<li>
+Added XML-RPC server implementation of the Blogger API.
+<p></p>
+<li>
+Added <code>&lt;$MTCommentOrderNumber$&gt;</code> tag.
+<p></p>
+<li>
+In <i>mt-check.cgi</i>, added checks for <i>File::Spec</i>, <i>DB_File</i>,
+<i>LWP::UserAgent</i>, and <i>SOAP::Lite</i> (the last two are optional installs).
+Also added instructions on installing each of these modules.
+<p></p>
+<li>
+Automatically-generated <code>img</code> tags (after uploading images) now contain
+<code>alt</code> attributes.
+<p></p>
+<li>
+Category pulldown in bookmarklet is now sorted alphabetically.
+<p></p>
+<li>
+After an entry is deleted, prompt the user to rebuild.
+<p></p>
+<li>
+Remove whitespace at the ends of the meta (<code>AUTHOR</code>, <code>TITLE</code>, etc.) lines
+in the import file when importing.
+<p></p>
+<li>
+Improved application code that determines paths to reduce reliance on
+<code>SCRIPT_NAME</code> environment variable. (Aaron Straup Cope)
+<p></p>
+<li>
+Added <code>DBUmask</code>, <code>HTMLUmask</code>, <code>DirUmask</code>, and <code>UploadUmask</code> settings for
+the <i>mt.cfg</i> file. These are to be used to adjust permissions set on files
+and directories created by MT. Removed manual <code>chmod</code> calls. (Aaron Straup
+Cope)
+<p></p>
+<li>
+In <i>mt-comments.cgi</i>, check whether an author has an email address saved in
+his/her profile; if not, don't try to email new comments (this was causing
+an error <code>No Recipients Found</code>).
+<p></p>
+<li>
+Changed default templates so that the popup comments links do not have
+<code>href=&quot;#&quot; onclick=...</code> but are not just <code>href=&quot;javascript:...&quot;</code>.
+<p></p>
+<li>
+In <i>mt-comments.cgi</i>, when redirecting back to the comments popup window
+after adding a comment, automatically append a slash at the end of <code>CGIPath</code>
+if no slash is present.
+<p></p>
+<li>
+Fixed <a href="#item_%3C%24MTCommentAuthor%24%3E"><code>&lt;$MTCommentAuthor$&gt;</code></a> and <code>&lt;$MTCommentAuthorLink$&gt;</code>
+so that they return the empty string (not an error) if no author name is
+given in the comment, and thus will no longer cause rebuild errors.
+<p></p>
+<li>
+Fixed context for <code>&lt;MTEntryNext&gt;</code> and <code>&lt;MTEntryPrevious&gt;</code>
+containers so that conditional tags (<code>&lt;MTEntryIfExtended&gt;</code>, for
+example) can be used.
+<p></p></ul>
+<p>
+<h2><a name="1.2 (2001.11.04)"></a>1.2 (2001.11.04)</h2>
+<ul>
+<li>
+Fixed bug when system's crypt implementation uses MD5 passwords (MT was not
+picking up the proper salt). (Monica Reyes)
+<p></p>
+<li>
+Added form-validity checking to mt-comments.cgi for checking email address
+and URL. (Aaron Straup Cope)
+<p></p>
+<li>
+Set <code>$CGI::POST_MAX</code> to 1MB, which means that uploads must be 1MB or less,
+to prevent denial of service attacks. (Aaron Straup Cope)
+<p></p>
+<li>
+Added mt-export.cgi, which will export all of your MT entries into a format
+that can be suitably re-imported through the import mechanism. It is also
+useful for keeping backups of your entries. Functionality is linked from
+<code>Import &amp; Export Entries</code>.
+<p></p>
+<li>
+Fix bug in mt-comments.cgi where redirect after posting to popup comments
+would break styles (because redirect was using CGI::url(-base =&gt; 1), which
+is a newer feature in CGI.pm).
+<p></p>
+<li>
+Added link to manual (<code>HELP</code>) in topnav.
+<p></p>
+<li>
+When images are uploaded, and <code>Popup Image</code> is chosen to create a new entry,
+an HTML file will be created automatically to enclose the uploaded image,
+if you have defined an <code>Uploaded Image Popup Template</code>. New template tags
+<code>&lt;$MTImageURL$&gt;</code>, <code>&lt;$MTImageWidth$&gt;</code>, and
+<code>&lt;$MTImageHeight$&gt;</code> added for use in the new template. Added a default
+<code>Uploaded Image Popup Template</code>.
+<p></p>
+<li>
+Added template linking functionality; allows users to manage their templates
+externally from the MT application, and have them automatically sync-ed into
+the MT database. Thanks to Ron Pacheco for patches and ideas.
+<p></p>
+<li>
+Can now import comments from Greymatter.
+<p></p>
+<li>
+Can now import to a particular category, either through the CATEGORY key (eg
+from a system that supports categorization, like NewsPro), or by selecting a
+default category for all new entries.
+<p></p>
+<li>
+Fixed bug where import would create a new author with the same name as an
+existing author; if an author already exists, now, entries are assigned to the
+existing author.
+<p></p>
+<li>
+Can now import extended entries from Greymatter and keep the extended portion
+separate from the main blog entry.
+<p></p>
+<li>
+Import now handles indentation and leading spaces more robustly.
+<p></p>
+<li>
+Fix bug where MTEntryDate inside MTEntryPrevious and MTEntryNext do not
+refer to the correct entry. (sunpig)
+<p></p>
+<li>
+Added movabletype.org recently updated ping functionality for donors.
+<p></p>
+<li>
+Added ``Syndicate this site'' link to default index template.
+<p></p>
+<li>
+When deleting objects, check to see if we can load the object successfully
+before trying to call <code>remove</code> on it.
+<p></p>
+<li>
+HTML-encode titles of entries on list &amp; edit entries, so that if an
+entry title contains HTML (eg. an anchor tag), it doesn't break the display.
+<p></p>
+<li>
+Added &lt;$MTArchiveCount$&gt; tag: number of entries in a specific archive
+grouping.
+<p></p>
+<li>
+Use timegm_nocheck so that we don't get fatal errors when a date is out of
+range.
+<p></p>
+<li>
+Changed <code>use base</code> to manual setting of @ISA in all libraries to improve
+compatibility with older perls, where <i>base.pm</i> is not a core install.
+<p></p>
+<li>
+Improved error message when Local Site Path or Local Archive Path is unset
+when doing a rebuild.
+<p></p>
+<li>
+Auto-check or -uncheck ``allow comments'' in bookmarklet when selecting a blog,
+based on the configuration for that blog.
+<p></p>
+<li>
+Added <code>&lt;$MTEntryAuthorEmail$&gt;</code>, <code>&lt;$MTEntryAuthorURL$&gt;</code>, and
+<code>&lt;$MTEntryAuthorLink$&gt;</code> tags.
+<p></p>
+<li>
+Added <code>file</code> attribute to the <code>&lt;MTInclude&gt;</code> tag, for pulling in an
+external file.
+<p></p>
+<li>
+Fix JS bug in bookmarklet category selector. (nasty)
+<p></p>
+<li>
+Fixed bugs in MTEntries category=``'' and MTInclude module=``'' where, if you have
+different categories/modules named the same thing across two different blogs,
+only the first would ever be loaded. (Brad Choate)
+<p></p>
+<li>
+Added support for weblogs.com XML-RPC ping. Added blog config option to turn
+off the ping (it is on by default).
+<p></p>
+<li>
+In List &amp; Edit Entries, if an entry does not have a title display the
+first 22 characters of the entry body, followed by an ellipsis, rather than
+just displaying [No title].
+<p></p></ul>
+<p>
+<h2><a name="1.1 (2001.10.22)"></a>1.1 (2001.10.22)</h2>
+<ul>
+<li>
+Made &lt;$MTDate$&gt; work as a ``system date'', or the current date/time at
+which the page is being rebuilt.
+<p></p>
+<li>
+Added Pragma: no-cache header to keep Opera from caching pages. (Jay)
+<p></p>
+<li>
+Changed default templates to use iso-8859-1 (Latin 1) encoding instead of
+utf-8.
+<p></p>
+<li>
+Added Blog Configuration option for the number of words in an auto-generated
+excerpt.
+<p></p>
+<li>
+Added comment previewing, using the new Comment Preview template. Default
+templates now ship with comment previewing enabled, and the comments links
+on the main index automatically link to the popup comments; the individual
+entry template contains a static version of the comments.
+<p></p>
+<li>
+Deleting an entry will now delete all of the comments associated with that
+entry.
+<p></p>
+<li>
+Made bookmarklet windows customizable by selecting whether users want to
+include category, excerpt, etc.
+<p></p>
+<li>
+Ran all scripts with taint mode on (<strong>-T</strong>), and fixed all warnings and errors.
+Thanks to dchase for the patches.
+<p></p>
+<li>
+Added Nickname field to author record, along with new MTEntryAuthorNickname
+tag to display it. This allows having a different name for display than for
+login.
+<p></p>
+<li>
+Fixed file corruption bug when uploading files on Win32 machines; needed to
+use binmode. (sunpig)
+<p></p>
+<li>
+Support for custom, user-created template modules, which can be included using
+the new <code>MTInclude</code> tag. (Christina Wodtke and many others)
+<p></p>
+<li>
+Modified CGI scripts to get their full path from $0, and use that plus <i>lib</i>
+and <i>extlib</i> and the @INC directories, along with specifying the full path to
+<i>mt.cfg</i>. This should improve out-of-box compatibility with IIS.
+<p></p>
+<li>
+Fixed bug where MTArchiveList above MTEntries on an archive template would
+cause the MTEntries to display just the most recent list of entries.
+(notfully)
+<p></p>
+<li>
+When logging out, we set a cookie with an expiration date in the past;
+increased the amount of time in ``the past'' from 1 day to 1 year. (Laura)
+<p></p>
+<li>
+Added MTDateFooter container tag. (silvercube)
+<p></p>
+<li>
+Fixed bug with MTDateHeader not being output when posts from the same day
+but different months were one after the other (eg. a post from November 11,
+then a post from October 11). (hellgren)
+<p></p>
+<li>
+Moved default templates into lib/MT/default-templates.pl, so that they can
+be loaded by multiple scripts/libraries. Changed mt-load.cgi to read templates
+from here, and also changed blog creation to install default templates in
+every new blog.
+<p></p>
+<li>
+Added support for sending mail through SMTP, using Mail::Sendmail; broke out
+mail-sending stuff into MT::Mail. (Bill Turner)
+<p></p>
+<li>
+Fixed bookmarklet bug where trying to bookmarklet a page with ampersands ('&amp;')
+in the URL would chop off everything after the ampersand. (nasty)
+<p></p>
+<li>
+Fixed MT::App::redirect so that it redirects to a full URL (including the
+host name and protocol), which fixes a problem on IIS. Also fixed redirects
+in mt-comments.cgi. (Matt Haughey)
+<p></p>
+<li>
+Added 'title' attributes to all icons in left mininav, and now set
+window.status with appropriate tips for each icon.
+<p></p>
+<li>
+Fix bug with stashed entries staying around after building archive lists.
+The symptom is that the <code>lastn=&quot;N&quot;</code> attribute was not working properly.
+(Philip Winn)
+<p></p>
+<li>
+Documentation fixes (typos, etc.). (Cory Preus)
+<p></p>
+<li>
+Fixed Edit Categories screen when category labels have quotes in them; this
+was causing the labels to show up blank; they needed to be HTML-encoded.
+(Jenn Redwolf)
+<p></p>
+<li>
+Fixed ``attempt to use unitialized value as ARRAY reference'' error when
+sending a notification without setting up any notification addresses.
+(Christina Wodtke)
+<p></p>
+<li>
+Clarified that you must remove indentation from Blogger/Greymatter/NewsPro
+export templates when pasting.
+<p></p>
+<li>
+Added appropriate context for MTArchiveDate tag outside of MTEntries context,
+on Date-Based Archive Template; added context for MTArchiveCategory tag outside
+of MTEntries context, on Category Archive Template. (Christina Wodtke)
+<p></p>
+<li>
+Fixed TMPL_INCLUDEs on WinNT by giving HTML::Template the path to the
+tmpl/cms directory. (Bill Turner, Axel Kollmorgen)
+<p></p></ul>
+<p>
+<h2><a name="1.00 (2001.10.08)"></a>1.00 (2001.10.08)</h2>
+<ul>
+<li>
+First public release.
+<p></p>
+<li>
+Improved diagnostics for some default-template-related, rebuild-related
+error messages. (Christina Wodtke)
+<p></p>
+<li>
+Added ``Creating a new blog'' instructions to manual, and link to this section
+of the manual when creating a new blog. (Christina Wodtke)
+<p></p>
+<li>
+Added MTEntryPrevious and MTEntryNext containers to refer to the previous and
+next entries, respectively. These tags should work in any entry context.
+(Christina Wodtke)
+<p></p>
+<li>
+Tried to make install doc a little clearer by moving some Unix-specific
+stuff down into ADDITIONAL NOTES.
+<p></p>
+<li>
+Added (?) help prompts that point to relevant sections of the manual; added
+some blog configuration option docs to the manual.
+<p></p>
+<li>
+Improved layout of notification messages.
+<p></p></ul>
+<p>
+<h2><a name="0.10 (2001.10.06)"></a>0.10 (2001.10.06)</h2>
+<ul>
+<li>
+Added the <code>&lt;$MTCGIPath&gt;</code> tag and the CGIPath config file setting for
+easy linking to your MT CGI scripts.
+<p></p>
+<li>
+Added a config setting for setting the default value of the ``Status'' field
+on the create an entry page; so you can set it to Release if you always want
+it set to Release by default. (Christina Wodtke)
+<p></p>
+<li>
+Added an ``allow anonymous comments?'' config option; if set, no checking is
+done to determine if the visitor making the comment has provided an email
+address and author name. If unset, both author name and email address are
+required. (Christina Wodtke)
+<p></p>
+<li>
+In the edit entry screen, if a comment author has not provided a name, there
+was no way to get to the editing screen for that comment; so now, [No author]
+is displayed if there is no author name.
+<p></p>
+<li>
+Added an <code>archive_type</code> attribute to the <code>MTEntryLink</code> tag; this allows you
+to create a link to an entry's archive page other than the preferred archive
+type. The default behavior is still to link to the archive page for the
+preferred archive type. (Christina Wodtke)
+<p></p>
+<li>
+Transform carriage returns into &lt;br&gt; tags when <code>Convert Paragraph
+and Line Breaks</code> is on. (Adam Wood)
+<p></p></ul>
+<p>
+<h2><a name="0.09 (2001.10.06)"></a>0.09 (2001.10.06)</h2>
+<ul>
+<li>
+Improved look and functionality of default templates; also added default
+templates for all archive types.
+<p></p>
+<li>
+Set more default options when creating a new blog or editing 'First Blog'.
+<p></p>
+<li>
+Added instructions for exporting NewsPro entries into the correct format;
+thanks to Jeremy W for sending along the instructions, which are now in the
+manual.
+<p></p>
+<li>
+Added author attribute to MTEntries tag, so you can grab all of the posts by
+a particular author (can also be combined with category and lastn).
+(Jeremy W)
+<p></p>
+<li>
+In comment notifications, the text between the brackets is now the name of the
+blog, not <code>Movable Type</code>.
+<p></p>
+<li>
+Added alt tags to the images in the mininav. (Matt Haughey)
+<p></p>
+<li>
+Fixed a bug in mt-comments.cgi that made it select the wrong comments listing
+template (ie. one from a different blog).
+<p></p>
+<li>
+Added a Status pulldown to the bookmarklet popup so that authors can post
+HOLD items (rather than having everything RELEASE), if they wish.
+<p></p>
+<li>
+Fixed a bug in tag argument parsing with a string like foo=``bar's baz''; the
+single quote would end the double quote, which would lead to <code>foo</code> having a
+value of <code>bar</code> (and not <code>bar's baz</code> like it should).
+<p></p>
+<li>
+Fixed allow_comments_default setting of allow comments box on new entries.
+(Christina Wodtke)
+<p></p>
+<li>
+Alphabetize category list in edit categories, and in pulldown menu on edit
+entry/create new entry screen. (Adam Gerstein)
+<p></p>
+<li>
+Sort comments in edit-editing screen by created on date, in descending order.
+<p></p>
+<li>
+Fixed a bug in <i>mt-load.cgi</i>. Also, added IMPORTANT INSTRUCTIONS to
+<i>mt-load.cgi</i> to delete it after running it the first time. Failure to delete
+it is a security risk, because someone else could then run it (conceivably).
+<p></p>
+<li>
+Added <i>index.html</i> to the distribution, which is just a simple 404 page,
+which prevents people from doing the directory listing.
+<p></p>
+<li>
+Added error checking to <i>mt-add-notify.cgi</i>.
+<p></p></ul>
+<p>
+<h2><a name="0.08 (2001.10.03)"></a>0.08 (2001.10.03)</h2>
+<ul>
+<li>
+Added mininav to left side of all system pages (once you have selected a
+blog to edit, that is). Items in nav are dependent upon permissions, of course.
+(Josh Buchanan)
+<p></p>
+<li>
+Added activity log; currently it records logins, logouts, unsuccessful
+authentications/password recoveries, etc. because that seems most useful from
+a system maintenance perspective.
+<p></p>
+<li>
+Added ability to rebuild just a single set of pages from a particular archive
+type, eg. all Weekly archives. Also, split up ``Rebuild all files'' so that it
+rebuilds in steps: Individual =&gt; Daily =&gt; Weekly, etc. This should lessen the
+load of any one rebuild.
+<p></p>
+<li>
+Fixed bug with weekday names (%A date format template) not displaying
+properly on some systems. (Jeremy W)
+<p></p>
+<li>
+Fixed bug with MTArchiveList when a Preferred Archive Type has not been set.
+(Jeremy W)
+<p></p>
+<li>
+Fixed MTEntries so that you can specify both lastn and category, and it will
+display the last N entries in that category. (Daniel Talsky, Jeremy W)
+<p></p>
+<li>
+Some changes to widths of textareas in bookmarklet and edit/create entry
+screens, and to width of pulldown menu for category.
+<p></p>
+<li>
+Changed look of ``Your existing blogs'' items: upper-case blog name, add bullet.
+(Matt Haughey)
+<p></p></ul>
+<p>
+<h2><a name="0.07 (2001.10.02)"></a>0.07 (2001.10.02)</h2>
+<ul>
+<li>
+Added uniqueness validation on author name; you can no longer create two
+authors with the same name, nor change your author name in your profile to
+the name of another author.
+<p></p>
+<li>
+Rebuild popup now lets you rebuild just your indexes (index templates), if
+desired.
+<p></p>
+<li>
+Added a View Site link to the ``rebuilt'' page, so you can view the site right
+after rebuilding.
+<p></p>
+<li>
+Made all REBUILD links in status messages a link to the rebuild popup window,
+but only if the user has rebuild permissions.
+<p></p>
+<li>
+mt-comments.cgi now rebuilds all entry archives after adding a new comment,
+even when using popup window comments.
+<p></p>
+<li>
+Changed format of weekly archive page names so as not to clash with daily
+archive pages; weekly archive pages are now called week_YYYY_MM_DD.html
+(they used to be just YYYY_MM_DD.html).
+<p></p>
+<li>
+Changed format of category archive page names so as not to just use category
+IDs; new format is lower-case munged version of category name (remove all
+non-alphanumeric characters, change spaces to underscores, and consecutive
+underscores to one single underscore). For example: <code>Fun &amp; Games</code> gets
+translated to <code>fun_games.html</code>.
+<p></p>
+<li>
+Improved error messages when using a template tag out of context; for example,
+using a MTEntryTitle tag outside of an MTEntries container on an
+index/date-based/category template (it is legal on an individual entry
+template, because the entire template is in entry context). (Sara Flemming)
+<p></p>
+<li>
+Added a <code>No archives</code> option to the Preferred Archive Type pulldown on the
+<code>Edit blog configuration</code> screen; the lack of such an option, combined with
+the Javascript validation, made it effectively possible to disable archiving
+for a blog.
+<p></p></ul>
+<p>
+<h2><a name="0.06 (2001.10.01)"></a>0.06 (2001.10.01)</h2>
+<ul>
+<li>
+Fixed the built-in RSS template so that it validates with RSS version 0.91.
+<p></p>
+<li>
+Fixed bug with previewing entry introduced by convert paragraph breaks
+option and code. (Adam Gerstein, Sara Flemming, Matt Haughey, Jeremy W)
+<p></p>
+<li>
+Check that version of installed HTML::Template is greater than 2, because
+we need certain features that were only added later on. (TW Walsh)
+<p></p>
+<li>
+Actually include mt-import.cgi in the distribution this time. (Caroline van
+Oosten de Boer)
+<p></p>
+<li>
+Fixed a bug where the conditional settings for MTEntryIfAllowComments and
+MTEntryIfExtended tags would not be picked up properly on Individual Archive
+Templates.
+<p></p>
+<li>
+Need to HTML-encode all ampersands before displaying in editing boxes; this
+prevents the browser from turning &amp;nbsp; in a textarea into an actual
+non-breaking space, for example.
+<p></p>
+<li>
+In the <code>Blog editing menu</code>, fixed the <code>Edit blog configuration</code> icon link;
+it was different than the text link, and it was incorrect, and caused an
+error saying ``No permissions''. (Adam Gerstein)
+<p></p></ul>
+<p>
+<h2><a name="0.05 (2001.09.30)"></a>0.05 (2001.09.30)</h2>
+<ul>
+<li>
+Added mt-import.cgi, which imports blog entries from either Blogger or
+Greymatter (or, for that matter, any system that can get the entries into
+the right format) into Movable Type. Also added an import interface through
+the main Movable Type interface, and docs for importing to the manual.
+<p></p>
+<li>
+Fixed bug with MTDateHeader contents actually appearing <i>before</i> the start
+of the &lt;MTEntries&gt; contents, each time through the loop. (Daniel Talsky)
+<p></p>
+<li>
+Added a ``Convert paragraph breaks'' option to specify whether paragraphs
+should be enclosed within &lt;p&gt; and &lt;/p&gt; tags. (Matt Haughey)
+<p></p>
+<li>
+Added some Troubleshooting docs to the manual, as well as information about
+setting up the <i>db</i> directory outside of the webroot.
+<p></p>
+<li>
+After saving a template, users will ``rebuild files'' permissions will now be
+able to rebuild files from the ``template saved'' message. (Matt Haughey)
+<p></p></ul>
+<p>
+<h2><a name="0.04 (2001.09.27)"></a>0.04 (2001.09.27)</h2>
+<ul>
+<li>
+Changed internal timestamp format so that timezone offsets are not
+recalculated on every rebuild. Changed from epoch time (seconds since 1970)
+to <code>YYYYMMDDHHMMSS</code>.
+<p></p>
+<li>
+Added uneditable name of template to top of editing page for non-index
+templates; this limits possible confusion over which template you are
+actually editing. (Steven Jarvis)
+<p></p>
+<li>
+Made <code>MTCommentAuthorLink</code> web links open in new window. (Steven Jarvis)
+<p></p>
+<li>
+Bookmarklet Javascript now works in IE 5.5 (needed to use document.selection
+in that browser). (Caroline van Oosten de Boer)
+<p></p>
+<li>
+Added <code>created_by</code> column to author object, in preparation for allowing
+author deletion, but only of authors that you have created.
+<p></p></ul>
+<p>
+<h2><a name="0.03 (2001.09.26)"></a>0.03 (2001.09.26)</h2>
+<ul>
+<li>
+Added Bookmarklet posting functionality, with a link to setup on the main
+project administration menu.
+<p></p>
+<li>
+In List Entries, if a post does not have a title display [No title] instead
+as a link.
+<p></p>
+<li>
+Changed login cookie path from <i>/</i> to <i>/path/to/mt/</i>. For example, if you
+installed MT at <i>/my/mt/mt.cgi</i>, the path for the cookie would now be
+<i>/my/mt/</i>.
+<p></p>
+<li>
+MT::Util::send_mt_mail now checks for more default locations of sendmail,
+instead of giving up, until it finds one that works. It now checks
+<i>/usr/lib/sendmail</i>, <i>/usr/sbin/sendmail</i>, and <i>/usr/ucblib/sendmail</i>
+(list taken from Mail::Mailer). (Steven Jarvis)
+<p></p>
+<li>
+Added Javascript form validation for the edit blog configuration/create new
+blog form.
+<p></p>
+<li>
+Added MTCommentAuthorLink tag, which links the comment author name using a
+succession of rules: looks first for URL, then for email address, then just
+displays the name without a link. (Steven Jarvis)
+<p></p>
+<li>
+Deprecated MTCommentName in favor of MTCommentAuthor; removed the former from
+the documentation, although it still works (and likely always will).
+<p></p>
+<li>
+Made uploading files compatible with versions of CGI.pm without CGI::upload
+method (versions prior to 2.47). Run CGI::upload in an eval, check for errors,
+and use CGI::param if we get errors. (Steven Jarvis)
+<p></p>
+<li>
+Added a password recovery feature, linked from the login page. Also added a
+birthplace setting to the ``edit profile'' page; this must be filled out in
+order for an author to recover his/her password.
+<p></p>
+<li>
+Added a config setting StaticWebPath to the mt.cfg config file. This allows
+you to host the MT images and stylesheets in a directory different than where
+you host your MT installation (CGI scripts, etc.). This is necessary on some
+servers, where you have to install MT into your cgi-bin, which doesn't accept
+non-CGI scripts in that directory. (Taegan D. Goddard)
+<p></p>
+<li>
+Fixed display bug in blog editing menu where VIEW SITE would have space up
+above it, when a user does not have full permissions.
+<p></p>
+<li>
+Don't include ``Send a notification'' section when editing an entry if the user
+does not have notification-sending permissions.
+<p></p></ul>
+<p>
+<h2><a name="0.02 (2001.09.25)"></a>0.02 (2001.09.25)</h2>
+<ul>
+<li>
+Added FTP URLs to installation instructions. (Daniel Talsky)
+<p></p>
+<li>
+Fix some warnings. (Caroline van Oosten de Boer)
+<p></p>
+<li>
+Fix bug with spaces at the ends of lines in mt.cfg file. (Caroline van
+Oosten de Boer)
+<p></p>
+<li>
+Fix bug with saving new entry--author was not being set for the new post.
+(Matt Haughey)
+<p></p>
+<li>
+Fix bug with profile link in header linking to the wrong profile on the
+entry-editing page for an entry by another author.
+<p></p>
+<li>
+Fix bug where creating a new author would switch your login credentials to
+those of the new author (ie. you would then be logged in as the new author,
+no longer as yourself). (Matt Haughey)
+<p></p>
+<li>
+Added &lt;$MTArchiveTitle$&gt; tag.
+<p></p>
+<li>
+Fix bug where uploading a file with backslashes in the path (eg. from
+Windows) would not get the path cut off properly. (Caroline van Oosten de
+Boer)
+<p></p>
+<li>
+Changed Image-Size installation method, because the old method was not
+resulting in a working installation, due to the module using AutoLoader to
+split up the routines. (Caroline van Oosten de Boer)
+<p></p>
+<li>
+Updated installation doc to reflect new Image-Size installation method, along
+with incorporating instructions for performing some steps in a Unix shell,
+among other things. (Matt Haughey, Steven Jarvis)
+<p></p>
+<li>
+Fixed mt-comments.cgi so that it supports adding comments when the comment
+system is using inline/static comments (as opposed to comment popup windows).
+The archive pages for the entry, along with the index pages, are now rebuilt
+after a comment is added, and the user is redirected back to the individual
+entry archive page. (Caroline var Oosten de Boer)
+<p></p>
+<li>
+Added &lt;$MTEntryCommentCount$&gt; tag: number of comments on a particular entry.
+<p></p>
+<li>
+On Edit Blog Configuration screen, moved File Extension for archive files
+down into ``Archive Configuration'' section. (Steven Jarvis)
+<p></p>
+<li>
+In the Movable Type admin UI, the Movable Type logo now returns you to the
+Project Administration area, rather than the movabletype.org site.
+<p></p>
+<li>
+In List Entries, when author does not have ``edit all posts'' privilege, but
+selects to view posts by another author, entry title is no longer a link.
+<p></p></ul>
+<p>
+<h2><a name="0.01 (2001.09.23)"></a>0.01 (2001.09.23)</h2>
+<ul>
+<li>
+Initial beta release
+<p></p></ul>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

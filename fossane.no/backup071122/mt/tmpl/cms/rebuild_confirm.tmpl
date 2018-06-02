@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Rebuilding [_1]" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+//-->
+</script>
+
+</head>
+
+<body onload="window.focus()" class="pop">
+
+<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+<input type="hidden" name="__mode" value="start_rebuild">
+<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+<input type="hidden" name="next" value="<TMPL_VAR NAME=BUILD_NEXT>">
+<input type="hidden" name="total_entries" value="<TMPL_VAR NAME=TOTAL_ENTRIES>">
+
+<table border="0" cellspacing="0" padding="0">
+
+<tr>
+<td colspan="3" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="50"></td>
+</tr>
+
+<tr>
+<td width="20" valign="top" rowspan="7"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+<td width="100%" valign="top"><font class="pagetitle"><MT_TRANS phrase="Rebuilding [_1]" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"></font></td>
+<td width="20" valign="top" rowspan="7"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</tr>
+
+<tr>
+<td colspan="3" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+<td width="100%" valign="top"><font class="instructional"><MT_TRANS phrase="Select the type of rebuild you would like to perform (press CANCEL if you do not want to rebuild any files):"></font></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+<td width="100%" valign="top"><select name="type">
+<option value="<TMPL_VAR NAME=BUILD_ORDER>" selected><MT_TRANS phrase="Rebuild All Files">
+<TMPL_IF NAME=INDEX_TMPL_ID>
+<option value="index-<TMPL_VAR NAME=INDEX_TMPL_ID>" selected><MT_TRANS phrase="Index Template: [_1]" params="<TMPL_VAR NAME=INDEX_TMPL_NAME ESCAPE=HTML>">
+</TMPL_IF>
+<option value="index"><MT_TRANS phrase="Rebuild Indexes Only">
+<TMPL_LOOP NAME=ARCHIVE_TYPE_LOOP>
+<option value="<TMPL_VAR NAME=ARCHIVE_TYPE>"><MT_TRANS phrase="Rebuild [_1] Archives Only" params="<TMPL_VAR NAME=ARCHIVE_TYPE_LABEL ESCAPE=HTML>">
+</TMPL_LOOP>
+</select></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+<td align="right" valign="top"><input class="button" type="button" onClick="window.close()" value="<MT_TRANS phrase="Cancel">">&nbsp;<input class="button" type="submit" value="<MT_TRANS phrase="Rebuild">"></td>
+</tr>
+
+</table>
+</form>
+
+</body>
+</html>

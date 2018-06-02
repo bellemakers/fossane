@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Activity Log"> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+	<tr>
+	<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+	<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+	</tr>
+
+	<tr>
+	<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="30"></td>
+	</tr>
+
+	<tr>
+	<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+	<td valign="top" width="500"><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><font class="pagetitle"> <MT_TRANS phrase="Activity Log"></font></td>
+	</tr>
+
+	<tr>
+	<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+	<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+	</tr>
+
+	<tr>
+	<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+	<td valign="top" width="500"><p><font class="instructional"><MT_TRANS phrase="The Movable Type activity log contains a record of notable actions in the system. All times are displayed in GMT."></font></p>
+
+<TMPL_IF NAME=RESET>
+	<p class="message"><MT_TRANS phrase="The activity log has been reset."></p>
+</TMPL_IF>
+	</td>
+	</tr>
+
+	<tr>
+	<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+	<td width="500">
+
+		<table width="500" border="0" cellspacing="0" cellpadding="3">
+		<tr>
+		<td valign="top" width="125"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="125" height="1"></td>
+		<td valign="top" width="75"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="75" height="1"></td>
+		<td valign="top" width="300"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="300" height="1"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" width="125" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Date"></font></td>
+		<td valign="top" width="75" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="IP Address"></font></td>
+		<td valign="top" width="300" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRNAS phrase="Log Entry"></font></td>
+		</tr>
+
+		<tr>
+		<td colspan="3" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+		</tr>
+
+		<TMPL_LOOP NAME=LOG_ENTRY_LOOP>
+		<tr>
+		<td valign="top" width="125" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><TMPL_IF NAME=IS_LAST><a name="last"></a></TMPL_IF><font class="title"><TMPL_VAR NAME=CREATED_ON_FORMATTED></font></td>
+		<td valign="top" width="75" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="title"><TMPL_VAR NAME=LOG_IP></font></td>
+		<td valign="top" width="300" bgcolor="#<TMPL_IF NAME=IS_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="title"><TMPL_VAR NAME=LOG_MESSAGE ESCAPE=HTML></font></td>
+		</tr>
+
+		</TMPL_LOOP>
+
+		<tr>
+		<td colspan="3" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="2"></td>
+		</tr>
+
+		<tr>
+		<td colspan="3" align="right"><form><input type="button" class="button-big" onClick="window.location='<TMPL_VAR NAME=SCRIPT_URL>?__mode=reset_log'" value="<MT_TRANS phrase="Reset Activity Log">"></form></td>
+		</tr>
+
+		</table>
+	</td>
+	</tr>
+
+</table>
+
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

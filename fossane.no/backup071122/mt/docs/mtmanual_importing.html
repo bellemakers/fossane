@@ -1,0 +1,493 @@
+<html>
+<head>
+<title>IMPORTING YOUR ENTRIES</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: IMPORTING YOUR ENTRIES</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#importing your entries">IMPORTING YOUR ENTRIES</a></li>
+	<ul>
+
+		<li><a href="#exporting blogger entries">Exporting Blogger Entries</a></li>
+		<li><a href="#exporting greymatter entries">Exporting Greymatter Entries</a></li>
+		<li><a href="#exporting greymatter comments only">Exporting Greymatter Comments Only</a></li>
+		<li><a href="#exporting newspro entries">Exporting NewsPro Entries</a></li>
+		<li><a href="#importing entries">Importing Entries</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="importing your entries"></a>IMPORTING YOUR ENTRIES</h1>
+<p>Movable Type allows you to import your entries from other weblog content
+management systems. If you are importing from Greymatter, Movable Type also
+allows you to import all of the comments on your entries into your new weblog.
+This can be useful when you wish to start using Movable Type but already have
+much of your content in another system. To do this, you will first need to
+export your data from the other system; you can do this using the other
+system's standard templating functionality. Simply use a template that will
+produce the desired formatting that Movable Type understands for importing
+new entries. Templates for exporting data from Blogger, Greymatter, and Newspro
+are provided below.</p>
+<a name="mt_export"></a><p>In addition to exporting your data from another weblog CMS, you can export
+your entries from Movable Type itself. This allows you to keep local backups
+of your weblog content for safekeeping, as well as to transfer data between
+weblogs, by combining the export and import mechanisms. To export the entries
+from one of your weblogs, login to Movable Type, then go to the <code>Main Menu</code> for
+the weblog you wish to export. Then click <code>Import &amp; Export Entries</code>, and
+follow the instructions under <code>Export Entries</code>.</p>
+<a name="export_ie"></a><p><strong>NOTE:</strong> be careful when exporting data from Internet Explorer; all versions of
+Internet Explorer have a bug where data marked as plain text can be intrepreted
+as HTML. The symptom of this bug is that all of your exported data will run
+together onto one line. If this is the case, use Netscape when exporting data.</p>
+<p>After your content has been exported from the other system, you must move
+your data files over to the system where Movable Type runs, so that Movable
+Type can find them. Then you can use the import mechanism to import those
+entries into Movable Type.</p>
+<p>
+<h2><a name="exporting blogger entries"></a>Exporting Blogger Entries</h2>
+<ol>
+<li>
+Log into your Blogger account, then switch into template-editing mode.
+<p></p>
+<li>
+Make a copy of your current template; you will be replacing your Blogger
+template with the conversion template in Step 3, but you probably don't want
+to lose your original template.
+<p></p>
+<li>
+Replace your Blogger template with the following.
+<pre>&lt;Blogger&gt;
+AUTHOR: &lt;$BlogItemAuthor$&gt;
+DATE: &lt;$BlogItemDateTime$&gt;
+-----
+BODY:
+&lt;$BlogItemBody$&gt;
+--------
+&lt;/Blogger&gt;
+</pre><p>NOTE: if you are exporting from Blogger Pro, add this line before the
+<code>AUTHOR:</code> line:</p>
+<pre>TITLE: &lt;PostSubject&gt;&lt;$BlogItemSubject$&gt;&lt;/PostSubject&gt;
+</pre><p></p>
+<li>
+Enter the Settings area for this weblog.
+<p></p>
+<li>
+Change your <code>Blog Filename</code> to a different filename; this will prevent
+you from overwriting your main index file.
+<p></p>
+<li>
+In <code>Formatting</code>, set your weblog to display all of your posts on the main
+index page. There is no explicit setting for this; instead, you should
+change the number of days displayed on your front page (<code>Show N days' posts
+on main page</code>) higher than the number of days that you have been weblogging.
+<p></p>
+<li>
+Set <code>Date/Time Format</code> to the format <code>MM/DD/YYYY HH:MM:SS AM|PM</code>. (Note:
+the format will not look like this in the menu; instead it will be the
+current time, formatted.)
+<p></p>
+<li>
+Set <code>Convert Line Breaks</code> to <code>No</code>.
+<p></p>
+<li>
+Set <code>Archive Frequency</code> to <code>No Archive</code>. This will prevent your archives
+from being overwritten with the new template.
+<p></p>
+<li>
+Switch back to the Posts screen, and <code>Publish</code> your weblog. You will end up
+with a single file with all of your posts, formatted using the above template,
+at the location specified in your Settings. Download this file to your local
+hard drive.
+<p>Now skip down to <a href="#importing entries">Importing Entries</a>, below.</p>
+<p></p></ol>
+<p>
+<h2><a name="exporting greymatter entries"></a>Exporting Greymatter Entries</h2>
+<p>These instructions describe the process of exporting all entries and comments
+from Greymatter into a format suitable for import into Movable Type.</p>
+<p><strong>NOTE:</strong> if you have already imported your Greymatter entries into Movable
+Type, and now wish to import only your comments, use the <code>Exporting Greymatter
+Comments Only</code> instructions, below.</p>
+<ol>
+<li>
+Log into your Greymatter account, then click <code>Edit Templates</code>; then click
+<code>Edit Main Index-Related Templates</code>.
+<p></p>
+<li>
+Make a copy of all current templates on this page; you will be replacing them
+with the conversion templates in Steps 3-6, but you probably don't want to
+lose your original templates.
+<p></p>
+<li>
+Replace your <code>Main Index Template</code> with the following:
+<p>{{logbody}}</p>
+<p></p>
+<li>
+Replace your <code>Index Entry Template: Standard Entries</code> template with the
+following:
+<pre>TITLE: {{entrysubject}}
+DATE: {{monthmonth}}/{{dayday}}/{{yearyear}} {{hour}}:{{minuteminute}}:00 {{ampm}}
+AUTHOR: {{author}}
+-----
+BODY:
+{{entrymainbody}}
+-----
+{{entrycomments}}
+--------
+</pre><p></p>
+<li>
+Replace your <code>Index Entry Template: Extended Entries</code> template with the
+following:
+<pre>TITLE: {{entrysubject}}
+DATE: {{monthmonth}}/{{dayday}}/{{yearyear}} {{hour}}:{{minuteminute}}:00 {{ampm}}
+AUTHOR: {{author}}
+-----
+BODY:
+{{entrymainbody}}
+-----
+EXTENDED BODY:
+{{entrymorebody}}
+-----
+{{entrycomments}}
+--------
+</pre><p></p>
+<li>
+Remove all text/HTML from your <code>Date Grouping Template</code>, <code>Entry Separator
+Template</code>, and <code>Stay At Top Index Entry Template</code>.
+<p></p>
+<li>
+Save (do <i>NOT</i> rebuild at this time).
+<p>Return to the main templates menu, then click <code>Karma &amp; Comments-Related
+Templates</code>.</p>
+<p></p>
+<li>
+Copy your current <code>Comment Appearance Template</code>, as in Step 2.
+<p></p>
+<li>
+Change your <code>Comment Appearance Template</code> to the following:
+<pre>COMMENT:
+AUTHOR: {{commentauthor}}
+EMAIL: {{commentauthoremailabsolute}}
+URL: {{commentauthorhomepageabsolute}}
+DATE: {{monthmonth}}/{{dayday}}/{{yearyear}} {{hour}}:{{minuteminute}}:00 {{ampm}}
+{{commentbody}}
+-----
+</pre><p></p>
+<li>
+Save (do <i>NOT</i> rebuild at this time).
+<p>Return to the main templates menu, then click <code>Miscellaneous Templates</code>.</p>
+<p></p>
+<li>
+Copy your current <code>Paragraph Separator</code> and <code>Line Separator</code> templates,
+as in Step 2.
+<p></p>
+<li>
+Change your <code>Paragraph Separator</code> template to two carriage returns, and do
+the same for your <code>Line Separator</code> template.
+<p></p>
+<li>
+Save (do <i>NOT</i> rebuild at this time).
+<p>Return to the main menu, then click <code>Configuration</code>.</p>
+<p></p>
+<li>
+Change <code>Index filename</code>, so as not to overwrite your existing weblog.
+<p></p>
+<li>
+Change <code>Days to keep on main index</code> so that it is higher than the number of
+days that you have been weblogging. This will have the effect of placing all
+of your entries on your main index.
+<p></p>
+<li>
+Save the configuration.
+<p>Return to the main menu, then click <code>Rebuild Files</code>.</p>
+<p></p>
+<li>
+In the <code>Rebuild Files</code> menu, you only want to rebuild your main index page,
+so click the <code>Rebuild Main Index File</code> button.
+<p>After this is done, you will end up with a single file with all of your posts,
+formatted using the above templates, at the location specified in your
+configuration. Download this file to your local hard drive.</p>
+<p>Now skip down to <a href="#importing entries">Importing Entries</a>, below.</p>
+<p></p></ol>
+<p>
+<h2><a name="exporting greymatter comments only"></a>Exporting Greymatter Comments Only</h2>
+<p>If you have already imported your Greymatter entries into Movable Type, and
+now wish to import just the comments from those entries, you can do this
+using the following steps. Note that these instructions will only work if:</p>
+<ol>
+<li>
+You have already imported all of your Greymatter entries into Movable Type.
+<p></p>
+<li>
+You have not changed the timestamps (<code>Authored on</code> dates) on those entries
+after importing them; Movable Type will use the entry timestamps to determine
+which comments match up with which entries. Thus, if you have changed the
+timestamp on an entry, Movable Type will not be able to match up any comments
+on that entry.
+<p></p></ol>
+<p>Here are the steps for exporting just your Greymatter comments:</p>
+<ol>
+<li>
+Log into your Greymatter account, then click <code>Edit Templates</code>; then click
+<code>Edit Main Index-Related Templates</code>.
+<p></p>
+<li>
+Make a copy of all current templates on this page; you will be replacing them
+with the conversion templates in Steps 3-6, but you probably don't want to
+lose your original templates.
+<p></p>
+<li>
+Replace your <code>Main Index Template</code> with the following:
+<p>{{logbody}}</p>
+<p></p>
+<li>
+Replace your <code>Index Entry Template: Standard Entries</code> template with the
+following:
+<pre>DATE: {{monthmonth}}/{{dayday}}/{{yearyear}} {{hour}}:{{minuteminute}}:00 {{ampm}}
+NO ENTRY: 1
+-----
+{{entrycomments}}
+--------
+</pre><p></p>
+<li>
+Replace your <code>Index Entry Template: Extended Entries</code> template with the
+following:
+<pre>DATE: {{monthmonth}}/{{dayday}}/{{yearyear}} {{hour}}:{{minuteminute}}:00 {{ampm}}
+NO ENTRY: 1
+-----
+{{entrycomments}}
+--------
+</pre><p></p>
+<li>
+Remove all text/HTML from your <code>Date Grouping Template</code>, <code>Entry Separator
+Template</code>, and <code>Stay At Top Index Entry Template</code>.
+<p></p>
+<li>
+Save (do <i>NOT</i> rebuild at this time).
+<p>Return to the main templates menu, then click <code>Karma &amp; Comments-Related
+Templates</code>.</p>
+<p></p>
+<li>
+Copy your current <code>Comment Appearance Template</code>, as in Step 2.
+<p></p>
+<li>
+Change your <code>Comment Appearance Template</code> to the following:
+<pre>COMMENT:
+AUTHOR: {{commentauthor}}
+EMAIL: {{commentauthoremailabsolute}}
+URL: {{commentauthorhomepageabsolute}}
+DATE: {{monthmonth}}/{{dayday}}/{{yearyear}} {{hour}}:{{minuteminute}}:00 {{ampm}}
+{{commentbody}}
+-----
+</pre><p></p>
+<li>
+Save (do <i>NOT</i> rebuild at this time).
+<p>Return to the main templates menu, then click <code>Miscellaneous Templates</code>.</p>
+<p></p>
+<li>
+Copy your current <code>Paragraph Separator</code> and <code>Line Separator</code> templates,
+as in Step 2.
+<p></p>
+<li>
+Change your <code>Paragraph Separator</code> template to two carriage returns, and do
+the same for your <code>Line Separator</code> template.
+<p></p>
+<li>
+Save (do <i>NOT</i> rebuild at this time).
+<p>Return to the main menu, then click <code>Configuration</code>.</p>
+<p></p>
+<li>
+Change <code>Index filename</code>, so as not to overwrite your existing weblog.
+<p></p>
+<li>
+Change <code>Days to keep on main index</code> so that it is higher than the number of
+days that you have been weblogging. This will have the effect of placing all
+of your entries on your main index.
+<p></p>
+<li>
+Save the configuration.
+<p>Return to the main menu, then click <code>Rebuild Files</code>.</p>
+<p></p>
+<li>
+In the <code>Rebuild Files</code> menu, you only want to rebuild your main index page,
+so click the <code>Rebuild Main Index File</code> button.
+<p>After this is done, you will end up with a single file with all of your posts,
+formatted using the above templates, at the location specified in your
+configuration. Download this file to your local hard drive.</p>
+<p>Now skip down to <a href="#importing entries">Importing Entries</a>, below.</p>
+<p></p></ol>
+<p>
+<h2><a name="exporting newspro entries"></a>Exporting NewsPro Entries</h2>
+<ol>
+<li>
+Enter the NewsPro admin interface, and click on <code>Change Settings</code>.
+<p></p>
+<li>
+Change the <code>News Files Path</code> to point to a different directory, so as not
+to overwrite your public files; you may need to create a new directory for
+this.
+<p></p>
+<li>
+Change your <code>Archive Files Path</code> to point to the same directory as used in
+Step 2.
+<p></p>
+<li>
+Change your <code>Archive/Hide News</code> setting to <code>Archive</code>.
+<p></p>
+<li>
+Change the <code>News Age</code> to a number greater than the number of days you've
+been weblogging with NewsPro.
+<p></p>
+<li>
+Change <code>Archive Type</code> to <code>One Archive</code>.
+<p></p>
+<li>
+Change the <code>Monthly Archive Links Page</code> to point to a new, unique file, so
+as not to overwrite your public links page.
+<p></p>
+<li>
+Change the <code>12/24 Hour Clock</code> to the 12 hour system.
+<p></p>
+<li>
+Change the <code>Date Format</code> to the following:
+<pre>&lt;Field: Month_Number&gt;/&lt;Field: Day&gt;/&lt;Field: Year&gt; &lt;Field: Hour&gt;:&lt;Field: Minute&gt;:00 &lt;Field: AMPM&gt;
+</pre><p></p>
+<li>
+Change the <code>News Display</code> to the following:
+<pre>TITLE: &lt;InsertSubject&gt;
+DATE: &lt;InsertDate&gt;
+AUTHOR: &lt;InsertName&gt;
+-----
+BODY:
+&lt;InsertNews&gt;
+--------
+</pre><p></p>
+<li>
+Save your settings with the <code>Submit Settings</code> button. Do not rebuild yet.
+<p></p>
+<li>
+Click on the <code>Advanced Settings</code> link.
+<p></p>
+<li>
+Under <code>Advanced Settings</code> scroll down to about the middle of the page and
+find the <code>NumberLimit</code> setting; make sure that it is set to zero (<code>0</code>).
+<p></p>
+<li>
+Find the <code>CreateAnchors</code> setting (around the middle of the page), and set
+it to <code>No (Off)</code>.
+<p></p>
+<li>
+Save settings.
+<p></p>
+<li>
+Rebuild your files. Your exported entries will be compiled into a new file
+which you can then download. Verify your exported data. There will probably
+be a single line at the top of the file with a NewsPro tag or marker--remove
+this line. Ensure that the date format is MM/DD/YYYY (2-digit month/2-digit
+day/4-digit year).
+<p>Now skip down to <a href="#importing entries">Importing Entries</a>, below.</p>
+<p></p></ol>
+<p>
+<h2><a name="importing entries"></a>Importing Entries</h2>
+<p>Now that you have exported all of your entries from your other content
+management system, you are ready to import the entries into Movable Type.</p>
+<ol>
+<li>
+Connect to your FTP server; then open the directory where you installed
+Movable Type.
+<p></p>
+<li>
+Create a new directory called <i>import</i>, then open that directory.
+<p></p>
+<li>
+Upload the file containing all of your entries into the <i>import</i> directory.
+<p></p>
+<li>
+Log into Movable Type, then select the weblog into which you wish to import the
+entries from the <code>Your existing weblogs</code> list.
+<p></p>
+<li>
+Click <code>Import Entries</code>.
+<p></p>
+<li>
+<a name="import_as_self"></a><p>You have the option of either importing the entries as yourself--the author
+that you are currently logged in as--or creating new authors for each
+author name found in the original set of entries. For example, if your weblog
+is/was a team weblog, you would probably want to recreate the original set of
+authors, rather than import all of the entries as yourself. Otherwise you
+probably wish to simply import the entries as yourself.</p>
+<p>If importing the entries as you, check the <code>Import as me</code> box.</p>
+<p>If creating new authors, you will need to set a password which will be
+used when creating each of the new authors in the system. You should also
+leave the <code>Import as me</code> box unchecked.</p>
+<p><strong>NOTE:</strong> if the name of an author listed for one of the entries you are
+importing is already being used by an author in the Movable Type system, the
+entry will be assigned to the existing author, and a new author will not be
+created.</p>
+<li>
+<a name="import_category"></a><p>If you would like to choose a default category for all of the entries that
+you import, you can do so here. This might be useful if you already have a
+batch of entries in your Movable Type weblog, for example, and you wish to mark
+the newly-imported entries as uncategorized.</p>
+<p>If you do not choose a default category, the entries will not be assigned to a
+particular category (unless the entries you are importing use the <code>CATEGORY</code>
+key to specify their category).</p>
+<p>If you choose a default category, and one or more entries use the <code>CATEGORY</code>
+key in the list of exported entries, the <code>CATEGORY</code> key will override the
+default category, for those entries using the <code>CATEGORY</code> key; all other
+entries will be assigned to the default category.</p>
+<li>
+<a name="import_status"></a><p>By default, your imported entries will be assigned the post status that you
+have selected as the <code>Status default</code> in your weblog configuration. If you
+would like to override this, you can select the desired post status
+(<code>Draft</code> or <code>Publish</code>) from the <code>Default post status for entries</code> menu.</p>
+<li>
+<a name="import_title_html"></a><p>The <code>Title Start HTML</code> and <code>Title End HTML</code> values are used to identify
+a post title within the body of an entry. This is useful when importing
+entries from Blogger, for example, because Blogger posts do not have the
+concept of a separate title field. If you have named your posts consistently
+through the use of HTML tags, however, Movable Type can parse your weblog
+entries to find those titles. For example, if all of your entry titles look
+like this:</p>
+<pre>&lt;font class=&quot;title&quot;&gt;I am a title&lt;/font&gt;
+</pre><p>Then you could use a value for <code>Title Start HTML</code> of</p>
+<pre>&lt;font class=&quot;title&quot;&gt;
+</pre><p>and a value for <code>Title End HTML</code> of</p>
+<pre>&lt;/font&gt;
+</pre><p>to automatically set the titles of your entries when importing. If found,
+the title, along with the surrounding HTML, will be removed from the body
+of your entry.</p>
+<p>If you do not fill in these values, or if the relevant HTML cannot be found
+for a particular entry, the first five (5) words of the entry are used as
+the title, instead.</p>
+<li>
+After filling in the necessary values in the form, press <code>IMPORT</code> to import
+your entries.
+<p></p>
+<li>
+That's it!
+<p><i>NOTE</i>: You should now remove all of the files that you imported from the
+<i>import</i> directory, so that if or when you run the import process again at
+some later date, the entries you just imported will not be re-imported.</p>
+<p>You will need to rebuild all of your files in order to generate your archives
+for the new imported entries.</p>
+<p></p></ol>
+<p><strong>TIP:</strong> after importing your entries, if you imported them from a system
+without categories, you may wish to assign categories to each of your entries;
+a fast way to do this is to use Movable Type's
+<a href="./mtmanual_entries.html#powerediting mode">Power-Editing Mode</a>, which allows you
+to edit multiple entries at once.</p>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

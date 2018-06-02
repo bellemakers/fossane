@@ -1,0 +1,482 @@
+<html>
+<head>
+<title>TROUBLESHOOTING</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: TROUBLESHOOTING</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#troubleshooting">TROUBLESHOOTING</a></li>
+	<ul>
+
+		<li><a href="#i see the source of the cgi script when i run movable type">I see the source of the CGI script when I run Movable Type</a></li>
+		<li><a href="#i get a 500 internal server error">I get a 500 Internal Server Error</a></li>
+		<li><a href="#errors when running mtload.cgi">Errors when running mt-load.cgi</a></li>
+		<li><a href="#can't load error template">``Can't load error template''</a></li>
+		<li><a href="#perl modules cannot be loaded">Perl modules cannot be loaded</a></li>
+		<li><a href="#images, styles, and documentation do not show up">Images, styles, and documentation do not show up</a></li>
+		<li><a href="#i keep getting the movable type login screen">I keep getting the Movable Type login screen</a></li>
+		<li><a href="#i can't logout!">I can't logout!</a></li>
+		<li><a href="#my php output files need to be executable">My PHP output files need to be executable</a></li>
+		<li><a href="#i never receive email notifications for comments">I never receive email notifications for comments</a></li>
+		<li><a href="#my webserver doesn't have sendmail">My webserver doesn't have sendmail</a></li>
+		<li><a href="#my host doesn't have image::magick">My host doesn't have Image::Magick</a></li>
+		<li><a href="#i get an error about .new files when rebuilding">I get an error about <i>.new</i> files when rebuilding</a></li>
+		<li><a href="#movable type encodes the characters in my language incorrectly">Movable Type encodes the characters in my language incorrectly</a></li>
+		<li><a href="#i don't like the 404 error page that comes with mt">I don't like the <code>404</code> error page that comes with MT</a></li>
+		<li><a href="#i changed hosts, and now i can't log in to movable type.">I changed hosts, and now I can't log in to Movable Type.</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="troubleshooting"></a>TROUBLESHOOTING</h1>
+<p>
+<h2><a name="i see the source of the cgi script when i run movable type"></a>I see the source of the CGI script when I run Movable Type</h2>
+<p>If, when you try to load <i>mt.cgi</i> into your browser--or <i>mt-load.cgi</i> or
+<i>mt-check.cgi</i> during the installation process--then the problem is that
+your webserver does not have CGI scripting enabled in its configuration.</p>
+<p>If you run your web site on a hosted provider, you will need to email the
+support for this provider and ask them to turn on CGI scripting for your
+account (or for the webserver on a whole); this is not something that you can
+configure yourself.</p>
+<p>If you run your own webserver, or if you have access to the webserver
+configuration files--and the privileges to restart the webserver, after
+modifying the configuration--you can use these steps to enable CGI scripts on
+your webserver. The following instructions assume that you are running Apache.</p>
+<ol>
+<li>
+Find the configuration file <i>httpd.conf</i>, and open it up in an editor.
+<p></p>
+<li>
+Find the <code>Directory</code> or <code>Location</code> block that configures the webroot for
+the server.
+<p>Inside of that block, add this line:</p>
+<pre>Options +ExecCGI
+</pre><p></p>
+<li>
+Outside of the <code>Directory</code> or <code>Location</code> block, add the line
+<pre>AddHandler cgi-script .cgi
+</pre><p></p>
+<li>
+Restart the webserver.
+<p></p></ol>
+<p>CGI scripts should now execute, instead of merely displaying their source.</p>
+<p>
+<h2><a name="i get a 500 internal server error"></a>I get a 500 Internal Server Error</h2>
+<p><code>500 Internal Server Error</code> is the general webserver error that occurs when
+something goes wrong--in particular, when something goes wrong when trying to
+execute a CGI script.</p>
+<p>Here is a list of diagnostics for trying to fix this error:</p>
+<ul>
+<li>
+Are all of the CGI scripts and libraries uploaded in ASCII mode?
+<p></p>
+<li>
+Have you set the permissions properly for all of the CGI scripts? They should
+all be set to 755; this grants read/write/execute permissions to the owner,
+and read/execute permissions to everyone else.
+<p></p>
+<li>
+Check that the path to Perl is correct for your machine. The path to Perl
+is specified on the first line of each CGI script, like this:
+<i>#!/path/to/perl</i>, where <i>/path/to/perl</i> is the path. Typically on a Unix
+server this is <i>#!/usr/bin/perl</i>. You may need to change this value in each
+CGI script if the path is different on your webserver. If you do need to
+change the setting, take care not to remove the <code>-w</code> at the end of the first
+line in each file; this setting turns on warnings in Perl, and it is important
+that it be left on.
+<p>To determine the location of Perl on your webserver,  take a look at the
+support pages for your hosting service. Alternatively, if you have a shell
+(command line) account, and are familiar using it, you can log in to that
+account that type:</p>
+<pre>$ whereis perl
+</pre><p>This will give you the <code>location(s)</code> of Perl on your system.</p>
+<p></p>
+<li>
+Does your webserver have a sufficiently high version of Perl? Movable Type
+requires Perl version 5.004_04 or greater, and errors will occur when trying
+to use a version of Perl earlier than this.
+<p></p></ul>
+<p>
+<h2><a name="errors when running mtload.cgi"></a>Errors when running mt-load.cgi</h2>
+<p>When running <i>mt-load.cgi</i>, if you get an error that says
+<code>Tie '/path/to/db' failed: No such file or directory</code> or
+<code>Tie '/path/to/db' failed: Permission denied</code>, this indicates that the
+<i>DataSource</i> path that you have set in <i>mt.cfg</i> is incorrect, or that the
+permissions on your <i>db</i> directory are incorrect.</p>
+<p>The <i>DataSource</i> setting should contain the full filesystem path to your
+<i>db</i> directory. You can obtain this path in several ways:</p>
+<ul>
+<li>
+If you have shell access to your server (through either telnet or SSH), you
+can use command line tools to determine the full path to your <i>db</i>
+directory. After logging in to your home directory, use the <i>cd</i> command to
+open your <i>db</i> directory:
+<pre>$ cd my/db/
+</pre><p>where <i>my/db/</i> is the path to your <i>db</i> directory from your home directory.
+Then use the <i>pwd</i> directory to display the full path to that directory:</p>
+<pre>$ pwd
+</pre><p>This will print out the full path, which you can then copy and paste into
+your <i>mt.cfg</i> file as the <i>DataSource</i> value.</p>
+<p></p>
+<li>
+If you do not have shell access, you can get a sense of the path to your
+<i>db</i> directory by running <i>mt-check.cgi</i>. <strong>NOTE:</strong> this will not tell you
+<i>exact</i> path to your <i>db</i> directory; rather, it is intended to show you the
+full path to your home directory, from which you should be able to figure out
+the rest of the path.
+<p>To use this method, run <i>mt-check.cgi</i> by pointing your browser at the
+URL for <i>mt-check.cgi</i> on your site. For example, if your site is
+<i><a href="http://www.your-site.com/">http://www.your-site.com/</a></i>, and you uploaded the Movable Type files into
+the <i>/mt</i> directory, you'd type <i><a href="http://www.your-site.com/mt/mt-check.cgi">http://www.your-site.com/mt/mt-check.cgi</a></i>.</p>
+<p>In the output of <i>mt-check.cgi</i>, look for a line like this:</p>
+<pre>Current working directory: /path/to/your/mt/directory
+</pre><p>This is the full path to the directory where you installed Movable Type. From
+that path, you should be able to determine the full path to your <i>db</i>
+directory.</p>
+<p></p></ul>
+<p>If you are getting a <code>Permission denied</code> error, this may indicate that the
+permissions on your <i>db</i> directory are incorrect. The installation
+instructions describe <a href="./mtinstall.html#setting 777 permissions">how to set permissions to 777</a>.</p>
+<p>
+<h2><a name="can't load error template"></a>``Can't load error template''</h2>
+<p>When first trying to view the Movable Type application using the <i>mt.cgi</i>
+program, if you receive a long error that starts <code>Can't load error
+template, got error 'Loading template 'error.tmpl' failed</code> and continues from
+there, this indicates that Movable Type can't find the files in your <i>tmpl</i>
+directory.</p>
+<p>If this happens, try the following:</p>
+<ol>
+<li>
+First check to ensure that the directory <i>tmpl</i> is in the same directory as
+<i>mt.cgi</i>; that inside <i>tmpl</i> there is a directory called <i>cms</i>; and that
+inside <i>cms</i> there are a number of files with the extension <i>.tmpl</i>.
+<p>In addition, make sure that the case on the directories is correct; they
+<strong>are</strong> case sensitive, so if your FTP program changes the name of the
+directory to <i>Cms</i>, for example, this will not work.</p>
+<p></p>
+<li>
+If all of the files are in the location they should be, the issue may be that
+your webserver runs CGI scripts with a different current working directory
+than the directory in which the CGI scripts actually live.
+<p>To fix this, open your <i>mt.cfg</i> file in a text editor, and add the following
+line:</p>
+<pre>TemplatePath /full/path/to/tmpl/
+</pre><p>where <i>/full/path/to/tmpl/</i> is the full path to your <i>tmpl</i> directory.</p>
+<p>Save <i>mt.cfg</i>, then try to run <i>mt.cgi</i> again.</p>
+<p></p></ol>
+<p>
+<h2><a name="perl modules cannot be loaded"></a>Perl modules cannot be loaded</h2>
+<p>If, when running any of the Movable Type CGI scripts, you receive an error
+that says <code>Can't locate Some/File.pm in @INC</code>, where <i>Some/File.pm</i> is the
+name of a file, you should try the following to fix this:</p>
+<ol>
+<li>
+First, you should run <i>mt-check.cgi</i> to ensure that all of the Perl modules
+required for Movable Type usage are installed on your webserver. If they are
+not, follow the instructions in the <a href="./mtinstall.html">Installation Documentation</a>.
+<p></p>
+<li>
+Check to make sure that in the directory containing your CGI files (for
+example, <i>mt.cgi</i>), there is a directory called <i>lib</i>; inside that the file
+in the error message (for example, <i>Some/File.pm</i>) should exist. For example,
+with the above error message, the file <i>lib/Some/File.pm</i> should exist.
+<p><strong>Note</strong> that the file names are case sensitive, so a directory called <i>Lib</i>,
+for example, will not work. Likewise <i>some/file.pm</i> is not the same thing
+as <i>Some/File.pm</i>; the latter will work, but the former will not.</p>
+<p></p></ol>
+<p>
+<h2><a name="images, styles, and documentation do not show up"></a>Images, styles, and documentation do not show up</h2>
+<p>If, when you first view Movable Type, the images and styles do not show up
+properly in your browser, you will need to move the images, documentation,
+and stylesheet to a different location. The reason for this is that you
+installed Movable Type into your <i>cgi-bin</i> directory, because--presumably--it
+was necessary to do so on your server. But hosting non-CGI files out of the
+<i>cgi-bin</i> directory causes problems, because the webserver sometimes tries to
+execute the images, as if they were programs.</p>
+<p>To fix this, you will need to re-upload the images directory (<i>images</i>), the
+documentation directory (<i>docs</i>), and the stylesheet (<i>styles.css</i>) to a
+different directory, <i>outside</i> of your <i>cgi-bin</i> directory. Then, edit the
+<i>mt.cfg</i> file, and add this line:</p>
+<pre>StaticWebPath /path/to/dir/
+</pre><p>where <i>/path/to/dir/</i> is the URL to the directory containing <i>images</i> and
+<i>styles.css</i>. For example, if <i>images</i> is located at
+<i>/movable-static/images/</i>, you would use</p>
+<pre>StaticWebPath /movable-static/
+</pre><p>This should fix the problem.</p>
+<p>
+<h2><a name="i keep getting the movable type login screen"></a>I keep getting the Movable Type login screen</h2>
+<p>The problem: you log in to the system and get the <code>Main Menu</code>; but every
+link you click on that screen brings you back to the login screen.</p>
+<p>The reason for this is likely that you have cookies disabled in your browser.
+Movable Type uses a cookie to store your authentication credentials; in this
+cookie, your password is one-way encrypted, so this is not a security risk.
+If you do not allow this cookie, however, Movable Type has no way of knowing
+that you have already successfully logged in, so it will present you with a
+login prompt when you try to do anything.</p>
+<p>To fix this problem, you will need to enable cookies in your browser.</p>
+<p>
+<h2><a name="i can't logout!"></a>I can't logout!</h2>
+<p>The problem: you are logged in to Movable Type; then you logout, and try to
+login as another user (for example). But you are still logged in as yourself.</p>
+<p>This is probably due to your browser having several versions of the Movable
+Type login cookie. The reason this might happen is that the cookie is dependent
+on the domain name; so if you have two different domain names that access the
+same Movable Type installation, and you use both to get there, you will get
+two versions of the Movable Type cookie. If one domain name is a substring of
+the other domain name--for example, if one domain is <code>www.foo.com</code>, and the
+other is <code>foo.com</code>--then you will need to log out of both sessions in order
+to truly logout. To do this, load Movable Type on both domains, and log out
+of both sessions.</p>
+<p>Because of this, if possible it makes sense to always access Movable Type
+through one single domain name.</p>
+<p>
+<h2><a name="my php output files need to be executable"></a>My PHP output files need to be executable</h2>
+<p>If you are generating PHP files through Movable Type, some webservers will
+require that the generated files have the execute bit set (in other words,
+that the permissions are at least <code>755</code>). By default all files created by
+the system will have their permissions set to <code>666</code>, and you will receive
+errors about your files not being executable.</p>
+<p>To fix this, add this line to your <i>mt.cfg</i> file:</p>
+<pre>HTMLPerms 0777
+</pre><p>This will set the <strong>default</strong> permissions for all files created by the
+system to <code>777</code>; note that if you are using the <i>HTMLUmask</i> setting in
+<i>mt.cfg</i>, the setting for <i>HTMLPerms</i> will be adjusted by the umask setting.
+For example, if you have set <i>HTMLPerms</i> to <code>0777</code>, and you set <i>HTMLUmask</i>
+to <code>0022</code>, all files created by the system will have permissions of <code>0755</code>.</p>
+<p>
+<h2><a name="i never receive email notifications for comments"></a>I never receive email notifications for comments</h2>
+<p>NOTE: another symptom of this problem is that notification messages sent
+through the <code>Edit an entry</code> screen never reach the members of your
+notification list.</p>
+<p>If you know that users are posting comments on your site, and you are not
+receiving them, you should first check your weblog configuration to ensure that
+<code>Email new comments?</code> is checked.</p>
+<p>If it is, then this is most likely a problem with the path to the <i>sendmail</i>
+program on your webserver; this is the program used to send email. Movable
+Type looks in three locations for <i>sendmail</i>: <i>/usr/lib/sendmail</i>,
+<i>/usr/sbin/sendmail</i>, and <i>/usr/ucblib/sendmail</i>. These are the three most
+common locations for <i>sendmail</i> on Unix machines. If your version of
+<i>sendmail</i> is at a different location, here are instructions for telling
+Movable Type what that location is:</p>
+<ol>
+<li>
+Determine the location of <i>sendmail</i> on your webserver. You may need to ask
+your hosting provider or system administrator for this information.
+<p></p>
+<li>
+In the directory where you installed Movable Type, there is a file called
+<i>mt.cfg</i>; download that file, and open it in an editor. (If you are
+comfortable with the shell, you do not need to download the file, but can
+instead edit it in <i>vi</i> or another editor of your choosing.)
+<p></p>
+<li>
+Add this line to the file:
+<pre>SendMailPath /path/to/sendmail
+</pre><p>where <code>/path/to/sendmail</code> is the path to <i>sendmail</i> that you determined in
+Step 1.</p>
+<p></p>
+<li>
+Save <i>mt.cfg</i>, and re-upload it to your server. Ensure that you upload the
+file in ASCII (text) format. (If you used the shell to edit the file, you can
+skip this step.)
+<p></p></ol>
+<p>That's it; if the location to <i>sendmail</i> is correct, you should now be able
+to receive email notifications of new comments.</p>
+<p>
+<h2><a name="my webserver doesn't have sendmail"></a>My webserver doesn't have sendmail</h2>
+<p>If you have tried the above steps to get <i>sendmail</i> working, or if you know
+that your webserver doesn't have <i>sendmail</i>--for example, Win32 machines
+do not have <i>sendmail</i>--Movable Type allows you to send email messages
+through SMTP. To do this, you will need to install the <i>Mail::Sendmail</i> Perl
+module; if you are on Win32 machines, you can do this using Activestate's
+<i>ppm</i> tool. Launch <i>ppm</i>, then at the prompt, type</p>
+<pre>install Mail::Sendmail
+</pre><p>and <i>ppm</i> will do all of the work to install the module. If you are on a
+non-Win32 machine, and you need (or prefer) to use SMTP, you can download
+the distribution from here:</p>
+<pre>http://www.movabletype.org/cpan/cpan-Mail-Sendmail.tar.gz
+</pre><p>Unpack the archive using an extraction program, then connect via FTP to your
+webserver. Open the directory where you installed Movable Type, then open the
+<i>extlib</i> directory; then create a new directory called <code>Mail</code>. Then open
+the <code>Mail</code> directory, and upload the file <i>Sendmail.pm</i> from the archive
+into the <code>Mail</code> directory.</p>
+<p>After you have installed <i>Mail::Sendmail</i>, you will need to configure Movable
+Type to send mail using SMTP. To do so, edit your <i>mt.cfg</i> file, and add
+the line</p>
+<pre>MailTransfer smtp
+</pre><p>By default, Movable Type will try to use the SMTP server on the webserver (on
+<code>localhost</code>); if you need to change this, add another line</p>
+<pre>SMTPServer address.of.smtp.server
+</pre><p>Save (and re-upload, if necessary) your <i>mt.cfg</i> file, and you're done.
+Movable Type should now send email through the SMTP server.</p>
+<p>
+<h2><a name="my host doesn't have image::magick"></a>My host doesn't have Image::Magick</h2>
+<p>Some hosts do not have the <i>Image::Magick</i> Perl module, which Movable Type
+uses to create thumbnails of uploaded images. As of version 2.3 of Movable
+Type, the system now supports an alternate method of creating thumbnails,
+using the NetPBM suite of tools. If your system has NetPBM but not
+Image::Magick, you'll need to do the following:</p>
+<ol>
+<li><strong><a name="item_Install_IPC%3A%3ARun"></a>Install IPC::Run</strong><br>
+
+You'll need to install the <i>IPC::Run</i> Perl module, which Movable Type
+uses to talk to the NetPBM tools. Download the file at this URL:
+<pre>http://www.movabletype.org/cpan/cpan-IPC-Run.tar.gz
+</pre><p>On your FTP server, create a new folder called <i>IPC</i> within your
+<i>extlib</i> folder. Then upload the <i>Run.pm</i> file and the <i>Run</i> folder
+from the <i>IPC-Run</i> distribution into the <i>IPC</i> folder on your server.</p>
+<p></p>
+<li><strong><a name="item_Edit_mt%2Ecfg"></a>Edit mt.cfg</strong><br>
+
+Edit your <i>mt.cfg</i> file, and add this line
+<pre>ImageDriver NetPBM
+</pre><p>By default, Movable Type will look for the NetPBM tools in one of the
+following locations: <i>/usr/local/netpbm/bin</i>, <i>/usr/local/bin</i>, or
+<i>/usr/bin</i>. If you need to set a different path, add another line to
+<i>mt.cfg</i>:</p>
+<pre>NetPBMPath /path/to/netpbm
+</pre><p>Save (and re-upload, if necessary) your <i>mt.cfg</i> file, and you're done.</p>
+<p></p></ol>
+<p>If your host does not have NetPBM, or if you run your own server, you can
+download and install the NetPBM suite of tools from
+<i><a href="http://netpbm.sourceforge.net/">http://netpbm.sourceforge.net/</a></i>. If you'd prefer (or need) the
+precompiled binaries, the Gallery developers provide a set of
+binaries which can be downloaded from
+<i><a href="http://sourceforge.net/project/showfiles.php?group_id=7130">http://sourceforge.net/project/showfiles.php?group_id=7130</a></i>.</p>
+<p>
+<h2><a name="i get an error about .new files when rebuilding"></a>I get an error about <i>.new</i> files when rebuilding</h2>
+<p>When rebuilding a page, Movable Type first writes the page data to a temp
+file, then renames the temp file to the actual file name. The temp file is
+named with an extension of <i>.new</i>; for example, if the file <i>index.html</i>
+is being rebuilt, the temp file would be named <i>index.html.new</i>. Movable
+Type does this to prevent corruption of your public files; if, for some
+reason, the rebuild process is killed in the middle of writing data to a file,
+that file will not be complete, and will appear corrupted to a web browser.</p>
+<p>The process of writing to temp files requires that permissions on the
+<code>Local Site Path</code> directory be set to 777; some users can not--or would
+rather not--set the permissions this liberally, and will then receive errors
+when Movable Type is unable to write to the <i>.new</i> temp files. If this is
+the case for you, you can turn off the use of temp files. To do so, edit
+your <i>mt.cfg</i> file, and add the line</p>
+<pre>NoTempFiles 1
+</pre><p>This will tell Movable Type not to write data to temp files, and you should
+no longer receive errors when rebuilding.</p>
+<p>
+<h2><a name="movable type encodes the characters in my language incorrectly"></a>Movable Type encodes the characters in my language incorrectly</h2>
+<p>When encoding characters into HTML entities--either for editing, or when
+you use the <i>encode_html</i> global tag attribute--Movable Type uses the
+<i>HTML::Entities</i> Perl module, if your server has it; otherwise, it uses a
+simple encoding that encodes <code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code>, and <code></code>
+into the proper entities.</p>
+<p>In some cases, however, <i>HTML::Entities</i> will not work properly for your
+characters--this may happen, for example, if your characters are encoded in
+a different character set (if you are writing in Polish, Russian, etc). In
+this case, edit your <i>mt.cfg</i> file, and add the line</p>
+<pre>NoHTMLEntities 1
+</pre><p>This will tell Movable Type to use its simple encoding, which will not mess
+with the special characters you are using.</p>
+<p>
+<h2><a name="i don't like the 404 error page that comes with mt"></a>I don't like the <code>404</code> error page that comes with MT</h2>
+<p>The Movable Type distribution includes a file <i>index.html</i> in the main
+Movable Type directory; when you upload this file to your webserver, it
+prevents users from viewing the contents of the directory listing. This is
+not meant to provide bulletproof security, but it keeps away curious viewers.</p>
+<p>The version that ships with Movable Type is rather plain, so if you'd like to
+improve it on your server, just edit the file <i>index.html</i>; it's just a
+standard HTML file.</p>
+<p>If you are using Apache as your webserver, you can use a different technique
+to prevent users from viewing your directory listings:</p>
+<ol>
+<li>
+Create a file <i>.htaccess</i> in the directory where you installed Movable Type.
+<p></p>
+<li>
+Open that file in an editor.
+<p></p>
+<li>
+Add the line <code>Options -Indexes</code> to that file.
+<p></p>
+<li>
+Save the file, then exit the editor.
+<p></p></ol>
+<p>If you use this technique, you can remove the <i>index.html</i> file from the
+directory; the webserver will then prevent viewers from listing the contents
+of the directory.</p>
+<p>
+<h2><a name="i changed hosts, and now i can't log in to movable type."></a>I changed hosts, and now I can't log in to Movable Type.</h2>
+<p>When you change hosting providers (or just move to a different server at the
+same provider), it is possible that the two servers have different versions
+of the Berkeley DB library; this is the library that Movable Type uses to
+store your data. When you copy the DB files from one host to another, if the
+two hosts have different versions of Berkeley DB, the new host will not be
+able to read the files from the old host.</p>
+<p>This can be fixed by converting the DB files over to the format used by the
+new library version; this is accomplished in several different ways, depending
+on the Berkeley DB versions involved. The files that need to be converted are
+all of the files in your <i>db</i> directory whose filenames end in either <i>.db</i>
+or <i>.idx</i> (the <i>.lock</i> files do not need to be converted).</p>
+<p>The following steps require that you have shell access to your server, and
+imply that you are somewhat familiar with running Unix commands; if this is
+not the case, you should ask your hosting provider to help you.</p>
+<ol>
+<li>
+First, and most important, back up your DB files; you need to create backup
+copies of all of the files in your <i>db</i> directory. (If you do this by
+downloading the directory, make sure to transfer it in binary mode.)
+<p></p>
+<li>
+The easiest way to convert the DB files is to use the <i>db_upgrade</i> program;
+unfortunately this is not available on every server, but it may be available
+on yours. To find out, log into your shell account, and type the following at
+your shell prompt (&lt;db_dir&gt; is the path to your <i>db</i> directory):
+<pre>$ cd &lt;db_dir&gt;
+$ db_upgrade *.db *.idx
+</pre><p>If your server has <i>db_upgrade</i>, this will convert all of your DB files over
+to the new format. If this works, you're done, and you can skip the following
+steps; Movable Type should now work.</p>
+<p></p>
+<li>
+If the above <i>db_upgrade</i> command does not work--for example, if you get an
+error saying that <code>command not found</code>--then you will need to use the following
+method to convert your data. This method dumps out all of the data from your
+DB files, then loads it into new versions of those DB files.
+<p>The program used to dump the contents of your DB files is called either one of
+two things: <i>db_dump</i>, or <i>db_dump185</i>. To determine which program you need
+to use, first try running the following command in your shell account:</p>
+<pre>$ cd &lt;db_dir&gt;
+$ db_dump author.db
+</pre><p>If this command is successful, you will see a screenful of data dumped out. If
+it is unsuccessful, you will get an error message; in this case, try using
+the following command:</p>
+<pre>$ db_dump185 author.db
+</pre><p>Again, if the command is successful, you will see a screenful of data. If this
+also fails, then you will need to contact your hosting provider.</p>
+<p></p>
+<li>
+Now that you have determined which <i>db_dump</i> program to use (either <i>db_dump</i>
+or <i>db_dump185</i>), you can dump all of the data from your old DBM files and
+load it into new versions of those files. To do that, try the following
+(substitute <i>db_dump185</i> instead of <i>db_dump</i>, if necessary):
+<pre>$ db_dump -f author.db.data author.db
+$ mv author.db author.db.old
+$ db_load -f author.db.data author.db
+$ chmod 666 author.db
+</pre><p>You will need to run these four commands for each file in your <i>db</i> directory
+whose name ends in <i>.db</i> or <i>.idx</i>. After you have done so, you're done,
+and Movable Type should now work.</p>
+<p></p></ol>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

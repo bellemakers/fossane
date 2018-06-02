@@ -1,0 +1,113 @@
+
+/* General Elements */
+/* ----------------------------------------------------- */
+
+a {
+	text-decoration:none;
+	color:#000000
+	}
+
+/* top bar */
+/* ----------------------------------------------------- */
+
+
+
+.tree {
+	color:#a5ad94;
+	font-family:sans-serif;
+	font-size:0.8em
+	}
+
+.tree a {
+	color:#7d8868;
+	text-decoration:none;
+	}
+
+.tree a:hover {
+	color:#ffffff
+	}
+
+.updated {
+	color:#a5ad94;
+	font-family:sans-serif;
+	font-size:0.8em
+	}
+	
+/* Left column */
+/* ----------------------------------------------------- */
+
+.currentsection {
+ 	font-family: "Century Gothic", sans-serif;
+	background-color:#000000;
+	}
+
+.currentsection td {
+	border-style:none
+	}
+
+.currentsection a {
+	color:#CFD3BD;
+	text-decoration:none
+	}
+
+.colL {
+	font-family: "Century Gothic", sans-serif;
+	font-size:12px
+	}
+
+.colL td {
+	border-style:solid;
+	border-color:#000000;
+	border-width:2px;
+	}
+
+.colL td td {
+	border-style:none
+	}
+
+.colL a {
+	text-decoration:none
+	}
+
+.longlink td {
+	border-style:none
+	}
+
+.longlink a {
+	color:#CFD3BD
+	}
+
+.colR {
+	font-family: "Century Gothic", sans-serif;
+	font-size: 12px
+	}
+
+.colR a {
+	color:#3f4434;
+	text-decoration:none
+	}
+	
+/* Main  column */
+/* ----------------------------------------------------- */
+	
+ .heading {
+ 	font-family: "Century Gothic", sans-serif;
+ 	font-size: 22px
+	}
+
+.heading {
+	font-size:1.5em;
+	padding-top:10px;
+	padding-bottom:0.5em
+	}
+
+.text {
+	font-family: "Century Gothic", sans-serif;
+	}
+
+#footer {
+	font-family: "Century Gothic", sans-serif;
+	border-top-style:solid;
+	border-top-width:3px;
+	padding-bottom:10px
+	}

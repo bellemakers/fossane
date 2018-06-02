@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Preferences"> | <TMPL_VAR NAME=BLOG_NAME> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+function openManual (anchor) {
+    window.open('<TMPL_VAR NAME=STATIC_URI>docs/mtmanual_entries.html#' + anchor, 'manual', 'width=450,height=550,scrollbars=yes,status=yes,resizable=yes');
+}
+
+//-->
+</script>
+
+</head>
+
+<body class="pop">
+
+<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+<input type="hidden" name="__mode" value="save_entry_prefs">
+<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+<TMPL_IF NAME=ENTRY_ID>
+<input type="hidden" name="entry_id" value="<TMPL_VAR NAME=ENTRY_ID>">
+</TMPL_IF>
+
+<table border="0" cellspacing="0" padding="0">
+
+<tr>
+<td width="20" rowspan="<TMPL_IF NAME=SAVED>24<TMPL_ELSE>22</TMPL_IF>" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="50"></td>
+<td width="20" rowspan="<TMPL_IF NAME=SAVED>24<TMPL_ELSE>22</TMPL_IF>" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</tr>
+
+<TMPL_IF NAME=SAVED>
+<tr>
+<td valign="top"><p class="message"><MT_TRANS phrase="Your entry screen preferences have been saved."></p></td>
+</tr>
+</TMPL_IF>
+
+<tr>
+<td valign="top"><font class="pagetitle"><MT_TRANS phrase="Field Configuration"></font></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+<td valign="top"><font class="instructional"><MT_TRANS phrase="_USAGE_ENTRYPREFS"> <a href="#" onclick="openManual('customizing the entry editing screen')"><MT_TRANS phrase="(Help?)"></a></font></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td valign="top"><font class="title"><input type="radio" name="entry_prefs" value="Basic"<TMPL_IF NAME=DISP_PREFS_BASIC> checked</TMPL_IF>> <MT_TRANS phrase="Basic"></font></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="4"></td>
+</tr>
+
+<tr>
+<td valign="top"><font class="title"><input type="radio" name="entry_prefs" value="Advanced"<TMPL_IF NAME=DISP_PREFS_ADVANCED> checked</TMPL_IF>> <MT_TRANS phrase="Advanced"></font></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="4"></td>
+</tr>
+
+<tr>
+<td valign="top"><font class="title"><input type="radio" name="entry_prefs" value="Custom"<TMPL_IF NAME=DISP_PREFS_CUSTOM> checked</TMPL_IF>> <MT_TRANS phrase="Custom: show the following fields:"></font></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td valign="top">
+
+	<table border="0" cellspacing="3" cellpadding="0">
+
+	<tr>
+	<td rowspan="9"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="30" height="1"></td>
+	<td valign="top"><font class="title"><input type="checkbox" name="custom_prefs" value="category"<TMPL_IF NAME=DISP_PREFS_SHOW_CATEGORY> checked</TMPL_IF>> <MT_TRANS phrase="Category"></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="title"><input type="checkbox" name="custom_prefs" value="extended"<TMPL_IF NAME=DISP_PREFS_SHOW_EXTENDED> checked</TMPL_IF>> <MT_TRANS phrase="Extended Entry"></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="title"><input type="checkbox" name="custom_prefs" value="excerpt"<TMPL_IF NAME=DISP_PREFS_SHOW_EXCERPT> checked</TMPL_IF>> <MT_TRANS phrase="Excerpt"></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="title"><input type="checkbox" name="custom_prefs" value="keywords"<TMPL_IF NAME=DISP_PREFS_SHOW_KEYWORDS> checked</TMPL_IF>> <MT_TRANS phrase="Keywords"></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="title"><input type="checkbox" name="custom_prefs" value="allow_comments"<TMPL_IF NAME=DISP_PREFS_SHOW_ALLOW_COMMENTS> checked</TMPL_IF>> <MT_TRANS phrase="Allow Comments"></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="title"><input type="checkbox" name="custom_prefs" value="convert_breaks"<TMPL_IF NAME=DISP_PREFS_SHOW_CONVERT_BREAKS> checked</TMPL_IF>> <MT_TRANS phrase="Text Formatting"></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="title"><input type="checkbox" name="custom_prefs" value="allow_pings"<TMPL_IF NAME=DISP_PREFS_SHOW_ALLOW_PINGS> checked</TMPL_IF>> <MT_TRANS phrase="Allow Pings"></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="title"><input type="checkbox" name="custom_prefs" value="authored_on"<TMPL_IF NAME=DISP_PREFS_SHOW_AUTHORED_ON> checked</TMPL_IF>> <MT_TRANS phrase="Editable Authored On Date (Edit Entry screen only)"></font></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="title"><input type="checkbox" name="custom_prefs" value="ping_urls"<TMPL_IF NAME=DISP_PREFS_SHOW_PING_URLS> checked</TMPL_IF>> <MT_TRANS phrase="URLs to Ping"></font></td>
+	</tr>
+
+	</table>
+
+</td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+</tr>
+
+<tr>
+<td valign="top"><font class="pagetitle"><MT_TRANS phrase="Button Bar Position"></font></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+<td valign="top"><font class="title"><input type="radio" name="bar_position" value="Top"<TMPL_IF NAME=POSITION_TOP> checked</TMPL_IF>> <MT_TRANS phrase="Top of the page"></font></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="4"></td>
+</tr>
+
+<tr>
+<td valign="top"><font class="title"><input type="radio" name="bar_position" value="Bottom"<TMPL_IF NAME=POSITION_BOTTOM> checked</TMPL_IF>> <MT_TRANS phrase="Bottom of the page"></font></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+</tr>
+
+<tr>
+<td align="right" valign="top"><input class="button" onClick="window.close()" type="button" value="<MT_TRANS phrase="Cancel">">&nbsp;<input class="button" type="submit" value="<MT_TRANS phrase="Save">"></td>
+</tr>
+
+</table>
+</form>
+
+</body>
+</html>

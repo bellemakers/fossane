@@ -1,0 +1,93 @@
+<table width="95" cellspacing="0" cellpadding="0" border="0"">
+
+<tr>
+<td valign="top"><img alt="<MT_TRANS phrase="Entries">" src="<TMPL_VAR NAME=STATIC_URI>images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/nav-post-label.gif" width="95" height="11"></td>
+</tr>
+
+<TMPL_IF NAME=CAN_POST>
+<tr>
+<td valign="top" ><a title="<MT_TRANS phrase="Create New Entry">" onmouseover="window.status='<MT_TRANS phrase="Create New Entry">'; return true" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=entry&blog_id=<TMPL_VAR NAME=BLOG_ID>"><img alt="<MT_TRANS phrase="Create New Entry">" src="<TMPL_VAR NAME="STATIC_URI">images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/nav-new-entry.gif" width="95" height="32" border="0"></a></td>
+</tr>
+
+</TMPL_IF>
+
+<TMPL_IF NAME=CAN_EDIT_ENTRIES>
+<tr>
+<td valign="top" ><a title="<MT_TRANS phrase="List &amp; Edit Entries">" onmouseover="window.status='<MT_TRANS phrase="List &amp; Edit Entries">'; return true" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=list_entries&blog_id=<TMPL_VAR NAME=BLOG_ID>"><img alt="<MT_TRANS phrase="List &amp; Edit Entries">" src="<TMPL_VAR NAME="STATIC_URI">images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/nav-entries.gif" width="95" height="32" border="0"></a></td>
+</tr>
+
+</TMPL_IF>
+
+<TMPL_IF NAME=CAN_UPLOAD>
+<tr>
+<td valign="top" ><a title="<MT_TRANS phrase="Upload File">" onmouseover="window.status='<MT_TRANS phrase="Upload File">'; return true" href="#" onClick="window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=start_upload&blog_id=<TMPL_VAR NAME=BLOG_ID>', 'upload', 'width=400,height=400,resizable=yes')"><img alt="<MT_TRANS phrase="Upload File">" src="<TMPL_VAR NAME="STATIC_URI">images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/nav-upload.gif" width="95" height="32" border="0"></a></td>
+</tr>
+
+</TMPL_IF>
+
+<TMPL_IF NAME=HAS_MANAGE_LABEL>
+
+<tr>
+<td valign="top"><img alt="<MT_TRANS phrase="Manage">" src="<TMPL_VAR NAME=STATIC_URI>images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/nav-manage-label.gif" width="95" height="11"></td>
+</tr>
+
+</TMPL_IF>
+
+<TMPL_IF NAME=CAN_EDIT_TEMPLATES>
+<tr>
+<td valign="top" ><a title="<MT_TRANS phrase="List &amp; Edit Templates">" onmouseover="window.status='<MT_TRANS phrase="List &amp; Edit Templates">'; return true" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=list&_type=template&blog_id=<TMPL_VAR NAME=BLOG_ID>"><img alt="<MT_TRANS phrase="List &amp; Edit Templates">" src="<TMPL_VAR NAME="STATIC_URI">images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/nav-templates.gif" width="95" height="32" border="0"></a></td>
+</tr>
+
+</TMPL_IF>
+
+<TMPL_IF NAME=CAN_EDIT_CATEGORIES>
+<tr>
+<td valign="top" ><a title="<MT_TRANS phrase="Edit Categories">" onmouseover="window.status='<MT_TRANS phrase="Edit Categories">'; return true" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=list_cat&blog_id=<TMPL_VAR NAME=BLOG_ID>"><img alt="<MT_TRANS phrase="Edit Categories">" src="<TMPL_VAR NAME="STATIC_URI">images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/nav-categories.gif" width="95" height="32" border="0"></a></td>
+</tr>
+
+</TMPL_IF>
+
+<TMPL_IF NAME=CAN_EDIT_NOTIFICATIONS>
+<tr>
+<td valign="top" ><a title="<MT_TRANS phrase="Edit Notification List">" onmouseover="window.status='<MT_TRANS phrase="Edit Notification List">'; return true" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=list&_type=notification&blog_id=<TMPL_VAR NAME=BLOG_ID>"><img alt="<MT_TRANS phrase="Edit Notification List">" src="<TMPL_VAR NAME="STATIC_URI">images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/nav-notifications.gif" width="95" height="32" border="0"></a></td>
+</tr>
+
+</TMPL_IF>
+
+<TMPL_IF NAME=CAN_EDIT_CONFIG>
+<tr>
+<td valign="top" ><a title="<MT_TRANS phrase="Edit Weblog Configuration">" onmouseover="window.status='<MT_TRANS phrase="Edit Weblog Configuration">'; return true" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=blog&id=<TMPL_VAR NAME=BLOG_ID>&blog_id=<TMPL_VAR NAME=BLOG_ID>"><img alt="<MT_TRANS phrase="Edit Weblog Configuration">" src="<TMPL_VAR NAME="STATIC_URI">images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/nav-config.gif" width="95" height="32" border="0"></a></td>
+</tr>
+
+</TMPL_IF>
+
+<tr>
+<td valign="top"><img alt="<MT_TRANS phrase="Utilities">" src="<TMPL_VAR NAME=STATIC_URI>images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/nav-utilities-label.gif" width="95" height="11"></td>
+</tr>
+
+<TMPL_IF NAME=CAN_EDIT_ENTRIES>
+<tr>
+<td valign="top" ><a title="<MT_TRANS phrase="Search &amp; Replace">" onmouseover="window.status='<MT_TRANS phrase="Search &amp; Replace">'; return true" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=start_search_replace&blog_id=<TMPL_VAR NAME=BLOG_ID>"><img alt="<MT_TRANS phrase="Search &amp; Replace">" src="<TMPL_VAR NAME="STATIC_URI">images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/nav-search.gif" width="95" height="32" border="0"></a></td>
+</tr>
+
+</TMPL_IF>
+
+<TMPL_IF NAME=CAN_EDIT_CONFIG>
+<tr>
+<td valign="top" ><a title="<MT_TRANS phrase="Import &amp; Export Entries">" onmouseover="window.status='<MT_TRANS phrase="Import &amp; Export Entries">'; return true" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=start_import&blog_id=<TMPL_VAR NAME=BLOG_ID>"><img alt="<MT_TRANS phrase="Import &amp; Export Entries">" src="<TMPL_VAR NAME="STATIC_URI">images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/nav-import.gif" width="95" height="32" border="0"></a></td>
+</tr>
+
+</TMPL_IF>
+
+<TMPL_IF NAME=CAN_REBUILD>
+<tr>
+<td valign="top" ><a title="<MT_TRANS phrase="Rebuild Files">" onmouseover="window.status='<MT_TRANS phrase="Rebuild Files">'; return true" href="#" onClick="window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=rebuild_confirm&blog_id=<TMPL_VAR NAME=BLOG_ID>', 'rebuild', 'width=400,height=200,resizable=yes')"><img alt="<MT_TRANS phrase="Rebuild Files">" src="<TMPL_VAR NAME="STATIC_URI">images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/nav-rebuild.gif" width="95" height="32" border="0"></a></td>
+</tr>
+
+</TMPL_IF>
+
+<tr>
+<td valign="top" ><a target="_blank" title="<MT_TRANS phrase="View Site">" onmouseover="window.status='<MT_TRANS phrase="View Site">'; return true" href="<TMPL_VAR NAME=BLOG_URL>"><img alt="<MT_TRANS phrase="View Site">"" src="<TMPL_VAR NAME="STATIC_URI">images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/nav-view-site.gif" width="95" height="32" border="0"></a></td>
+</tr>
+
+</table>

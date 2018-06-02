@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<$MTPublishCharset$>" />
+
+<title>Search Results</title>
+
+<link rel="stylesheet" href="<$MTBlogURL$>styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="<$MTBlogURL$>index.rdf" />
+</head>
+
+<body>
+
+<div id="banner">
+<h1><a href="<$MTBlogURL$>">Search Results</a></h1>
+</div>
+
+<div id="container">
+<div class="blog">
+
+<form method="post" action="<$MTCGIPath$><$MTSearchScript$>">
+
+<h3 class="title">Search this site:</h3>
+<div class="comments-body">
+<input type="text" size="30" name="search" value="<$MTSearchString$>" /> <input type="submit" value="Search" /><br/><br />
+<input type="checkbox" name="CaseSearch" /> Match case <input type="checkbox" name="RegexSearch" /> Regex search<br/><br />
+</div>
+
+</form>
+
+<MTSearchResults>
+
+	<MTBlogResultHeader>
+	<h2 class="date">Search Results from <$MTBlogName$></h2>
+	</MTBlogResultHeader>
+
+	<div class="blogbody">
+	<h3 class="title"><a href="<$MTEntryPermalink$>"><$MTEntryTitle$></a></h3>
+	<$MTEntryExcerpt$> <$MTEntryEditLink$><br />
+	<div class="posted">Posted in <$MTBlogName$> on <$MTEntryDate$></div>
+	</div>
+
+</MTSearchResults>
+
+<MTNoSearchResults>
+	<h2 class="date">Searched for "<$MTSearchString$>"</h2>
+
+	<div class="blogbody">
+	<p>No pages were found containing "<$MTSearchString$>".</p>
+	</div>
+</MTNoSearchResults>
+
+<MTNoSearch>
+	<h2 class="date">Instructions</h2>
+
+	<div class="blogbody">
+	<p>By default, this search engine looks for all words in any order. To search for an exact phrase, enclose the phrase in quotes:</p>
+
+	<blockquote><pre>"movable type"</pre></blockquote>
+
+	<p>The search engine also supports AND, OR, and NOT keywords to specify boolean expressions:</p>
+
+	<blockquote><pre>personal OR publishing</pre></blockquote>
+
+	<blockquote><pre>publishing NOT personal</pre></blockquote>
+	</div>
+</MTNoSearch>
+
+</div>
+</div>
+
+</body>
+</html>

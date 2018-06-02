@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Post to MT Weblog"> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+//-->
+</script>
+
+</head>
+
+<body class="pop">
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="100"></td>
+<td valign="top" width="350"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="350" height="1"></td>
+</tr>
+
+<tr>
+<td width="39">&nbsp;</td>
+<td valign="top" width="350">
+<p class="message"><MT_TRANS phrase="Your new entry has been saved to [_1]" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"><TMPL_IF NAME=STATUS_RELEASED><MT_TRANS phrase=", and it has been posted to your site"></TMPL_IF>. <a target="_blank" href="<TMPL_VAR NAME=BLOG_URL>"><MT_TRANS phrase="View your site"></a></p>
+
+<p class="message"><a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=entry&id=<TMPL_VAR NAME=ENTRY_ID>&blog_id=<TMPL_VAR NAME=BLOG_ID>"><MT_TRANS phrase="Edit this entry"></a></p>
+</td>
+</tr>
+
+<tr>
+<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td width="39">&nbsp;</td>
+<td valign="top" width="350" align="right">
+<input class="button" type="button" onClick="window.close()" value="<MT_TRANS phrase="Close">">
+</td>
+</tr>
+
+</table>
+
+</body>
+</html>

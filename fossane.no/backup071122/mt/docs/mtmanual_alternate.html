@@ -1,0 +1,115 @@
+<html>
+<head>
+<title>ALTERNATE ENVIRONMENTS</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: ALTERNATE ENVIRONMENTS</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#alternate environments">ALTERNATE ENVIRONMENTS</a></li>
+	<ul>
+
+		<li><a href="#mod_perl">mod_perl</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="alternate environments"></a>ALTERNATE ENVIRONMENTS</h1>
+<p>
+<h2><a name="mod_perl"></a>mod_perl</h2>
+<p>Movable Type can run under <i>mod_perl</i> in either Registry mode or as a set of
+full-fledged handlers. <strong>NOTE</strong> that in order to run under <i>mod_perl</i>, you
+<strong>must</strong> have <i>Apache::Request</i> and <i>Apache::Cookie</i> installed; these modules
+comprise the <i>libapreq</i> distribution, which can be downloaded from here:</p>
+<pre>http://www.movabletype.org/cpan/cpan-libapreq.tar.gz
+</pre><p>Setting up MT under Registry is just like setting up any other CGI script
+under Registry; add the following to your <i>httpd.conf</i>:</p>
+<pre>PerlModule Apache::Registry
+&lt;Location /path/to/mt&gt;
+SetHandler perl-script
+PerlHandler Apache::Registry
+Options +ExecCGI
+&lt;/Location&gt;
+</pre><p>You will need to host your <i>docs</i>, <i>images</i>, and <i>styles.css</i> files in
+another directory outside of <i>/path/to/mt</i>, just as if you had placed MT into
+the <i>cgi-bin</i>. See <a href="./mtmanual_troubleshooting.html#images, styles, and documentation do not show up">Troubleshooting</a> for more details.</p>
+<p>If you want even more speed, consider running Movable Type to run as a mod_perl
+handler. You will need to set up two handlers: one for the main application,
+and one for your front-end comments.</p>
+<ol>
+<li>
+<a href="./mtinstall.html">Install Movable Type</a> normally, and run <i>mt-load.cgi</i> to
+initialize the databases.
+<p></p>
+<li>
+Set up your <i>images</i>, <i>docs</i>, and <i>styles.css</i> in a web-accessible
+directory <strong>not</strong> under <i>/mt/</i>. See <a href="./mtmanual_troubleshooting.html#images, styles, and documentation do not show up">Troubleshooting</a> for more details.
+<p></p>
+<li>
+Add the following to your <i>httpd.conf</i>:
+<pre>&lt;Perl&gt;
+use lib '/path/to/mt/lib';
+use lib '/path/to/mt/extlib';
+&lt;/Perl&gt;
+PerlModule MT::App::CMS
+&lt;Location /mt/app&gt;
+SetHandler perl-script
+PerlHandler MT::App::CMS
+PerlSetVar MTConfig /path/to/mt.cfg
+&lt;/Location&gt;
+PerlModule MT::App::Comments
+&lt;Location /mt/comments&gt;
+SetHandler perl-script
+PerlHandler MT::App::Comments
+PerlSetVar MTConfig /path/to/mt.cfg
+&lt;/Location&gt;
+PerlModule MT::App::Trackback
+&lt;Location /mt/trackback&gt;
+SetHandler perl-script
+PerlHandler MT::App::Trackback
+PerlSetVar MTConfig /path/to/mt.cfg
+&lt;/Location&gt;
+PerlModule MT::App::Search
+&lt;Location /mt/search&gt;
+SetHandler perl-script
+PerlHandler MT::App::Search
+PerlSetVar MTConfig /path/to/mt.cfg
+&lt;/Location&gt;
+PerlModule Apache::XMLRPC::Lite
+PerlModule MT::XMLRPCServer
+&lt;Location /mt/xmlrpc&gt;
+SetHandler perl-script
+PerlHandler Apache::XMLRPC::Lite
+PerlSetVar dispatch_to &quot;blogger, metaWeblog, mt&quot;
+PerlSetVar MTConfig /path/to/mt.cfg
+&lt;/Location&gt;
+</pre><p>Note that, as an alternate to the <code>use lib</code> statement above, you could also
+use</p>
+<pre>PerlSetEnv PERL5LIB /path/to/mt/lib
+</pre><p></p>
+<li>
+In your <i>mt.cfg</i> file, you will need to use the following settings:
+<pre>DataSource /path/to/db
+CGIPath http://my.server.com/mt/
+StaticWebPath /mt-static/
+CommentScript comments
+TrackbackScript trackback
+SearchScript search
+XMLRPCScript xmlrpc
+</pre><p><code>StaticWebPath</code> should correspond to the URI you set when setting up your
+<i>images</i>, <i>docs</i>, and <i>styles.css</i> (in Step 1).</p>
+<p></p></ol>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

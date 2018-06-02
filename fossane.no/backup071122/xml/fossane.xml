@@ -1,0 +1,257 @@
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by BS (S) -->
+<?xml-stylesheet type="text/xsl" href="C:\www.fossane.no\fossane.xslt"?>
+<fossane xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\www.fossane.no\fossane.xsd">
+	<!-- 
+	Languages element contains the language element. The language element has the following attributes:
+	
+	lang (req):			Must be an integer, and used for identifying the language 
+						of each element in the rest of the document. The root index.html
+						file will be in the language whose lang-attribute has a value of 1. 
+	
+	longname (req):		Long name of language. Is used for e.g. ALT-text of language icons.
+	
+	shortname (req):	Short name of language. Must correspond with the name of the
+						highest level folder of each language, as well as the picture file used
+						as icon for each language.	
+	-->
+	<languages>
+		<language lang="1" longname="English" shortname="en"/>
+		<language lang="2" longname="Deutsch" shortname="de"/>
+		<language lang="3" longname="Norsk" shortname="no"/>
+		<language lang="4" longname="Francais" shortname="fr"/>
+		<language lang="5" longname="Español" shortname="es"/>
+	</languages>
+	<universal>
+		<folderstructure>
+			<rootname>http://www.fossane.no/</rootname>
+			<object type="file" id="00000">
+				<name lang="1">index</name>
+			</object>
+			<object type="file" id="10000">
+				<name lang="1">index</name>
+				<name lang="2">index</name>
+				<name lang="3">index</name>
+				<name lang="4">index</name>
+				<name lang="5">index</name>
+			</object>
+			<object type="FOLDER" id="21000">
+				<name lang="1">holidays</name>
+				<name lang="2">ferien</name>
+				<name lang="3">ferie</name>
+				<name lang="4">vacances</name>
+				<name lang="5">vacaciones</name>
+				<object type="file" id="11000">
+					<name lang="1">index</name>
+					<name lang="2">index</name>
+					<name lang="3">index</name>
+					<name lang="4">index</name>
+					<name lang="5">index</name>
+					<object type="file" id="11100">
+						<name lang="1">activities</name>
+						<name lang="2">aktivitaten</name>
+						<name lang="3">aktivitetar</name>
+						<name lang="4">activites</name>
+						<name lang="5">actividades</name>
+						<object type="file" id="11110">
+							<name lang="1">thefarm</name>
+							<name lang="2">diefarm</name>
+							<name lang="3">garden</name>
+							<name lang="4">ferme</name>
+							<name lang="5">lagranja</name>
+						</object>
+						<object type="file" id="11120">
+							<name lang="1">fishing</name>
+							<name lang="2">angeln</name>
+							<name lang="3">fiske</name>
+							<name lang="4">peche</name>
+							<name lang="5">pesca</name>
+						</object>
+						<object type="file" id="11130">
+							<name lang="1">swimming</name>
+							<name lang="2">baden</name>
+							<name lang="3">badeplassar</name>
+							<name lang="4">baigner</name>
+							<name lang="5">banarse</name>
+						</object>
+						<object type="file" id="11140">
+							<name lang="1">hiking</name>
+							<name lang="2">wandern</name>
+							<name lang="3">turgaing</name>
+							<name lang="4">randonees</name>
+							<name lang="5">paseo</name>
+						</object>
+					</object>
+					<object type="file" id="11200">
+						<name lang="1">thehouses</name>
+						<name lang="2">diehauser</name>
+						<name lang="3">husa</name>
+						<name lang="4">lesmaisons</name>
+						<name lang="5">lascasas</name>
+						<object type="file" id="11210">
+							<name lang="1">jonsenhuset</name>
+							<name lang="2">jonsenhuset</name>
+							<name lang="3">jonsenhuset</name>
+							<name lang="4">jonsenhuset</name>
+							<name lang="5">jonsenhuset</name>
+						</object>
+						<object type="file" id="11220">
+							<name lang="1">folga</name>
+							<name lang="2">folga</name>
+							<name lang="3">folga</name>
+							<name lang="4">folga</name>
+							<name lang="5">folga</name>
+						</object>
+						<object type="file" id="11230">
+							<name lang="1">bjodlandsfolga</name>
+							<name lang="2">bjodlandsfolga</name>
+							<name lang="3">bjodlandsfolga</name>
+							<name lang="4">bjodlandsfolga</name>
+							<name lang="5">bjodlandsfolga</name>
+						</object>
+					</object>
+					<object type="file" id="11300">
+						<name lang="1">prices</name>
+						<name lang="2">preisen</name>
+						<name lang="3">prisar</name>
+						<name lang="4">lesprix</name>
+						<name lang="5">precios</name>
+					</object>
+				</object>
+				<object type="FOLDER" id="22000">
+					<name lang="1">agriculture</name>
+					<name lang="2">landwirtschaft</name>
+					<name lang="3">landbruk</name>
+					<name lang="4">agriculture</name>
+					<name lang="5">agricultura</name>
+					<object type="file" id="12000">
+						<name lang="1">index</name>
+						<name lang="2">index</name>
+						<name lang="3">index</name>
+						<name lang="4">index</name>
+						<name lang="5">index</name>
+					</object>
+				</object>
+				<object type="FOLDER" id="23000">
+					<name lang="1">energy</name>
+					<name lang="2">energie</name>
+					<name lang="3">energi</name>
+					<name lang="4">energie</name>
+					<name lang="5">energia</name>
+					<object type="file" id="13000">
+						<name lang="1">index</name>
+						<name lang="2">index</name>
+						<name lang="3">index</name>
+						<name lang="4">index</name>
+						<name lang="5">index</name>
+					</object>
+				</object>
+			</object>
+		</folderstructure>
+		<e-mail>fossane@online.no</e-mail>
+		<text>
+			<footer>
+				<updated lang="1">Last updated </updated>
+				<updated lang="2">Letztes Update </updated>
+				<updated lang="3">Sist oppdatert </updated>
+				<updated lang="4">Mis à jour le </updated>
+				<updated lang="5">Actualizado </updated>
+				<translator lang="1">English version by the author</translator>
+				<translator lang="2">Deutsche Version: Anja Krause</translator>
+				<translator lang="3"/>
+				<translator lang="4">Version francais: Rakel Sætre</translator>
+				<translator lang="5">En Español por Francisco Porturas</translator>
+				<webmaster>bjarte@student.unsw.edu.au</webmaster>
+				<copyright lang="1">Kari and Sven Egil Sørensen</copyright>
+				<copyright lang="2">Kari und Sven Egil Sørensen</copyright>
+				<copyright lang="3">Kari og Sven Egil Sørensen</copyright>
+				<copyright lang="4">Kari et Sven Egil Sørensen</copyright>
+				<copyright lang="5">Kari y Sven Egil Sørensen</copyright>
+			</footer>
+		</text>
+		<pictures>
+			<location/>
+			<ALT-text/>
+		</pictures>
+	</universal>
+	<page id="11000">
+		<text>
+			<title lang="1">Welcome to Fossane, Norway</title>
+			<title lang="2">Willkommen: Fossane, Norwegen</title>
+			<title lang="3">Velkommen til Fossane</title>
+			<title lang="4">Bienvenus à la ferme de Fossane, Norvège</title>
+			<title lang="5">Bienvenidos a la granja Fossane, Noruega</title>
+			<introduction lang="1">Fossane is a farm beautifully situated between the mountains in Ryfylke on the south-west coast of Norway. </introduction>
+			<introduction lang="2">Fossane ist eine Farm wunderschön gelegen zwischen den Bergen von Ryfylke und der Südwest-Küste von Norwegen. </introduction>
+			<introduction lang="3">Fossane er ein gard som ligg idyllisk til i det naturskjønne Ryfylke-området på sørvest-kysten av Noreg.</introduction>
+			<introduction lang="4">Fossane est une ferme située entre les belles montagnes du Ryfylke sur la côte sud-ouest de la Norvège. </introduction>
+			<introduction lang="5">Fossane es una granja ubicada idilicamente en una belleza natural entre las montañas de Ryfylke- en la Costa Sur-Oeste de Noruega.</introduction>
+			<maintext lang="1">
+				<para>Have your holidays at Fossane with the entire family and expect something else!</para>
+				<para>The nature you find in Ryfylke, mirrors the nature of Norway. You find it all, from steep mountain sides to green fields, from wild rivers to clear waters, from deep fjords to groups of islands. The farm is situated in the village Vormedalen, 20 km from the county centre of Hjelmeland. It is one and a half hours away from the city of Stavanger.</para>
+			</maintext>
+			<maintext lang="2">
+				<para>Mach Deine Ferien in Fossane mit der ganzen Familie und Du wirst viel erleben!</para>
+				<para>Die Natur in Ryfylke spiegelt die Natur von ganz Norwegen wider. Du kannst hier alles finden, von steilen Bergen bis zu hügeligen Landschaften, von wilden Flüssen bis zu klarem Wasser, von tiefen Fjörden bis zu zahlreichen Inselgruppen. Unsere Farm liegt in Vormedalen in der Kommune Hjelmeland, 20 km vom Kommunezentrum entfernt. Bis nach Stavanger sind es 1,5 Autostunden.</para>
+			</maintext>
+			<maintext lang="3">
+				<para>Kom til Fossane på ferie med heile familien for ei oppleving utanom det vanlege.</para>
+				<para>Naturen i Ryfylke reflekterer naturen i heile landet, ein finn stupbratte fjell og kupert landskap, ville elvar og klare vatn,  djupe fjordar og øylandskap. Garden ligg i Vormedalen i Hjelmeland kommune, tjue kilometer frå kommunesenteret. Til Stavanger er det halvannan times reis.</para>
+			</maintext>
+			<maintext lang="4">
+				<para>Passez vos vacances à Fossane avec toute la famille et faites une expérience hors du commun.</para>
+				<para>La nature du Ryfylke reflète celle de la Norvège entière. Vous y trouvez un peu de tout : des montagnes raides, des pelouses vertes, des rivières sauvages, des lacs propres, des fjords profonds et plusieurs îles. La ferme est située dans le village nommé Vormedalen, à 20 kilomètres du centre municipal de Hjelmeland. C'est à une heure et demie de la ville de Stavanger.</para>
+			</maintext>
+			<maintext lang="5">
+				<para>Venga a Fossane de vacaciones con toda su familia para tener una experiencia fuera de lo común.</para>
+				<para>La naturaleza en Ryfylke refleja la naturaleza de todo el país, una bella y abrupta montaña cubre el paisaje, ríos salvajes y lagos claros, fiordos profundos y un paisaje de islas. La granja esta ubicada en la villa de Vormedalen en el centro municipal de Hjelmeland, veinte kilómetros del centro comunal. Hacia Stavanger solo es una hora y media de viaje.</para>
+			</maintext>
+		</text>
+		<pictures>
+			<location/>
+			<ALT-text/>
+		</pictures>
+	</page>
+	<page id="11100">
+		<text>
+			<title lang="1">Welcome to Fossane, Norway</title>
+			<title lang="2">Willkommen: Fossane, Norwegen</title>
+			<title lang="3">Velkommen til Fossane</title>
+			<title lang="4">Bienvenus à la ferme de Fossane, Norvège</title>
+			<title lang="5">Bienvenidos a la granja Fossane, Noruega</title>
+			<introduction lang="1">Fossane is not just another holiday accommodation. Fossane is your holiday.</introduction>
+			<introduction lang="2">Fossane ist nicht nur ein Platz zum Leben, wenn Du hier in Ferien bist, Fossane ist Dein Urlaub!</introduction>
+			<introduction lang="3">Fossane er ikkje berre ein stad å bu når du er på ferie. Fossane er ferien din.</introduction>
+			<introduction lang="4">Fossane n'est pas seulement que votre hébergement, c'est aussi vos vacances.</introduction>
+			<introduction lang="5">Fossane no es solamente un lugar para vivir cuando Usted tiene vacaciones. Fossane es sus propias vacaciones.</introduction>
+			<maintext lang="1">
+				<para>What we offer is peace and silence, activity, and fun, all at once. Meet the people, animals and the nature of the farm.</para>
+				<para>"No TV" is also a gift from us to you, as we often say it (although if you really need it, you can borrow one). The water you drink on the farm comes from our own ground. The water has been given excellent reports by analysts. The electricity you'll use is produced by our own "green" hydropowerplant. We'll be more than happy to you show you around.</para>
+				<para>Fossane makes your holiday, and your holiday makes Fossane. Welcome!</para>
+			</maintext>
+			<maintext lang="2">
+				<para>Was wir anbieten, ist Frieden und Ruhe, Aktivitäten und Spaß, alles zur gleichen Zeit. Treffe hier Leute, Tiere und Natur pur!</para>
+				<para>Wir sagen oft, dass das hier eine schöne Möglichkeit ist, ohne Fernsehen zu verweilen. (Solltest Du trotzdem einen Fernseher benötigen, kannst Du dir natürlich einen unentgeltlich von uns ausleihen). Das Wasser, was wir hier trinken, kommt aus unserem eigenen Boden. Das Wasser erhielt von Analytikern eine exzellente Beurteilung. Die Elektrizität, die wir nutzen, wird produziert von unserem eigenem "grünen" Wasserkraftwerk. Wenn Du mehr sehen möchtest, freuen wir uns sehr, Dich herumzuführen.</para>
+				<para>Fossane ist Dein Urlaub und dein Urlaub ist Fossane! Du bist herzlich willkommen!</para>
+			</maintext>
+			<maintext lang="3">
+				<para>Tilboda våre, alle inkluderte i prisen, er fred og ro, aktivitet, moro, menneskekontakt, kontakt med dyr, kontakt med natur.</para>
+				<para>Me pleier ofte seia at det er eit tilbod at me ikkje har TV (sjølv om dei som verkeleg treng det, kan få låna ein). Vatnet de drikk på garden kjem frå eige oppkomme og har fått førsteklasses resultat ved analysar. Straumen de brukar vert produsert av vårt eige miljøvennlege vasskraftverk. Du kan gjerne få ei synfaring der.</para>
+				<para>Heilskapsopplevinga av Fossane er med og lagar ferien dykkar, og ferien dykkar er med på å laga Fossane. Velkommen til oss!</para>
+			</maintext>
+			<maintext lang="4">
+				<para>Nous vous proposons un cadre paisible et reposant, de même que de nombreuses activités amusantes. Vous ferez connaissance avec les gens, et découvrirez la nature et les animaux qui nous entourent.</para>
+				<para>"Pas de télé" est l'un des cadeaux que nous vous offrons (quoique, si vous en avez besoin, vous puissiez en emprunter une). L'eau que vous buvez chez nous, provient de notre propre source ; les analyses auxquelles elle a été sujette, lui donne les meilleures notes. L'électricité que vous utilisez est produite à notre propre centrale hydroélectrique écologique. Nous serions ravis de vous faire visiter celle-ci.</para>
+				<para>Votre expérience globale de Fossane constitue vos vacances, et vos vacances créent Fossane. Bienvenus !</para>
+			</maintext>
+			<maintext lang="5">
+				<para>Nuestra oferta, incluido todo en el precio, es tranquilidad, actividades, diversión, contacto con los pobladores, contacto con animales y contacto con la naturaleza.</para>
+				<para>Nosotros acostumbramos a decir a menudo que no es oferta que nosotros no tengamos televisión (a pesar de que los que realmente lo necesitan, pueden prestar una). El agua que toma en la granja proviene de nuestras propias fuentes y ha obtenido distinción de primera clase en sus análisis. La corriente que se utiliza es producida por nuestra propia planta hidroeléctrica ecológica. Si Usted desea puede visitarla.</para>
+				<para>Experiencia total de Fossane es participar y hacer sus vacaciones, y sus vacaciones hacen Fossane. Bienvenido a nosotros!</para>
+			</maintext>
+		</text>
+		<pictures>
+			<location/>
+			<ALT-text/>
+		</pictures>
+	</page>
+</fossane>

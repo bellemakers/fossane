@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Edit Your Profile"> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+<tr>
+<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="30"></td>
+</tr>
+
+<tr>
+<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+<td valign="top" width="500"><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><font class="pagetitle"> <MT_TRANS phrase="Edit Your Profile"></a></font></td>
+</tr>
+
+<tr>
+<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+</tr>
+
+<tr>
+<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+
+<td valign="top" width="500">
+
+	<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+	<input type="hidden" name="__mode" value="save">
+	<input type="hidden" name="_type" value="author">
+	<input type="hidden" name="id" value="<TMPL_VAR NAME=ID>">
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+	<tr>
+	<td colspan="9" align="top"><font class="instructional"><MT_TRANS phrase="_USAGE_PROFILE"></font></td>
+	</tr>
+
+	<tr>
+	<td colspan="9" align="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+<TMPL_IF NAME=SAVED>
+	<tr>
+	<td colspan="9" align="top"><p class="message"><MT_TRANS phrase="Your profile has been updated."></p></td>
+	</tr>
+</TMPL_IF>
+
+	<tr>
+	<td colspan="9" align="top">
+
+		<table border="0" cellspacing="0" cellpadding="0">
+
+		<tr>
+		<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="200" height="1"></td>
+		<td valign="top" width="6"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+		<td valign="top" width="1"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+		<td valign="top" width="23"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="23" height="1"></td>
+		<td valign="top" width="240"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="240" height="1"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="200" height="1">
+
+			<table border="0" cellspacing="0" cellpadding="0">
+
+<TMPL_IF NAME=ERROR>
+			<tr>
+			<td valign="top"><p class="error-message"><TMPL_VAR NAME=ERROR></p></td>
+			</tr>
+
+			<tr>
+			<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>
+</TMPL_IF>
+
+			<tr>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Username"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><input class="text-short" name="name" value="<TMPL_VAR NAME=NAME>"></td>
+			</tr>
+
+			<tr>
+			<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Nickname"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><input class="text-short" name="nickname" value="<TMPL_VAR NAME=NICKNAME>"></td>
+			</tr>
+
+			<tr>
+			<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Email Address"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><input class="text-short" name="email" value="<TMPL_VAR NAME=EMAIL>"></td>
+			</tr>
+
+			<tr>
+			<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Website URL (optional)"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><input class="text-short" name="url" value="<TMPL_VAR NAME=URL>"></td>
+			</tr>
+
+			<tr>
+			<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Preferred Language"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><select name="preferred_language" class="menu-short">
+			<TMPL_LOOP NAME=LANGUAGES>
+			<option value="<TMPL_VAR NAME=L_TAG>"<TMPL_IF NAME=L_SELECTED> selected</TMPL_IF>><TMPL_VAR NAME=L_NAME>
+			</TMPL_LOOP>
+			</select></td>
+			</tr>
+
+			<tr>
+			<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>
+
+			<tr>
+			<td valign="top" bgcolor="#CCCCCC" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+			</tr>
+
+			<tr>
+			<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><font class="pagetitle"><MT_TRANS phrase="Change your password"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Password"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><input type="password" class="text-short" name="pass" value=""></td>
+			</tr>
+
+			<tr>
+			<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Password confirm"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><input type="password" class="text-short" name="pass_verify" value=""></td>
+			</tr>
+
+			<tr>
+			<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>
+
+			<tr>
+			<td valign="top" bgcolor="#CCCCCC" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+			</tr>
+
+			<tr>
+			<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><font class="pagetitle"><MT_TRANS phrase="For Password Recovery"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top" width="200"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><font class="title"><MT_TRANS phrase="Birthplace"></font></td>
+			</tr>
+
+			<tr>
+			<td valign="top"><input class="text-short" name="hint" value="<TMPL_VAR NAME=HINT>"></td>
+			</tr>
+
+			</table>
+
+		</td>
+		</tr>
+
+		<tr>
+		<td colspan="5" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="20"></td>
+		</tr>
+
+		<tr>
+		<td colspan="5" valign="top"><input class="button" type="submit" value="<MT_TRANS phrase="Save">"></td>
+		</tr>
+
+		</table>
+
+	</td>
+	</tr>
+
+	</table>
+
+	</form>
+</td>
+</tr>
+</table>
+
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

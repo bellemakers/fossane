@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Upload File"> | <TMPL_VAR NAME=BLOG_NAME> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+function doClick (f, mode) {
+    if (f.new_entry[0].checked)
+        doStartEntry(f, mode);
+    else
+        doShowHTML(f, mode);
+}
+
+function doShowHTML (f, mode) {
+    var url = '<TMPL_VAR NAME=SCRIPT_URL>?__mode=show_upload_html&blog_id=<TMPL_VAR NAME=BLOG_ID>&url=<TMPL_VAR NAME=URL>&site_path=<TMPL_VAR NAME=SITE_PATH>&fname=<TMPL_VAR NAME=FNAME>&' + mode;
+<TMPL_IF NAME=DO_THUMB>
+    if (f.thumb.checked)
+        url += '&thumb=1&' + calcGeometry(f);
+</TMPL_IF>
+    window.location = url;
+}
+
+function doStartEntry (f, mode) {
+    var url = '<TMPL_VAR NAME=SCRIPT_URL>?__mode=start_upload_entry&blog_id=<TMPL_VAR NAME=BLOG_ID>&url=<TMPL_VAR NAME=URL>&site_path=<TMPL_VAR NAME=SITE_PATH>&fname=<TMPL_VAR NAME=FNAME>&' + mode;
+<TMPL_IF NAME=DO_THUMB>
+    if (f.thumb.checked)
+        url += '&thumb=1&' + calcGeometry(f);
+</TMPL_IF>
+    window.opener.location = url;
+    window.close();
+}
+
+<TMPL_IF NAME=DO_THUMB>
+
+function calcGeometry (f) {
+    var w = calcDim(f.thumb_width, f.thumb_width_type, f.full_width.value);
+    var h = calcDim(f.thumb_height, f.thumb_height_type, f.full_height.value);
+    return 'thumb_width=' + w + '&thumb_height=' + h;
+}
+
+function calcDim (val, type, full) {
+    if (type.options[type.selectedIndex].value == 'pixels')
+        return val.value;
+    else
+        return Math.floor(full * val.value / 100);
+}
+
+function adjustPixelsPct (f, width) {
+    if (!f.constrain.checked) return;
+    var e, s, full;
+    if (width) {
+        e = f.thumb_width;
+        s = f.thumb_width_type;
+        full = f.full_width.value;
+    } else {
+        e = f.thumb_height;
+        s = f.thumb_height_type;
+        full = f.full_height.value;
+    }
+    if (s.options[s.selectedIndex].value == 'pixels')
+        e.value = Math.floor(full * e.value / 100);
+    else
+        e.value = Math.floor(e.value / full * 100);
+    return true;
+}
+
+function adjustWidthHeight (f, width) {
+    if (!f.constrain.checked) return;
+    var w = f.thumb_width;
+    var wt = f.thumb_width_type;
+    var wf = f.full_width.value;
+    var h = f.thumb_height;
+    var ht = f.thumb_height_type;
+    var hf = f.full_height.value;
+    var pct;
+    var s = width ? wt : ht;
+    if (s.options[s.selectedIndex].value == 'pixels')
+        pct = width ? (w.value / wf) : (h.value / hf);
+    else
+        pct = width ? w.value / 100 : h.value / 100;
+    var e = width ? h : w;
+    var s = width ? ht : wt;
+    var full = width ? hf : wf;
+    if (s.options[s.selectedIndex].value == 'pixels')
+        e.value = Math.floor(pct * full);
+    else
+        e.value = Math.floor(pct * 100);
+    return true;
+}
+
+function openManual (anchor) {
+    window.open('<TMPL_VAR NAME=STATIC_URI>docs/mtmanual_uploading.html#' + anchor, 'manual', 'width=450,height=550,scrollbars=yes,status=yes,resizable=yes');
+}
+
+</TMPL_IF>
+
+//-->
+</script>
+
+</head>
+
+<body class="pop">
+
+<form onsubmit="return false">
+<TMPL_IF NAME=DO_THUMB>
+<input type="hidden" name="full_width" value="<TMPL_VAR NAME=WIDTH>">
+<input type="hidden" name="full_height" value="<TMPL_VAR NAME=HEIGHt>">
+</TMPL_IF>
+
+<table border="0" cellspacing="0" padding="0">
+
+<tr>
+<td width="20" rowspan="<TMPL_IF NAME=DO_THUMB>16<TMPL_ELSE>8</TMPL_IF>" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="50"></td>
+<td width="20" rowspan="<TMPL_IF NAME=DO_THUMB>16<TMPL_ELSE>8</TMPL_IF>" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</tr>
+
+<tr>
+<td width="100%" valign="top"><font class="instructional"><MT_TRANS phrase="Your file has been uploaded. Size: [quant,_1,byte]." params="<TMPL_VAR NAME=BYTES>"></font></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td valign="top"><font class="instructional"><input type="radio" name="new_entry" value="1" checked> <MT_TRANS phrase="Create a new entry using this uploaded file"> <a href="#" onclick="openManual('autocreating a new entry')">(?)</a><br>
+<input type="radio" name="new_entry" value="0"> <MT_TRANS phrase="Show me the HTML"></font></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+</tr>
+
+<TMPL_IF NAME=DO_THUMB>
+<tr>
+<td valign="top"><font class="pagetitle"><MT_TRANS phrase="Image Thumbnail"></font></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td valign="top"><font class="instructional"><input type="checkbox" name="thumb" value="1"> <MT_TRANS phrase="Create a thumbnail for this image"> <a href="#" onclick="openManual('creating thumbnails')">(?)</a></font></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+<td valign="top">
+
+	<table border="0" cellspacing="3" cellpadding="0">
+
+	<tr>
+	<td rowspan="4"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top" align="right"><font class="instructional"><MT_TRANS phrase="Width:"></font></td>
+	<td valign="top"><input class="num4" name="thumb_width" value="<TMPL_VAR NAME=WIDTH>" onchange="adjustWidthHeight(this.form, 1)"></td>
+	<td valign="top"><select name="thumb_width_type" class="menu" onchange="adjustPixelsPct(this.form, 1)">
+	<option value="pixels" selected><MT_TRANS phrase="Pixels">
+	<option value="percent"><MT_TRANS phrase="Percent">
+	</select></td>
+	</tr>
+
+	<tr>
+	<td valign="top" align="right"><font class="instructional"><MT_TRANS phrase="Height:"></font></td>
+	<td valign="top"><input class="num4" name="thumb_height" value="<TMPL_VAR NAME=HEIGHT>" onchange="adjustWidthHeight(this.form, 0)"></td>
+	<td valign="top"><select name="thumb_height_type" class="menu" onchange="adjustPixelsPct(this.form, 0)">
+	<option value="pixels" selected><MT_TRANS phrase="Pixels">
+	<option value="percent"><MT_TRANS phrase="Percent">
+	</select></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+	</tr>
+
+	<tr>
+	<td align="right" valign="top" colspan="3"><font class="instructional"><input type="checkbox" name="constrain" value="1" checked> <MT_TRANS phrase="Constrain proportions"></td>
+	</tr>
+
+	</table>
+
+</td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+</TMPL_IF>
+
+<tr>
+<td valign="top"><font class="instructional"><MT_TRANS phrase="Would you like this file to be a:"></font></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td valign="top">
+<TMPL_IF NAME=IS_IMAGE>
+<input class="button-big" type="button" onClick="doClick(this.form, 'popup=1&width=<TMPL_VAR NAME=WIDTH>&height=<TMPL_VAR NAME=HEIGHT>&image_type=<TMPL_VAR NAME=IMAGE_TYPE>')" value="<MT_TRANS phrase="Popup Image">">
+<input class="button-big" type="button" onClick="doClick(this.form, 'include=1&width=<TMPL_VAR NAME=WIDTH>&height=<TMPL_VAR NAME=HEIGHT>&image_type=<TMPL_VAR NAME=IMAGE_TYPE>')" value="<MT_TRANS phrase="Embedded Image">">
+<TMPL_ELSE>
+<input class="button-big" type="button" onClick="doClick(this.form, 'link=1')" value="<MT_TRANS phrase="Link">">
+</TMPL_IF>
+</td>
+</tr>
+</table>
+
+</form>
+
+</body>
+</html>

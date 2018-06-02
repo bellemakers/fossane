@@ -1,0 +1,79 @@
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+
+<tr>
+<td width="188" valign="top"><a href="http://www.movabletype.org/" target="_blank"><img src="<TMPL_VAR NAME=STATIC_URI>images/mt-logo.gif" align="top" width="233" height="68" border="0"></a></td>
+<td width="100%" valign="top">
+
+<TMPL_IF NAME=AUTHOR_NAME>
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+	<tr>
+	<td valign="top">
+
+		<table border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		<td><a href="<TMPL_VAR NAME=SCRIPT_URL>"><img src="<TMPL_VAR NAME=STATIC_URI>images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/topnav-menu.gif" width="42" height="27" border="0"></a></td>
+		<td><a target="manual" href="<TMPL_VAR NAME=STATIC_URI>docs/mtmanual.html"><img src="<TMPL_VAR NAME=STATIC_URI>images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/topnav-help.gif" width="40" height="27" border="0"></a></td>
+		<td><a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=logout"><img src="<TMPL_VAR NAME=STATIC_URI>images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/topnav-logout.gif" width="48" height="27" border="0"></a></td>
+		<td><TMPL_IF NAME=BLOG_NAME><a target="_blank" href="<TMPL_VAR NAME=BLOG_URL>"><img src="<TMPL_VAR NAME=STATIC_URI>images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/topnav-view-site.gif" width="54" height="27" border="0"></a></TMPL_IF></td>
+		</tr>
+		</table>
+
+	</td>
+	<td valign="top">
+
+	<TMPL_IF NAME=BLOG_NAME>
+
+		<table border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="8"></td>
+		</tr>
+		
+		<tr>
+		<form method="get" action="<TMPL_VAR NAME=SCRIPT_URL>">
+		<input type="hidden" name="__mode" value="search_replace">
+		<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+		<input type="hidden" name="search_cols" value="title,text,text_more">
+		<td>&nbsp;</td>
+		<td valign="top"><input class="search" name="search" size="15"></td>
+		<td>&nbsp;</td>
+		<td valign="top"><input class="button-search" type="submit" name="search" value="<MT_TRANS phrase="Search">"></td>
+		</form>
+		</tr>
+		</table>
+
+	</TMPL_IF>
+
+	</td>
+	</tr>
+	
+	<tr>
+	<form method="get" action="<TMPL_VAR NAME=SCRIPT_URL>">
+	<input type="hidden" name="__mode" value="menu">
+	<td colspan="2" valign="top">
+	
+		<table border="0" cellspacing="0" cellpadding="1">
+		<tr>
+		<td>&nbsp;</td>
+		<td valign="middle"><select class="blog" name="blog_id">
+		<TMPL_LOOP NAME=TOP_BLOG_LOOP>
+		<option value="<TMPL_VAR NAME=TOP_BLOG_ID>"<TMPL_IF NAME=TOP_BLOG_SELECTED> selected</TMPL_IF>><TMPL_VAR NAME=TOP_BLOG_NAME>
+		</TMPL_LOOP>
+		</select></td>
+		<td><input type="image" src="<TMPL_VAR NAME=STATIC_URI>images/lang-<TMPL_VAR NAME=LANGUAGE_TAG>/topnav-go-button.gif" width="35" height="28" border="0"></td>
+		<td align="right"><font class="title">&nbsp;<MT_TRANS phrase="User:"> <a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=author&id=<TMPL_VAR NAME=AUTHOR_ID>"><TMPL_VAR NAME=AUTHOR_NAME></a></font></td>
+		</tr>
+		</table>
+	</td>
+	</form>
+	</tr>
+	</table>
+
+</TMPL_IF>
+
+</td>
+</tr>
+
+</table>
+

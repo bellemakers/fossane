@@ -1,0 +1,257 @@
+<html>
+<head>
+<title>mtupgrade - Upgrading Movable Type</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type Upgrading Instructions</h3>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#upgrading">UPGRADING</a></li>
+	<ul>
+
+		<li><a href="#precautions">Precautions</a></li>
+		<li><a href="#downloading">Downloading</a></li>
+		<li><a href="#uploading files">Uploading Files</a></li>
+		<li><a href="#running upgrade scripts">Running Upgrade Scripts</a></li>
+		<li><a href="#deleting upgrade scripts">Deleting Upgrade Scripts</a></li>
+		<li><a href="#you're done!">You're Done!</a></li>
+	</ul>
+
+	<li><a href="#notes">NOTES</a></li>
+	<ul>
+
+		<li><a href="#if you are upgrading from a version older than 1.3">If you are upgrading from a version older than 1.3</a></li>
+		<li><a href="#if you are upgrading from a version older than 1.4">If you are upgrading from a version older than 1.4</a></li>
+		<li><a href="#converting your berkeley db database to a sql database">Converting your Berkeley DB database to a SQL database</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="name"></a>NAME</h1>
+<p>mtupgrade - Upgrading Movable Type</p>
+<p>
+<hr size="1" color="#CCCCCC">
+<h1><a name="synopsis"></a>SYNOPSIS</h1>
+<p>This document describes the process of upgrading to a newer version of
+Movable Type.</p>
+<p>
+<hr size="1" color="#CCCCCC">
+<h1><a name="upgrading"></a>UPGRADING</h1>
+<p>If you have already installed a previous version of Movable Type (1.0-2.51)
+you do not need to perform a complete installation. If you have not yet
+installed Movable Type, see the <a href="./mtinstall.html">installation instructions</a>.</p>
+<p>
+<h2><a name="precautions"></a>Precautions</h2>
+<p>With any upgrade, it is a good idea to export the entries and comments
+from each of your weblogs before doing the upgrade. In the case that something
+goes wrong while upgrading, you will then have your entries and comments in
+importable form.</p>
+<p>
+<h2><a name="downloading"></a>Downloading</h2>
+<p>Download the upgrade distribution file (rather than the full distribution).
+Unpack the <i>.tar.gz</i> archive that you downloaded.</p>
+<p>
+<h2><a name="uploading files"></a>Uploading Files</h2>
+<ol>
+<li><strong><a name="item_Connect_to_your_webserver"></a>Connect to your webserver</strong><br>
+
+Open an FTP connection to your webserver, and open the directory where you
+installed Movable Type.
+<p></p>
+<li><strong><a name="item_Upload_the_application"></a>Upload the application</strong><br>
+
+Upload all of the files and directories in the archive to your webserver,
+replacing any older copies of the files.
+<p>Make sure that you upload all of the files in ASCII mode, except for the
+images, which should be uploaded in binary.</p>
+<p>When you are uploading the files in the <i>extlib</i> directory, be careful not
+to overwrite any libraries that you installed there when you first installed
+Movable Type.</p>
+<p><strong>NOTE:</strong> if you have modified your search templates in the <i>search_templates</i>
+directory, do <strong>NOT</strong> upload the <i>search_templates</i> directory from the
+upgrade distribution; doing so will overwrite your search templates.</p>
+<p><strong>NOTE:</strong> if you have made changes to any of the files that you are replacing,
+you will need to mark the files that have changed, and make the same changes
+to the new versions. This only applies if the changes you made have not been
+incorporated into the new Movable Type release in some form, of course. If
+you are unsure whether you need to redo a change you have made to one of the
+Movable Type files, ask your question on the Support Forum
+(<i><a href="http://www.movabletype.org/support/">http://www.movabletype.org/support/</a></i>).</p>
+<p><strong>NOTE:</strong> if your MT application is stored in your <i>cgi-bin</i>, and thus if your
+images, documentation, and stylesheet are stored outside of the <i>cgi-bin</i>, be
+sure to upload <i>images</i>, <i>docs</i>, and <i>styles.css</i> to the correct location.</p>
+<p></p>
+<li><strong><a name="item_Check_permissions"></a>Check permissions</strong><br>
+
+Ensure that the permissions of each of the CGI scripts (all files ending in
+the extension <i>.cgi</i>) are set to <code>755</code>.
+<p>This means that the owner should have read, write, and execute permissions,
+and that group and other should have read and execute permissions (but not
+write permissions).</p>
+<p></p></ol>
+<p>
+<h2><a name="running upgrade scripts"></a>Running Upgrade Scripts</h2>
+<ul>
+<li><strong><a name="item_If_you_are_upgrading_from_version_2%2E6%2C_2%2E61%"></a>If you are upgrading from version 2.6, 2.61, 2.62, or 2.63</strong><br>
+
+You do not need to run any special upgrade scripts.
+<p></p>
+<li><strong><a name="item_If_you_are_upgrading_from_version_2%2E5_or_2%2E51%"></a>If you are upgrading from version 2.5 or 2.51, and you are using the MySQL version of Movable Type</strong><br>
+
+Run <i>mt-upgrade26.cgi</i>.
+<p></p>
+<li><strong>If you are upgrading from version 2.5 or 2.51, and you are not using MySQL</strong><br>
+
+You do not need to run any special upgrade scripts.
+<p></p>
+<li><strong><a name="item_If_you_are_upgrading_from_version_2%2E2_or_2%2E21%"></a>If you are upgrading from version 2.2 or 2.21, and you are using the MySQL version of Movable Type</strong><br>
+
+Run <i>mt-upgrade25.cgi</i>, then run <i>mt-upgrade26.cgi</i>.
+<p></p>
+<li><strong>If you are upgrading from version 2.2 or 2.21, and you are not using MySQL</strong><br>
+
+You do not need to run any special upgrade scripts.
+<p></p>
+<li><strong><a name="item_If_you_are_upgrading_from_version_2%2E1_or_2%2E11"></a>If you are upgrading from version 2.1 or 2.11</strong><br>
+
+You do not need to run any special upgrade scripts.
+<p></p>
+<li><strong><a name="item_If_you_are_upgrading_from_version_2%2E0"></a>If you are upgrading from version 2.0</strong><br>
+
+Run <i>mt-upgrade21.cgi</i>.
+<p></p>
+<li><strong><a name="item_If_you_are_upgrading_from_any_of_versions_1%2E0%2D"></a>If you are upgrading from any of versions 1.0-1.4</strong><br>
+
+Run <i>mt-upgrade.cgi</i>.
+<p></p></ul>
+<p>
+<h2><a name="deleting upgrade scripts"></a>Deleting Upgrade Scripts</h2>
+<p>For security reasons, you should remove the following files from your
+FTP server after your upgrade is complete:</p>
+<ul>
+<li><strong><a name="item_mt%2Dupgrade%2Ecgi"></a>mt-upgrade.cgi</strong><br>
+
+<li><strong><a name="item_mt%2Dupgrade21%2Ecgi"></a>mt-upgrade21.cgi</strong><br>
+
+<li><strong><a name="item_mt%2Dupgrade25%2Ecgi"></a>mt-upgrade25.cgi</strong><br>
+
+<li><strong><a name="item_mt%2Dupgrade26%2Ecgi"></a>mt-upgrade26.cgi</strong><br>
+
+</ul>
+<p>
+<h2><a name="you're done!"></a>You're Done!</h2>
+<p>Movable Type is now upgraded, and you can start using the new version.</p>
+<p>Take a look at the <a href="./mt26.html">Guide to 2.6</a> for a guide to finding and using
+the new features.</p>
+<p>
+<hr size="1" color="#CCCCCC">
+<h1><a name="notes"></a>NOTES</h1>
+<p>
+<h2><a name="if you are upgrading from a version older than 1.3"></a>If you are upgrading from a version older than 1.3</h2>
+<p>As of version 1.3, you can now control line and paragraph breaks separately
+for comments and entries; in other words, you can set <code>Convert breaks</code> for
+comments, but not for entries, if you would like. <strong>NOTE</strong> that if you wish to
+convert line and paragraph breaks in comments in version 1.3, you need to edit
+the configuration for each of your weblogs, and check the <code>Convert line and
+paragraph breaks in comments</code> box.</p>
+<p>
+<h2><a name="if you are upgrading from a version older than 1.4"></a>If you are upgrading from a version older than 1.4</h2>
+<p>As of version 1.4, Movable Type requires at least version <code>0.8</code> of the
+<i>File::Spec</i> Perl module. If you do not have at least version <code>0.8</code>, you will
+get this error after upgrading:</p>
+<pre>Can't locate object method &quot;splitpath&quot; via package &quot;File::Spec&quot;
+at lib/MT.pm line 209.
+</pre><p>If you are not certain whether your server has a sufficiently new version of
+<i>File::Spec</i>, you should run <i>mt-check.cgi</i> again (see <a href="#checking for required and optional modules">CHECKING FOR REQUIRED AND OPTIONAL MODULES</a>, below); if your server needs a newer version
+of <i>File::Spec</i>, follow the instructions <a href="#if you need to install file::spec">here</a>.</p>
+<p>
+<h2><a name="converting your berkeley db database to a sql database"></a>Converting your Berkeley DB database to a SQL database</h2>
+<p>As of version 2.2, Movable Type started supporting SQL databases (MySQL).
+In version 2.6, support for PostgreSQL and SQLite were added. Note that this
+is only an <strong>option</strong>--the Berkeley DB data storage is still supported. If
+you are not interested in using a SQL database, or if your server does
+not have the ability to use a SQL database, skip this section.</p>
+<p>If you have already converted your version of Movable Type to use the
+SQL database support, skip this section.</p>
+<p>To determine whether your server supports a SQL database, and the Perl
+libraries required to connect to it, run <i>mt-check.cgi</i> and look at the
+status for any of the following modules: <i>DBD::mysql</i>, <i>DBD::Pg</i>, or
+<i>DBD::SQLite</i>. If any of these are installed, your server will support that
+version of Movable Type. If none of these are installed, you will need to
+contact your host if you wish to use a SQL database.</p>
+<p>If you are interested in converting your data, a conversion script to copy
+your data from the Berkeley DB files into the SQL database
+is included in the upgrade distribution (<i>mt-db2sql.cgi</i>). To convert
+your existing MT installation to using a SQL database, follow these steps:</p>
+<ol>
+<li><strong><a name="item_Edit_your_mt%2Ecfg_file%2E"></a>Edit your <i>mt.cfg</i> file.</strong><br>
+
+Open your <i>mt.cfg</i> file in a text editor, and add these lines to it:
+<pre>ObjectDriver driver_name
+Database database_name
+DBUser database_user
+</pre><p>where <i>driver_name</i> is one of the following: <i>DBI::mysql</i>, <i>DBI::postgres</i>,
+or <i>DBI::sqlite</i>; <i>database_name</i> is the name of the SQL database where
+you wish to store your data; and <i>database_user</i> is the username used to
+connect to that database (note that if you are using SQLite, neither a
+username nor a password is required).</p>
+<p>If your SQL database server is on a different host, you can use
+<i>DBHost</i> to specify the hostname:</p>
+<pre>DBHost database_host
+</pre><p><strong>Note:</strong> if you are using either PostgreSQL or MySQL, the database that you
+specify in <i>database_name</i> <strong>must</strong> already exist--Movable Type cannot
+create it automatically!</p>
+<p></p>
+<li><strong><a name="item_Set_your_password%2E"></a>Set your password.</strong><br>
+
+<i>Note:</i> If you are using the SQLite database, you can skip this step.
+<p>For security purposes, your SQL database password should not simply be placed
+in <i>mt.cfg</i>. Instead, you must set it in the file called <i>mt-db-pass.cgi</i>.</p>
+<p>Open <i>mt-db-pass.cgi</i> in a text editor. On this line:</p>
+<pre>database_password
+</pre><p>Replace <i>database_password</i> with the password used to connect to your
+SQL database.</p>
+<p></p>
+<li><strong><a name="item_Run_mt%2Ddb2sql%2Ecgi"></a>Run mt-db2sql.cgi</strong><br>
+
+Open your web browser and point it at the URL for <i>mt-db2sql.cgi</i> on your
+site. For example, if your site is <i><a href="http://www.your-site.com/">http://www.your-site.com/</a></i>, and you
+uploaded the Movable Type files into the <i>/mt</i> directory, you'd type
+<i><a href="http://www.your-site.com/mt/mt-db2sql.cgi">http://www.your-site.com/mt/mt-db2sql.cgi</a></i>.
+<p><i>mt-db2sql.cgi</i> is a Perl script that will create the necessary schema
+in your SQL database, then populate the database with the data from
+your Berkeley DB files.</p>
+<p></p>
+<li><strong><a name="item_Check_for_success"></a>Check for success</strong><br>
+
+Once <i>mt-db2sql.cgi</i> has finished executing, look at the bottom of the
+page in your browser to check whether the conversion was successful. If it
+was, this message will be displayed:
+<pre>Done copying data from Berkeley DB to SQL database! All went well.
+</pre><p>If you received this message, you're done.
+When you log in to Movable Type and use the system, you will now be using
+the SQL version of the system.</p>
+<p>If an error occurred, the message</p>
+<pre>An error occurred while loading data:
+</pre><p>will be displayed, along with the actual error message. If an error occurred,
+edit your <i>mt.cfg</i> file and remove the following line:</p>
+<pre>ObjectDriver driver_name
+</pre><p>where, again, <i>driver_name</i> is the name of the driver you set in Step 1.</p>
+<p>Now you will be back to using the Berkeley DB version of Movable Type. Post
+the error message that you received on the Support Forums.</p>
+<p></p></ol>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

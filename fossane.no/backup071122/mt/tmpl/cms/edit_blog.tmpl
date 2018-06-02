@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Core Setup"> | <MT_TRANS phrase="Configuration"> | <TMPL_VAR NAME=BLOG_NAME> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+function validate (f) {
+    if (!f.site_path.value) {
+        alert('<MT_TRANS phrase="You must set your Local Site Path.">');
+        return false;
+    } else if (!f.site_url.value) {
+        alert('<MT_TRANS phrase="You must set your Site URL.">');
+        return false;
+    } else if (f.server_offset.value == '') {
+        alert('<MT_TRANS phrase="You did not select a timezone.">');
+        return false;
+    }
+    return true;
+}
+
+function doRebuild () {
+    window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=rebuild_confirm&blog_id=<TMPL_VAR NAME=BLOG_ID>', 'rebuild', 'width=400,height=200,resizable=yes');
+}
+
+function openManual (anchor, page) {
+    if (!page) page = 'weblog_config';
+    window.open('<TMPL_VAR NAME=STATIC_URI>docs/mtmanual_' + page + '.html#' + anchor, 'manual', 'width=450,height=550,scrollbars=yes,status=yes,resizable=yes');
+}
+
+function getByID (d, n) {
+    if (d.getElementById)
+        return d.getElementById(n);
+    else if (d.all)
+        return d.all[n];
+}
+
+function flipStatic (on) {
+    var e = getByID(document, 'static-settings');
+    if (!e) return;
+    e.style.display = on ? 'block' : 'none';
+}
+
+//-->
+</script>
+
+</head>
+
+<TMPL_IF NAME=NEW_OBJECT>
+<body onload="openManual('creating a new weblog', 'weblogs')">
+<TMPL_ELSE>
+<body>
+</TMPL_IF>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<TMPL_IF NAME=NEW_OBJECT>
+<tr>
+<td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+<tr>
+<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="30"></td>
+</tr>
+
+<TMPL_ELSE>
+
+<tr>
+<td align="left" rowspan="5" valign="top">
+<TMPL_INCLUDE NAME=mininav.tmpl>
+</td>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+</TMPL_IF>
+
+<tr>
+<TMPL_IF NAME=NEW_OBJECT><td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td></TMPL_IF>
+<td valign="top" width="500">
+<TMPL_IF NAME=NEW_OBJECT>
+<a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><font class="pagetitle"> <MT_TRANS phrase="Create new weblog"></font>
+<TMPL_ELSE>
+<a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=menu&blog_id=<TMPL_VAR NAME=BLOG_ID>"> <MT_TRANS phrase="[_1] Editing Menu" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"> &gt;</a><font class="pagetitle"> <MT_TRANS phrase="Configuration"></font>
+</TMPL_IF>
+</td>
+</tr>
+
+<tr>
+<TMPL_IF NAME=NEW_OBJECT><td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td></TMPL_IF>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td<TMPL_IF NAME=NEW_OBJECT> colspan="2"</TMPL_IF>><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+<TMPL_IF NAME=NEW_OBJECT><td width="39"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="39" height="1"></td></TMPL_IF>
+
+<td valign="top" width="500">
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+	<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>" onSubmit="return validate(this)">
+	<TMPL_UNLESS NAME=NEW_OBJECT>
+	<input type="hidden" name="id" value="<TMPL_VAR NAME=ID>">
+	</TMPL_UNLESS>
+	<input type="hidden" name="__mode" value="save">
+	<input type="hidden" name="_type" value="blog">
+	<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+
+	<TMPL_UNLESS NAME=NEW_OBJECT>
+	<tr>
+	<td valign="top" align="right" colspan="3"><font class="pagetitle">
+	<MT_TRANS phrase="Core Setup">&nbsp;|&nbsp;<a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=cfg_prefs&blog_id=<TMPL_VAR NAME=BLOG_ID>"><MT_TRANS phrase="Preferences"></a>&nbsp;|&nbsp;<a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=cfg_archives&blog_id=<TMPL_VAR NAME=BLOG_ID>"><MT_TRANS phrase="Archiving"></a>&nbsp;|&nbsp;<a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=list&_type=banlist&blog_id=<TMPL_VAR NAME=BLOG_ID>"><MT_TRANS phrase="IP Banning"></a>
+	</font></td>
+	</tr>
+
+	<tr>
+	<td valign="top" colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+	</TMPL_UNLESS>
+
+<TMPL_IF NAME=SAVED>
+	<tr>
+	<td valign="top" colspan="3"><p class="message"><MT_TRANS phrase="Your weblog configuration has been saved."><TMPL_IF NAME=CAN_REBUILD> <MT_TRANS phrase="_USAGE_REBUILD"></TMPL_IF></p></td>
+	</tr>
+</TMPL_IF>
+
+	<tr>
+	<td valign="top" width="198"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="198" height="1"></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top" width="292"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="292" height="1"></td>
+	</tr>
+
+	<tr>
+	<td valign="middle" width="198"><font class="instructional"><MT_TRANS phrase="Name your weblog. The weblog name can be changed at any time."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Weblog name:"></font><br>
+	<input class="text" name="name" value="<TMPL_VAR NAME=NAME>"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	</table>
+
+	<div id="static-settings">
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+	<tr>
+	<td valign="top" width="198"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="198" height="1"></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top" width="292"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="292" height="1"></td>
+	</tr>
+
+	<tr>
+	<td valign="middle" width="198"><font class="instructional"><MT_TRANS phrase="Enter the path where your main index file will be located. An absolute path (starting with '/') is preferred, but you can also use a path relative to the Movable Type directory."> <MT_TRANS phrase="Example:"> <b>/home/melody/public_html/blog</b></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Local Site Path:"> <a href="#" onclick="openManual('item_local_site_path')">(?)</a></font><br>
+	<input class="text" name="site_path" value="<TMPL_VAR NAME=SITE_PATH>"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Enter the URL of your public website. Do not include a filename (i.e. exclude index.html)."> <MT_TRANS phrase="Example:"> <b>http://www.site.com/</b></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Site URL:"> <a href="#" onclick="openManual('item_site_url')">(?)</a></font><br>
+	<input class="text" name="site_url" value="<TMPL_VAR NAME=SITE_URL>"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Enter the path where your archive files will be located (this can be the same as your Local Site Path)."> <MT_TRANS phrase="Example:"> <b>/home/foo/htdocs/blog/archives</b></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Local Archive Path:"> <a href="#" onclick="openManual('item_local_archive_path')">(?)</a></font><br>
+	<input class="text" name="archive_path" value="<TMPL_VAR NAME=ARCHIVE_PATH>"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Enter the URL of the archives section of your website."> <MT_TRANS phrase="Example:"> <b>http://www.site.com/archives/</b></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Archive URL:"> <a href="#" onClick="openManual('item_archive_url')">(?)</a></font><br>
+	<input class="text" name="archive_url" value="<TMPL_VAR NAME=ARCHIVE_URL>"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	</table>
+
+	</div>
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+	<tr>
+	<td valign="top" width="198"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="198" height="1"></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top" width="292"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="292" height="1"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Select your timezone from the pulldown menu."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Timezone:"> <a href="#" onclick="openManual('item_timezone')">(?)</a></font><br>
+	<select name="server_offset">
+	<option value=""><MT_TRANS phrase="Time zone not selected">
+	        <option value="12"<TMPL_IF NAME=SERVER_OFFSET_12> selected</TMPL_IF>><MT_TRANS phrase="UTC+12 (International Date Line East)">
+	        <option value="11"<TMPL_IF NAME=SERVER_OFFSET_11> selected</TMPL_IF>><MT_TRANS phrase="UTC+11">
+	        <option value="10"<TMPL_IF NAME=SERVER_OFFSET_10> selected</TMPL_IF>><MT_TRANS phrase="UTC+10 (East Australian Time)">
+	        <option value="9.5"<TMPL_IF NAME=SERVER_OFFSET_9_5> selected</TMPL_IF>><MT_TRANS phrase="UTC+9.5 (Central Australian Time)">
+	        <option value="9"<TMPL_IF NAME=SERVER_OFFSET_9> selected</TMPL_IF>><MT_TRANS phrase="UTC+9 (Japan Time)">
+	        <option value="8"<TMPL_IF NAME=SERVER_OFFSET_8> selected</TMPL_IF>><MT_TRANS phrase="UTC+8 (China Coast Time)">
+	        <option value="7"<TMPL_IF NAME=SERVER_OFFSET_7> selected</TMPL_IF>><MT_TRANS phrase="UTC+7 (West Australian Time)">
+	        <option value="6.5"<TMPL_IF NAME=SERVER_OFFSET_6_5> selected</TMPL_IF>><MT_TRANS phrase="UTC+6.5 (North Sumatra)">
+	        <option value="6"<TMPL_IF NAME=SERVER_OFFSET_6> selected</TMPL_IF>><MT_TRANS phrase="UTC+6 (Russian Federation Zone 5)">
+	        <option value="5.5"<TMPL_IF NAME=SERVER_OFFSET_5_5> selected</TMPL_IF>><MT_TRANS phrase="UTC+5.5 (Indian)">
+	        <option value="5"<TMPL_IF NAME=SERVER_OFFSET_5> selected</TMPL_IF>><MT_TRANS phrase="UTC+5 (Russian Federation Zone 4)">
+	        <option value="4"<TMPL_IF NAME=SERVER_OFFSET_4> selected</TMPL_IF>><MT_TRANS phrase="UTC+4 (Russian Federation Zone 3)">
+		<option value="3.5"<TMPL_IF NAME=SERVER_OFFSET_3_5> selected</TMPL_IF>><MT_TRANS phrase="UTC+3.5 (Iran)">
+	        <option value="3"<TMPL_IF NAME=SERVER_OFFSET_3> selected</TMPL_IF>><MT_TRANS phrase="UTC+3 (Baghdad Time/Moscow Time)">
+	        <option value="2"<TMPL_IF NAME=SERVER_OFFSET_2> selected</TMPL_IF>><MT_TRANS phrase="UTC+2 (Eastern Europe Time)">
+	        <option value="1"<TMPL_IF NAME=SERVER_OFFSET_1> selected</TMPL_IF>><MT_TRANS phrase="UTC+1 (Central European Time)">
+	        <option value="0"<TMPL_IF NAME=SERVER_OFFSET_0> selected</TMPL_IF>><MT_TRANS phrase="UTC+0 (Universal Time Coordinated)">
+	        <option value="-1"<TMPL_IF NAME=SERVER_OFFSET__1> selected</TMPL_IF>><MT_TRANS phrase="UTC-1 (West Africa Time)">
+	        <option value="-2"<TMPL_IF NAME=SERVER_OFFSET__2> selected</TMPL_IF>><MT_TRANS phrase="UTC-2 (Azores Time)">
+	        <option value="-3"<TMPL_IF NAME=SERVER_OFFSET__3> selected</TMPL_IF>><MT_TRANS phrase="UTC-3 (Atlantic Time)">
+		<option value="-3.5"<TMPL_IF NAME=SERVER_OFFSET__3_5> selected</TMPL_IF>><MT_TRANS phrase="UTC-3.5 (Newfoundland)">
+	        <option value="-4"<TMPL_IF NAME=SERVER_OFFSET__4> selected</TMPL_IF>><MT_TRANS phrase="UTC-4 (Atlantic Time)">
+	        <option value="-5"<TMPL_IF NAME=SERVER_OFFSET__5> selected</TMPL_IF>><MT_TRANS phrase="UTC-5 (Eastern Time)">
+	        <option value="-6"<TMPL_IF NAME=SERVER_OFFSET__6> selected</TMPL_IF>><MT_TRANS phrase="UTC-6 (Central Time)">
+	        <option value="-7"<TMPL_IF NAME=SERVER_OFFSET__7> selected</TMPL_IF>><MT_TRANS phrase="UTC-7 (Mountain Time)">
+	        <option value="-8"<TMPL_IF NAME=SERVER_OFFSET__8> selected</TMPL_IF>><MT_TRANS phrase="UTC-8 (Pacific Time)">
+	        <option value="-9"<TMPL_IF NAME=SERVER_OFFSET__9> selected</TMPL_IF>><MT_TRANS phrase="UTC-9 (Alaskan Time)">
+	        <option value="-10"<TMPL_IF NAME=SERVER_OFFSET__10> selected</TMPL_IF>><MT_TRANS phrase="UTC-10 (Aleutians-Hawaii Time)">
+	        <option value="-11"<TMPL_IF NAME=SERVER_OFFSET__11> selected</TMPL_IF>><MT_TRANS phrase="UTC-11 (Nome Time)">
+	</select></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="198" height="1"></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><input class="button" type="submit" value="<MT_TRANS phrase="Save">"></td>
+	</tr>
+	</table>
+
+	</form>
+
+</td>
+</tr>
+
+<TMPL_UNLESS NAME=NEW_OBJECT>
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+</TMPL_UNLESS>
+
+</table>
+
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

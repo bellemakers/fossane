@@ -1,0 +1,313 @@
+<html>
+<head>
+<title>mtimport - Movable Type Import Format</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type Import Format</h3>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#metadata">Metadata</a></li>
+		<li><a href="#multiline fields">Multi-line fields</a></li>
+	</ul>
+
+	<li><a href="#example">EXAMPLE</a></li>
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="name"></a>NAME</h1>
+<p>mtimport - Movable Type Import Format</p>
+<p>
+<hr size="1" color="#CCCCCC">
+<h1><a name="synopsis"></a>SYNOPSIS</h1>
+<p>This document describes the format required by the Movable Type import
+mechanism, which can be used to import entries and comments from other content
+management systems.</p>
+<p>
+<hr size="1" color="#CCCCCC">
+<h1><a name="description"></a>DESCRIPTION</h1>
+<p>The basic import format is a list of entries, separated by the string
+<code>--------\n</code> (that is eight <code>-</code> characters, followed by a carriage return).
+Each entry can be broken into two main sections; these sections are
+separated by the string <code>-----\n</code> (that is five <code>-</code> characters, followed
+by a carriage return).</p>
+<p>If you have HTML in the data that you are importing, it should <strong>not</strong> be
+encoded into HTML entities; the data that is in your import file is imported
+verbatim into the Movable Type database. Thus, your data should look exactly
+as it would were you to type it into the form when creating a new entry.</p>
+<ul>
+<li><strong><a name="item_Metadata"></a>Metadata</strong><br>
+
+<li><strong><a name="item_fields"></a>Multi-line fields (Body, Extended Body, Excerpt, Comments)</strong><br>
+
+</ul>
+<p>See <a href="#example">EXAMPLE</a>, below, for an example of a small import file.</p>
+<p>
+<h2><a name="metadata"></a>Metadata</h2>
+<p>Each piece of metadata is formatted as <code>KEY: VALUE</code>, and one piece of
+metadata is separated from the next by a carriage return. The order of the
+metadata pieces is not important.</p>
+<p>For example:</p>
+<pre>AUTHOR: Foo Bar
+TITLE: A dummy title
+DATE: 01/31/2002 03:31:05 PM
+CATEGORY: News
+</pre><ul>
+<li><strong><a name="item_AUTHOR"></a>AUTHOR</strong><br>
+
+The author of the entry.
+<p>If the author name does not exist, a new <i>MT::Author</i> record will be created,
+and the author will be assigned posting permissions to the weblog into which
+you're importing the entries. The entry will then be assigned to the new
+author. If the author name does exist, the entry will be assigned to the
+existing author.</p>
+<p>This is ignored if you have checked the <code>Import entries as me</code> checkbox
+before importing; it is required otherwise.</p>
+<p></p>
+<li><strong><a name="item_TITLE"></a>TITLE</strong><br>
+
+The title of the entry.
+<p>If you do not specify a title, a title will be generated automatically from
+the first five (<code>5</code>) words in the entry body.</p>
+<p>This is optional.</p>
+<p></p>
+<li><strong><a name="item_DATE"></a>DATE</strong><br>
+
+The authored-on date of the entry.
+<p>This should be in the format <code>MM/DD/YYYY hh:mm:ss AM|PM</code>. <code>AM|PM</code> is
+optional, and if not present the <code>hh</code> will be intrepreted as being in
+military time.</p>
+<p>This is required.</p>
+<p></p>
+<li><strong><a name="item_PRIMARY_CATEGORY"></a>PRIMARY CATEGORY</strong><br>
+
+The primary category to which the entry is assigned.
+<p>If the category name does not exist, a new <i>MT::Category</i> record will be
+created, and the entry will be assigned to the new category. If the category
+name does exist, the entry will be assigned to the existing category.</p>
+<p></p>
+<li><strong><a name="item_CATEGORY"></a>CATEGORY</strong><br>
+
+A secondary category to which the entry is assigned. Multiple <i>CATEGORY</i>
+keys can appear in the metadata section; each specifies a secondary category.
+For example:
+<pre>CATEGORY: Foo
+CATEGORY: Bar
+</pre><p>If the category name does not exist, a new <i>MT::Category</i> record will be
+created, and the entry will be assigned to the new category. If the category
+name does exist, the entry will be assigned to the existing category.</p>
+<p>If the category specified in <i>PRIMARY CATEGORY</i> is also listed as a
+<i>CATEGORY</i>, it will be dropped from the list of secondary categories
+automatically, and will be set as the primary category.</p>
+<p>If you do not provide a <i>PRIMARY CATEGORY</i>, but you do provide one or more
+secondary categories via <i>CATEGORY</i>, the first <i>CATEGORY</i> will be used as
+a primary category rather than as a category.</p>
+<p></p>
+<li><strong><a name="item_STATUS"></a>STATUS</strong><br>
+
+The post status of the entry. Valid values are either <code>draft</code> or <code>publish</code>.
+<p></p>
+<li><strong><a name="item_ALLOW_COMMENTS"></a>ALLOW COMMENTS</strong><br>
+
+The value for the ``allow comments'' flag for the entry. Valid values are either
+<code>0</code> or <code>1</code>.
+<p></p>
+<li><strong><a name="item_ALLOW_PINGS"></a>ALLOW PINGS</strong><br>
+
+The value for the ``allow pings'' flag for the entry. Valid values are either
+<code>0</code> or <code>1</code>.
+<p></p>
+<li><strong><a name="item_CONVERT_BREAKS"></a>CONVERT BREAKS</strong><br>
+
+The value for the ``convert breaks'' flag for the entry. Valid values are either
+<code>0</code> or <code>1</code>.
+<p></p>
+<li><strong><a name="item_NO_ENTRY"></a>NO ENTRY</strong><br>
+
+A special key used when importing data from a system where you have already
+imported all of the entries, but <strong>not</strong> the comments. If you use this, the
+<i>DATE</i> key is required, and will be used to look up the entries with which
+the comments are associated; if a matching entry cannot be found by matching
+the timestamps, the comments will be skipped. You probably don't need to use
+this.
+<p>Example usage:</p>
+<pre>NO ENTRY: 1
+</pre><p></p></ul>
+<p>
+<h2><a name="multiline fields"></a>Multi-line fields</h2>
+<p>Multi-line fields are separated by <code>-----\n</code> (that is five <code>-</code> characters,
+followed by a carriage return). Each multi-line field is started by the key
+denoting the type of field, followed by a carriage return, followed by the
+actual body of the field.</p>
+<p>For example:</p>
+<pre>BODY:
+This is the body.
+-----
+EXTENDED BODY:
+Here is some more text.
+-----
+COMMENT:
+AUTHOR: Foo
+DATE: 01/31/2002 15:47:06
+This is
+the body of this comment.
+-----
+PING:
+TITLE: Foo Bar
+URL: http://www.foo.com/baz/archives/000015.html
+DATE: 08/05/2002 04:05:23 PM
+This is
+the excerpt of the ping.
+-----
+</pre><ul>
+<li><strong><a name="item_BODY"></a>BODY</strong><br>
+
+The body of the entry.
+<p></p>
+<li><strong><a name="item_EXTENDED_BODY"></a>EXTENDED BODY</strong><br>
+
+The extended body of the entry.
+<p></p>
+<li><strong><a name="item_EXCERPT"></a>EXCERPT</strong><br>
+
+The excerpt of the entry.
+<p></p>
+<li><strong><a name="item_COMMENT"></a>COMMENT</strong><br>
+
+Represents one comment on this entry. Multiple <i>COMMENT</i> sections can appear,
+each separated by the standard multi-line field separator (<code>-----\n</code>).
+<p>In a <i>COMMENT</i> section, the following fields are applicable:</p>
+<ul>
+<li><strong>AUTHOR</strong><br>
+
+The name of the author of the comment.
+<p></p>
+<li><strong><a name="item_EMAIL"></a>EMAIL</strong><br>
+
+The email address of the author of the comment.
+<p></p>
+<li><strong><a name="item_URL"></a>URL</strong><br>
+
+The URL of the author of the comment.
+<p></p>
+<li><strong><a name="item_IP"></a>IP</strong><br>
+
+The IP Address of the author of the comment.
+<p></p>
+<li><strong>DATE</strong><br>
+
+The date on which the comment was posted. This should be in the same format
+as the <i>DATA</i> metadata key, above.
+<p></p></ul>
+<p>Any line that does not match one of the above keys starts the body of the
+comment; the body of the comment then consists of everything from that point
+to the end of the <i>COMMENT</i> section. If this is unclear, look below at the
+<a href="#example">EXAMPLE</a>.</p>
+<li><strong><a name="item_PING"></a>PING</strong><br>
+
+Represents one TrackBack ping  on this entry. Multiple <i>PING</i> sections can
+appear, each separated by the standard multi-line field separator
+(<code>-----\n</code>).
+<p>In a <i>PING</i> section, the following fields are applicable:</p>
+<ul>
+<li><strong>TITLE</strong><br>
+
+The title of this ping.
+<p></p>
+<li><strong>URL</strong><br>
+
+The URL to the original entry.
+<p></p>
+<li><strong>IP</strong><br>
+
+The IP address of the server that sent the ping.
+<p></p>
+<li><strong><a name="item_BLOG_NAME"></a>BLOG NAME</strong><br>
+
+The name of the weblog from which the ping was sent.
+<p></p>
+<li><strong>DATE</strong><br>
+
+The date on which the ping was sent. This should be in the same format as the
+<i>DATA</i> metadata key, above.
+<p></p></ul>
+<p>Any line that does not match one of the above keys starts the ping excerpt;
+the excerpt then consists of everything from that point to the end of the
+<i>PING</i> section. If this is unclear, look below at the <a href="#example">EXAMPLE</a>.</p>
+</ul>
+<p>
+<hr size="1" color="#CCCCCC">
+<h1><a name="example"></a>EXAMPLE</h1>
+<pre>TITLE: A dummy title
+AUTHOR: Foo Bar
+DATE: 01/31/2002 03:31:05 PM
+PRIMARY CATEGORY: Media
+CATEGORY: News
+-----
+BODY:
+This is the body.
+-----
+EXTENDED BODY:
+Here is some more text.
+-----
+COMMENT:
+AUTHOR: Foo
+DATE: 01/31/2002 15:47:06
+This is
+the body of this comment.
+-----
+COMMENT:
+AUTHOR: Bar
+DATE: 02/01/2002 04:02:07 AM
+IP: 205.66.1.32
+EMAIL: me@bar.com
+This is the body of
+another comment. It goes
+up to here.
+-----
+PING:
+TITLE: My Entry
+URL: http://www.foo.com/old/2002/08/
+IP: 206.22.1.53
+BLOG NAME: My Weblog
+DATE: 08/05/2002 16:09:12
+This is the start of my
+entry, and here it...
+-----
+--------
+TITLE: Here is a new entry
+AUTHOR: Baz Quux
+DATE: 01/31/2002 03:31:05
+CATEGORY: Politics
+-----
+BODY:
+This is the body of the second entry. It can
+consist of multiple lines.
+-----
+EXCERPT:
+See, this entry does not have an extended piece; but
+it does have an excerpt. It is special.
+-----
+COMMENT:
+AUTHOR: Quux
+URL: http://www.quux.com/
+DATE: 01/31/2002 04:23:01 PM
+Here is the first comment on this entry.
+-----
+--------
+</pre>
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

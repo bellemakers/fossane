@@ -1,0 +1,362 @@
+<html>
+<head>
+<title>WEBLOG CONFIGURATION</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: WEBLOG CONFIGURATION</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#weblog configuration">WEBLOG CONFIGURATION</a></li>
+	<ul>
+
+		<li><a href="#core setup">Core Setup</a></li>
+		<li><a href="#preferences">Preferences</a></li>
+		<li><a href="#archiving">Archiving</a></li>
+		<li><a href="#ip banning">IP Banning</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="weblog configuration"></a>WEBLOG CONFIGURATION</h1>
+<p>Movable Type supports many options for configuring the way your weblog works.
+There are four different screens in the <code>Weblog Configuration</code> section:</p>
+<ul>
+<li><strong><a name="item_Core_Setup"></a>Core Setup</strong><br>
+
+The core values that are required when setting up a new weblog; in fact, when
+you create a new weblog, these are all of the fields that you need to fill out.
+<p></p>
+<li><strong><a name="item_Preferences"></a>Preferences</strong><br>
+
+Assorted preferences that you can use to configure your weblog, its appearance,
+and the Movable Type system. When you create a new weblog, these settings will
+all default to reasonable values.
+<p></p>
+<li><strong><a name="item_Archiving"></a>Archiving</strong><br>
+
+The archiving configuration for your weblog, where you select the types of
+archiving that you would like to use, and associate Archive Templates with
+each archive type. When you create a new weblog, these settings will default to
+reasonable values.
+<p></p>
+<li><strong><a name="item_IP_Banning"></a>IP Banning</strong><br>
+
+The IP Banning screen, which allows you to ban certain IP addresses from
+commenting on entries in your weblog and from sending TrackBack pings to your
+weblog. When you create a new weblog, by default all IP addresses are allowed.
+<p></p></ul>
+<p>
+<h2><a name="core setup"></a>Core Setup</h2>
+<ul>
+<li><strong><a name="item_Weblog_name"></a>Weblog name</strong><br>
+
+The name of your weblog; this name will be used for display within the Movable
+Type system itself, and it will also be sent to <i>weblogs.com</i> when sending
+an XML-RPC ping (if you have enabled this option--see <a href="#notify weblogs of updates">Notify weblogs of updates</a>, below).
+<p></p>
+<li><strong><a name="item_Local_Site_Path"></a>Local Site Path</strong><br>
+
+The path to the directory where you main index <code>file(s)</code> will be located. When
+you use ``Rebuild'' to publish your site, your index templates will be
+generated into this directory.
+<p>An absolute path (a path starting with <code>/</code>) is preferred, because it is not
+dependent on the location of your Movable Type directory; but if you choose to
+use a relative path, the path should be relative to your Movable Type
+directory.</p>
+<p>This is a required field.</p>
+<p>Example: <i>/home/melody/public_html/blog</i></p>
+<p></p>
+<li><strong><a name="item_Site_URL"></a>Site URL</strong><br>
+
+The full URL (including <code>http://</code> and your site's domain name) to your public
+weblog. This URL should not include the filename of your index file; for
+example, if your index file is located at
+<i><a href="http://www.your-site.com/blog/index.html">http://www.your-site.com/blog/index.html</a></i>, then the value for <a href="#item_Site_URL"><code>Site URL</code></a>
+should be <i><a href="http://www.your-site.com/blog/">http://www.your-site.com/blog/</a></i>.
+<p>This URL will be sent to <i>weblogs.com</i> when sending an XML-RPC ping (if you
+have enabled this option--see <a href="#notify weblogs of updates">Notify weblogs of updates</a>, below).</p>
+<p>This is a required field.</p>
+<p>Example: <i><a href="http://www.your-site.com/blog/">http://www.your-site.com/blog/</a></i></p>
+<p></p>
+<li><strong><a name="item_Local_Archive_Path"></a>Local Archive Path</strong><br>
+
+The path to the directory where you archive files will be located. An absolute
+path (a path starting with <code>/</code>) is preferred, because it is not dependent on
+the location of your Movable Type directory; but if you choose to use a
+relative path, the path should be relative to your Movable Type directory.
+<p>Note that, if you wish to place your archive files in the same directory as
+your index files, the <a href="#item_Local_Archive_Path"><code>Local Archive Path</code></a> and the <a href="#item_Local_Site_Path"><code>Local Site Path</code></a> should
+point to the same directory.</p>
+<p>This is a required field.</p>
+<p>Example: <i>/home/melody/public_html/blog/archives</i></p>
+<p></p>
+<li><strong><a name="item_Archive_URL"></a>Archive URL</strong><br>
+
+The full URL (including <code>http://</code> and your site's domain name) to the archives
+section of your public weblog.
+<p>This is a required field.</p>
+<p>Example: <i><a href="http://www.your-site.com/blog/archives/">http://www.your-site.com/blog/archives/</a></i></p>
+<p></p>
+<li><strong><a name="item_Timezone"></a>Timezone</strong><br>
+
+Your local timezone. Note that this should <i>not</i> be the timezone where your
+server is located, if your server is located in a different timezone; it
+should be the timezone where <i>you</i> are located.
+<p>This is a required field.</p>
+<p></p></ul>
+<p>
+<h2><a name="preferences"></a>Preferences</h2>
+<ul>
+<li><strong><a name="item_Weblog_description"></a>Weblog description</strong><br>
+
+The description of your weblog, to be displayed in the Movable Type Main Menu,
+and in your weblog templates if you use the <code>&lt;$MTBlogDescription$&gt;</code>
+tag.
+<p></p>
+<li><strong><a name="item_Number_of_days_displayed"></a>Number of days displayed</strong><br>
+
+The number of days displayed by default on your index templates. Note that
+you can override this behavior in your <code>MTEntries</code> tag; this is merely the
+default, used when you do not supply <code>MTEntries</code> with any attributes.
+<p>For example, if you wish to display the last <code>15</code> entries that you have
+posted to your weblog, you could use the <code>lastn</code> attribute to <code>MTEntries</code>
+instead of relying on the default behavior:</p>
+<pre>&lt;MTEntries lastn=&quot;15&quot;&gt;
+...
+&lt;/MTEntries&gt;
+</pre><p>Note that, if you choose <code>7</code> days, 7 days means the last 7 consecutive days,
+<i>not</i> necessarily the last 7 days on which you posted an entry. So if you
+have posted on just 3 of the last 7 days, only the posts from those 3 days
+will be listed on your main indexes.</p>
+<p>Note also that a ``day'' is defined as the time from 24 hours ago to now, where
+``now'' is the time at which you are rebuilding your site. It does <strong>not</strong> mean
+from 12 AM to now on the current day. As an example, if you are including
+<code>1</code> day on your index and you posted an entry one day at 6 PM, that entry
+will show up on your index until the next day at 5:59 PM.</p>
+<p>This is a required field.</p>
+<p></p>
+<li><strong><a name="item_Language_for_date_display"></a>Language for date display</strong><br>
+
+Selects the language used for date and time display on your weblog;
+specifically, this influences the month and week names, and the AM/PM
+specifiers.
+<p></p>
+<li><strong><a name="item_Default_Text_Formatting_for_new_entries"></a>Default Text Formatting for new entries</strong><br>
+
+Movable Type offers a variety of formatting options for the text in your
+entries. The default conversion, for example, encloses paragraphs within
+<code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code> tags, and converts line breaks into
+<code>&lt;br&gt;</code> tags. You can customize the text formatting setting on a
+per-entry basis, meaning that you can specify one formatting option for one
+entry, and another option in another entry. You indicate your preference
+per entry when creating a new entry, or editing an existing entry, in the
+<i>Text Formatting</i> setting.
+<p>The <i>Default Text Formatting for new entries</i> setting in your weblog
+configuration controls the default value for <i>Text Formatting</i>. You
+should select the text formatting option that you use most often, for
+the sake of convenience.</p>
+<p></p>
+<li><strong><a name="item_Number_of_words_in_excerpt"></a>Number of words in excerpt</strong><br>
+
+When you use the &lt;$MTEntryExcerpt$&gt; tag, and you have not defined an
+excerpt for your entry, the excerpt is auto-generated from the first <code>N</code>
+words of your entry.
+<p>The number of words in the excerpt defaults to <code>20</code>.</p>
+<p></p>
+<li><strong><a name="item_Welcome_Message"></a>Welcome Message</strong><br>
+
+When authors of your weblog view the main <code>Editing Menu</code>, they will be
+presented with a message welcoming them, and providing a link to the manual
+and some introductory text. You can edit this welcome message in the
+<i>Welcome Message</i> configuration field to send specific messages to your
+authors, post news about your weblog, etc.
+<p></p>
+<li><strong><a name="item_Creative_Commons_License"></a>Creative Commons License</strong><br>
+
+Here you can select a Creative Commons License to apply to the contents of
+your weblog. Learn more about the available licenses at
+<i><a href="http://creativecommons.org/learn/licenses/">http://creativecommons.org/learn/licenses/</a></i>. If you select a license, the
+index page of your weblog will automatically be updated to include
+information about the license you have chosen, and the same metadata will be
+added to your RSS 1.0 feed in machine-readable format.
+<p><strong>Keep in mind:</strong> Once you publish your work under a Creative Commons
+license, and someone accepts the terms you've offered, you can't revoke
+the license.  You can always take your work down if you change your
+mind, of course, or specify that future entries in your blog are
+available under some new licensing terms or full copyright protection,
+whatever the case may be.  For more information about the details of
+Creative Commons licenses, see
+<i><a href="http://creativecommons.org/learn/licenses/fullrights">http://creativecommons.org/learn/licenses/fullrights</a></i>.</p>
+<p></p>
+<li><strong><a name="item_Preferred_Archive_Type"></a>Preferred Archive Type</strong><br>
+
+Movable Type allows you to select multiple types of archiving. When linking
+to an archived entry--for a permalink, for example--or when creating a master
+archive index, the system needs to know your preferred archiving method; you
+can think of this as your default archiving type. You can always override this
+default, if you choose.
+<p>If you have not selected any archive types (<a href="#item_Archive_Frequency"><code>Archive Frequency</code></a>, above), you
+should select <code>No Archives</code> for your <a href="#item_Preferred_Archive_Type"><code>Preferred Archive Type</code></a>.</p>
+<p></p>
+<li><strong><a name="item_Notify_the_following_sites_when_I_update_my_weblog"></a>Notify the following sites when I update my weblog</strong><br>
+
+weblogs.com and blo.gs are services that keep track of recently-updated
+weblogs; in order to notify the services that your website has changed,
+Movable Type sends an XML-RPC ping to their servers. When they receive this
+ping, the services check your site to determine if it has changed since the
+last time you sent a ping. If it has, your site will be marked as updated.
+<p>If you would like Movable Type to notify weblogs.com and/or blo.gs of updates
+to your site automatically--whenever you post an entry on your site--check
+the corresponding box.</p>
+<p>In addition to weblogs.com and blo.gs, there are other services that provide
+similar functionality. If you would like to ping such services automatically,
+and if they support the weblogs.com XML-RPC ping interface
+(http://www.xmlrpc.com/weblogsCom), you can add the URLs for those XML-RPC
+servers to the <i>Others</i> box. Separate the URLs with carriage returns.</p>
+<p></p>
+<li><strong><a name="item_Recently_updated_key"></a>Recently updated key</strong><br>
+
+If you have supported Movable Type by making a donation, you can appear on the
+list of Recently Updated weblogs at movabletype.org. When you have made a
+donation, we will send you a unique key that you can enter as your <a href="#item_Recently_updated_key"><code>Recently
+updated key</code></a>. This key will then be sent to movabletype.org whenever you update
+your site, and your site will be marked as recently updated.
+<p></p>
+<li><strong><a name="item_Google_API_key"></a>Google API key</strong><br>
+
+If you wish to use any of the Google API functionality (listing Google search
+results on your site using <code>&lt;MTGoogleSearch&gt;</code>, for example), you
+will need to sign up for a Google API key ( <a href="http://www.google.com/apis/">http://www.google.com/apis/</a> ),
+then paste your API key into this field. Your key will be sent to Google's
+servers whenever you use Google API functionality.
+<p></p>
+<li><strong><a name="item_Turn_on_TrackBack_auto_discovery"></a>Turn on TrackBack auto discovery</strong><br>
+
+When you write a new post in your weblog, Movable Type can look through your
+entry for links to external sites. It can then attempt to determine the
+TrackBack ping URL for those sites, and automatically send a ping to that
+site, just as if you had determined the TrackBack URL yourself and
+entered it in manually.
+<p>This takes all of the work out of using TrackBack. You only need to link to
+permalinks as you always have, and Movable Type can do the work for you. You
+will be notified of the sites that are being pinged on the <code>Pinging...</code>
+screen.</p>
+<p></p>
+<li><strong><a name="item_Text_Formatting_for_comments"></a>Text Formatting for comments</strong><br>
+
+Specifies the text formatting option to be used for visitor comments on your
+weblog. For example, the
+<i>Convert Line Breaks</i> option encloses your paragraphs in <code>&lt;p&gt;</code>
+and <code>&lt;/p&gt;</code> tags, and converts line breaks to <code>&lt;br&gt;</code>
+tags. The option selected here will be applied globally to all comments in
+the system. Note that Text Formatting is executed after the comment is
+cleaned up using Sanitize.
+<p></p></ul>
+<p>
+<h2><a name="archiving"></a>Archiving</h2>
+<ul>
+<li><strong><a name="item_Archive_Frequency"></a>Archive Frequency</strong><br>
+
+The frequency/type of archiving that you would like to use on your weblog. You
+can select multiple archive types; doing so will require that you define
+templates for each archive type (see <a href="./mtmanual_templates.html">TEMPLATES</a>). Note
+also that selecting multiple archive types will slow down the rebuild process,
+because there are simply more files to rebuild; the extra files will also take
+up more of your allotted space on the system.
+<p>You do not have to select any archive types, if you don't want archiving on
+your weblog; just leave all of the boxes unchecked.</p>
+<p></p>
+<li><strong><a name="item_Archive_Templates"></a>Archive Templates</strong><br>
+
+For each type/frequency of archiving that you choose, you have the option of
+assigning multiple Archive Templates to be applied to that particular archive
+type. For example, you might wish to create two different views of your
+monthly archives: a page containing each of the entries for a particular
+month, and a calendar view of that month. Or, you could use different templates
+to create hi-fi and lo-fi versions of your archives.
+<p></p>
+<li><strong><a name="item_Archive_File_Templates"></a>Archive File Templates</strong><br>
+
+Allow you to customize the names/paths of your archive files, using standard
+Movable Type tags. This allows you to impose a directory structure and
+hierarchy on your archives. For each <code>Archive Type</code> that you use, you can
+define an <code>Archive File Template</code> in the box to its right on the
+configuration screen.
+<p>For example, by default monthly archive files are stored directly in your
+<a href="#item_Local_Archive_Path"><code>Local Archive Path</code></a>, and are called <i>YYYY_MM.html</i> (<i>2001_12.html</i>, for
+example). You might prefer your monthly archives to be stored in
+<i>2001/12/index.html</i>. To do this, you can set the <code>Archive File Template</code>
+for your <code>Monthly</code> archives to</p>
+<pre>&lt;$MTArchiveDate format=&quot;%Y/%m/index.html&quot;$&gt;
+</pre><p>Another example: by default individual archive files are named by the padded
+form of the entry ID (<i>000002.html</i>, for example), and are stored directly
+in your <a href="#item_Local_Archive_Path"><code>Local Archive Path</code></a> directory. You may wish to impose a hierarchy
+on your archives, based on the category into which you've placed them; for
+example, you would place all entries in the category <code>Books</code> into a
+directory called <i>books/</i>. To do this, you can use the following <code>Archive
+File Template</code> for your <code>Individual</code> archives:</p>
+<pre>&lt;$MTEntryCategory dirify=&quot;1&quot;$&gt;/&lt;$MTEntryID pad=&quot;1&quot;$&gt;.html
+</pre><p>A final example: by default <code>Weekly</code> archives are named using only the start
+date of the week (<i>week_2002_01_06.html</i>, for example). If you would like to
+include both the start and end dates in the filename, you can use the following
+<code>Archive File Template</code> for your <code>Weekly</code> archives:</p>
+<pre>week_&lt;$MTArchiveDate format=&quot;%Y_%m_%d&quot;$&gt;-&lt;$MTArchiveDateEnd format=&quot;%Y_%m_%d&quot;$&gt;.html
+</pre><p><a href="#item_Archive_File_Templates"><code>Archive File Templates</code></a> are defined using a subset of the standard Movable
+Type <a href="./mtmanual_tags.html">template tags</a>. The following tags can be used in
+<a href="#item_Archive_File_Templates"><code>Archive File Templates</code></a>:</p>
+<ul>
+<li>
+<code>&lt;$MTArchiveDate$&gt;</code> (<a href="./mtmanual_tags.html#item_mtarchivedate">doc</a>)
+and <code>&lt;$MTArchiveDateEnd$&gt;</code>
+(<a href="./mtmanual_tags.html#item_mtarchivedateend">doc</a>) for date-based archives
+(<code>Monthly</code>, <code>Daily</code>, <code>Weekly</code>)
+<p></p>
+<li>
+<code>&lt;$MTArchiveCategory$&gt;</code>
+(<a href="./mtmanual_tags.html#item_mtarchivecategory">doc</a>) for <code>Category</code> archives
+<p></p>
+<li>
+<code>&lt;$MTCategory$&gt;</code>
+(<a href="./mtmanual_tags.html#item_mtarchivecategory">doc</a>) for <code>Category</code> archives
+<p></p>
+<li>
+Any of the <code>&lt;$MTEntry*$&gt;</code>
+(<a href="./mtmanual_tags.html#entry listings/archive pages">doc</a>) tags for
+<code>Individual</code> archives
+<p></p></ul>
+<p><strong>NOTE:</strong> when using <a href="#item_Archive_File_Templates"><code>Archive File Templates</code></a>, you <strong>must</strong> append the file
+extension that you wish to use for your archive files (as in the examples
+above). The file extension that you specify in <code>File extension for archive
+files</code> will not be used.</p>
+</ul>
+<p>
+<h2><a name="ip banning"></a>IP Banning</h2>
+<p>To ban a certain IP address from commenting on entries in your weblog and
+sending TrackBack pings to your weblog, you can use the IP Banning screen
+(part of the <i>Weblog Configuration</i> set of screens).</p>
+<p>Note that IP banning is not an exact science, and that it should <strong>not</strong> be
+considered true security for your site, because an IP address does not
+necessarily ``mark'' a user as unique. IP addresses are often dynamically
+assigned by ISPs, for example; this means that a user's IP address may change
+from one session to the next. In addition, computers at public sites (a
+library, for example) may always have the same IP address, but the user using
+the system will certainly not always be the same.</p>
+<p>In other words, you should be careful when banning IP addresses.</p>
+<p>To add a new banned IP address, enter the IP address into the <code>IP Address:</code>
+box, and press <code>ADD TO LIST</code>. To remove an IP address that is currently
+banned, check the checkbox next to that IP address in the <code>IP Ban List</code>,
+and click the <code>DELETE</code> button.</p>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

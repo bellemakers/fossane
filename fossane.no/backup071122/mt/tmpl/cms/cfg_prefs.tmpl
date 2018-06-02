@@ -1,0 +1,676 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Preferences"> | <MT_TRANS phrase="Configuration"> | <TMPL_VAR NAME=BLOG_NAME> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+function doRebuild () {
+    window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=rebuild_confirm&blog_id=<TMPL_VAR NAME=BLOG_ID>', 'rebuild', 'width=400,height=200,resizable=yes');
+}
+
+function openManual (anchor) {
+    window.open('<TMPL_VAR NAME=STATIC_URI>docs/mtmanual_weblog_config.html#' + anchor, 'manual', 'width=450,height=550,scrollbars=yes,status=yes,resizable=yes');
+    return false;
+}
+
+function getByID (n) {
+    var d = window.document;
+    if (d.getElementById)
+        return d.getElementById(n);
+    else if (d.all)
+        return d.all[n];
+}
+
+function doRemoveLicense () {
+    document.cfg_form.cc_license.value = '';
+    var e = getByID('has-license');
+    if (e) e.style.display = 'none';
+    e = getByID('no-license');
+    if (e) e.style.display = 'block';
+}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td align="left" rowspan="5" valign="top">
+<TMPL_INCLUDE NAME=mininav.tmpl>
+</td>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500"><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=menu&blog_id=<TMPL_VAR NAME=BLOG_ID>"> <MT_TRANS phrase="[_1] Editing Menu" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"> &gt;</a><font class="pagetitle"> <MT_TRANS phrase="Configuration"></font>
+</td>
+</tr>
+
+<tr>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+
+<td valign="top" width="500">
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+	<form name="cfg_form" method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+	<input type="hidden" name="id" value="<TMPL_VAR NAME=ID>">
+	<input type="hidden" name="__mode" value="save">
+	<input type="hidden" name="_type" value="blog">
+	<input type="hidden" name="cfg_screen" value="cfg_prefs">
+	<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+
+	<tr>
+	<td valign="top" align="right" colspan="3"><font class="pagetitle">
+	<a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=blog&id=<TMPL_VAR NAME=BLOG_ID>&blog_id=<TMPL_VAR NAME=BLOG_ID>"><MT_TRANS phrase="Core Setup"></a>&nbsp;|&nbsp;<MT_TRANS phrase="Preferences">&nbsp;|&nbsp;<a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=cfg_archives&blog_id=<TMPL_VAR NAME=BLOG_ID>"><MT_TRANS phrase="Archiving"></a>&nbsp;|&nbsp;<a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=list&_type=banlist&blog_id=<TMPL_VAR NAME=BLOG_ID>"><MT_TRANS phrase="IP Banning"></a>
+	</font></td>
+	</tr>
+
+	<tr>
+	<td valign="top" colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" colspan="3"><p><font class="instructional"><MT_TRANS phrase="_USAGE_PREFS"></font></p>
+
+	<ul>
+	<li> <a href="#general"><MT_TRANS phrase="General Settings"></a>
+	<li> <a href="#archiving"><MT_TRANS phrase="Archiving"></a>
+	<li> <a href="#publicity"><MT_TRANS phrase="Publicity / Remote Interfaces / TrackBack"></a>
+	<li> <a href="#comments"><MT_TRANS phrase="Comment Configuration"></a>
+	</ul>
+	</td>
+	</tr>
+
+	<tr>
+	<td valign="top" colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	</td>
+	</tr>
+
+	<tr>
+	<td valign="top" colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+<TMPL_IF NAME=SAVED>
+	<tr>
+	<td valign="top" colspan="3"><p class="message"><MT_TRANS phrase="Your blog preferences have been saved."> <TMPL_IF NAME=CAN_REBUILD> <MT_TRANS phrase="_USAGE_REBUILD"></TMPL_IF></p></td>
+	</tr>
+</TMPL_IF>
+
+	<tr>
+	<td valign="top" width="198"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="198" height="1"></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top" width="292"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="292" height="1"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" colspan="3"><a name="general"></a><font class="pagetitle"><MT_TRANS phrase="General Settings"></font></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="middle" width="198"><font class="instructional"><MT_TRANS phrase="Enter a description for your blog."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Description:"> <a href="#" onclick="return openManual('item_blog_description')">(?)</a></font><br>
+	<textarea<TMPL_IF NAME=AGENT_MOZILLA> cols=""</TMPL_IF> class="config" name="description" rows="4"><TMPL_VAR NAME=DESCRIPTION></textarea></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Enter the number of days' entries you would like displayed on your index."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Number of days displayed:"> <a href="#" onclick="return openManual('item_number_of_days_displayed')">(?)</a></font><br>
+	<input name="days_on_index" size="2" value="<TMPL_VAR NAME=DAYS_ON_INDEX>"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>	
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Select the language in which you would like dates on your blog displayed."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Language for date display:"> <a href="#" onclick="return openManual('item_language_for_date_display')">(?)</a></font><br>
+	<select name="language" class="menu">
+	<option value="cz"<TMPL_IF NAME=LANGUAGE_CZ> selected</TMPL_IF>><MT_TRANS phrase="Czech">
+	<option value="dk"<TMPL_IF NAME=LANGUAGE_DK> selected</TMPL_IF>><MT_TRANS phrase="Danish">
+	<option value="nl"<TMPL_IF NAME=LANGUAGE_NL> selected</TMPL_IF>><MT_TRANS phrase="Dutch">
+	<option value="en"<TMPL_IF NAME=LANGUAGE_EN> selected</TMPL_IF>><MT_TRANS phrase="English">
+	<option value="et"<TMPL_IF NAME=LANGUAGE_ET> selected</TMPL_IF>><MT_TRANS phrase="Estonian">
+	<option value="fr"<TMPL_IF NAME=LANGUAGE_FR> selected</TMPL_IF>><MT_TRANS phrase="French">
+	<option value="de"<TMPL_IF NAME=LANGUAGE_DE> selected</TMPL_IF>><MT_TRANS phrase="German">
+	<option value="is"<TMPL_IF NAME=LANGUAGE_IS> selected</TMPL_IF>><MT_TRANS phrase="Icelandic">
+	<option value="it"<TMPL_IF NAME=LANGUAGE_IT> selected</TMPL_IF>><MT_TRANS phrase="Italian">
+	<option value="jp"<TMPL_IF NAME=LANGUAGE_JP> selected</TMPL_IF>><MT_TRANS phrase="Japanese">
+	<option value="no"<TMPL_IF NAME=LANGUAGE_NO> selected</TMPL_IF>><MT_TRANS phrase="Norwegian">
+	<option value="pl"<TMPL_IF NAME=LANGUAGE_PL> selected</TMPL_IF>><MT_TRANS phrase="Polish">
+	<option value="pt"<TMPL_IF NAME=LANGUAGE_PT> selected</TMPL_IF>><MT_TRANS phrase="Portuguese">
+	<option value="sk"<TMPL_IF NAME=LANGUAGE_SK> selected</TMPL_IF>><MT_TRANS phrase="Slovak">
+	<option value="si"<TMPL_IF NAME=LANGUAGE_SI> selected</TMPL_IF>><MT_TRANS phrase="Slovenian">
+	<option value="es"<TMPL_IF NAME=LANGUAGE_ES> selected</TMPL_IF>><MT_TRANS phrase="Spanish">
+	<option value="fi"<TMPL_IF NAME=LANGUAGE_FI> selected</TMPL_IF>><MT_TRANS phrase="Suomi">
+	<option value="se"<TMPL_IF NAME=LANGUAGE_SE> selected</TMPL_IF>><MT_TRANS phrase="Swedish">
+	</select></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Select whether you want your posts displayed in ascending (oldest at top) or descending (newest at top) order."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Order of entries displayed:"></font><br>
+	<select name="sort_order_posts" class="menu">
+	<option value="ascend"<TMPL_IF NAME=SORT_ORDER_POSTS_ASCEND> selected</TMPL_IF>><MT_TRANS phrase="Ascending">
+	<option value="descend"<TMPL_IF NAME=SORT_ORDER_POSTS_DESCEND> selected</TMPL_IF>><MT_TRANS phrase="Descending">
+	</select></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Specifies the default Text Formatting option when creating a new entry."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Default Text Formatting for new entries:"> <a href="#" onclick="return openManual('item_Default_Text_Formatting_for_new_entries')">(?)</a>&nbsp;</font><br><select name="convert_paras" class="menu-long">
+<TMPL_LOOP NAME=TEXT_FILTERS>
+	<option value="<TMPL_VAR NAME=FILTER_KEY>"<TMPL_IF NAME=FILTER_SELECTED> selected</TMPL_IF>><TMPL_VAR NAME=FILTER_LABEL></option>
+</TMPL_LOOP>
+	</select></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Specifies the default Post Status when creating a new entry."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Default Post Status:"></font><br><select name="status_default" class="menu">
+	<option value="1"<TMPL_IF NAME=STATUS_DEFAULT_1> selected</TMPL_IF>><MT_TRANS phrase="Draft">
+	<option value="2"<TMPL_IF NAME=STATUS_DEFAULT_2> selected</TMPL_IF>><MT_TRANS phrase="Publish">
+	</select></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Enter the number of words that should appear in an auto-generated excerpt:"></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Number of words in excerpt:"> <a href="#" onclick="return openManual('item_number_of_words_in_excerpt')">(?)</a></font><br>
+	<input name="words_in_excerpt" size="3" value="<TMPL_VAR NAME=WORDS_IN_EXCERPT>"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Specifies the list of HTML tags allowed by default when cleaning an HTML string (a comment, for example)."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Sanitize Spec:"><br>
+	<input type="radio" name="sanitize_spec" value="0"<TMPL_IF NAME=SANITIZE_SPEC_0> checked</TMPL_IF>> <MT_TRANS phrase="Use defaults"><br>
+	<input type="radio" name="sanitize_spec" value="1"<TMPL_IF NAME=SANITIZE_SPEC_1> checked</TMPL_IF>> <MT_TRANS phrase="Use my settings:"> <input class="text-short" name="sanitize_spec_manual" value="<TMPL_IF NAME=SANITIZE_SPEC_1><TMPL_VAR NAME=SANITIZE_SPEC></TMPL_IF>"></font>
+	</td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="middle" width="198"><font class="instructional"><MT_TRANS phrase="Enter a welcome message to be displayed on the Editing Menu to authors of your blog."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><a name="welcome_msg"></a><MT_TRANS phrase="Welcome Message:"> <a href="#" onclick="return openManual('item_welcome_message')">(?)</a></font><br>
+	<textarea<TMPL_IF NAME=AGENT_MOZILLA> cols=""</TMPL_IF> class="config" name="welcome_msg" rows="6"><TMPL_VAR NAME=WELCOME_MSG></textarea></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Select a Creative Commons license for the posts on your blog (optional)."><br /><br /><strong><MT_TRANS phrase="Be sure that you understand these licenses before applying them to your own work."></strong> <a href="#" onclick="return openManual('item_Creative_Commons_License')"><MT_TRANS phrase="Read more."></a></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Creative Commons License:"> <a href="#" onclick="return openManual('item_Creative_Commons_License')">(?)</a></font><br>
+	<input type="hidden" name="cc_license" value="<TMPL_VAR NAME=CC_LICENSE>">
+	<font class="instructional-just">
+	<div style="margin-top: 10px; display: none;" id="has-license">
+	<MT_TRANS phrase="Your weblog is currently licensed under:"> <strong><span id="cc-license-name"><TMPL_VAR NAME=CC_LICENSE_NAME></span></strong><br /><br />
+	<a onclick="window.open('http://creativecommons.org/license/?partner=movabletype&exit_url=<TMPL_VAR NAME=SCRIPT_FULL_URL>?__mode=cc_return%26license_code=[license_code]', 'cc', 'width=600,height=600,scrollbars=yes,resizable=no'); return false" href="#"><MT_TRANS phrase="Change your license"></a><br /><br />
+	<a onclick="doRemoveLicense(); return false" href="#"><MT_TRANS phrase="Remove this license"></a>
+	</div>
+	<div style="margin-top: 10px; display: none;" id="no-license">
+	<MT_TRANS phrase="Your weblog does not have an explicit Creative Commons license."><br /><br />
+	<a onclick="window.open('http://creativecommons.org/license/?partner=movabletype&exit_url=<TMPL_VAR NAME=SCRIPT_FULL_URL>?__mode=cc_return%26license_code=[license_code]', 'cc', 'width=600,height=600,scrollbars=yes,resizable=no'); return false" href="#"><MT_TRANS phrase="Create a license now"></a>
+	</div>
+<TMPL_IF NAME=CC_LICENSE>
+	<script language="javascript">
+	var e = getByID('has-license');
+	if (e) e.style.display = 'block';
+	</script>
+<TMPL_ELSE>
+	<script language="javascript">
+	var e = getByID('no-license');
+	if (e) e.style.display = 'block';
+	</script>
+</TMPL_IF>
+	</font>
+	</td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" colspan="3"><a name="archiving"></a><font class="pagetitle"><MT_TRANS phrase="Archiving"></font></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="When linking to an archived entry--for a permalink, for example--you must link to a particular archive type, even if you have chosen multiple archive types."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Preferred Archive Type:"> <a href="#" onclick="return openManual('item_preferred_archive_type')">(?)</a><br>
+	<select name="archive_type_preferred" class="menu">
+	<option value=""><MT_TRANS phrase="No Archives">
+	<TMPL_IF NAME=ARCHIVE_TYPE_INDIVIDUAL>
+	<option value="Individual"<TMPL_IF NAME="ARCHIVE_TYPE_PREFERRED_INDIVIDUAL"> selected</TMPL_IF>><MT_TRANS phrase="Individual">
+	</TMPL_IF>
+	<TMPL_IF NAME=ARCHIVE_TYPE_DAILY>
+	<option value="Daily"<TMPL_IF NAME="ARCHIVE_TYPE_PREFERRED_DAILY"> selected</TMPL_IF>><MT_TRANS phrase="Daily">
+	</TMPL_IF>
+	<TMPL_IF NAME=ARCHIVE_TYPE_WEEKLY>
+	<option value="Weekly"<TMPL_IF NAME="ARCHIVE_TYPE_PREFERRED_WEEKLY"> selected</TMPL_IF>><MT_TRANS phrase="Weekly">
+	</TMPL_IF>
+	<TMPL_IF NAME=ARCHIVE_TYPE_MONTHLY>
+	<option value="Monthly"<TMPL_IF NAME="ARCHIVE_TYPE_PREFERRED_MONTHLY"> selected</TMPL_IF>><MT_TRANS phrase="Monthly">
+	</TMPL_IF>
+	<TMPL_IF NAME=ARCHIVE_TYPE_CATEGORY>
+	<option value="Category"<TMPL_IF NAME="ARCHIVE_TYPE_PREFERRED_CATEGORY"> selected</TMPL_IF>><MT_TRANS phrase="Category">
+	</TMPL_IF>
+	</select></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Enter the archive file extension. This can take the form of 'html', 'shtml', 'php', etc. Note: do not enter the leading period ('.')."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="File extension for archive files:"></font><br>
+	<input name="file_extension" size="5" value="<TMPL_VAR NAME=FILE_EXTENSION>"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" colspan="3"><a name="publicity"></a><font class="pagetitle"><MT_TRANS phrase="Publicity / Remote Interfaces / TrackBack"></font></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="When you update your blog, Movable Type will automatically notify the selected sites."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Notify the following sites when I update my blog:"> <a href="#" onclick="return openManual('item_Notify_the_following_sites_when_I_update_my_blog')">(?)</a></font><br />
+	<input type="checkbox" name="ping_blogs" value="1"<TMPL_IF NAME=PING_BLOGS> checked</TMPL_IF>> <font class="title">blo.gs</font><br />
+	<input type="checkbox" name="ping_weblogs" value="1"<TMPL_IF NAME=PING_WEBLOGS> checked</TMPL_IF>> <font class="title">weblogs.com</font><br /><br />
+	<font class="title"><MT_TRANS phrase="Others: (separate URLs with a carriage return)"></font><br />
+	<textarea<TMPL_IF NAME=AGENT_MOZILLA> cols=""</TMPL_IF> class="config" name="ping_others" rows="4"><TMPL_VAR NAME=PING_OTHERS></textarea></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>	
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="If you have received a recently updated key (by virtue of your donation), enter it here."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Recently updated key:"> <a href="#" onclick="return openManual('item_Recently_updated_key')">(?)</a></font><br><input class="text" name="mt_update_key" value="<TMPL_VAR NAME=MT_UPDATE_KEY>"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>	
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="If you wish to use any of the Google API functionality, you will need a Google API key. Paste it in here."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Google API key:"> <a href="#" onclick="return openManual('item_Google_API_key')">(?)</a></font><br><input class="text" name="google_api_key" value="<TMPL_VAR NAME=GOOGLE_API_KEY>"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>	
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Specifies whether Allow Pings is checked or unchecked by default when creating a new entry."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Allow Pings on by default?"></font>&nbsp;<input type="checkbox" value="1" name="allow_pings_default"<TMPL_IF NAME=ALLOW_PINGS_DEFAULT> checked</TMPL_IF>></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Would you like to be notified via email when someone sends a TrackBack ping to your site?"></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Email new TrackBack pings?"></font>&nbsp;<input type="checkbox" value="1" name="email_new_pings"<TMPL_IF NAME=EMAIL_NEW_PINGS> checked</TMPL_IF>></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="If you turn on auto-discovery, when you write a new post, any external links will be extracted and the appropriate sites automatically sent TrackBack pings."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Turn on TrackBack auto-discovery?"></font> <a href="#" onclick="return openManual('item_Turn_on_TrackBack_auto_discovery')">(?)</a>&nbsp;<input type="checkbox" value="1" name="autodiscover_links"<TMPL_IF NAME=AUTODISCOVER_LINKS> checked</TMPL_IF>></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" colspan="3"><a name="comments"></a><font class="pagetitle"><MT_TRANS phrase="Comment Configuration"></font></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Should visitors to your site be able to post comments anonymously--that is, without submitting a name and email address?"></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Allow anonymous comments?"></font>&nbsp;<input type="checkbox" value="1" name="allow_anon_comments"<TMPL_IF NAME=ALLOW_ANON_COMMENTS> checked</TMPL_IF>></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Select whether you want visitor comments displayed in ascending (oldest at top) or descending (newest at top) order."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Order of comments displayed:"></font><br>
+	<select name="sort_order_comments" class="menu">
+	<option value="ascend"<TMPL_IF NAME=SORT_ORDER_COMMENTS_ASCEND> selected</TMPL_IF>><MT_TRANS phrase="Ascending">
+	<option value="descend"<TMPL_IF NAME=SORT_ORDER_COMMENTS_DESCEND> selected</TMPL_IF>><MT_TRANS phrase="Descending">
+	</select></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Would you liked to be notified via email when someone posts comments to your site?"></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Email new comments?"></font>&nbsp;<input type="checkbox" value="1" name="email_new_comments"<TMPL_IF NAME=EMAIL_NEW_COMMENTS> checked</TMPL_IF>></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Specifies the Text Formatting option to use for formatting visitor comments."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Text Formatting for comments:"> <a href="#" onclick="return openManual('item_Text_Formatting_for_comments')">(?)</a>&nbsp;</font><br><select name="convert_paras_comments" class="menu-long">
+<TMPL_LOOP NAME=TEXT_FILTERS_COMMENTS>
+	<option value="<TMPL_VAR NAME=FILTER_KEY>"<TMPL_IF NAME=FILTER_SELECTED> selected</TMPL_IF>><TMPL_VAR NAME=FILTER_LABEL></option>
+</TMPL_LOOP>
+	</select></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Should visitors be able to include HTML in their comments? If not, all HTML entered will be stripped out."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Allow HTML in comments?"></font>&nbsp;<input type="checkbox" value="1" name="allow_comment_html"<TMPL_IF NAME=ALLOW_COMMENT_HTML> checked</TMPL_IF>></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="If enabled, all web URLs will be transformed into links to that web URL. NOTE: if you have enabled Allow HTML in comments, this option is ignored."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Auto-link URLs?"></font>&nbsp;<input type="checkbox" value="1" name="autolink_urls"<TMPL_IF NAME=AUTOLINK_URLS> checked</TMPL_IF>></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><font class="instructional"><MT_TRANS phrase="Specifies the default Allow Comments setting when creating a new entry."></font></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Allow Comments default">:</font><br><select name="allow_comments_default" class="menu">
+	<option value="0"<TMPL_IF NAME=ALLOW_COMMENTS_DEFAULT_0> selected</TMPL_IF>><MT_TRANS phrase="None"></option>
+	<option value="1"<TMPL_IF NAME=ALLOW_COMMENTS_DEFAULT_1> selected</TMPL_IF>><MT_TRANS phrase="Open"></option>
+	<option value="2"<TMPL_IF NAME=ALLOW_COMMENTS_DEFAULT_2> selected</TMPL_IF>><MT_TRANS phrase="Closed"></option>
+	</select></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+	</tr>
+
+	<tr>
+	<td colspan="3"><hr size="1" color="#CCCCCC"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="198"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="198" height="1"></td>
+	<td valign="top" width="10"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="10" height="1"></td>
+	<td valign="top"><input class="button" type="submit" value="<MT_TRANS phrase="Save">"></td>
+	</tr>
+	</table>
+
+	</form>
+
+</td>
+</tr>
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+</table>
+
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

@@ -1,0 +1,408 @@
+<html>
+<head>
+<title>PROGRAMMATIC INTERFACES</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: PROGRAMMATIC INTERFACES</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#programmatic interfaces">PROGRAMMATIC INTERFACES</a></li>
+	<ul>
+
+		<li><a href="#xmlrpc api">XML-RPC API</a></li>
+		<li><a href="#perl api">Perl API</a></li>
+		<li><a href="#plugins">Plugins</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="programmatic interfaces"></a>PROGRAMMATIC INTERFACES</h1>
+<p>
+<h2><a name="xmlrpc api"></a>XML-RPC API</h2>
+<p>Movable Type features a full implementation of the Blogger XML-RPC API (where
+applicable). The only two methods that are not supported by Movable Type are
+<code>getTemplate</code> and <code>setTemplate</code>, due to the differences between Blogger's
+template system and Movable Type's template system.</p>
+<p>Movable Type also supports the metaWeblog XML-RPC API (also where applicable).</p>
+<p>Finally, Movable Type also adds a couple of other methods of its own for
+manipulating the categories assigned to your entries.</p>
+<p>Usage of any of these XML-RPC APIs
+requires that your webserver have both <code>LWP::UserAgent</code> and <code>SOAP::Lite</code>
+installed; if yours does not, the Installation Instructions can tell you how
+to install them.</p>
+<p>Following are the XML-RPC methods supported by Movable Type:</p>
+<ul>
+<li><strong><a name="item_blogger%2EnewPost"></a>blogger.newPost</strong><br>
+
+<strong>Description:</strong> Creates a new post, and optionally publishes it.
+<p><strong>Parameters:</strong> String <i>appkey</i>, String <i>blogid</i>, String <i>username</i>, String
+<i>password</i>, String <i>content</i>, boolean <i>publish</i></p>
+<p><strong>Return value:</strong> on success, String <i>postid</i> of new post; on failure, fault</p>
+<p></p>
+<li><strong><a name="item_blogger%2EeditPost"></a>blogger.editPost</strong><br>
+
+<strong>Description:</strong> Updates the information about an existing post.
+<p><strong>Parameters:</strong> String <i>appkey</i>, String <i>postid</i>, String <i>username</i>, String
+<i>password</i>, String <i>content</i>, boolean <i>publish</i></p>
+<p><strong>Return value:</strong> on success, boolean true value; on failure, fault</p>
+<p></p>
+<li><strong><a name="item_blogger%2EdeletePost"></a>blogger.deletePost</strong><br>
+
+<strong>Description:</strong> Deletes a post.
+<p><strong>Parameters:</strong> String <i>appkey</i>, String <i>postid</i>, String <i>username</i>, String
+<i>password</i>, boolean <i>publish</i></p>
+<p><strong>Return value:</strong> on success, boolean true value; on failure, fault</p>
+<p></p>
+<li><strong><a name="item_blogger%2EgetRecentPosts"></a>blogger.getRecentPosts</strong><br>
+
+<strong>Description:</strong> Returns a list of the most recent posts in the system.
+<p><strong>Parameters:</strong> String <i>appkey</i>, String <i>blogid</i>, String <i>username</i>, String
+<i>password</i>, int <i>numberOfPosts</i></p>
+<p><strong>Return value:</strong> on success, array of structs containing ISO.8601
+<i>dateCreated</i>, String <i>userid</i>, String <i>postid</i>, String <i>content</i>; on
+failure, fault</p>
+<p><strong>Notes:</strong> <i>dateCreated</i> is in the timezone of the weblog <i>blogid</i></p>
+<p></p>
+<li><strong><a name="item_blogger%2EgetUsersBlogs"></a>blogger.getUsersBlogs</strong><br>
+
+<strong>Description:</strong> Returns a list of weblogs to which an author has posting
+privileges.
+<p><strong>Parameters:</strong> String <i>appkey</i>, String <i>username</i>, String <i>password</i></p>
+<p><strong>Return value:</strong> on success, array of structs containing String <i>url</i>,
+String <i>blogid</i>, String <i>blogName</i>; on failure, fault</p>
+<p></p>
+<li><strong><a name="item_blogger%2EgetUserInfo"></a>blogger.getUserInfo</strong><br>
+
+<strong>Description:</strong> Returns information about an author in the system.
+<p><strong>Parameters:</strong> String <i>appkey</i>, String <i>username</i>, String <i>password</i></p>
+<p><strong>Return value:</strong> on success, struct containing String <i>userid</i>, String
+<i>firstname</i>, String <i>lastname</i>, String <i>nickname</i>, String <i>email</i>, String
+<i>url</i>; on failure, fault</p>
+<p><strong>Notes:</strong> <i>firstname</i> is the Movable Type username up to the first space
+character, and <i>lastname</i> is the username after the first space character.</p>
+<p></p>
+<li><strong><a name="item_metaWeblog%2EnewPost"></a>metaWeblog.newPost</strong><br>
+
+<strong>Description:</strong> Creates a new post, and optionally publishes it.
+<p><strong>Parameters:</strong> String <i>blogid</i>, String <i>username</i>, String <i>password</i>,
+struct <i>content</i>, boolean <i>publish</i></p>
+<p><strong>Return value:</strong> on success, String <i>postid</i> of new post; on failure, fault</p>
+<p><strong>Notes:</strong> the struct <i>content</i> can contain the following standard keys:
+<i>title</i>, for the title of the entry; <i>description</i>, for the body of
+the entry; and <i>dateCreated</i>, to set the created-on date of the entry.
+In addition, Movable Type's implementation allows you to pass in values for
+five other keys: int <i>mt_allow_comments</i>, the value for the
+<i>allow_comments</i> field; int <i>mt_allow_pings</i>, the value for the
+<i>allow_pings</i> field; String <i>mt_convert_breaks</i>, the value for the
+<i>convert_breaks</i> field; String <i>mt_text_more</i>, the value for the additional
+entry text; String <i>mt_excerpt</i>, the value for the excerpt field;
+String <i>mt_keywords</i>, the value for the keywords field; and array
+<i>mt_tb_ping_urls</i>, the list of TrackBack ping URLs for this entry.
+If specified, <i>dateCreated</i> should be in ISO.8601 format.</p>
+<p></p>
+<li><strong><a name="item_metaWeblog%2EeditPost"></a>metaWeblog.editPost</strong><br>
+
+<strong>Description:</strong> Updates information about an existing post.
+<p><strong>Parameters:</strong> String <i>postid</i>, String <i>username</i>, String <i>password</i>,
+struct <i>content</i>, boolean <i>publish</i></p>
+<p><strong>Return value:</strong> on success, boolean true value; on failure, fault</p>
+<p><strong>Notes:</strong> the struct <i>content</i> can contain the following standard keys:
+<i>title</i>, for the title of the entry; <i>description</i>, for the body of
+the entry; and <i>dateCreated</i>, to set the created-on date of the entry.
+In addition, Movable Type's implementation allows you to pass in values for
+five other keys: int <i>mt_allow_comments</i>, the value for the
+<i>allow_comments</i> field; int <i>mt_allow_pings</i>, the value for the
+<i>allow_pings</i> field; String <i>mt_convert_breaks</i>, the value for the
+<i>convert_breaks</i> field; String <i>mt_text_more</i>, the value for the additional
+entry text; String <i>mt_excerpt</i>, the value for the excerpt field;
+String <i>mt_keywords</i>, the value for the keywords field; and array
+<i>mt_tb_ping_urls</i>, the list of TrackBack ping URLs for this entry.
+If specified, <i>dateCreated</i> should be in ISO.8601 format.</p>
+<p></p>
+<li><strong><a name="item_metaWeblog%2EgetPost"></a>metaWeblog.getPost</strong><br>
+
+<strong>Description:</strong> Returns information about a specific post.
+<p><strong>Parameters:</strong> String <i>postid</i>, String <i>username</i>, String <i>password</i></p>
+<p><strong>Return value:</strong> on success, struct containing String <i>userid</i>, ISO.8601
+<i>dateCreated</i>, String <i>postid</i>, String <i>description</i>, String <i>title</i>,
+String <i>link</i>, String <i>permaLink</i>, String <i>mt_excerpt</i>, String
+<i>mt_text_more</i>, int <i>mt_allow_comments</i>, int <i>mt_allow_pings</i>,
+String <i>mt_convert_breaks</i>, String <i>mt_keywords</i>; on failure, fault</p>
+<p><strong>Notes:</strong> <i>link</i> and <i>permaLink</i> are both the URL pointing to the archived
+post. The fields prefixed with <i>mt_</i> are Movable Type extensions to the
+<i>metaWeblog.getPost</i> API.</p>
+<p></p>
+<li><strong><a name="item_metaWeblog%2EgetRecentPosts"></a>metaWeblog.getRecentPosts</strong><br>
+
+<strong>Description:</strong> Returns a list of the most recent posts in the system.
+<p><strong>Parameters:</strong> String <i>blogid</i>, String <i>username</i>, String <i>password</i>,
+int <i>numberOfPosts</i></p>
+<p><strong>Return value:</strong> on success, array of structs containing ISO.8601
+<i>dateCreated</i>, String <i>userid</i>, String <i>postid</i>, String <i>description</i>,
+String <i>title</i>, String <i>link</i>, String <i>permaLink</i>, String <i>mt_excerpt</i>,
+String <i>mt_text_more</i>, int <i>mt_allow_comments</i>, int 
+<i>mt_allow_pings</i>, String <i>mt_convert_breaks</i>, String <i>mt_keywords</i>;
+on failure, fault</p>
+<p><strong>Notes:</strong> <i>dateCreated</i> is in the timezone of the weblog <i>blogid</i>; <i>link</i>
+and <i>permaLink</i> are the URL pointing to the archived post</p>
+<p></p>
+<li><strong><a name="item_metaWeblog%2EnewMediaObject"></a>metaWeblog.newMediaObject</strong><br>
+
+<strong>Description:</strong> Uploads a file to your webserver.
+<p><strong>Parameters:</strong> String <i>blogid</i>, String <i>username</i>, String <i>password</i>,
+struct <i>file</i></p>
+<p><strong>Return value:</strong> URL to the uploaded file.</p>
+<p><strong>Notes:</strong> the struct <i>file</i> should contain two keys: base64 <i>bits</i>
+(the base64-encoded contents of the file) and String <i>name</i> (the name
+of the file). The <i>type</i> key (media type of the file) is currently
+ignored.</p>
+<p></p>
+<li><strong><a name="item_mt%2EgetRecentPostTitles"></a>mt.getRecentPostTitles</strong><br>
+
+<strong>Description:</strong> Returns a bandwidth-friendly list of the most recent posts in the system.
+<p><strong>Parameters:</strong> String <i>blogid</i>, String <i>username</i>, String <i>password</i>,
+int <i>numberOfPosts</i></p>
+<p><strong>Return value:</strong> on success, array of structs containing ISO.8601
+<i>dateCreated</i>, String <i>userid</i>, String <i>postid</i>, String <i>title</i>; on
+failure, fault</p>
+<p><strong>Notes:</strong> <i>dateCreated</i> is in the timezone of the weblog <i>blogid</i></p>
+<p></p>
+<li><strong><a name="item_mt%2EgetCategoryList"></a>mt.getCategoryList</strong><br>
+
+<strong>Description:</strong> Returns a list of all categories defined in the weblog.
+<p><strong>Parameters:</strong> String <i>blogid</i>, String <i>username</i>, String <i>password</i></p>
+<p><strong>Return value:</strong> on success, an array of structs containing String
+<i>categoryId</i> and String <i>categoryName</i>; on failure, fault.</p>
+<p></p>
+<li><strong><a name="item_mt%2EgetPostCategories"></a>mt.getPostCategories</strong><br>
+
+<strong>Description:</strong> Returns a list of all categories to which the post is
+assigned.
+<p><strong>Parameters:</strong> String <i>postid</i>, String <i>username</i>, String <i>password</i></p>
+<p><strong>Return value:</strong> on success, an array of structs containing String
+<i>categoryName</i>, String <i>categoryId</i>, and boolean <i>isPrimary</i>; on failure,
+fault.</p>
+<p><strong>Notes:</strong> <i>isPrimary</i> denotes whether a category is the post's primary
+category.</p>
+<p></p>
+<li><strong><a name="item_mt%2EsetPostCategories"></a>mt.setPostCategories</strong><br>
+
+<strong>Description:</strong> Sets the categories for a post.
+<p><strong>Parameters:</strong> String <i>postid</i>, String <i>username</i>, String <i>password</i>,
+array <i>categories</i></p>
+<p><strong>Return value:</strong> on success, boolean true value; on failure, fault</p>
+<p><strong>Notes:</strong> the array <i>categories</i> is an array of structs containing
+String <i>categoryId</i> and boolean <i>isPrimary</i>. Using <i>isPrimary</i> to set the
+primary category is optional--in the absence of this flag, the first struct
+in the array will be assigned the primary category for the post.</p>
+<p></p>
+<li><strong><a name="item_mt%2EsupportedMethods"></a>mt.supportedMethods</strong><br>
+
+<strong>Description:</strong> Retrieve information about the XML-RPC methods supported by
+the server.
+<p><strong>Parameters:</strong> none</p>
+<p><strong>Return value:</strong> an array of method names supported by the server.</p>
+<p></p>
+<li><strong><a name="item_mt%2EsupportedTextFilters"></a>mt.supportedTextFilters</strong><br>
+
+<strong>Description:</strong> Retrieve information about the text formatting plugins
+supported by the server.
+<p><strong>Parameters:</strong> none</p>
+<p><strong>Return value:</strong> an array of structs containing String <i>key</i> and String
+<i>label</i>. <i>key</i> is the unique string identifying a text formatting plugin,
+and <i>label</i> is the readable description to be displayed to a user. <i>key</i>
+is the value that should be passed in the <i>mt_convert_breaks</i> parameter
+to <i>newPost</i> and <i>editPost</i>.</p>
+<p></p>
+<li><strong><a name="item_mt%2EgetTrackbackPings"></a>mt.getTrackbackPings</strong><br>
+
+<strong>Description:</strong> Retrieve the list of TrackBack pings posted to a particular
+entry. This could be used to programmatically retrieve the list of pings
+for a particular entry, then iterate through each of those pings doing the
+same, until one has built up a graph of the web of entries referencing one
+another on a particular topic.
+<p><strong>Parameters:</strong> String <i>postid</i></p>
+<p><strong>Return value:</strong> an array of structs containing String <i>pingTitle</i> (the
+title of the entry sent in the ping), String <i>pingURL</i> (the URL of the
+entry), and String <i>pingIP</i> (the IP address of the host that sent the ping).</p>
+<p></p>
+<li><strong><a name="item_mt%2EpublishPost"></a>mt.publishPost</strong><br>
+
+<strong>Description:</strong> Publish (rebuild) all of the static files related to an
+entry from your weblog. Equivalent to saving an entry in the system (but
+without the ping).
+<p><strong>Parameters:</strong> String <i>postid</i>, String <i>username</i>, String <i>password</i></p>
+<p><strong>Return value:</strong> on success, boolean true value; on failure, fault</p>
+<p></p></ul>
+<p><strong>NOTE:</strong> the value of <code>appkey</code> is ignored by Movable Type in all of the
+Blogger XML-RPC methods.</p>
+<p>You can use Movable Type's XML-RPC implementation with existing tools like
+w.bloggar, BlogApp, BlogLet, BlogBuddy, Jericho, etc. For example, to set up
+BlogBuddy to post to your Movable Type weblog, follow these instructions:</p>
+<ol>
+<li>
+Download BlogBuddy from <a href="http://blogbuddy.sourceforge.net/.">http://blogbuddy.sourceforge.net/.</a> Unpack the archive,
+and install the application.
+<p></p>
+<li>
+Open the BlogBuddy application.
+<p></p>
+<li>
+Select <i>General Settings</i> from the <i>Settings</i> menu. On the <i>General</i> tab,
+enter your Movable Type username in <i>UserName</i>, and your password in
+<i>Password</i>.
+<p></p>
+<li>
+In the <i>Remote Host</i> tab, enter the name of the host where your version of
+Movable Type is installed into <i>Host name</i>, and the path to <i>mt-xmlrpc.cgi</i>
+into <i>Endpoint</i>. For example, if <i>mt-xmlrpc.cgi</i> is located at
+<i><a href="http://www.foo.com/bar/mt-xmlrpc.cgi">http://www.foo.com/bar/mt-xmlrpc.cgi</a></i>, you should enter <i>www.foo.com</i> into
+<i>Host name</i>, and <i>/bar/mt-xmlrpc.cgi</i> into <i>Endpoint</i>. If your webserver
+runs on a port other than 80, you should also change the port setting.
+<p></p>
+<li>
+In the <i>Blogs</i> tab, click the <i>Update blogs</i> button; BlogBuddy will contact
+Movable Type on your webserver, and ask it for a list of weblogs which you have
+access to (using <i>getUsersBlogs</i>, above).
+<p></p>
+<li>
+You can now post to your Movable Type <code>weblog(s)</code> using BlogBuddy's posting
+interface.
+<p></p></ol>
+<p>
+<h2><a name="perl api"></a>Perl API</h2>
+<p>The Movable Type code is written in an object-oriented style and contains
+a well-documented Perl API that you can use in your own Perl programs. The
+documentation itself is in POD format and is contained within the <i>.pm</i>
+files. You can read this documentation from the shell using the <i>perldoc</i>
+command. For example:</p>
+<pre>% cd &lt;movable type directory&gt;/lib
+% perldoc MT
+</pre><p>
+<h2><a name="plugins"></a>Plugins</h2>
+<p>Movable Type's plugin framework makes it easy to add new tags to the system.
+In the future, more callback functionality will be added.</p>
+<p>Plugin files are Perl scripts placed in a special directory; when Movable
+Type is initalized, it loads all of the plugins, which can modify the
+Movable Type code and system at runtime. Only files with <i>.pl</i> extensions
+are considered plugins and loaded automatically.</p>
+<p>Your <i>plugins</i> directory should be placed in the same directory as <i>mt.cgi</i>.</p>
+<p>To create that directory, connect to your FTP server, and open the directory
+where you installed Movable Type. Create a new directory called <i>plugins</i>.</p>
+<ul>
+<li><strong><a name="item_Variable_Tags"></a>Variable Tags</strong><br>
+
+Here is a sample plugin that you can use to test whether your <i>plugins</i>
+directory is set up properly.
+<ol>
+<li>
+Save the following in a file called <i>load.pl</i>:
+<pre>use MT::Template::Context;
+MT::Template::Context-&gt;add_tag(ServerUptime =&gt; sub { `uptime` });
+1;
+</pre><p></p>
+<li>
+Upload <i>load.pl</i> into your <i>plugins</i> directory.
+<p></p>
+<li>
+In one of your Movable Type templates, add the following:
+<pre>Uptime: &lt;$MTServerUptime$&gt;
+</pre><p></p>
+<li>
+Rebuild that template, then look at it on your browser. It should include
+the output from your system's <i>uptime</i> command.
+<p></p></ol>
+<p>This is just a very simple example of a new tag that you can add. The
+plugin framework is not limited to adding tags that call system commands.</p>
+<li><strong><a name="item_Container_Tags"></a>Container Tags</strong><br>
+
+Here's an example of a plugin that creates a container tag:
+<pre>MT::Template::Context-&gt;add_container_tag(Loop =&gt; sub {
+    my $ctx = shift;
+    my $res = '';
+    my $builder = $ctx-&gt;stash('builder');
+    my $tokens = $ctx-&gt;stash('tokens');
+    for my $i (1..5) {
+        $ctx-&gt;stash('i_value', $i);
+        defined(my $out = $builder-&gt;build($ctx, $tokens))
+            or return $ctx-&gt;error($ctx-&gt;errstr);
+        $res .= $out;
+    }
+    $res;
+});
+MT::Template::Context-&gt;add_tag(LoopIValue =&gt; sub {
+    my $ctx = shift;
+    $ctx-&gt;stash('i_value');
+});
+</pre><p>It can be used like this in a template:</p>
+<pre>&lt;MTLoop&gt;
+The value of I is: &lt;$MTLoopIValue$&gt;
+&lt;/MTLoop&gt;
+</pre><p>And it will display:</p>
+<pre>The value of I is: 1
+The value of I is: 2
+The value of I is: 3
+The value of I is: 4
+The value of I is: 5
+</pre><p></p>
+<li><strong><a name="item_Conditional_Tags"></a>Conditional Tags</strong><br>
+
+Conditional tags are technically just container tags, but in order to make
+it very easy to write conditional tags, you can use the <i>add_conditional_tag</i>
+method. This method takes two arguments: the name of the tag, and a
+reference to a subroutine which should return true if the condition is true,
+and false otherwise.
+<p>For example, the following will add 3 tags: <code>&lt;MTIfYes&gt;</code>, which
+always displays its contents; <code>&lt;MTIfNo&gt;</code>, which never displays its
+contents; and <code>&lt;MTEntryIfTitle&gt;</code>, which must be used in entry
+context, and which only displays its contents if the entry has a title.</p>
+<pre>use MT::Template::Context;
+MT::Template::Context-&gt;add_conditional_tag(IfYes =&gt; sub { 1 });
+MT::Template::Context-&gt;add_conditional_tag(IfNo =&gt; sub { 0 });
+MT::Template::Context-&gt;add_conditional_tag(EntryIfTitle =&gt; sub {
+    my $e = $_[0]-&gt;stash('entry') or return;
+    defined($e-&gt;title) &amp;&amp; $e-&gt;title ne '';
+});
+</pre><p>These tags can be used like this:</p>
+<pre>&lt;MTIfYes&gt;Yes, this appears.&lt;/MTIfYes&gt;
+&lt;MTIfNo&gt;No, this doesn't appear.&lt;/MTIfNo&gt;
+&lt;MTEntries&gt;
+&lt;MTEntryIfTitle&gt;
+This entry has a title: &lt;$MTEntryTitle$&gt;
+&lt;/MTEntryIfTitle&gt;
+&lt;/MTEntries&gt;
+</pre><p></p>
+<li><strong><a name="item_Global_Filters"></a>Global Filters</strong><br>
+
+You can use the <i>add_global_filter</i> method to add a
+<a href="./mtmanual_tags.html#global tag attributes">global tag attribute</a>. For example:
+<pre>MT::Template::Context-&gt;add_global_filter(rot13 =&gt; sub {
+    (my $s = shift) =~ tr/a-zA-Z/n-za-mN-ZA-M/;
+    $s;
+});
+</pre><p>Which can be used like this:</p>
+<pre>&lt;$MTEntryTitle rot13=&quot;1&quot;$&gt;
+</pre><p>The anonymous subroutine is passed three arguments: the scalar value of the
+tag to be filtered, the value of the argument supplied to the attribute, and
+the <i>MT::Template::Context</i> object. As an example of the second argument,
+if we invented a filter called <code>foo</code>, and called it like this:</p>
+<pre>&lt;$MTCommentAuthor foo=&quot;5&quot;$&gt;
+</pre><p>the second argument to the callback routine would be <code>5</code>.</p>
+<p></p></ul>
+<p>Plugin tags could be written to display RSS feeds, display server status
+information, implement a hit counter, etc. You can download plugins from
+<i><a href="http://www.movabletype.org/resources.shtml">http://www.movabletype.org/resources.shtml</a></i>.</p>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Rebuilding [_1]" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+//-->
+</script>
+
+</head>
+
+<body onLoad="window.location='<TMPL_VAR NAME=SCRIPT_URL>?__mode=rebuild&blog_id=<TMPL_VAR NAME=BLOG_ID>&type=<TMPL_VAR NAME=BUILD_TYPE>&next=<TMPL_VAR NAME=BUILD_NEXT>&offset=<TMPL_VAR NAME=OFFSET>&limit=<TMPL_VAR NAME=LIMIT>&total_entries=<TMPL_VAR NAME=TOTAL_ENTRIES>&is_bm=<TMPL_VAR NAME=IS_BM>&entry_id=<TMPL_VAR NAME=ENTRY_ID>&is_new=<TMPL_VAR NAME=IS_NEW>&old_status=<TMPL_VAR NAME=OLD_STATUS>'"<TMPL_UNLESS NAME=IS_FULL_SCREEN> class="pop"</TMPL_UNLESS>>
+
+<TMPL_IF NAME=IS_FULL_SCREEN>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" padding="0">
+
+<tr>
+<td align="left" rowspan="2" valign="top">
+<TMPL_INCLUDE NAME=mininav.tmpl>
+</td>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td width="500" valign="top">
+<!-- This will only ever be used when rebuilding a single entry,
+     so we can safely just make that one case here. -->
+<div class="padded-box">
+<p class="message"><MT_TRANS phrase="Rebuilding [_1]" params="<TMPL_VAR NAME=BUILD_TYPE_NAME ESCAPE=HTML>">...</p>
+</div>
+</td>
+</tr>
+
+</table>
+
+<TMPL_ELSE>
+
+<table border="0" cellspacing="0" padding="0">
+
+<tr>
+<td colspan="3" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="50"></td>
+</tr>
+
+<tr>
+<td width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+<td width="100%" valign="top"><p class="message"><TMPL_IF NAME=IS_ONE_INDEX><MT_TRANS phrase="Rebuilding [_1]" params="<TMPL_VAR NAME=BUILD_TYPE_NAME ESCAPE=HTML>"><TMPL_ELSE><TMPL_IF NAME=IS_INDIVIDUAL><MT_TRANS phrase="Rebuilding [_1] pages [_2]" params="<TMPL_VAR NAME=BUILD_TYPE_NAME>%%<TMPL_VAR NAME=INDIV_RANGE>"><TMPL_ELSE><TMPL_IF NAME=IS_ENTRY><MT_TRANS phrase="Rebuilding [_1]" params="<TMPL_VAR NAME=BUILD_TYPE_NAME ESCAPE=HTML>"><TMPL_ELSE><MT_TRANS phrase="Rebuilding [_1] pages" params="<TMPL_VAR NAME=BUILD_TYPE_NAME ESCAPE=HTML>"></TMPL_IF></TMPL_IF></TMPL_IF>...</p></td>
+<td width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</tr>
+
+</table>
+
+</TMPL_IF>
+
+</body>
+</html>

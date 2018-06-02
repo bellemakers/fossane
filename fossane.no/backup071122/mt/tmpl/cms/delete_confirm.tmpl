@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Delete"> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+
+//-->
+</script>
+
+</head>
+
+<body class="pop">
+
+<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+<input type="hidden" name="_type" value="<TMPL_VAR NAME=TYPE>">
+<input type="hidden" name="__mode" value="delete">
+<TMPL_IF NAME=IS_POWER_EDIT>
+<input type="hidden" name="is_power_edit" value="1">
+</TMPL_IF>
+<TMPL_LOOP NAME=ID_LOOP>
+<input type="hidden" name="id" value="<TMPL_VAR NAME=ID>">
+</TMPL_LOOP>
+
+<table border="0" cellspacing="0" padding="0">
+
+<tr>
+<td colspan="3" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="50"></td>
+</tr>
+
+<tr>
+<td width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+<td width="100%" valign="top"><font class="instructional">
+<TMPL_IF NAME=TYPE_AUTHOR>
+<MT_TRANS phrase="Are you sure you want to permanently delete the [quant,_1,author] from the system?" params="<TMPL_VAR NAME=NUM>">
+</TMPL_IF>
+<TMPL_IF NAME=TYPE_COMMENT>
+<MT_TRANS phrase="Are you sure you want to delete the [quant,_1,comment]?" params="<TMPL_VAR NAME=NUM>">
+</TMPL_IF>
+<TMPL_IF NAME=TYPE_PING>
+<MT_TRANS phrase="Are you sure you want to delete the [quant,_1,ping]?" params="<TMPL_VAR NAME=NUM>">
+</TMPL_IF>
+<TMPL_IF NAME=TYPE_PING_CAT>
+Are you sure you want to delete <TMPL_VAR NAME=THISTHESE> ping<TMPL_UNLESS NAME=IS_ONE>s</TMPL_UNLESS>?
+</TMPL_IF>
+<TMPL_IF NAME=TYPE_ENTRY>
+<MT_TRANS phrase="Are you sure you want to delete the [quant,_1,entry,entries]?" params="<TMPL_VAR NAME=NUM>">
+</TMPL_IF>
+<TMPL_IF NAME=TYPE_TEMPLATE>
+<MT_TRANS phrase="Are you sure you want to delete the [quant,_1,template]?" params="<TMPL_VAR NAME=NUM>">
+</TMPL_IF>
+<TMPL_IF NAME=TYPE_CATEGORY>
+<MT_TRANS phrase="Are you sure you want to delete the [quant,_1,category,categories]? When you delete a category, all entries assigned to that category will be unassigned from that category." params="<TMPL_VAR NAME=NUM>">
+</TMPL_IF>
+<TMPL_IF NAME=TYPE_TEMPLATEMAP>
+<MT_TRANS phrase="Are you sure you want to delete the [quant,_1,template] from the particular archive type(s)?" params="<TMPL_VAR NAME=NUM>">
+</TMPL_IF>
+<TMPL_IF NAME=TYPE_BANLIST>
+<MT_TRANS phrase="Are you sure you want to delete the [quant,_1,IP address,IP addresses] from your Banned IP List?" params="<TMPL_VAR NAME=NUM>">
+</TMPL_IF>
+<TMPL_IF NAME=TYPE_NOTIFICATION>
+<MT_TRANS phrase="Are you sure you want to delete the [quant,_1,notification address,notification addresses]?" params="<TMPL_VAR NAME=NUM>">
+</TMPL_IF>
+<TMPL_IF NAME=TYPE_BLOG>
+<MT_TRANS phrase="Are you sure you want to delete the [quant,_1,weblog]? When you delete a weblog, all of the entries, comments, templates, notifications, and author permissions are deleted along with the weblog itself. Make sure that this is what you want, because this action is permanent." params="<TMPL_VAR NAME=NUM>">
+</TMPL_IF>
+</font></td>
+<td width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</tr>
+
+<tr>
+<td colspan="3" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td colspan="2" align="right" valign="top"><input class="button" type="button" onClick="window.close()" value="<MT_TRANS phrase="Cancel">">&nbsp;<input class="button" type="submit" value="<MT_TRANS phrase="Delete">"></td>
+<td width="20" align="center" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</tr>
+
+</table>
+</form>
+
+</body>
+</html>

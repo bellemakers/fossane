@@ -1,0 +1,199 @@
+<html>
+<head>
+<title>MOVABLE TYPE TEMPLATES</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type Templates</h3>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#movable type templates">MOVABLE TYPE TEMPLATES</a></li>
+	<ul>
+
+		<li><a href="#template and tag philosophy">Template and Tag Philosophy</a></li>
+		<li><a href="#tag types">Tag Types</a></li>
+		<li><a href="#tag syntax">Tag Syntax</a></li>
+		<li><a href="#tag attributes">Tag Attributes</a></li>
+		<li><a href="#the importance of context">The Importance of Context</a></li>
+		<li><a href="#technical information">Technical Information</a></li>
+	</ul>
+
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="movable type templates"></a>MOVABLE TYPE TEMPLATES</h1>
+<p>
+<h2><a name="template and tag philosophy"></a>Template and Tag Philosophy</h2>
+<p>There are two main ideas behind Movable Type's template tags:</p>
+<ul>
+<li>
+Context is important in determining when you can use a particular tag.
+<p></p>
+<li>
+Container tags represent lists and conditionals, and variable tags represent
+variable substitutions.
+<p></p></ul>
+<p>Both of these points are described in more detail below. For users of other
+content management systems, who are more familiar with other template tags,
+here are some notes on the differences in the mental models.</p>
+<ul>
+<li><strong><a name="item_Blogger"></a>Blogger</strong><br>
+
+Movable Type's template tags are very similar in spirit to Blogger's. In
+Blogger, you use a <code>&lt;Blogger&gt;</code> tag to surround the list of your
+entries; then you use <code>&lt;$Blog*$&gt;</code> tags to represent variable
+substitutions.
+<p>Converting this model to Movable Type is very easy.</p>
+<p>The <code>&lt;Blogger&gt;</code> and <code>&lt;/Blogger&gt;</code> tags are replaced by
+<code>&lt;MTEntries&gt;</code> and <code>&lt;/MTEntries&gt;</code> tags, respectively.</p>
+<p>The <code>&lt;$Blog*$&gt;</code> tags are replaced by similarly-named
+<code>&lt;$MTEntry*$&gt;</code> tags.</p>
+<p>Of course, Movable Type has quite a few more template tags than does Blogger,
+but the mental models are very similar.</p>
+<p></p>
+<li><strong><a name="item_Greymatter"></a>Greymatter</strong><br>
+
+Greymatter's template tags use a different mental model than Movable Type; in
+Greymatter, for example, when you want to insert a list of all of your entries
+on your index page, you insert the <code>{{logbody}}</code> tag. Then you customize two
+other templates--<code>Index Entry Template: Standard Entries</code> and <code>Index Entry
+Template: Extended Entries</code>--to style each of the entries in the list on your
+index page.
+<p>Converting this model to Movable Type, then, is done like this:</p>
+<p>The <code>{{logbody}}</code> tag is replaced by an <code>&lt;MTEntries&gt;</code> container.</p>
+<p>The markup in <code>Index Entry Template: Standard Entries</code> and <code>Index Entry
+Template: Extended Entries</code> is combined to form the markup between the
+<code>&lt;MTEntries&gt;</code> and <code>&lt;/MTEntries&gt;</code> tags. Any markup that you
+want only to appear for extended entries should be enclosed in an
+<code>&lt;MTEntryIfExtended&gt;</code> container. And, of course, you change the
+Greymatter variable substitution tags to the corresponding Movable Type tags.</p>
+<p></p></ul>
+<p>Why does Movable Type use the mental model that it does for templates? Two
+reasons:</p>
+<ol>
+<li>
+The primary reason is flexibility. You can use the <code>&lt;MTEntries&gt;</code> tag
+to represent any list of your entries, and you can style that list however
+you want, in many different places. Contrast this with Greymatter's approach,
+where the <code>{{logbody}}</code> is <i>always</i> replaced by a list of entries styled
+using the exact same markup: the markup in one of the two <code>Index Entry
+Templates</code> templates.
+<p></p>
+<li>
+You have less templates to keep track of, and you have all of the markup for
+one page laid out in one template. Greymatter's approach is generally to break
+up a page into small little chunks, each of which is considered a template.
+In Movable Type's template system, all of the markup is in one place, and
+is included/not included, or repeated, using container tags.
+<p></p></ol>
+<p>(Note that the above is not intended as a criticism of Greymatter; it is
+simply meant to illustrate the differences, and to describe why we chose to
+do things the way we did.)</p>
+<p>
+<h2><a name="tag types"></a>Tag Types</h2>
+<p>Movable Type templates are composed of special tags embedded within standard
+chunks of plain text (or HTML, as the case may be). The set of tags can be
+broken into two groups, containers and variables:</p>
+<ul>
+<li><strong><a name="item_Container_Tags"></a>Container Tags</strong><br>
+
+Certain MT tags are ``container'' tags; they contain what might be called a
+subtemplate, a chunk of text and MT tags between two other MT tags: the start
+of the container and the end of the container. For example, if we have a tag
+called <code>&lt;MTFoo&gt;</code>, you might see the following markup in one of your
+templates:
+<pre>&lt;MTFoo&gt;
+Foo bar
+&lt;/MTFoo&gt;
+</pre><p>The start and end tags for a container look like standard HTML tags.</p>
+<p>Container tags represent either a list or a conditional.</p>
+<p>If a container represents a list--the <code>&lt;MTEntries&gt;</code> tag, for
+example--the subtemplate within the container will be applied to each of the
+items in that list. For example, when you use an <code>&lt;MTEntries&gt;</code> tag,
+the markup between &lt;MTEntries&gt; and &lt;/MTEntries&gt; is applied to
+each of the entries in the list.</p>
+<p>If a container represents a conditional--the <code>&lt;MTEntryIfExtended&gt;</code>
+tag, for example--the markup between the start and end tags will only be
+displayed <i>if</i> a certain condition is met. For example, in the case of
+<code>&lt;MTEntryIfExtended&gt;</code>, the condition tests whether the entry has an
+extended piece (``more text'').</p>
+<p></p>
+<li><strong><a name="item_Variable_Tags"></a>Variable Tags</strong><br>
+
+All non-container tags are simple variable substitution tags. They are
+placeholders for dynamic pieces of information. For example, the
+<code>&lt;$MTEntryTitle$&gt;</code> tag is replaced with the title of the entry.
+<p></p></ul>
+<p>
+<h2><a name="tag syntax"></a>Tag Syntax</h2>
+<p>All Movable Type tags are enclosed within less-than greater-than signs, just
+like HTML tags. You can optionally insert a <code>$</code> inside these signs, like this:</p>
+<pre>&lt;$MTEntryBody$&gt;
+</pre><p>This can be useful to quickly determine whether a particular tag is an HTML
+tag or a Movable Type tag.</p>
+<p>The <code>$</code> is optional; a convention that is followed throughout the default
+templates and the documentation is to use the <code>$</code> on Variable Tags, but not
+on Container Tags. Part of the reason for this is that you should <i>not</i> use
+the <code>$</code> on the end tag of a Container Tag, because the system will then be
+unable to find the end tag.</p>
+<p>
+<h2><a name="tag attributes"></a>Tag Attributes</h2>
+<p>Some Movable Type tags take attributes that modify their default behavior. Tag
+attributes work similarly to HTML tag attributes: they are lists of
+<code>name=&quot;value&quot;</code> pairs, separated by spaces. For example:</p>
+<pre>&lt;MTEntries author=&quot;Foo&quot; category=&quot;Bar&quot;&gt;
+</pre><p>(Look at the <code>&lt;MTEntries&gt;</code> documentation to determine what this does.)</p>
+<p>Attribute values must be enclosed in quotes; otherwise they will not be parsed
+correctly. When using attributes in a tag where you are using the <code>$</code>
+character after the start and before the end tags, you should place the
+attributes before the end <code>$</code> character. For example:</p>
+<pre>&lt;$MTEntryDate format=&quot;%B %e, %Y&quot;$&gt;
+</pre><p>The attributes supported by the various Movable Type tags are listed along
+with the tags.</p>
+<p>
+<h2><a name="the importance of context"></a>The Importance of Context</h2>
+<p>Most Movable Type tags are context-dependent, meaning that they should only be
+used in the appropriate context.</p>
+<p>Context is generally determined by either the surrounding template or the
+surrounding container tags: for example, template markup is placed in entry
+context either within an <code>&lt;MTEntries&gt;</code> tag, in an <code>Individual
+Entry</code> archive page, in a <code>Comment Listing</code> template, or in a <code>Comment
+Preview</code> template. Because of this, it only makes sense to use an
+<code>&lt;$MTEntryTitle$&gt;</code> tag, or an <code>&lt;MTComments&gt;</code> container,
+inside one of these contexts.</p>
+<p>
+<h2><a name="technical information"></a>Technical Information</h2>
+<p>Following is some technical information on how templates are parsed and
+built into output pages.</p>
+<p>The first step is breaking up the incoming template into tokens, where each
+token is either a tag (<code>&lt;$MTEntryText$&gt;</code>, <code>&lt;MTEntries&gt;</code>,
+etc.) or a block of raw text to be inserted directly. Some tags are
+containers, like <code>&lt;MTEntries&gt;</code>--these tags must contain both an
+opening tag and a closing tag, and the subtemplate markup between is also
+tokenized, and is stored beneath the container.</p>
+<p>The second step is taking these tokens, along with an entry, a list of
+entries, a comment, a list of comments, etc.--basically, some sort of
+context--and building a final output page. Generally this final page will be
+HTML, although the system has no such restrictions, obviously (considering that
+it comes with a template for RSS syndication already installed).</p>
+<p>The tags themselves are not hard-coded into the parser (the object that
+compiles the text into tokens); every time the parser finds a tag, it asks
+the context object what type of tag it is, whether it is a container, etc.
+The tag is then added to the list of tokens.</p>
+<p>Likewise the tags are not hard-coded into the object that builds the final
+output (the interpreter, essentially). This object also communicates with the
+context object, and for each tag it handles, an anonymous subroutine--which
+has been registered with the context object upon its creation--is invoked.
+This subroutine returns a block of output to be directly inserted into the
+final output.</p>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

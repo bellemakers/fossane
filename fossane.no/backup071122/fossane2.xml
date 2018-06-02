@@ -1,0 +1,2339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fossane xsi:nonamespaceSchemaLocation="C:\www.fossane.no\test.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\www.fossane.no\fossane.xsd">
+	<!-- 
+	Languages element contains the language element. The language element has the following attributes:
+	
+	lang (req):			Must be an integer, and used for identifying the language 
+						of each element in the rest of the document. The root index.html
+						file will be in the language whose lang-attribute has a value of 1. 
+	
+	longname (req):		Long name of language. Is used for e.g. ALT-text of language icons.
+	
+	shortname (req):	Short name of language. Try to use RFC 1766 as this is used to identify the language of each
+						document. Must correspond with the name of the
+						highest level folder of each language, as well as the picture file used
+						as icon for each language.	
+	-->
+	<languages>
+		<language lang="1" longname="English" shortname="en"/>
+		<language lang="2" longname="Deutsch" shortname="de"/>
+		<language lang="3" longname="Norsk" shortname="no"/>
+		<language lang="4" longname="Français" shortname="fr"/>
+		<language lang="5" longname="Español" shortname="es"/>
+	</languages>
+	<universal>
+		<folderstructure>
+			<root/>
+			<alternateroot>safe</alternateroot>
+			<graphicsfolder>grafikk</graphicsfolder>
+			<fileid id="10000"/>
+			<folder id="21000">
+				<foldername lang="1">holidays</foldername>
+				<foldername lang="2">ferien</foldername>
+				<foldername lang="3">ferie</foldername>
+				<foldername lang="4">vacances</foldername>
+				<foldername lang="5">vacaciones</foldername>
+				<folder id="21111">
+					<foldername lang="1">jonsenhuset</foldername>
+					<foldername lang="2">jonsenhuset</foldername>
+					<foldername lang="3">jonsenhuset</foldername>
+					<foldername lang="4">jonsenhuset</foldername>
+					<foldername lang="5">jonsenhuset</foldername>
+					<fileid id="11111"/>
+					<fileid id="11112"/>
+				</folder>
+				<folder id="21112">
+					<foldername lang="1">folga</foldername>
+					<foldername lang="2">folga</foldername>
+					<foldername lang="3">folga</foldername>
+					<foldername lang="4">folga</foldername>
+					<foldername lang="5">folga</foldername>
+					<fileid id="11121"/>
+					<fileid id="11122"/>
+				</folder>
+				<folder id="21113">
+					<foldername lang="1">bjodlandsfolga</foldername>
+					<foldername lang="2">bjodlandsfolga</foldername>
+					<foldername lang="3">bjodlandsfolga</foldername>
+					<foldername lang="4">bjodlandsfolga</foldername>
+					<foldername lang="5">bjodlandsfolga</foldername>
+					<fileid id="11131"/>
+					<fileid id="11132"/>
+				</folder>
+				<fileid id="11000"/>
+				<fileid id="11100"/>
+				<fileid id="11110"/>
+				<fileid id="11120"/>
+				<fileid id="11130"/>
+				<fileid id="11200"/>
+				<fileid id="11210"/>
+				<fileid id="11220"/>
+				<fileid id="11230"/>
+				<fileid id="11240"/>
+				<fileid id="11300"/>
+				<fileid id="11400"/>
+			</folder>
+			<folder id="22000">
+				<foldername lang="1">agriculture</foldername>
+				<foldername lang="2">landwirtschaft</foldername>
+				<foldername lang="3">landbruk</foldername>
+				<foldername lang="4">agriculture</foldername>
+				<foldername lang="5">agricultura</foldername>
+				<fileid id="12000"/>
+			</folder>
+			<folder id="23000">
+				<foldername lang="1">energy</foldername>
+				<foldername lang="2">energie</foldername>
+				<foldername lang="3">minikraftverk</foldername>
+				<foldername lang="4">energie</foldername>
+				<foldername lang="5">energia</foldername>
+				<fileid id="13000"/>
+			</folder>
+		</folderstructure>
+		<filestructure>
+			<file id="10000">
+				<filename lang="1">index</filename>
+				<filename lang="2">index</filename>
+				<filename lang="3">index</filename>
+				<filename lang="4">index</filename>
+				<filename lang="5">index</filename>
+				<gifname lang="1">home</gifname>
+				<gifname lang="2">startseite</gifname>
+				<gifname lang="3">heim</gifname>
+				<gifname lang="4">accueil</gifname>
+				<gifname lang="5">paginaprincipal</gifname>
+				<altname lang="1">Home</altname>
+				<altname lang="2">Startseite</altname>
+				<altname lang="3">Heim</altname>
+				<altname lang="4">Accueil</altname>
+				<altname lang="5">Página principal</altname>
+				<file id="11000">
+					<filename lang="1">index</filename>
+					<filename lang="2">index</filename>
+					<filename lang="3">index</filename>
+					<filename lang="4">index</filename>
+					<filename lang="5">index</filename>
+					<gifname lang="1">fossaneholidays</gifname>
+					<gifname lang="2">fossaneferien</gifname>
+					<gifname lang="3">fossaneferie</gifname>
+					<gifname lang="4">fossanevacances</gifname>
+					<gifname lang="5">fossanevacaciones</gifname>
+					<altname lang="1">Fossane Holidays</altname>
+					<altname lang="2">Fossane Ferien</altname>
+					<altname lang="3">Fossane Ferie</altname>
+					<altname lang="4">Fossane Vacances</altname>
+					<altname lang="5">Fossane Vacaciones</altname>
+					<file id="11100">
+						<filename lang="1">thehouses</filename>
+						<filename lang="2">diehauser</filename>
+						<filename lang="3">husa</filename>
+						<filename lang="4">lesmaisons</filename>
+						<filename lang="5">lascasas</filename>
+						<gifname lang="1">thehouses</gifname>
+						<gifname lang="2">diehauser</gifname>
+						<gifname lang="3">husa</gifname>
+						<gifname lang="4">lesmaisons</gifname>
+						<gifname lang="5">lascasas</gifname>
+						<altname lang="1">The Houses</altname>
+						<altname lang="2">Die Haüser</altname>
+						<altname lang="3">Husa</altname>
+						<altname lang="4">Les Maisons</altname>
+						<altname lang="5">Las Casas</altname>
+						<iconheading lang="1">Visit the houses:</iconheading>
+						<iconheading lang="2">Besuche unsere Haüser:</iconheading>
+						<iconheading lang="3">Besøk husa:</iconheading>
+						<iconheading lang="4">Visitez les maisons:</iconheading>
+						<iconheading lang="5">Visite las casas:</iconheading>
+						<file id="11110">
+							<filename lang="1">jonsenhuset</filename>
+							<filename lang="2">jonsenhuset</filename>
+							<filename lang="3">jonsenhuset</filename>
+							<filename lang="4">jonsenhuset</filename>
+							<filename lang="5">jonsenhuset</filename>
+							<gifname lang="1">jonsenhuset</gifname>
+							<gifname lang="2">jonsenhuset</gifname>
+							<gifname lang="3">jonsenhuset</gifname>
+							<gifname lang="4">jonsenhuset</gifname>
+							<gifname lang="5">jonsenhuset</gifname>
+							<altname lang="1">Jonsenhuset</altname>
+							<altname lang="2">Jonsenhuset</altname>
+							<altname lang="3">Jonsenhuset</altname>
+							<altname lang="4">Jonsenhuset</altname>
+							<altname lang="5">Jonsenhuset</altname>
+							<file id="11111">
+								<filename lang="1">interior</filename>
+								<filename lang="2">interior</filename>
+								<filename lang="3">interior</filename>
+								<filename lang="4">interieur</filename>
+								<filename lang="5">interior</filename>
+								<gifname lang="1">interior.jonsenhuset</gifname>
+								<gifname lang="2">interior.jonsenhuset</gifname>
+								<gifname lang="3">interior.jonsenhuset</gifname>
+								<gifname lang="4">interior.jonsenhuset</gifname>
+								<gifname lang="5">interior.jonsenhuset</gifname>
+								<altname lang="1">Interior pictures</altname>
+								<altname lang="2">Bilder von den Zimmern</altname>
+								<altname lang="3">Interiørbilete</altname>
+								<altname lang="4">Photos de l'intérieur</altname>
+								<altname lang="5">Fotos del interior</altname>
+							</file>
+							<file id="11112">
+								<filename lang="1">morepictures</filename>
+								<filename lang="2">weiterebilder</filename>
+								<filename lang="3">fleirebilete</filename>
+								<filename lang="4">plusieursdephotos</filename>
+								<filename lang="5">masfotos</filename>
+								<gifname lang="1">morepictures.jonsenhuset</gifname>
+								<gifname lang="2">morepictures.jonsenhuset</gifname>
+								<gifname lang="3">morepictures.jonsenhuset</gifname>
+								<gifname lang="4">morepictures.jonsenhuset</gifname>
+								<gifname lang="5">morepictures.jonsenhuset</gifname>
+								<altname lang="1">More pictures</altname>
+								<altname lang="2">Weitere Bilder</altname>
+								<altname lang="3">Fleire bilete</altname>
+								<altname lang="4">Plusieurs de photos</altname>
+								<altname lang="5">Más fotos</altname>
+							</file>
+						</file>
+						<file id="11120">
+							<filename lang="1">folga</filename>
+							<filename lang="2">folga</filename>
+							<filename lang="3">folga</filename>
+							<filename lang="4">folga</filename>
+							<filename lang="5">folga</filename>
+							<gifname lang="1">folga</gifname>
+							<gifname lang="2">folga</gifname>
+							<gifname lang="3">folga</gifname>
+							<gifname lang="4">folga</gifname>
+							<gifname lang="5">folga</gifname>
+							<altname lang="1">Folgå</altname>
+							<altname lang="2">Folgå</altname>
+							<altname lang="3">Folgå</altname>
+							<altname lang="4">Folgå</altname>
+							<altname lang="5">Folgå</altname>
+							<file id="11121">
+								<filename lang="1">interior</filename>
+								<filename lang="2">interior</filename>
+								<filename lang="3">interior</filename>
+								<filename lang="4">interieur</filename>
+								<filename lang="5">interior</filename>
+								<gifname lang="1">interior.folga</gifname>
+								<gifname lang="2">interior.folga</gifname>
+								<gifname lang="3">interior.folga</gifname>
+								<gifname lang="4">interior.folga</gifname>
+								<gifname lang="5">interior.folga</gifname>
+								<altname lang="1">Interior pictures</altname>
+								<altname lang="2">Bilder von den Zimmern</altname>
+								<altname lang="3">Interiørbilete</altname>
+								<altname lang="4">Photos de l'intérieur</altname>
+								<altname lang="5">Fotos del interior</altname>
+							</file>
+							<file id="11122">
+								<filename lang="1">morepictures</filename>
+								<filename lang="2">weiterebilder</filename>
+								<filename lang="3">fleirebilete</filename>
+								<filename lang="4">plusieursdephotos</filename>
+								<filename lang="5">masfotos</filename>
+								<gifname lang="1">morepictures.folga</gifname>
+								<gifname lang="2">morepictures.folga</gifname>
+								<gifname lang="3">morepictures.folga</gifname>
+								<gifname lang="4">morepictures.folga</gifname>
+								<gifname lang="5">morepictures.folga</gifname>
+								<altname lang="1">More pictures</altname>
+								<altname lang="2">Weitere Bilder</altname>
+								<altname lang="3">Fleire bilete</altname>
+								<altname lang="4">Plusieurs de photos</altname>
+								<altname lang="5">Más fotos</altname>
+							</file>
+						</file>
+						<file id="11130">
+							<filename lang="1">bjodlandsfolga</filename>
+							<filename lang="2">bjodlandsfolga</filename>
+							<filename lang="3">bjodlandsfolga</filename>
+							<filename lang="4">bjodlandsfolga</filename>
+							<filename lang="5">bjodlandsfolga</filename>
+							<gifname lang="1">bjodlandsfolga</gifname>
+							<gifname lang="2">bjodlandsfolga</gifname>
+							<gifname lang="3">bjodlandsfolga</gifname>
+							<gifname lang="4">bjodlandsfolga</gifname>
+							<gifname lang="5">bjodlandsfolga</gifname>
+							<altname lang="1">Bjødlandsfolgå</altname>
+							<altname lang="2">Bjødlandsfolgå</altname>
+							<altname lang="3">Bjødlandsfolgå</altname>
+							<altname lang="4">Bjødlandsfolgå</altname>
+							<altname lang="5">Bjødlandsfolgå</altname>
+							<file id="11131">
+								<filename lang="1">interior</filename>
+								<filename lang="2">interior</filename>
+								<filename lang="3">interior</filename>
+								<filename lang="4">interieur</filename>
+								<filename lang="5">interior</filename>
+								<gifname lang="1">interior.bjodlandsfolga</gifname>
+								<gifname lang="2">interior.bjodlandsfolga</gifname>
+								<gifname lang="3">interior.bjodlandsfolga</gifname>
+								<gifname lang="4">interior.bjodlandsfolga</gifname>
+								<gifname lang="5">interior.bjodlandsfolga</gifname>
+								<altname lang="1">Interior pictures</altname>
+								<altname lang="2">Bilder von den Zimmern</altname>
+								<altname lang="3">Interiørbilete</altname>
+								<altname lang="4">Photos de l'intérieur</altname>
+								<altname lang="5">Fotos del interior</altname>
+							</file>
+							<file id="11132">
+								<filename lang="1">morepictures</filename>
+								<filename lang="2">weiterebilder</filename>
+								<filename lang="3">fleirebilete</filename>
+								<filename lang="4">plusieursdephotos</filename>
+								<filename lang="5">masfotos</filename>
+								<gifname lang="1">morepictures.bjodlandsfolga</gifname>
+								<gifname lang="2">morepictures.bjodlandsfolga</gifname>
+								<gifname lang="3">morepictures.bjodlandsfolga</gifname>
+								<gifname lang="4">morepictures.bjodlandsfolga</gifname>
+								<gifname lang="5">morepictures.bjodlandsfolga</gifname>
+								<altname lang="1">More pictures</altname>
+								<altname lang="2">Weitere Bilder</altname>
+								<altname lang="3">Fleire bilete</altname>
+								<altname lang="4">Plusieurs de photos</altname>
+								<altname lang="5">Más fotos</altname>
+							</file>
+						</file>
+					</file>
+					<file id="11200">
+						<filename lang="1">activities</filename>
+						<filename lang="2">aktivitaten</filename>
+						<filename lang="3">aktivitetar</filename>
+						<filename lang="4">activites</filename>
+						<filename lang="5">actividades</filename>
+						<gifname lang="1">activities</gifname>
+						<gifname lang="2">aktivitaten</gifname>
+						<gifname lang="3">aktivitetar</gifname>
+						<gifname lang="4">activites</gifname>
+						<gifname lang="5">actividades</gifname>
+						<altname lang="1">Acitivities</altname>
+						<altname lang="2">Aktivitäten</altname>
+						<altname lang="3">Aktivitetar</altname>
+						<altname lang="4">Activites</altname>
+						<altname lang="5">Actividades</altname>
+						<iconheading lang="1">Acitivities:</iconheading>
+						<iconheading lang="2">Aktivitäten:</iconheading>
+						<iconheading lang="3">Aktivitetar:</iconheading>
+						<iconheading lang="4">Activites:</iconheading>
+						<iconheading lang="5">Actividades:</iconheading>
+						<file id="11210">
+							<filename lang="1">thefarm</filename>
+							<filename lang="2">diefarm</filename>
+							<filename lang="3">garden</filename>
+							<filename lang="4">ferme</filename>
+							<filename lang="5">lagranja</filename>
+							<gifname lang="1">thefarm</gifname>
+							<gifname lang="2">thefarm</gifname>
+							<gifname lang="3">thefarm</gifname>
+							<gifname lang="4">thefarm</gifname>
+							<gifname lang="5">thefarm</gifname>
+							<altname lang="1">The farm</altname>
+							<altname lang="2">Die Farm</altname>
+							<altname lang="3">Garden</altname>
+							<altname lang="4">Ferme</altname>
+							<altname lang="5">La granja</altname>
+						</file>
+						<file id="11220">
+							<filename lang="1">fishing</filename>
+							<filename lang="2">angeln</filename>
+							<filename lang="3">fiske</filename>
+							<filename lang="4">peche</filename>
+							<filename lang="5">pesca</filename>
+							<gifname lang="1">fishing</gifname>
+							<gifname lang="2">fishing</gifname>
+							<gifname lang="3">fishing</gifname>
+							<gifname lang="4">fishing</gifname>
+							<gifname lang="5">fishing</gifname>
+							<altname lang="1">Fishing</altname>
+							<altname lang="2">Angeln</altname>
+							<altname lang="3">Fiske</altname>
+							<altname lang="4">Pêche</altname>
+							<altname lang="5">Pesca</altname>
+						</file>
+						<file id="11230">
+							<filename lang="1">swimming</filename>
+							<filename lang="2">baden</filename>
+							<filename lang="3">badeplassar</filename>
+							<filename lang="4">baigner</filename>
+							<filename lang="5">banarse</filename>
+							<gifname lang="1">swimming</gifname>
+							<gifname lang="2">swimming</gifname>
+							<gifname lang="3">swimming</gifname>
+							<gifname lang="4">swimming</gifname>
+							<gifname lang="5">swimming</gifname>
+							<altname lang="1">Swimming</altname>
+							<altname lang="2">Baden</altname>
+							<altname lang="3">Badeplassar</altname>
+							<altname lang="4">Baigner</altname>
+							<altname lang="5">Bañarse</altname>
+						</file>
+						<file id="11240">
+							<filename lang="1">hiking</filename>
+							<filename lang="2">wandern</filename>
+							<filename lang="3">turgaing</filename>
+							<filename lang="4">randonees</filename>
+							<filename lang="5">paseo</filename>
+							<gifname lang="1">hiking</gifname>
+							<gifname lang="2">hiking</gifname>
+							<gifname lang="3">hiking</gifname>
+							<gifname lang="4">hiking</gifname>
+							<gifname lang="5">hiking</gifname>
+							<altname lang="1">Hiking</altname>
+							<altname lang="2">Wandern</altname>
+							<altname lang="3">Turgåing</altname>
+							<altname lang="4">Randonées</altname>
+							<altname lang="5">Paseo</altname>
+						</file>
+					</file>
+					<file id="11300">
+						<filename lang="1">howtofindus</filename>
+						<filename lang="2">herfinndeoss</filename>			
+						<altname lang="1">How to find us</altname>
+						<altname lang="2">Her finn de oss</altname>
+					</file>
+					<file id="11400">
+						<filename lang="1">booking</filename>
+						<filename lang="2">buchung</filename>
+						<filename lang="3">reservering</filename>
+						<filename lang="4">reservation</filename>
+						<filename lang="5">reservas</filename>
+						<gifname lang="1">booking</gifname>
+						<gifname lang="2">buchung</gifname>
+						<gifname lang="3">reservering</gifname>
+						<gifname lang="4">reservation</gifname>
+						<gifname lang="5">reservas</gifname>
+						<altname lang="1">Booking</altname>
+						<altname lang="2">Buchung</altname>
+						<altname lang="3">Reservering</altname>
+						<altname lang="4">Réservation</altname>
+						<altname lang="5">Reservas</altname>
+					</file>
+				</file>
+				<file id="12000">
+					<filename lang="1">index</filename>
+					<filename lang="2">index</filename>
+					<filename lang="3">index</filename>
+					<filename lang="4">index</filename>
+					<filename lang="5">index</filename>
+					<gifname lang="1">fossaneagriculture</gifname>
+					<gifname lang="2">fossanelandwirtschaft</gifname>
+					<gifname lang="3">fossanelandbruk</gifname>
+					<gifname lang="4">fossaneagriculture</gifname>
+					<gifname lang="5">fossaneagricultura</gifname>
+					<altname lang="1">Fossane Agriculture</altname>
+					<altname lang="2">Fossane Landwirtschaft</altname>
+					<altname lang="3">Fossane Landbruk</altname>
+					<altname lang="4">Fossane Agriculture</altname>
+					<altname lang="5">Fossane Agricultura</altname>
+				</file>
+				<file id="13000">
+					<filename lang="1">index</filename>
+					<filename lang="2">index</filename>
+					<filename lang="3">index</filename>
+					<filename lang="4">index</filename>
+					<filename lang="5">index</filename>
+					<gifname lang="1">fossaneenergy</gifname>
+					<gifname lang="2">fossaneenergie</gifname>
+					<gifname lang="3">fossaneenergi</gifname>
+					<gifname lang="4">fossaneenergie</gifname>
+					<gifname lang="5">fossaneenergia</gifname>
+					<altname lang="1">Fossane Energy</altname>
+					<altname lang="2">Fossane Energie</altname>
+					<altname lang="3">Fossane Energi</altname>
+					<altname lang="4">Fossane Energie</altname>
+					<altname lang="5">Fossane Energía</altname>
+				</file>
+			</file>
+		</filestructure>
+		<text>
+			<meta>
+				<author lang="1">Bjarte Sørensen</author>
+				<author lang="2">Deutsche Version: Anja Krause</author>
+				<author lang="3">Bjarte Sørensen</author>
+				<author lang="4">Version français: Rakel Sætre</author>
+				<author lang="5">En Español por Francisco Porturas</author>
+				<keywords lang="1">Norway, Ryfylke, salmon, fishing</keywords>
+				<keywords lang="2">Norwegen, Ryfylke, lachs, lachsangeln</keywords>
+				<keywords lang="3">Norge, Ryfylke, laks, laksefiske</keywords>
+				<keywords lang="4">Norvège, Ryfylke, saumon</keywords>
+				<keywords lang="5">Norvège, Ryfylke, salmón</keywords>
+				<description lang="1">Fossane is a farm beautifully situated between the mountains in Ryfylke on the south-west coast of Norway. Have your holidays at Fossane with the entire family and expect something else!</description>
+				<description lang="2">Fossane ist eine Farm wunderschön gelegen zwischen den Bergen von Ryfylke und der Südwest-Küste von Norwegen. Mach Deine Ferien in Fossane mit der ganzen Familie und Du wirst viel erleben!</description>
+				<description lang="3">Fossane er ein gard som ligg idyllisk til i det naturskjønne Ryfylke-området på sørvest-kysten av Noreg. Kom til Fossane på ferie med heile familien for ei oppleving utanom det vanlege.</description>
+				<description lang="4">Fossane est une ferme située entre les belles montagnes du Ryfylke sur la côte sud-ouest de la Norvège. Passez vos vacances à Fossane avec toute la famille et faites une expérience hors du commun.</description>
+				<description lang="5">Fossane es una granja ubicada idilicamente en una belleza natural entre las montañas de Ryfylke- en la Costa Sur-Oeste de Noruega. Venga a Fossane de vacaciones con toda su familia para tener una experiencia fuera de lo común.</description>
+			</meta>
+			<contactdetails>
+				<namecontact lang="1">Contact details</namecontact>
+				<namecontact lang="2">Kontaktdetails</namecontact>
+				<namecontact lang="3">Adresser og telefonnummer</namecontact>
+				<namecontact lang="4">L'Information de contact</namecontact>
+				<namecontact lang="5">Avise Información</namecontact>
+				<e-mail>
+					<heading lang="1">E-mail</heading>
+					<heading lang="2">E-mail</heading>
+					<heading lang="3">E-post</heading>
+					<heading lang="4">E-mail</heading>
+					<heading lang="5">Correo electrónico</heading>
+					<e-mail>fossane@online.no</e-mail>
+				</e-mail>
+				<address>
+					<heading lang="1">Address</heading>
+					<heading lang="2">Adresse</heading>
+					<heading lang="3">Adresse</heading>
+					<heading lang="4">Adresse</heading>
+					<heading lang="5">Dirección</heading>
+					<name lang="1">Kari and Sven Egil Sørensen</name>
+					<name lang="2">Kari und Sven Egil Sørensen</name>
+					<name lang="3">Kari og Sven Egil Sørensen</name>
+					<name lang="4">Kari et Sven Egil Sørensen</name>
+					<name lang="5">Kari y Sven Egil Sørensen</name>
+					<addressline1 lang="1">Fossane</addressline1>
+					<addressline1 lang="2">Fossane</addressline1>
+					<addressline1 lang="3">Fossane</addressline1>
+					<addressline1 lang="4">Fossane</addressline1>
+					<addressline1 lang="5">Fossane</addressline1>
+					<postcode>4130</postcode>
+					<place>Hjelmeland</place>
+					<country lang="1">Norway</country>
+					<country lang="2">Norwegen</country>
+					<country lang="4">Norvège</country>
+					<country lang="5">Noruega</country>
+				</address>
+				<phone>
+					<heading lang="1">Tel</heading>
+					<heading lang="2">Tel</heading>
+					<heading lang="3">Tlf</heading>
+					<heading lang="4">Tél</heading>
+					<heading lang="5">Tel</heading>
+					<phone lang="1">+ 47 51 75 15 32</phone>
+					<phone lang="2">+ 47 51 75 15 32</phone>
+					<phone lang="3">51 75 15 32</phone>
+					<phone lang="4">+ 47 51 75 15 32</phone>
+					<phone lang="5">+ 47 51 75 15 32</phone>
+				</phone>
+			</contactdetails>
+			<footer>
+				<updated lang="1">Last updated </updated>
+				<updated lang="2">Letztes Update </updated>
+				<updated lang="3">Sist oppdatert </updated>
+				<updated lang="4">Mis à jour le </updated>
+				<updated lang="5">Actualizado </updated>
+				<translator lang="1">English version by the author</translator>
+				<translator lang="2">Deutsche Version: Anja Krause</translator>
+				<translator lang="3"/>
+				<translator lang="4">Version français: Rakel Sætre</translator>
+				<translator lang="5">En Español por Francisco Porturas</translator>
+				<webmaster>
+					<name>Bjarte Sørensen</name>
+					<e-mail>bjarte@student.unsw.edu.au</e-mail>
+				</webmaster>
+				<copyright lang="1">Kari and Sven Egil Sørensen</copyright>
+				<copyright lang="2">Kari und Sven Egil Sørensen</copyright>
+				<copyright lang="3">Kari og Sven Egil Sørensen</copyright>
+				<copyright lang="4">Kari et Sven Egil Sørensen</copyright>
+				<copyright lang="5">Kari y Sven Egil Sørensen</copyright>
+			</footer>
+		</text>
+		<pictures>
+			<location/>
+			<ALT-text/>
+		</pictures>
+	</universal>
+	<page id="10000">
+		<text>
+			<browsertitle lang="1">Welcome to Fossane, Norway</browsertitle>
+			<browsertitle lang="2">Willkommen: Fossane, Norwegen</browsertitle>
+			<browsertitle lang="3">Velkommen til Fossane</browsertitle>
+			<browsertitle lang="4">Bienvenus à la ferme de Fossane, Norvège</browsertitle>
+			<browsertitle lang="5">Bienvenidos a la granja Fossane, Noruega</browsertitle>
+			<heading>
+				<gifname lang="1">welcomeheading</gifname>
+				<gifname lang="2">willkommenheading</gifname>
+				<gifname lang="3">velkommenheading</gifname>
+				<gifname lang="4">bienvenusheading</gifname>
+				<gifname lang="5">bienvenidosheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize>Welcome to</pre-emphasize>
+					<emphasize>Fossane</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize>Willkommen zu</pre-emphasize>
+					<emphasize>Fossane</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize>Velkommen til garden</pre-emphasize>
+					<emphasize>Fossane</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize>Bienvenus à la ferme de</pre-emphasize>
+					<emphasize>Fossane</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize>Bienvenidos a la granja</pre-emphasize>
+					<emphasize>Fossane</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+			<introduction lang="1">Fossane is a farm beautifully situated between the mountains in Ryfylke on the south-west coast of Norway. </introduction>
+			<introduction lang="2">Fossane ist eine Farm wunderschön gelegen zwischen den Bergen von Ryfylke und der Südwest-Küste von Norwegen. </introduction>
+			<introduction lang="3">Fossane er ein gard som ligg idyllisk til i det naturskjønne Ryfylke-området på sørvest-kysten av Noreg.</introduction>
+			<introduction lang="4">Fossane est une ferme située entre les belles montagnes du Ryfylke sur la côte sud-ouest de la Norvège. </introduction>
+			<introduction lang="5">Fossane es una granja ubicada idilicamente en una belleza natural entre las montañas de Ryfylke- en la Costa Sur-Oeste de Noruega.</introduction>
+			<maintext lang="1">
+				<para>Have your holidays at Fossane with the entire family and expect something else!</para>
+				<para>The nature you find in Ryfylke, mirrors the nature of Norway. You find it all, from steep mountain sides to green fields, from wild rivers to clear waters, from deep fjords to groups of islands. The farm is situated in the village Vormedalen, 20 km from the county centre of Hjelmeland. It is one and a half hours away from the city of Stavanger.</para>
+			</maintext>
+			<maintext lang="2">
+				<para>Mach Deine Ferien in Fossane mit der ganzen Familie und Du wirst viel erleben!</para>
+				<para>Die Natur in Ryfylke spiegelt die Natur von ganz Norwegen wider. Du kannst hier alles finden, von steilen Bergen bis zu hügeligen Landschaften, von wilden Flüssen bis zu klarem Wasser, von tiefen Fjörden bis zu zahlreichen Inselgruppen. Unsere Farm liegt in Vormedalen in der Kommune Hjelmeland, 20 km vom Kommunezentrum entfernt. Bis nach Stavanger sind es 1,5 Autostunden.</para>
+			</maintext>
+			<maintext lang="3">
+				<para>Kom til Fossane på ferie med heile familien for ei oppleving utanom det vanlege.</para>
+				<para>Naturen i Ryfylke reflekterer naturen i heile landet, ein finn stupbratte fjell og kupert landskap, ville elvar og klare vatn,  djupe fjordar og øylandskap. Garden ligg i Vormedalen i Hjelmeland kommune, tjue kilometer frå kommunesenteret. Til Stavanger er det halvannan times reis.</para>
+			</maintext>
+			<maintext lang="4">
+				<para>Passez vos vacances à Fossane avec toute la famille et faites une expérience hors du commun.</para>
+				<para>La nature du Ryfylke reflète celle de la Norvège entière. Vous y trouvez un peu de tout : des montagnes raides, des pelouses vertes, des rivières sauvages, des lacs propres, des fjords profonds et plusieurs îles. La ferme est située dans le village nommé Vormedalen, à 20 kilomètres du centre municipal de Hjelmeland. C'est à une heure et demie de la ville de Stavanger.</para>
+			</maintext>
+			<maintext lang="5">
+				<para>Venga a Fossane de vacaciones con toda su familia para tener una experiencia fuera de lo común.</para>
+				<para>La naturaleza en Ryfylke refleja la naturaleza de todo el país, una bella y abrupta montaña cubre el paisaje, ríos salvajes y lagos claros, fiordos profundos y un paisaje de islas. La granja esta ubicada en la villa de Vormedalen en el centro municipal de Hjelmeland, veinte kilómetros del centro comunal. Hacia Stavanger solo es una hora y media de viaje.</para>
+			</maintext>
+		</text>
+		<pics>
+			<header type="jpg">background.welcome2</header>
+			<introduction>
+				<UR type="jpg">p-fossane</UR>
+			</introduction>
+		</pics>
+	</page>
+	<page id="11000">
+		<text>
+			<browsertitle lang="1">Welcome to Fossane, Norway</browsertitle>
+			<browsertitle lang="2">Willkommen: Fossane, Norwegen</browsertitle>
+			<browsertitle lang="3">Velkommen til Fossane</browsertitle>
+			<browsertitle lang="4">Bienvenus à la ferme de Fossane, Norvège</browsertitle>
+			<browsertitle lang="5">Bienvenidos a la granja Fossane, Noruega</browsertitle>
+			<heading>
+				<gifname lang="1">welcomeheading</gifname>
+				<gifname lang="2">willkommenheading</gifname>
+				<gifname lang="3">velkommenheading</gifname>
+				<gifname lang="4">bienvenusheading</gifname>
+				<gifname lang="5">bienvenidosheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize>Welcome to</pre-emphasize>
+					<emphasize>Fossane</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize>Willkommen zu</pre-emphasize>
+					<emphasize>Fossane</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize>Velkommen til garden</pre-emphasize>
+					<emphasize>Fossane</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize>Bienvenus à la ferme de</pre-emphasize>
+					<emphasize>Fossane</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize>Bienvenidos a la granja</pre-emphasize>
+					<emphasize>Fossane</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+			<introduction lang="1">Fossane is not just another holiday accommodation. Fossane is your holiday.</introduction>
+			<introduction lang="2">Fossane ist nicht nur ein Platz zum Leben, wenn Du hier in Ferien bist, Fossane ist Dein Urlaub!</introduction>
+			<introduction lang="3">Fossane er ikkje berre ein stad å bu når du er på ferie. Fossane er ferien din.</introduction>
+			<introduction lang="4">Fossane n'est pas seulement que votre hébergement, c'est aussi vos vacances.</introduction>
+			<introduction lang="5">Fossane no es solamente un lugar para vivir cuando Usted tiene vacaciones. Fossane es sus propias vacaciones.</introduction>
+			<maintext lang="1">
+				<para>What we offer is peace and silence, activity, and fun, all at once. Meet the people, animals and the nature of the farm.</para>
+				<para>"No TV" is also a gift from us to you, as we often say it (although if you really need it, you can borrow one). The water you drink on the farm comes from our own ground. The water has been given excellent reports by analysts. The electricity you'll use is produced by our own "green" hydroelectric powerplant. We'll be more than happy to you show you around.</para>
+				<para>Fossane makes your holiday, and your holiday makes Fossane. Welcome!</para>
+			</maintext>
+			<maintext lang="2">
+				<para>Was wir anbieten, ist Frieden und Ruhe, Aktivitäten und Spaß, alles zur gleichen Zeit. Treffe hier Leute, Tiere und Natur pur!</para>
+				<para>Wir sagen oft, dass das hier eine schöne Möglichkeit ist, ohne Fernsehen zu verweilen. (Solltest Du trotzdem einen Fernseher benötigen, kannst Du dir natürlich einen unentgeltlich von uns ausleihen). Das Wasser, was wir hier trinken, kommt aus unserem eigenen Boden. Das Wasser erhielt von Analytikern eine exzellente Beurteilung. Die Elektrizität, die wir nutzen, wird produziert von unserem eigenem "grünen" Wasserkraftwerk. Wenn Du mehr sehen möchtest, freuen wir uns sehr, Dich herumzuführen.</para>
+				<para>Fossane ist Dein Urlaub und dein Urlaub ist Fossane! Du bist herzlich willkommen!</para>
+			</maintext>
+			<maintext lang="3">
+				<para>Tilboda våre, alle inkluderte i prisen, er fred og ro, aktivitet, moro, menneskekontakt, kontakt med dyr, kontakt med natur.</para>
+				<para>Me pleier ofte seia at det er eit tilbod at me ikkje har TV (sjølv om dei som verkeleg treng det, kan få låna ein). Vatnet de drikk på garden kjem frå eige oppkomme og har fått førsteklasses resultat ved analysar. Straumen de brukar vert produsert av vårt eige miljøvennlege vasskraftverk. Du kan gjerne få ei synfaring der.</para>
+				<para>Heilskapsopplevinga av Fossane er med og lagar ferien dykkar, og ferien dykkar er med på å laga Fossane. Velkommen til oss!</para>
+			</maintext>
+			<maintext lang="4">
+				<para>Nous vous proposons un cadre paisible et reposant, de même que de nombreuses activités amusantes. Vous ferez connaissance avec les gens, et découvrirez la nature et les animaux qui nous entourent.</para>
+				<para>"Pas de télé" est l'un des cadeaux que nous vous offrons (quoique, si vous en avez besoin, vous puissiez en emprunter une). L'eau que vous buvez chez nous, provient de notre propre source ; les analyses auxquelles elle a été sujette, lui donne les meilleures notes. L'électricité que vous utilisez est produite à notre propre centrale hydroélectrique écologique. Nous serions ravis de vous faire visiter celle-ci.</para>
+				<para>Votre expérience globale de Fossane constitue vos vacances, et vos vacances créent Fossane. Bienvenus !</para>
+			</maintext>
+			<maintext lang="5">
+				<para>Nuestra oferta, incluido todo en el precio, es tranquilidad, actividades, diversión, contacto con los pobladores, contacto con animales y contacto con la naturaleza.</para>
+				<para>Nosotros acostumbramos a decir a menudo que no es oferta que nosotros no tengamos televisión (a pesar de que los que realmente lo necesitan, pueden prestar una). El agua que toma en la granja proviene de nuestras propias fuentes y ha obtenido distinción de primera clase en sus análisis. La corriente que se utiliza es producida por nuestra propia planta hidroeléctrica ecológica. Si Usted desea puede visitarla.</para>
+				<para>Experiencia total de Fossane es participar y hacer sus vacaciones, y sus vacaciones hacen Fossane. Bienvenido a nosotros!</para>
+			</maintext>
+		</text>
+		<pics>
+			<header type="jpg">background.holidays</header>
+			<introduction>
+				<UR type="jpg">p-ferie</UR>
+			</introduction>
+		</pics>
+	</page>
+	<page id="11100">
+		<text>
+			<browsertitle lang="1">The Houses</browsertitle>
+			<browsertitle lang="2">Die Haüser</browsertitle>
+			<browsertitle lang="3">Husa</browsertitle>
+			<browsertitle lang="4">Les Maisons</browsertitle>
+			<browsertitle lang="5">Las Casas</browsertitle>
+			<heading>
+				<gifname lang="1">thehousesheading</gifname>
+				<gifname lang="2">diehauserheading</gifname>
+				<gifname lang="3">husaheading</gifname>
+				<gifname lang="4">lesmaisonsheading</gifname>
+				<gifname lang="5">lascasasheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize>Three houses on the farm are renovated and used as</pre-emphasize>
+					<emphasize>holiday houses</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Die Haüser</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize>Dei tre gamle husa på garden vert brukte som</pre-emphasize>
+					<emphasize>utleigehus</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize>Trois des anciennes maisons de la ferme ont été modernisées et utilisées en tant que </pre-emphasize>
+					<emphasize>maisons de vacances</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize>Las tres casas antigua de madera en la granja han sido empleadas como </pre-emphasize>
+					<emphasize>casas  de vacaciones</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+			<introduction lang="1">Although all of the three houses are antique, they all have electricity, hot and cold water and modern bathrooms and kitchens. The houses have been renovated during the last 10 years, but the old timber walls, the original furniture and the original atmosphere are all still there. </introduction>
+			<introduction lang="2">Obwohl jedes der drei Häuser alt ist, sind sie alle mit Elektrizität, heißem und warmem Wasser sowie mit modernen Badenzimmern und Küchen ausgestattet. Die Häuser sind in den letzten 10 Jahre renoviert worden, aber die alten Holzwände, die Originalmöbel und die Orginalatmosphäre sind immer noch erhalten. </introduction>
+			<introduction lang="3">Vil du ha ferie på garden? Her er det noko for alle, anten ein ønskjer ro og fred ein så lett kan finna her, eller ein ønskjer ein aktiv ferie. </introduction>
+			<introduction lang="4">Ce sont de vieilles maisons disposant de l'électricité et d'eau chaude, de même que salle de bain et cuisine modernisées. La rénovation des maisons a été entreprise il y a dix ans. Toutefois les anciens murs en bois, les vieux meubles et l'atmosphère d'origine ont été préservés. </introduction>
+			<introduction lang="5">Le gustariá pasar sus vacaciones en la granja? Aquí hay de todo para todos, si desea tranquilidad y paz, eso lo puede encontrar facilmente aquí, asi como también si desea unas vacaciones activas. </introduction>
+			<maintext lang="1">
+				<para>You can rent any of the three houses on the farm at any time of the year. They vary slightly in size, so take your time to browse through the descriptions and pictures of each of them. </para>
+			</maintext>
+			<maintext lang="2">
+				<para>Du kannst jedes dieser drei Häuser auf unserer Farm zu jeder Zeit des Jahres mieten. Die Häuser variieren ein wenig in der Größe und Ausstattung, also nehme Dir etwas Zeit und stöber durch die Beschreibungen und den Abbildungen der Häuser. </para>
+			</maintext>
+			<maintext lang="3">
+				<para>Sjølv om alle tre husa er gamle, har dei elektrisitet, varmt og kaldt vatn og moderne baderom og kjøkken. Husa har blitt restaurert gjennom dei siste 10 åra, men dei gamle tømmerveggane og den gamle atmosfæren er framleis her. Fleire av møblene er like gamle som husa. </para>
+				<para>Du kan leiga eit eller fleire av dei tre husa på garden, heile året. Dei er litt ulike i størrelse, så ta deg tid å sjå gjennom skildringane og bileta av kvart av dei. </para>
+			</maintext>
+			<maintext lang="4">
+				<para>Nous tenons à votre disposition, tout au long de l'année trois maisons à louer. Elles diffèrent les unes des autres par leur taille. Prenez donc soin d'étudier les photos et les descriptions de chacune d'elles. </para>
+			</maintext>
+			<maintext lang="5">
+				<para>A pesar de que las casas son antiguas, tienen electricidad, agua fría y caliente y cuartos de baño y cocina modernos. Las casas han sido restauradas a través de los últimos 10 años, pero las construcciones de madera y la atmósfera antigua original están todavia aquí. Muchos de los muebles son tan antiguos como las casas. </para>
+				<para>Usted puede alquilar una o varias de las casas de madera en la granja, durante todo el año. Son de diferentes tamaños, tómese su tiempo mirando a través de las descripciones y fotografías de cada una. </para>
+			</maintext>
+		</text>
+		<pics>
+			<header type="jpg">background.thehouses</header>
+			<introduction>
+				<UR type="jpg">p-husa</UR>
+			</introduction>
+		</pics>
+	</page>
+	<page id="11110">
+		<text>
+			<browsertitle lang="1">Jonsenhuset</browsertitle>
+			<browsertitle lang="2">Jonsenhuset</browsertitle>
+			<browsertitle lang="3">Jonsenhuset</browsertitle>
+			<browsertitle lang="4">Jonsenhuset</browsertitle>
+			<browsertitle lang="5">Jonsenhuset</browsertitle>
+			<heading>
+				<gifname lang="1">jonsenhusetheading</gifname>
+				<gifname lang="2">jonsenhusetheading</gifname>
+				<gifname lang="3">jonsenhusetheading</gifname>
+				<gifname lang="4">jonsenhusetheading</gifname>
+				<gifname lang="5">jonsenhusetheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize/>
+					<emphasize>Jonsenhuset</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Jonsenhuset</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize/>
+					<emphasize>Jonsenhuset</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize/>
+					<emphasize>Jonsenhuset</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize/>
+					<emphasize>Jonsenhuset</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+			<introduction lang="1">Jonsenhuset ("Jonsen's house") is the "newest" of the three houses. It was built about 100 years ago, and moved to the farm in the 30s.</introduction>
+			<introduction lang="2">Jonsenhaus ("Haus von Jonsen") ist auf unserer Farm das "neueste" der drei Häuser. Es wurde vor ca. 100 Jahren erbaut und in den 30er Jahren zu seinem jetztigen Standort umgesiedelt.</introduction>
+			<introduction lang="3">Jonsenhuset er det "nyaste" av dei tre husa. Det vart bygd omlag 100 år sidan, og flytta til garden på trettitalet.</introduction>
+			<introduction lang="4">[The following text is only in English] Jonsenhuset ("Jonson's house") is the "newest" of the three houses. It was built about 100 years ago, and moved to the farm in the 30s.</introduction>
+			<introduction lang="5">La casa Jonsenhuset (Casa de Jonsen) es la ”más nueva” de las tres casas. Fué construida hace cerca de 100 años, y transportada a la granja en lo años 30.</introduction>
+			<maintext lang="1">
+				<para>It has 8 beds in totally 3 bedrooms. Like the other houses, it has electricity, hot and cold water, modern kitchen and bathroom.</para>
+			</maintext>
+			<maintext lang="2">
+				<para>Es verfügt über insgesamt 8 Betten auf 3 Schlafzimmer verteilt. Wie die anderen Häuser ist es mit Elektrizität, heißem und warmen Wasser sowie mit moderner Küche und Bad ausgestattet.</para>
+			</maintext>
+			<maintext lang="3">
+				<para>Huset har 8 senger i totalt 3 soverom. Som dei andre husa, har det elektrisitet, varmt og kaldt vatn og moderne kjøkken og baderom.</para>
+			</maintext>
+			<maintext lang="4">
+				<para>It has 8 beds in totally 3 bedrooms. Like the other houses, it has electricity, hot and cold water, modern kitchen and bathroom.</para>
+			</maintext>
+			<maintext lang="5">
+				<para>La casa tiene 8 camas y en total 3 dormitorios. Igual que las otras casas, tiene electricidad, agua caliente y fría y una cocina y cuarto de baño modernos. </para>
+			</maintext>
+		</text>
+		<pics>
+			<header type="jpg">background.thehouses</header>
+			<introduction>
+				<UR type="jpg">p-jonsenhuset</UR>
+			</introduction>
+		</pics>
+	</page>
+	<page id="11111">
+		<text>
+			<browsertitle lang="1">Interior pictures</browsertitle>
+			<browsertitle lang="1">Bilder von den Zimmern</browsertitle>
+			<browsertitle lang="1">Interiørbilete</browsertitle>
+			<browsertitle lang="1">Photos de l'intérieur</browsertitle>
+			<browsertitle lang="1">Fotos del interior</browsertitle>
+			<heading>
+				<gifname lang="1">interiorheading</gifname>
+				<gifname lang="2">zimmernheading</gifname>
+				<gifname lang="3">interiorheading</gifname>
+				<gifname lang="4">interieurheading</gifname>
+				<gifname lang="5">interiorheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize/>
+					<emphasize>Interior pictures</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Bilder von den Zimmern</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize/>
+					<emphasize>Interiørbilete</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize/>
+					<emphasize>Photos de l'intérieur</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize/>
+					<emphasize>Fotos del interior</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+			<map>
+				<heading lang="1">Click on the arrows to look in the directions they are pointing:</heading>
+				<heading lang="2">Click on the arrows to look in the directions they are pointing:</heading>
+				<heading lang="3">Trykk på pilene for å sjå i dei retningane dei peikar</heading>
+				<heading lang="4">Click on the arrows to look in the directions they are pointing:</heading>
+				<heading lang="5">Click on the arrows to look in the directions they are pointing:</heading>
+				<name>plan</name>
+				<gifname lang="1">jonsenhusetplansje</gifname>
+				<gifname lang="2">jonsenhusetplansje</gifname>
+				<gifname lang="3">jonsenhusetplansje</gifname>
+				<gifname lang="4">jonsenhusetplansje</gifname>
+				<gifname lang="5">jonsenhusetplansje</gifname>
+				<starthref>jonsenhuset.start.01.jpg</starthref>
+				<area>
+					<shape>rect</shape>
+					<coords>101,29,122,44</coords>
+					<href>jonsenhuset.bad.01.jpg</href>
+					<alt lang="1">Bathroom</alt>
+					<alt lang="2">Badzimmer</alt>
+					<alt lang="3">Bad</alt>
+					<alt lang="4">Bathroom</alt>
+					<alt lang="5">Bathroom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>156,69,172,92</coords>
+					<href>jonsenhuset.kjokken.01.jpg</href>
+					<alt lang="1">Kitchen</alt>
+					<alt lang="2">Küche</alt>
+					<alt lang="3">Kjøkken</alt>
+					<alt lang="4">Kitchen</alt>
+					<alt lang="5">Kitchen</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>152,122,172,143</coords>
+					<href>jonsenhuset.gang.01.jpg</href>
+					<alt lang="1">Hall</alt>
+					<alt lang="2">Hall</alt>
+					<alt lang="3">Gang</alt>
+					<alt lang="4">Hall</alt>
+					<alt lang="5">Hall</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>178,115,201,133</coords>
+					<href>jonsenhuset.gang.02.jpg</href>
+					<alt lang="1">Hall</alt>
+					<alt lang="2">Hall</alt>
+					<alt lang="3">Gang</alt>
+					<alt lang="4">Hall</alt>
+					<alt lang="5">Hall</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>71,134,85,154</coords>
+					<href>jonsenhuset.stove.01.jpg</href>
+					<alt lang="1">Livingroom</alt>
+					<alt lang="2">Wohnzimmer</alt>
+					<alt lang="3">Stove</alt>
+					<alt lang="4">Livingroom</alt>
+					<alt lang="5">Livingroom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>59,114,85,134</coords>
+					<href>jonsenhuset.stove.02.jpg</href>
+					<alt lang="1">Livingroom</alt>
+					<alt lang="2">Wohnzimmer</alt>
+					<alt lang="3">Stove</alt>
+					<alt lang="4">Livingroom</alt>
+					<alt lang="5">Livingroom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>85,123,102,146</coords>
+					<href>jonsenhuset.stove.03.jpg</href>
+					<alt lang="1">Livingroom</alt>
+					<alt lang="2">Wohnzimmer</alt>
+					<alt lang="3">Stove</alt>
+					<alt lang="4">Livingroom</alt>
+					<alt lang="5">Livingroom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>119,237,140,250</coords>
+					<href>jonsenhuset.soverom1.01.jpg</href>
+					<alt lang="1">Bedroom</alt>
+					<alt lang="2">Bedroom</alt>
+					<alt lang="3">Soverom</alt>
+					<alt lang="4">Soverom</alt>
+					<alt lang="5">Soverom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>113,312,135,330</coords>
+					<href>jonsenhuset.soverom2.01.jpg</href>
+					<alt lang="1">Bedroom</alt>
+					<alt lang="2">Bedroom</alt>
+					<alt lang="3">Soverom</alt>
+					<alt lang="4">Soverom</alt>
+					<alt lang="5">Soverom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>89,374,113,388</coords>
+					<href>jonsenhuset.soverom3.01.jpg</href>
+					<alt lang="1">Bedroom</alt>
+					<alt lang="2">Bedroom</alt>
+					<alt lang="3">Soverom</alt>
+					<alt lang="4">Soverom</alt>
+					<alt lang="5">Soverom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>150,321,167,345</coords>
+					<href>jonsenhuset.oppatrappa.01.jpg</href>
+					<alt lang="1">Top of stairs</alt>
+					<alt lang="2">Top of stairs</alt>
+					<alt lang="3">Oppå trappa</alt>
+					<alt lang="4">Top of stairs</alt>
+					<alt lang="5">Top of stairs</alt>
+				</area>
+			</map>
+		</text>
+		<pics>
+			<header type="jpg">background.thehouses</header>
+		</pics>
+	</page>
+	<page id="11112">
+		<text>
+			<browsertitle lang="1">More pictures</browsertitle>
+			<browsertitle lang="1">Weitere Bilder</browsertitle>
+			<browsertitle lang="1">Fleire bilete</browsertitle>
+			<browsertitle lang="1">Plusieurs de photos</browsertitle>
+			<browsertitle lang="1">Más fotos</browsertitle>
+			<heading>
+				<gifname lang="1">morepictures</gifname>
+				<gifname lang="2">weiterebilder</gifname>
+				<gifname lang="3">fleirebilete</gifname>
+				<gifname lang="4">plusieursdephotos</gifname>
+				<gifname lang="5">masfotos</gifname>
+				<alt-text lang="1">
+					<pre-emphasize/>
+					<emphasize>More pictures</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Weitere Bilder</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize/>
+					<emphasize>Fleire bilete</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize/>
+					<emphasize>Plusieurs de photos</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize/>
+					<emphasize>Más fotos</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+			<gallery>
+				<picture>
+					<thumb>jonsenhuset.01.thumb.jpg</thumb>
+					<picture>jonsenhuset.01.jpg</picture>
+				</picture>
+				<picture>
+					<thumb>jonsenhuset.02.thumb.jpg</thumb>
+					<picture>jonsenhuset.02.jpg</picture>
+				</picture>
+				<picture>
+					<thumb>jonsenhuset.03.thumb.jpg</thumb>
+					<picture>jonsenhuset.03.jpg</picture>
+				</picture>
+			</gallery>
+		</text>
+		<pics>
+			<header type="jpg">background.thehouses</header>
+		</pics>
+	</page>
+	<page id="11120">
+		<text>
+			<browsertitle lang="1">Folgå</browsertitle>
+			<browsertitle lang="2">Folgå</browsertitle>
+			<browsertitle lang="3">Folgå</browsertitle>
+			<browsertitle lang="4">Folgå</browsertitle>
+			<browsertitle lang="5">Folgå</browsertitle>
+			<heading>
+				<gifname lang="1">folgaheading</gifname>
+				<gifname lang="2">folgaheading</gifname>
+				<gifname lang="3">folgaheading</gifname>
+				<gifname lang="4">folgaheading</gifname>
+				<gifname lang="5">folgaheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize/>
+					<emphasize>Folgå</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Folgå</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize/>
+					<emphasize>Folgå</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize/>
+					<emphasize>Folgå</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize/>
+					<emphasize>Folgå</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+			<introduction lang="1">Folgå is the oldest house on the farm, and was probably built in two stages. The northernmost part is the oldest part, but when a bigger house was needed in the 19th century, it was expanded by adding another living room and a bed room.</introduction>
+			<introduction lang="2">Folgå ist das älteste Haus auf unserer Farm, und es besteht aus zwei Baustadien. Der nördliche Teil des Hauses ist der älteste. Als im 19. Jahrhundert ein größeres Haus notwendig wurde, wurde es um ein Schlaf- und Wohnzimmer erweitert.</introduction>
+			<introduction lang="3">Folgå er det eldste huset på garden, og antagelig bygd i to stadier. Den nordre delen er den eldste, men då ein trengde eit større hus på 1800-talet, vart huset utvida ved å byggja på ei ekstra stove og soverom.</introduction>
+			<introduction lang="4">[The following text is only in English] Folgå is the oldest house on the farm, and was probably built in two stages. The northernmost part is the oldest part, but when a bigger house was needed in the 19th century, it was expanded by adding another living room and a bed room.</introduction>
+			<introduction lang="5">Folgå es la casa más antigua de la granja, y fué probablemente construida en dos etapas. La parte norte es la más antigua, pero cuando se necesitó una casa mas grande en el Siglo 19, la casa fué ampliada adicionando otra sala y un dormitorio extras. </introduction>
+			<maintext lang="1">
+				<para>It has 6 beds in totally 3 bedrooms. Like the other houses, it has electricity, hot and cold water, modern kitchen and bathroom. </para>
+			</maintext>
+			<maintext lang="2">
+				<para>Es verfügt insgesamt über 6 Betten, aufgeteilt auf 3 Zimmer. Wie die anderen Häuser ist es mit Elektrizität, heißem und warmen Wasser sowie mit moderner Küche und Bad ausgestattet.</para>
+			</maintext>
+			<maintext lang="3">
+				<para>Huset har 6 senger i totalt 3 soverom. Som dei andre husa, har det elektrisitet, varmt og kaldt vatn moderne kjøkken og baderom. </para>
+			</maintext>
+			<maintext lang="4">
+				<para>It has 6 beds in totally 3 bedrooms. Like the other houses, it has electricity, hot and cold water, modern kitchen and bathroom. </para>
+			</maintext>
+			<maintext lang="5">
+				<para>La casa tiene 6 camas y un total de 3 dormitorios. Igual que las otras casas, tiene electricidad, agua fría y caliente, cocina y cuarto de baño modernos. </para>
+			</maintext>
+		</text>
+		<pics>
+			<header type="jpg">background.thehouses</header>
+			<introduction>
+				<UR type="jpg">p-folga</UR>
+			</introduction>
+		</pics>
+	</page>
+	<page id="11121">
+		<text>
+			<browsertitle lang="1">Interior pictures</browsertitle>
+			<browsertitle lang="1">Bilder von den Zimmern</browsertitle>
+			<browsertitle lang="1">Interiørbilete</browsertitle>
+			<browsertitle lang="1">Photos de l'intérieur</browsertitle>
+			<browsertitle lang="1">Fotos del interior</browsertitle>
+			<heading>
+				<gifname lang="1">interiorheading</gifname>
+				<gifname lang="2">zimmernheading</gifname>
+				<gifname lang="3">interiorheading</gifname>
+				<gifname lang="4">interieurheading</gifname>
+				<gifname lang="5">interiorheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize/>
+					<emphasize>Interior pictures</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Bilder von den Zimmern</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize/>
+					<emphasize>Interiørbilete</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize/>
+					<emphasize>Photos de l'intérieur</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize/>
+					<emphasize>Fotos del interior</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+			<map>
+				<heading lang="1">Click on the arrows to look in the directions they are pointing:</heading>
+				<heading lang="2">Click on the arrows to look in the directions they are pointing:</heading>
+				<heading lang="3">Trykk på pilene for å sjå i dei retningane dei peikar</heading>
+				<heading lang="4">Click on the arrows to look in the directions they are pointing:</heading>
+				<heading lang="5">Click on the arrows to look in the directions they are pointing:</heading>
+				<name>plan</name>
+				<gifname lang="1">folgaplansje</gifname>
+				<gifname lang="2">folgaplansje</gifname>
+				<gifname lang="3">folgaplansje</gifname>
+				<gifname lang="4">folgaplansje</gifname>
+				<gifname lang="5">folgaplansje</gifname>
+				<starthref>folga.start.01.jpg</starthref>
+				<area>
+					<shape>rect</shape>
+					<coords>25,45,37,65</coords>
+					<href>folga.bad.01.jpg</href>
+					<alt lang="1">Bathroom</alt>
+					<alt lang="2">Badzimmer</alt>
+					<alt lang="3">Bad</alt>
+					<alt lang="4">Bathroom</alt>
+					<alt lang="5">Bathroom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>123,36,141,53</coords>
+					<href>folga.kjokken.01.jpg</href>
+					<alt lang="1">Kitchen</alt>
+					<alt lang="2">Küche</alt>
+					<alt lang="3">Kjøkken</alt>
+					<alt lang="4">Kitchen</alt>
+					<alt lang="5">Kitchen</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>165,33,182,49</coords>
+					<href>folga.kjokken.02.jpg</href>
+					<alt lang="1">Kitchen</alt>
+					<alt lang="2">Küche</alt>
+					<alt lang="3">Kjøkken</alt>
+					<alt lang="4">Kitchen</alt>
+					<alt lang="5">Kitchen</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>158,49,170,68</coords>
+					<href>folga.matbod.01.jpg</href>
+					<alt lang="1">Kitchen</alt>
+					<alt lang="2">Küche</alt>
+					<alt lang="3">Kjøkken</alt>
+					<alt lang="4">Kitchen</alt>
+					<alt lang="5">Kitchen</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>98,7,113,25</coords>
+					<href>folga.bua.01.jpg</href>
+					<alt lang="1">Livingroom</alt>
+					<alt lang="2">Wohnzimmer</alt>
+					<alt lang="3">Stove</alt>
+					<alt lang="4">Livingroom</alt>
+					<alt lang="5">Livingroom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>97,29,114,47</coords>
+					<href>folga.bua.02.jpg</href>
+					<alt lang="1">Livingroom</alt>
+					<alt lang="2">Wohnzimmer</alt>
+					<alt lang="3">Stove</alt>
+					<alt lang="4">Livingroom</alt>
+					<alt lang="5">Livingroom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>209,14,219,33</coords>
+					<href>folga.stove.01.jpg</href>
+					<alt lang="1">Livingroom</alt>
+					<alt lang="2">Wohnzimmer</alt>
+					<alt lang="3">Stove</alt>
+					<alt lang="4">Livingroom</alt>
+					<alt lang="5">Livingroom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>203,51,221,67</coords>
+					<href>folga.stove.02.jpg</href>
+					<alt lang="1">Livingroom</alt>
+					<alt lang="2">Wohnzimmer</alt>
+					<alt lang="3">Stove</alt>
+					<alt lang="4">Livingroom</alt>
+					<alt lang="5">Livingroom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>219,13,237,31</coords>
+					<href>folga.stove.03.jpg</href>
+					<alt lang="1">Livingroom</alt>
+					<alt lang="2">Wohnzimmer</alt>
+					<alt lang="3">Stove</alt>
+					<alt lang="4">Livingroom</alt>
+					<alt lang="5">Livingroom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>101,143,122,157</coords>
+					<href>folga.bualemmen.01.jpg</href>
+					<alt lang="1">Bedroom</alt>
+					<alt lang="2">Bedroom</alt>
+					<alt lang="3">Soverom</alt>
+					<alt lang="4">Soverom</alt>
+					<alt lang="5">Soverom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>127,120,144,135</coords>
+					<href>folga.oppatrappa.01.jpg</href>
+					<alt lang="1">Top of stairs</alt>
+					<alt lang="2">Top of stairs</alt>
+					<alt lang="3">Oppå trappa</alt>
+					<alt lang="4">Top of stairs</alt>
+					<alt lang="5">Top of stairs</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>144,129,158,145</coords>
+					<href>folga.oppatrappa.02.jpg</href>
+					<alt lang="1">Top of stairs</alt>
+					<alt lang="2">Top of stairs</alt>
+					<alt lang="3">Oppå trappa</alt>
+					<alt lang="4">Top of stairs</alt>
+					<alt lang="5">Top of stairs</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>140,158,154,176</coords>
+					<href>folga.trappa.01.jpg</href>
+					<alt lang="1">Stairs</alt>
+					<alt lang="2">Stairs</alt>
+					<alt lang="3">Trappa</alt>
+					<alt lang="4">Stairs</alt>
+					<alt lang="5">Stairs</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>177,140,199,155</coords>
+					<href>folga.soverom.01.jpg</href>
+					<alt lang="1">Bedroom</alt>
+					<alt lang="2">Bedroom</alt>
+					<alt lang="3">Soverom</alt>
+					<alt lang="4">Soverom</alt>
+					<alt lang="5">Soverom</alt>
+				</area>
+			</map>
+		</text>
+		<pics>
+			<header type="jpg">background.thehouses</header>
+		</pics>
+	</page>
+	<page id="11122">
+		<text>
+			<browsertitle lang="1">More pictures</browsertitle>
+			<browsertitle lang="1">Weitere Bilder</browsertitle>
+			<browsertitle lang="1">Fleire bilete</browsertitle>
+			<browsertitle lang="1">Plusieurs de photos</browsertitle>
+			<browsertitle lang="1">Más fotos</browsertitle>
+			<heading>
+				<gifname lang="1">morepictures</gifname>
+				<gifname lang="2">weiterebilder</gifname>
+				<gifname lang="3">fleirebilete</gifname>
+				<gifname lang="4">plusieursdephotos</gifname>
+				<gifname lang="5">masfotos</gifname>
+				<alt-text lang="1">
+					<pre-emphasize/>
+					<emphasize>More pictures</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Weitere Bilder</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize/>
+					<emphasize>Fleire bilete</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize/>
+					<emphasize>Plusieurs de photos</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize/>
+					<emphasize>Más fotos</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+			<gallery>
+				<picture>
+					<thumb>folga.01.thumb.jpg</thumb>
+					<picture>folga.01.jpg</picture>
+				</picture>
+				<picture>
+					<thumb>folga.02.thumb.jpg</thumb>
+					<picture>folga.02.jpg</picture>
+				</picture>
+				<picture>
+					<thumb>folga.03.thumb.jpg</thumb>
+					<picture>folga.03.jpg</picture>
+				</picture>
+			</gallery>
+		</text>
+		<pics>
+			<header type="jpg">background.thehouses</header>
+		</pics>
+	</page>
+	<page id="11130">
+		<text>
+			<browsertitle lang="1">Bjødlandsfolgå</browsertitle>
+			<browsertitle lang="2">Bjødlandsfolgå</browsertitle>
+			<browsertitle lang="3">Bjødlandsfolgå</browsertitle>
+			<browsertitle lang="4">Bjødlandsfolgå</browsertitle>
+			<browsertitle lang="5">Bjødlandsfolgå</browsertitle>
+			<heading>
+				<gifname lang="1">bjodlandsfolgaheading</gifname>
+				<gifname lang="2">bjodlandsfolgaheading</gifname>
+				<gifname lang="3">bjodlandsfolgaheading</gifname>
+				<gifname lang="4">bjodlandsfolgaheading</gifname>
+				<gifname lang="5">bjodlandsfolgaheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize/>
+					<emphasize>Bjødlandsfolgå</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Bjødlandsfolgå</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize/>
+					<emphasize>Bjødlandsfolgå</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize/>
+					<emphasize>Bjødlandsfolgå</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize/>
+					<emphasize>Bjødlandsfolgå</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+			<introduction lang="1">Bjødlandsfolgå was moved to the farm only a few years ago, but the original timber walls are probably around two hundred years old. The house was moved to the farm and rebuilt just a few years ago. Here it has been renovated.</introduction>
+			<introduction lang="2">Bjødlandsfolgå wurde erst vor ein paar Jahren von seinem ursprünglichen Standort hierher auf unsere Farm gebracht. Die Zwischenwände aus Holz sind um die 200 Jahre alt. Das Haus wurde hier auf der Farm wieder neu aufgebaut und restauriert.</introduction>
+			<introduction lang="3">Bjødlandsfolgå vart flytta til garden for eit par år sidan. Tømmerveggane er rundt to hundre år gamle. Huset vart flytta til garden bygd opp att, og deretter restaurert. </introduction>
+			<introduction lang="4">[The following text is only in English] Bjødlandsfolgå was moved to the farm only a few years ago, but the original timber walls are probably around two hundred years old. The house was moved to the farm and rebuilt just a few years ago. Here it has been renovated.</introduction>
+			<introduction lang="5">Bjødlandsfolgå fué transportada a la granja hace un año atrás. Las paredes originales de madera son de cerca de 200 años de edad. La casa fué transportada a la granja y construida, y después restaurada.</introduction>
+			<maintext lang="1">
+				<para>It has 4 beds in 2 bed rooms. Like the other houses, it has electricity, hot and cold water, modern kitchen and bathroom. </para>
+			</maintext>
+			<maintext lang="2">
+				<para>Es hat 4 Betten, aufgeteilt auf 2 Schlafzimmern. Wie die anderen Häuser ist es mit Elektrizität, heißem und warmen Wasser sowie mit moderner Küche und Bad ausgestattet.</para>
+			</maintext>
+			<maintext lang="3">
+				<para>Det har 4 senger i 2 soverom. Slik som dei andre husa, har det elektrisitet, varmt og kaldt vatn og moderne kjøkken og baderom. </para>
+			</maintext>
+			<maintext lang="4">
+				<para>It has 4 beds in 2 bed rooms. Like the other houses, it has electricity, hot and cold water, modern kitchen and bathroom.</para>
+			</maintext>
+			<maintext lang="5">
+				<para>Tiene 4 camas y 2 dormitorios. Igual que las otras casa, tiene electricidad, agua fría y caliente, cocina y cuarto de baño modernos. </para>
+			</maintext>
+		</text>
+		<pics>
+			<header type="jpg">background.thehouses</header>
+			<introduction>
+				<UR type="jpg">p-bjodlandsfolga</UR>
+			</introduction>
+		</pics>
+	</page>
+	<page id="11131">
+		<text>
+			<browsertitle lang="1">Interior pictures</browsertitle>
+			<browsertitle lang="1">Bilder von den Zimmern</browsertitle>
+			<browsertitle lang="1">Interiørbilete</browsertitle>
+			<browsertitle lang="1">Photos de l'intérieur</browsertitle>
+			<browsertitle lang="1">Fotos del interior</browsertitle>
+			<heading>
+				<gifname lang="1">interiorheading</gifname>
+				<gifname lang="2">zimmernheading</gifname>
+				<gifname lang="3">interiorheading</gifname>
+				<gifname lang="4">interieurheading</gifname>
+				<gifname lang="5">interiorheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize/>
+					<emphasize>Interior pictures</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Bilder von den Zimmern</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize/>
+					<emphasize>Interiørbilete</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize/>
+					<emphasize>Photos de l'intérieur</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize/>
+					<emphasize>Fotos del interior</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+			<map>
+				<heading lang="1">Click on the arrows to look in the directions they are pointing:</heading>
+				<heading lang="2">Click on the arrows to look in the directions they are pointing:</heading>
+				<heading lang="3">Trykk på pilene for å sjå i dei retningane dei peikar</heading>
+				<heading lang="4">Click on the arrows to look in the directions they are pointing:</heading>
+				<heading lang="5">Click on the arrows to look in the directions they are pointing:</heading>
+				<name>plan</name>
+				<gifname lang="1">bjodlandsfolgaplansje</gifname>
+				<gifname lang="2">bjodlandsfolgaplansje</gifname>
+				<gifname lang="3">bjodlandsfolgaplansje</gifname>
+				<gifname lang="4">bjodlandsfolgaplansje</gifname>
+				<gifname lang="5">bjodlandsfolgaplansje</gifname>
+				<starthref>bjodlandsfolga.start.01.jpg</starthref>
+				<area>
+					<shape>rect</shape>
+					<coords>6,17,23,39</coords>
+					<href>bjodlandsfolga.bad.01.jpg</href>
+					<alt lang="1">Bathroom</alt>
+					<alt lang="2">Badzimmer</alt>
+					<alt lang="3">Bad</alt>
+					<alt lang="4">Bathroom</alt>
+					<alt lang="5">Bathroom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>84,49,98,69</coords>
+					<href>bjodlandsfolga.kjokken.01.jpg</href>
+					<alt lang="1">Kitchen</alt>
+					<alt lang="2">Küche</alt>
+					<alt lang="3">Kjøkken</alt>
+					<alt lang="4">Kitchen</alt>
+					<alt lang="5">Kitchen</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>105,47,125,60</coords>
+					<href>bjodlandsfolga.kjokken.02.jpg</href>
+					<alt lang="1">Kitchen</alt>
+					<alt lang="2">Küche</alt>
+					<alt lang="3">Kjøkken</alt>
+					<alt lang="4">Kitchen</alt>
+					<alt lang="5">Kitchen</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>78,69,93,89</coords>
+					<href>bjodlandsfolga.gang.01.jpg</href>
+					<alt lang="1">Hall</alt>
+					<alt lang="2">Hall</alt>
+					<alt lang="3">Gang</alt>
+					<alt lang="4">Hall</alt>
+					<alt lang="5">Hall</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>160,58,176,79</coords>
+					<href>bjodlandsfolga.stove.01.jpg</href>
+					<alt lang="1">Livingroom</alt>
+					<alt lang="2">Wohnzimmer</alt>
+					<alt lang="3">Stove</alt>
+					<alt lang="4">Livingroom</alt>
+					<alt lang="5">Livingroom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>189,61,207,77</coords>
+					<href>bjodlandsfolga.stove.02.jpg</href>
+					<alt lang="1">Livingroom</alt>
+					<alt lang="2">Wohnzimmer</alt>
+					<alt lang="3">Stove</alt>
+					<alt lang="4">Livingroom</alt>
+					<alt lang="5">Livingroom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>105,181,126,196</coords>
+					<href>bjodlandsfolga.soverom1.01.jpg</href>
+					<alt lang="1">Bedroom</alt>
+					<alt lang="2">Bedroom</alt>
+					<alt lang="3">Soverom</alt>
+					<alt lang="4">Soverom</alt>
+					<alt lang="5">Soverom</alt>
+				</area>
+				<area>
+					<shape>rect</shape>
+					<coords>135,200,155,215</coords>
+					<href>bjodlandsfolga.soverom2.01.jpg</href>
+					<alt lang="1">Bedroom</alt>
+					<alt lang="2">Bedroom</alt>
+					<alt lang="3">Soverom</alt>
+					<alt lang="4">Soverom</alt>
+					<alt lang="5">Soverom</alt>
+				</area>
+			</map>
+		</text>
+		<pics>
+			<header type="jpg">background.thehouses</header>
+		</pics>
+	</page>
+	<page id="11132">
+		<text>
+			<browsertitle lang="1">More pictures</browsertitle>
+			<browsertitle lang="1">Weitere Bilder</browsertitle>
+			<browsertitle lang="1">Fleire bilete</browsertitle>
+			<browsertitle lang="1">Plusieurs de photos</browsertitle>
+			<browsertitle lang="1">Más fotos</browsertitle>
+			<heading>
+				<gifname lang="1">morepictures</gifname>
+				<gifname lang="2">weiterebilder</gifname>
+				<gifname lang="3">fleirebilete</gifname>
+				<gifname lang="4">plusieursdephotos</gifname>
+				<gifname lang="5">masfotos</gifname>
+				<alt-text lang="1">
+					<pre-emphasize/>
+					<emphasize>More pictures</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Weitere Bilder</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize/>
+					<emphasize>Fleire bilete</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize/>
+					<emphasize>Plusieurs de photos</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize/>
+					<emphasize>Más fotos</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+			<gallery>
+				<picture>
+					<thumb>bjodlandsfolga.01.thumb.jpg</thumb>
+					<picture>bjodlandsfolga.01.jpg</picture>
+				</picture>
+				<picture>
+					<thumb>bjodlandsfolga.02.thumb.jpg</thumb>
+					<picture>bjodlandsfolga.02.jpg</picture>
+				</picture>
+			</gallery>
+		</text>
+		<pics>
+			<header type="jpg">background.thehouses</header>
+		</pics>
+	</page>
+	<page id="11200">
+		<text>
+			<browsertitle lang="1">Activities</browsertitle>
+			<browsertitle lang="2">Aktivitäten</browsertitle>
+			<browsertitle lang="3">Aktivitetar</browsertitle>
+			<browsertitle lang="4">Activités</browsertitle>
+			<browsertitle lang="5">Actividades</browsertitle>
+			<heading>
+				<gifname lang="1">activitiesheading</gifname>
+				<gifname lang="2">aktivitatenheading</gifname>
+				<gifname lang="3">aktivitetarheading</gifname>
+				<gifname lang="4">activitesheading</gifname>
+				<gifname lang="5">actividadesheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize>There are</pre-emphasize>
+					<emphasize>activities</emphasize>
+					<post-emphasize>for everyone</post-emphasize>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Aktivitäten</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize>På garden er det</pre-emphasize>
+					<emphasize>aktivitetar</emphasize>
+					<post-emphasize>for liten og stor</post-emphasize>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize>Les différentes</pre-emphasize>
+					<emphasize>activités</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize>El la granja hay </pre-emphasize>
+					<emphasize>actividades </emphasize>
+					<post-emphasize>para los pequeños y los grandes</post-emphasize>
+				</alt-text>
+			</heading>
+			<introduction lang="1">Independent of who you are, you'll find something to do while at Fossane. You can of course choose to relax in a couch with a good book, but you've also got the opportunity to take part in other activities on the farm. </introduction>
+			<introduction lang="2">Unabhängig, wer und wie Du bist, Du wirst immer etwas zu tun finden in Fossane. Du kannst frei wählen, ob Du gemütlich auf der Couch ein gutes Buch liest oder Du einfach an den Aktivitäten auf der Farm teilnimmst. </introduction>
+			<introduction lang="3">Same kven du er, vil du finna noko du kan trivast med medan du er på Fossane. Sjølvsagt kan du velgja å slappa av i sofaen med ei god bok, men du har og moglegheitene til å nytta andre aktivitetstilbod på garden. </introduction>
+			<introduction lang="4">Qui que vous soyez, vous serez à l'aise chez nous. Vous pouvez vous reposer, un livre à la main, mais vous avez aussi la possibilité de participer à de multiples activités sur la ferme. </introduction>
+			<introduction lang="5">Sea quién sea, Ustedes encontrarán algo que les sea placentero mientras estén en Fossane. Por supuesto puede elegir entre descansar en el sofá con un buen libro, pero también tiene la oportunidad de disfrutar otras múltiples ofertas de actividades en la granja. </introduction>
+			<maintext lang="1">
+				<para>You can help run the farm, fish in rivers, lakes or in the ocean, go swimming or go for a walk in our beautiful nature. Use the icons above to find out more. </para>
+				<para>The city centres of Stavanger and Sandnes are just one and a half hour away with a car if you want more urban activities. </para>
+			</maintext>
+			<maintext lang="2">
+				<para>Es steht Dir offen, ob Du bei der Bewirtschaftung der Farm hilfst, im Fluss, See oder im Meer angeln, schwimmen oder auf Wanderung in unserer wunderschönen Natur gehst. Klicke auf die Symbole neben dem Text und Du erhälst mehr Informationen. </para>
+				<para>Solltest Du Lust haben auf mehr städtische Aktivitäten, die Stadtzentren von Stavanger und Sandnes sind von hier aus in nur 1,5 Autostunden erreichbar. </para>
+			</maintext>
+			<maintext lang="3">
+				<para>Du kan vera med på drift av garden, fiske i elvar, vatn eller sjø, bade, eller gå på tur. Trykk på ikona ovanfor for å finna ut meir om dette. </para>
+				<para>Bysentera Stavanger og Sandnes ligg berre halvannan times reis unna dersom de ønskjer det byen kan tilby i tillegg. </para>
+			</maintext>
+			<maintext lang="4">
+				<para>Vous pouvez nous assister aux travaux de la ferme, faire la pêche dans les rivières, les lacs ou dans l'océan. Vous pouvez vous baigner ou faire des randonnées. Appuyez sur les icônes ci-dessus pour en savoir davantage. </para>
+				<para>Si vous aimez la ville, Stavanger et Sandnes sont situées à une heure et demie de route de chez nous. </para>
+			</maintext>
+			<maintext lang="5">
+				<para>Puede participar en los trabajos de la granja, pescar en el río, lagos o en el mar, nadar, o ir de paseo. Presione el ikono arriba para encontrar más información. </para>
+				<para>El centro de las ciudades de Stavanger y Sandnes quedan solo a una hora y media de viaje si desea ver lo que la ciudad ofrece. </para>
+			</maintext>
+		</text>
+		<pics>
+			<header type="jpg">background.activities</header>
+			<introduction>
+				<UR type="jpg">p-activities</UR>
+			</introduction>
+		</pics>
+	</page>
+	<page id="11210">
+		<text>
+			<browsertitle lang="1">The farm</browsertitle>
+			<browsertitle lang="2">Die Farm</browsertitle>
+			<browsertitle lang="3">Garden</browsertitle>
+			<browsertitle lang="4">Ferme</browsertitle>
+			<browsertitle lang="5">La granja</browsertitle>
+			<heading>
+				<gifname lang="1">thefarmheading</gifname>
+				<gifname lang="2">diefarmheading</gifname>
+				<gifname lang="3">gardenheading</gifname>
+				<gifname lang="4">fermeheading</gifname>
+				<gifname lang="5">lagranjaheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize>Participate in the daily</pre-emphasize>
+					<emphasize>work at the farm</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Mitarbeit auf unserem Bauernhof</emphasize>
+					<post-emphasize>ist immer sehr willkommen!</post-emphasize>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize>Ver gjerne med på</pre-emphasize>
+					<emphasize>gardsarbeidet</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize>Faire partie intégrante de </pre-emphasize>
+					<emphasize>la gestion journalière de la ferme</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize>Participe en</pre-emphasize>
+					<emphasize>el trabajo diario en la granja</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+			<introduction lang="1">You're welcome to help run the farm! </introduction>
+			<introduction lang="2">Unabhängig, wer und wie Du bist, Du wirst immer etwas zu tun finden in Fossane. Du kannst frei wählen, ob Du gemütlich auf der Couch ein gutes Buch liest oder Du einfach an den Aktivitäten auf der Farm teilnimmst. </introduction>
+			<introduction lang="3">Velkommen til gards, og bli gjerne med på gardsdrifta! </introduction>
+			<introduction lang="4">Bienvenus à la ferme ; si vous voulez, vous pouvez nous aider avec les travaux de celle-ci. </introduction>
+			<introduction lang="5">Bienvenidos a la granja, y participe en el trabajo en la granja. </introduction>
+			<maintext lang="1">
+				<para>You can participate in the daily work at the farm, or just observe us. At Fossane we've got sheep, geese, ducks and a friendly cat. </para>
+				<para>Between June and September/October most of the sheep are in the mountains, but some are usually still on the farm. Several guests have had a great experience when helping to gather the sheep back from the mountains in autumn. Around April or May the sheep give birth, so this is also a very exciting time. </para>
+				<para>Feel free to bring your own pet, from abroad or from other parts of Norway, but please make sure you're following the correct legal guidelines. </para>
+			</maintext>
+			<maintext lang="2">
+				<para>Du kannst an der täglichen Arbeit am Bauernhof teilnehmen oder uns einfach dabei zusehen.Wir haben viele Schafe, Gänse, Enten und eine süße, niedliche Katze in Fossane. </para>
+				<para>Zwischen Juni und September/Oktober sind die meisten Schafe in den Bergen, aber einige wenige verbleiben gewöhnlich immer auf dem Bauernhof. Manche Gäste sind begeistert, wenn sie dabei sein und helfen dürfen, im Herbst die Schafe von den Bergen zu holen. Auch die Zeit im April und Mai, wenn die Lämmer geboren werden, ist immer sehr aufregend. </para>
+				<para>Das Mitbringen von eigenen Haustieren, egal ob aus dem Ausland oder aus anderen Teilen Norwegens, ist erlaubt. Bitte beachte aber die Einfuhrbestimmungen für Haustiere! </para>
+			</maintext>
+			<maintext lang="3">
+				<para>Om de eller nokon av dykk vel det, kan de gjerne vera med oss i den daglege gardsdrifta. På garden finn du sauer, gjess, ender og ein snill katt. </para>
+				<para>Frå juni til september/oktober er mange av sauene på heiabeite, men nokon er som regel heime på garden og. Sauesankinga på hausten har gitt fleire turistar ei oppleving for livet. Lemminga er ei spennande hending som vanlegvis føregår rundt april/mai. </para>
+				<para>De kan gjerne ta med dykkar eige kjæledyr frå utland eller innland, så lenge ein følger normale retningslinjer. </para>
+			</maintext>
+			<maintext lang="4">
+				<para>Peut-être voulez-vous nous assister dans nos travaux sur la ferme. Vous y trouvez des moutons, des oies, des canards, et un gentil chat. </para>
+				<para>De Juin jusqu'à Septembre / Octobre, la majorité des moutons broutent dans les prés, mais quelques uns restent toujours à la ferme. La rentrée des moutons à l'automne constitue une attraction pour le touriste. La naissance des agneaux est aussi un événement intéressant ; normalement, elle a lieu en Avril / Mai. </para>
+				<para>Vos propres animaux domestiques sont les bienvenus tant que vous vous conformiez aux règles en vigueur. </para>
+			</maintext>
+			<maintext lang="5">
+				<para>Si alguien de Ustedes lo desean, pueden participar con nosotros en los trabajos diarios de la granja. En la granja hay ovejas, ganzos, patos un un gato cariñoso. </para>
+				<para>Desde Junio a Septiembre/Octubre hay muchas ovejas en los pastorales de la montaña, pero algunas como regla están en la granja. La recogida de ovejas en el Otoño ha brindado a muchos turistas una experiencia inolvidable. El nacimiento de los corderitos es un evento interesante y ocurre generalmente a comienzos de Abril/Mayo. </para>
+				<para>Si desea puede traer sus animales domésticos del extranjero o dentro del país son bienvenidos, mientras siga las regulaciones en vigor. </para>
+			</maintext>
+		</text>
+		<pics>
+			<header type="jpg">background.agriculture</header>
+			<introduction>
+				<UR type="jpg">p-garden</UR>
+			</introduction>
+		</pics>
+	</page>
+	<page id="11220">
+		<text>
+			<browsertitle lang="1">Fishing</browsertitle>
+			<browsertitle lang="2">Angeln</browsertitle>
+			<browsertitle lang="3">Fiske</browsertitle>
+			<browsertitle lang="4">La pêche</browsertitle>
+			<browsertitle lang="5">Pesca</browsertitle>
+			<heading>
+				<gifname lang="1">fishingheading</gifname>
+				<gifname lang="2">angelnheading</gifname>
+				<gifname lang="3">fiskeheading</gifname>
+				<gifname lang="4">pecheheading</gifname>
+				<gifname lang="5">pescaheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize>Go</pre-emphasize>
+					<emphasize>fishing</emphasize>
+					<post-emphasize>in lakes, rivers, and fjords</post-emphasize>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Angeln</emphasize>
+					<post-emphasize>in Seen, Flüssen und Fjorden</post-emphasize>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize>Her kan ein</pre-emphasize>
+					<emphasize>fiske</emphasize>
+					<post-emphasize>i vatn, elv og fjord</post-emphasize>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize>Vous pouvez faires de</pre-emphasize>
+					<emphasize>la pêche</emphasize>
+					<post-emphasize>dans les lacs, les rivières, les ruisseaux et les fjords</post-emphasize>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize>Aquí puede Usted</pre-emphasize>
+					<emphasize>pescar</emphasize>
+					<post-emphasize>en los lagos, ríos o fiordos</post-emphasize>
+				</alt-text>
+			</heading>
+			<introduction lang="1">The name of the farm, Fossane, is Norwegian for "The Waterfalls", and indeed, we do have waterfalls on the farm. These connect numerous lakes of variable sizes, from small ponds in the river to lakes that are a couple of kilometres long.  </introduction>
+			<introduction lang="2">Der Name unseres Bauernhofs, Fossane, ist die norwegische Bedeutung für "Die Wasserfälle", und tatsächlich haben wir Wasserfälle auf unserer Farm. Diese verbinden zahlreiche Seen von unterschiedlicher Größe, von kleinen Teichen im Fluß bis zu größeren Seen, die einige Kilometer lang sein können. </introduction>
+			<introduction lang="3">Som namnet Fossane seier, er det mykje fossar, elver og vatn på garden vår. Elva som renn tett ved huset vårt bind saman mange vatn i alle storleikar, frå dei minste hølane til vatn som er eit par kilometer lange. </introduction>
+			<introduction lang="4">Le mot " Fossane " signifie " cascades ", et comme ce nom l'indique, il y a beaucoup de cascades, chutes, rivières, ruisseaux et lacs sur notre ferme. La rivière qui coule juste à côté de notre ferme , relie plusieurs lacs de grandeurs fort variées. </introduction>
+			<introduction lang="5">Como el nombre Fossane dice ”cascadas”, hay muchas cascadas, ríos y lagos en nuestra granja. El río corre justo al lado de nuestra granja y une muchos lagos y lagunas de todos los tamanõs, desde la más pequeña hasta el lago más grande de un par de kilómetros de largo. </introduction>
+			<maintext lang="1">
+				<para>In all these lakes, you are sure to find trout, from the smallest of just a hundred grams up to sizes of half a kilo. As long as you are a guest on the farm, fishing on our property is free. We also have boats and a canoe on the closest lake (300 m from the houses), to be used free of charge. </para>
+				<para>Fishing for salmon is also highly possible. A short walk from the farm is a rich salmon river, with a yearly "harvest" of about 700 kg of salmon. For around 100 kr a day, you can go fishing here, and with a little bit of luck, you will have a 20 kg salmon in your luggage on your way home. You can also go fishing in close by famous rivers such as Årdalselva and Suldalslågen. </para>
+				<para>We also live only 4 km from a deep fjord, Jøsenfjorden. If you don't have any luck there, feel free to go to Hjelmeland, the city centre, 20 km from Fossane, where you can try fishing from a boat. </para>
+			</maintext>
+			<maintext lang="2">
+				<para>In all diesen Seen gibt es Forellen, die Kleinsten mit gerade hundert Gramm und die Größten bis zu einem Gewicht von einem halben Kilo. Solange Du Gast auf dem Bauernhof bist, ist das Angeln auf den Seen kostenlos. Wir haben auch Boote und ein Kanu auf dem nächst gelegenden See (300 m von den Ferienhäusern entfernt), die gratis benutzt werden können. </para>
+				<para>Lachsangeln ist auch möglich. Einen kurzen Spaziergang vom Bauernhof entfernt gibt es einen reichen Lachsfluss, mit einer jährlichen "Ernte" von etwa 700 kg Lachs. Für etwa 100 kr pro Tag kann man hier nach Lachsen angeln und mit etwas Glück, kann man mit einem prachtvollen Lachs von 20 kg im Gepäck den Heimweg antreten. Sie können auch in den bekannten Flüssen in der Nähe, wie z.B. den Årdalselva und den Suldalslågen, angeln gehen. </para>
+				<para>4 km von unserem Bauernhof entfernt befindet sich ein Fjord, der Jøsenfjord. Wenn Du dort beim Angeln kein Glück hast, kannst Du es auch mit unserem Boot im 20 km entfernten Hjelmeland probieren. </para>
+			</maintext>
+			<maintext lang="3">
+				<para>Du kan vera sikker på å finna aure i alle desse vatna, frå dei minste på rundt hundre gram og opp til eit kvart kilo. I tillegg er det mogleg å få både røyr og ål. Så lenge du er gjest på garden, kan du fiska gratis på vår eigedom. Me har og ein båt og ein kano på det næraste vatnet (300 m frå garden) som kan brukast gratis. </para>
+				<para>Det er og fullt mogleg å fiska etter laks. Ein kort gåtur frå garden er det ei rik lakseelv med ein årleg "haust" på over 1000 kilo laks. Ein finn og sjøaure i elva. For omlag 100 kr dagen kan du fiska der, og med litt flaks, kjem du heim med ein laks på fleire kilo i bagasjen. I nærleiken finn ein og kjende lakseelver som Årdalselva (30 minutt køyring) og Suldalslågen (1 time køyring). </para>
+				<para>Me bur berre 4 km frå ein djup fjord, Jøsenfjorden, kor du kan fiska sjøfisk. Viss du ikkje har flaks der, kan du og reisa til munninga av fjorden i kommunesenteret Hjelmeland. Me har båt som kan leigast begge stader. </para>
+			</maintext>
+			<maintext lang="4">
+				<para>Dans ces lacs, on y trouve sans aucun doute des truites faisant jusqu'à 250 grammes. De plus, on peut y attraper aussi bien de l'omble que de l'anguille. Pendant la durée de votre séjour sur nôtre propriété, la pêche est gratuite. Afin de naviguer sur le lac le plus près de la ferme, nous disposons d'un bateau ainsi que d'un canoë que nous vous prêtons gratuitement. </para>
+				<para>La région est connue pour la pêche au saumon. A quelques minutes de marche de la ferme, il y a une rivière d'où l'on tire mille kilos de saumon annuellement. Moyennant la somme cent couronnes environ, vous pouvez y pêcher ; et avec un peu de chance vous retournez chez vous avec un saumon de plusieurs kilos. Il y a également d'autres rivières connues pour la pêche au saumon à 30 ou 60 minutes de route de la ferme. </para>
+				<para>Nous habitons à quatre kilomètres d'un fjord très profond (Jøsenfjorden) où vous pouvez pêcher des poissons de mer. Si vous n'y avez pas de la chance, vous pouvez aller jusqu'à l'embouchure du fjord dans le centre de la commune de Hjelmeland. Nous avons un bateau que vous pouvez louer à ces deux endroits. </para>
+			</maintext>
+			<maintext lang="5">
+				<para>Les aseguramos que enontrarán truchas en estos lagos, desde las más pequeñas de unos cien gramós hasta de un cuarto de kilo. Además es posible encontrar anguilas. Mientras sea nuestro invitado en la granja, puede pescar gratuitamente en nuestra propiedad. Nosotros tenemos un barco y una canoa en la laguna más cercana (300 m de la granja) los cuales lo pueden utilizar gratuitamente. </para>
+				<para>Es muy posible pescar salmón. A unos minutos desde la granja hay un río muy rico en salmón con una capacidad anual de ”cosecha” de más de 1000 kilos de salmón. Se encuentra trucha marina en el río. Por cerca de 100 coronas Noruegas al día puede pescar allí, y con un poco de suerte, regresa a casa con un salmón de varios kilos en la maleta. En el vecindario encuentra el bien conocido río de salmón Årdalselva (30 minutos en coche) y Suldalslågen ( 1 hora en coche). </para>
+				<para>Nosotros vivimos a solo 4 km de un fiordo profundo,(Jøsenfjorden), donde puede pescar peces de mar. Si no tiene suerte allí, puede viajar a la boca del fiordo en el centro comunal de Hjelmeland. Nosotros tenemos botes los cuales se puede alquilar en los dos lugares. </para>
+			</maintext>
+		</text>
+		<pics>
+			<header type="jpg">background.fishing</header>
+			<introduction>
+				<UR type="jpg">p-fiske</UR>
+			</introduction>
+		</pics>
+	</page>
+	<page id="11230">
+		<text>
+			<browsertitle lang="1">Swimming</browsertitle>
+			<browsertitle lang="2">Baden</browsertitle>
+			<browsertitle lang="3">Badeplassar</browsertitle>
+			<browsertitle lang="4">Baigner</browsertitle>
+			<browsertitle lang="5">Bañarse</browsertitle>
+			<heading>
+				<gifname lang="1">swimmingheading</gifname>
+				<gifname lang="2">badenheading</gifname>
+				<gifname lang="3">badeplassarheading</gifname>
+				<gifname lang="4">baignerheading</gifname>
+				<gifname lang="5">banarseheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize>Go</pre-emphasize>
+					<emphasize>swimming</emphasize>
+					<post-emphasize>in lakes, rivers, and fjords</post-emphasize>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Baden</emphasize>
+					<post-emphasize>in Seen, Flüssen und Fjorden</post-emphasize>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize>Her er det</pre-emphasize>
+					<emphasize>badeplassar </emphasize>
+					<post-emphasize>i vatn, elv og fjord</post-emphasize>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize>Vous pouvez vous</pre-emphasize>
+					<emphasize>baigner</emphasize>
+					<post-emphasize>dans les lacs, les rivières et les fjords</post-emphasize>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize>Aquí hay lugares para</pre-emphasize>
+					<emphasize>bãnarse</emphasize>
+					<post-emphasize>en los lagos, ríos y fiordos</post-emphasize>
+				</alt-text>
+			</heading>
+			<introduction lang="1">In summer time, you can go swimming in the rivers and lakes around the farm. You don't need artificially built water slides and massage showers, it is all provided by the nature. </introduction>
+			<introduction lang="2">In der Sommerzeit kann man in den Flüssen und Seen in und um den Bauernhof herum schwimmen gehen. Man braucht keine künstlich gebauten Wasserrutschen oder Massage-Duschen, das wird hier alles von der Natur angeboten! </introduction>
+			<introduction lang="3">Om sommaren kan du sømja i elver og vatn tett ved garden. Ein treng ikkje kunstig bygde vannsklier og massasjedusjar her, alt har naturen laga sjølv. </introduction>
+			<introduction lang="4">L'été, vous pouvez vous baigner dans les rivières et les lacs tout près de la ferme. Ici, on n'a pas besoin de toboggans aquatiques artificiellement construits ; la nature les a déjà créés. </introduction>
+			<introduction lang="5">En el verano pude bañarse en los ríos y lagos al lado de la granja. Uno no necesita toboganes acuáticos artificialmente construidos o duchas de masajes, aquí todo lo ha hecho la naturaleza. </introduction>
+			<maintext lang="1">
+				<para>Slide on a thick layer of moss in the river, or feel the force of 20 litres of water per second on your shoulders. The water that supplies a special pond, has run in a very shallow stream for kilometres, and thus been heated by the sun, reaching temperatures of up to 30°C on a sunny day. The lakes are also suitable for a longer swim. People of all ages, all the way down to babies, can find something that suits their skill level. </para>
+				<para>If the weather is bad or if you are here in a cold season, you can still visit Havanna swimming and leisure complex, one and a half hour away from the farm, where you can do all of this indoors. </para>
+				<para>If you prefer ocean waters, why not visit the fjord beach only 4 km from the farm, or the nice beach area at Hjelmeland. The beaches close to Stavanger are also well known internationally for their surf. Bring your wet suit and surf board! </para>
+			</maintext>
+			<maintext lang="2">
+				<para>Rutsche auf einer dicken Moosschicht im Fluß oder spüre das Gefühl von 20 Litern Wasser pro Sekunde auf Deinen Schultern. Der Fluss ist über mehrere Kilometer nur ein sehr seichter Strom, so dass er auf die Art von der Sonne erhitzt wird und so an manchen sonnigen Tagen Temperaturen von bis zu 30 ° C erreicht . Ein Teil des Flusses geht über in einen ruhigen Teich. Die Seen sind auch für ein längeres Baden geeignet. Jede Altersgruppe bis hin zu Babys findet hier einen Platz zum Baden und Baden. </para>
+				<para>Falls das Wetter schlecht ist oder wenn Du während einer kalten Jahreszeit hier bist, kannst Du auch den 1,5 Stunden entfernten Havanna Schwimm- und Freizeitkomplex (Havanna badeland) in Sandnes besuchen. </para>
+				<para>Wenn Du lieber Meereswasser bevorzugst, warum nicht den 4 km entfernten Fjordstrand oder den Strand in Hjelmeland benutzen?! Die Strände nahe bei Stavanger sind international bekannt für ihre Brandung. Schwimmsachen und Surfbrett mitbringen! </para>
+			</maintext>
+			<maintext lang="3">
+				<para>Skli på eit tjukt lag mose i elva eller kjenn krafta av 20 liter vatn i sekundet på skuldrene dine. Ein spesiell dam har vatn som held opp til 30°C på ein solrik dag, fordi vatnet som kjem til dammen renn rett på berget i fleire kilometer. Vatna er og greie for ein lenger sømjetur. Folk i alle aldrar, heilt ned til spedbarnsalderen, kan finna noko som passar. </para>
+				<para>Trass alt, er ikkje været alltid like godt her, sjølv om sommaren. Då er det ikkje lenger enn halvannan times reis til Havanna badeland i Sandnes, der du finn alt det same innandørs. </para>
+				<para>Føretrekk du saltvatn, kan du jo dra ned til stranda ved fjorden, berre 4 km frå garden, eller det fine strandområdet på Hjelmeland. Strendene i nærleiken av Stavanger er også internasjonalt kjende for dei fine bølgene sine. Ta med deg våtdrakt og surfebrett! </para>
+			</maintext>
+			<maintext lang="4">
+				<para>Laissez-vous glisser sur de la mousse dans la rivière ou sentez la force de vingt litres d'eau la minute sur vos épaules. Par les jours ensoleillés, la température de l'eau dans l'un des petits étangs peut atteindre 30 C. Pour faire de la natation, les lacs sont appropriés ; nous avons de quoi satisfaire tout le monde, même les tout petits.</para>
+				<para>Toutefois, on peut constater que nous ne sommes pas toujours gâtés par le temps en été. S'il fait mauvais, vous pouvez aller à Havanna, la station balnéaire de Sandnes qui se trouve à une heure et demie de route de chez nous et où vous pouvez faire les mêmes activités en salle. </para>
+				<para>Si vous préférez l'eau salée, vous pouvez vous rendre à la plage voisine du fjord qui est situé à quatre kilomètres de la ferme. Les belles vagues des plages des environs de Stavanger sont mondialement connues. Apportez votre tenue de plongée et votre planche à voile. </para>
+			</maintext>
+			<maintext lang="5">
+				<para>Delizarse sobre una capa gruesa de musgos en el río o sentir la fuerza de 20 litros por segundo sobre sus hombros. Una represa especial contiene agua la cual se mantiene hasta 30°C en un día soleado, porque el agua que fluye a la represa drena la montaña por varios kilómetros. El agua es apropiada para una larga natación. Personas de todas las edades y los niños, encontrarán algo apropiado. </para>
+				<para>A pesar de todo, el tiempo no es siempre bueno aquí, incluso en el verano. En ese caso no es lejos conducir una hora y media a Havanna en Sandnes, allí encuentra lo mismo pero encerrado. </para>
+				<para>Si prefiere agua salada, puede ir a la playa del fiordo, situado a solo 4 km desde la granja o hacia las bellas playas en Hjelmeland. Las playas cerca de Stavanger son conocidas mundialmente por sus olas. Traiga consigo un vestido impermeable y una tabla de surf! </para>
+			</maintext>
+		</text>
+		<pics>
+			<header type="jpg">background.swimming</header>
+			<introduction>
+				<UR type="jpg">p-swimming</UR>
+			</introduction>
+		</pics>
+	</page>
+	<page id="11240">
+		<text>
+			<browsertitle lang="1">Hiking</browsertitle>
+			<browsertitle lang="2">Wandern</browsertitle>
+			<browsertitle lang="3">Turgåing</browsertitle>
+			<browsertitle lang="4">Randonées</browsertitle>
+			<browsertitle lang="5">Paseo</browsertitle>
+			<heading>
+				<gifname lang="1">hikingheading</gifname>
+				<gifname lang="2">wandernheading</gifname>
+				<gifname lang="3">turgaingheading</gifname>
+				<gifname lang="4">randoneesheading</gifname>
+				<gifname lang="5">paseoheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize>The nature invites to</pre-emphasize>
+					<emphasize>hiking</emphasize>
+					<post-emphasize>for everyone</post-emphasize>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize>Die Natur lädt zum</pre-emphasize>
+					<emphasize>Wandern</emphasize>
+					<post-emphasize>ein</post-emphasize>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize>Naturen rundt oss er eigna til</pre-emphasize>
+					<emphasize>turgåing</emphasize>
+					<post-emphasize>for alle</post-emphasize>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize/>
+					<emphasize>Des randonées</emphasize>
+					<post-emphasize>dans la nature pour tout le monde</post-emphasize>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize>La naturaleza en nuestro alrededor es muy buena para</pre-emphasize>
+					<emphasize>caminar</emphasize>
+					<post-emphasize>para todos</post-emphasize>
+				</alt-text>
+			</heading>
+			<introduction lang="1">The nature provides a beautiful and varied landscape in which it is inspiring to walk. </introduction>
+			<introduction lang="2">Die Natur bietet eine schöne und abwechslungsreiche Landschaft. Es ist sehr inspirierend, hier zu wandern. </introduction>
+			<introduction lang="3">Naturen gir oss eit vakkert og variert landskap det flott å gå på tur i. </introduction>
+			<introduction lang="4">De beaux paysages riches et diversifiés, propices pour les randonnées. </introduction>
+			<introduction lang="5">La naturaleza nos brinda un paisaje variado y precioso donde es agradable ir de paseo. </introduction>
+			<maintext lang="1">
+				<para>The mountains dominate the horizon, but this does not necessarily mean that all walks are strenuous. You can choose to walk along the gravel road or an easy path in the forest. Do you still want a different challenge, the mountains are free for anyone to explore. </para>
+				<para>Feel free to ask your landlady or landlord about where to go. They both have years of experience in the mountains, and know exactly what might suit your needs. They can also provide maps. </para>
+			</maintext>
+			<maintext lang="2">
+				<para>Die Berge beherrschen den Horizont, aber das bedeutet nicht unbedingt, dass alle Spaziergänge stressig und anstrengend sind. Man kann sowahl entlang der Kiesstraße oder als auch auf einen leichten Pfad im Wald wandern. Brauchst Du eine andere Herausforderung, die Berge warten darauf, dass man sie erkundet! </para>
+				<para>Für weitere Informationen zu Wanderwegen und -gegenden frage Deine Wirtin oder deinen Wirt. Sie haben sowohl jahrelange Erfahrungen mit den Bergen als auch ist es ihnen möglich, genau einschätzen, was zu Dir passen könnte und was zumutbar wäre. Sie können einem auch mit Landkarten weiterhelfen. </para>
+			</maintext>
+			<maintext lang="3">
+				<para>Fjella dominerer horisonten, men det betyr ikkje nødvendigvis at alle turane er slitsomme. Ein kan velgja å følgja grusvegen eller ein kort sti i skogen. Vil du likevel ha ei utfordring, er fjella der for alle, klar til å utforskast. </para>
+				<para>Spør gjerne oss på garden om turforslag. Me har mange års erfaring i fjella, og veit akkurat kva som kan passa for deg. Me kan også låna ut kart. </para>
+			</maintext>
+			<maintext lang="4">
+				<para>Les montagnes nous dominent, mais les randonnées ne sont pas toutes trop fatigantes. Il y a des chemins faciles à suivre, mais si toutefois vous aimez les défis, la découverte des montagnes est à portée de main.</para>
+				<para>En nous basant sur une longue expérience montagnarde, nous saurons vous conseiller, en vous indiquant, les circuits qui répondent à vos aptitudes physiques. </para>
+			</maintext>
+			<maintext lang="5">
+				<para>Las montañas dominan el horizonte, pero eso no significa necesariamente que todos los paseos son pesados. Uno puede elegir y seguir los caminos sin pavimentar o los caminos cortos en los bosques. Si desea de todas maneras un reto, la montaña es para todos, y lista para ser explorada. </para>
+				<para>Pregúntenos en la granja acerca de sugerencias para sus paseos. Nosotros tenemos años de experiencia en la montaña, y sabemos justamente lo que Usted necesita. Nosotros prestamos mapas. </para>
+			</maintext>
+		</text>
+		<pics>
+			<header type="jpg">background.hiking</header>
+			<introduction>
+				<UR type="jpg">p-hiking</UR>
+			</introduction>
+		</pics>
+	</page>
+	<page id="11300">
+		<text>
+			<browsertitle lang="1">How to find us</browsertitle>
+			<browsertitle lang="2">Her finn de oss</browsertitle>
+			<heading>			
+				<alt-text lang="1">
+					<pre-emphasize/>
+					<emphasize>How to find us</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Her finn de oss</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+		</text>
+	</page>
+	<page id="11400">
+		<text>
+			<browsertitle lang="1">Booking</browsertitle>
+			<browsertitle lang="2">Buchung</browsertitle>
+			<browsertitle lang="3">Reservering</browsertitle>
+			<browsertitle lang="4">Réservation</browsertitle>
+			<browsertitle lang="5">Reserva</browsertitle>
+			<heading>
+				<gifname lang="1">pricesheading</gifname>
+				<gifname lang="2">preiseheading</gifname>
+				<gifname lang="3">prisarheading</gifname>
+				<gifname lang="4">lesprixheading</gifname>
+				<gifname lang="5">preciosheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize/>
+					<emphasize>Booking</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Buchung</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize/>
+					<emphasize>Reservering</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize/>
+					<emphasize>Réservation</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize/>
+					<emphasize>Reservas</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+			<prices>
+				<headings>
+					<productcolumn>
+						<description lang="1">Period</description>
+						<description lang="2">Zeitraum</description>
+						<description lang="3">Periode</description>
+						<description lang="4">Période</description>
+						<description lang="5">Periodo</description>
+					</productcolumn>
+					<pricecolumn>
+						<description lang="1">Price per week per house</description>
+						<description lang="2">Preis pro Woche pro Haus</description>
+						<description lang="3">Pris/veke/hus</description>
+						<description lang="4">Prix journalier</description>
+						<description lang="5">Precio/semana/casa</description>
+					</pricecolumn>
+					<pricecolumn>
+						<description lang="1">Price per day per house</description>
+						<description lang="2">Preis pro Tag pro Haus</description>
+						<description lang="3">Pris/dag/hus</description>
+						<description lang="4">Prix hebdomadaire</description>
+						<description lang="5">Precio/dia/casa</description>
+					</pricecolumn>
+					<priceformat>
+						<before lang="1">NOK </before>
+						<before lang="2">NOK </before>
+						<before lang="3">NOK </before>
+						<before lang="4">NOK </before>
+						<before lang="5">NOK </before>
+						<after lang="1">,-</after>
+						<after lang="2">,-</after>
+						<after lang="3">,-</after>
+						<after lang="4">,-</after>
+						<after lang="5">,-</after>
+					</priceformat>
+				</headings>
+				<product>
+					<description>
+						<descriptiontext lang="1">01.01.2001 - 21.06.2003 (except Easter)</descriptiontext>
+						<descriptiontext lang="2">01.01.2001 - 21.06.2003 (außer Ostern)</descriptiontext>
+						<descriptiontext lang="3">01.01.2001 - 21.06.2003 (ikkje påske) </descriptiontext>
+						<descriptiontext lang="4">01.01.2001 - 21.06.2003 (Pâques excepté) </descriptiontext>
+						<descriptiontext lang="5">01.01.2001 - 21.06.2003 (no en Semana santa) </descriptiontext>
+					</description>
+					<price>3000</price>
+					<price>500</price>
+				</product>
+				<product>
+					<description>
+						<descriptiontext lang="1">23.06.2003 - 18.08.2003 + Easter</descriptiontext>
+						<descriptiontext lang="2">23.6.2003 - 18.8.2003 (inkl. Ostern)</descriptiontext>
+						<descriptiontext lang="3">23.06.2003 - 18.08.2003 + påske</descriptiontext>
+						<descriptiontext lang="4">23.06.2003 - 18.08.2003 et Pâques</descriptiontext>
+						<descriptiontext lang="5">23.06.2003 - 18.08.2003 y Semana santa</descriptiontext>
+					</description>
+					<price>3900</price>
+					<price>600</price>
+				</product>
+				<product>
+					<description>
+						<descriptiontext lang="1">18.08.2003 - 31.12.2003</descriptiontext>
+						<descriptiontext lang="2">18.08.2003 - 31.12.2003</descriptiontext>
+						<descriptiontext lang="3">18.08.2003 - 31.12.2003</descriptiontext>
+						<descriptiontext lang="4">18.08.2003 - 31.12.2003</descriptiontext>
+						<descriptiontext lang="5">18.08.2003 - 31.12.2003</descriptiontext>
+					</description>
+					<price>3000</price>
+					<price>500</price>
+				</product>
+			</prices>
+			<bulletlist>
+				<listitem>
+					<itemtext lang="1">Prices for up to 6 people. Additional NOK 50,- per person per day per house if more.</itemtext>
+					<itemtext lang="2">Preise für bis zu 6 Personen. Bei mehr als 6 Personen: NOK 50,- pro Person pro Tag pro Haus.</itemtext>
+					<itemtext lang="3">Prisar gjeld for inntil 6 personar. Det kostar NOK 50,- per person/dag/hus ekstra for fleire.</itemtext>
+					<itemtext lang="4">Les prix incluent jusqu'à six personnes. Un supplément de NOK 50 est demandé par personne supplémentaire.</itemtext>
+					<itemtext lang="5">Precios válidos hasta por 6 personas. Cuesta NOK 50,- extra por persona/día/casa. </itemtext>
+				</listitem>
+				<listitem>
+					<itemtext lang="1">Bed linen NOK 50,- per person. </itemtext>
+					<itemtext lang="2">Bettbezüge NOK 50,- pro Person </itemtext>
+					<itemtext lang="3">Sengetøy NOK 50,- per person</itemtext>
+					<itemtext lang="4">Les draps : un supplément de NOK 50, par personne.</itemtext>
+					<itemtext lang="5">Ropa de cama NOK 50,- por persona.</itemtext>
+				</listitem>
+				<listitem>
+					<itemtext lang="1">We can do the final cleaning of the house for NOK 500,- (or you can do it yourself). </itemtext>
+					<itemtext lang="2">Endreinigung kostet NOK 500,- extra (Endreinigung kann aber auch selber vorgenommen werden) </itemtext>
+					<itemtext lang="3">Sluttreingjering kan leigast for NOK 500,- per hus. </itemtext>
+					<itemtext lang="4">Moyennant le versement de NOK 500, nous nettoyons la maison lors de votre départ, ou le cas échéant vous le faites vous-mêmes. </itemtext>
+					<itemtext lang="5">Limpieza genral final se puede alquilar por NOK 500,- por casa, si no desea hacerlo Usted mismo.</itemtext>
+				</listitem>
+				<listitem>
+					<itemtext lang="1">Green energy from our own hydroelectric powerplant, clear and clean water from our own well, and wood for heating from our own forests is included. </itemtext>
+					<itemtext lang="2">"Grüne Energie" von unserem eigenem Wasserkraftwerk und Feuerholz aus unserem eigenem Wald sind im Preis enthalten.</itemtext>
+					<itemtext lang="3">Rein energi frå eige vasskraftverk, reint og klart vatn frå eiga kjelde og ved frå eigen skog inkludert i prisen.</itemtext>
+					<itemtext lang="4">Moyennant le versement de NOK 500, nous nettoyons la maison lors de votre départ, ou le cas échéant vous le faites vous-mêmes. </itemtext>
+					<itemtext lang="5">Energía ecológica de nuestra propia centra hidroeléctrica y leña de nuestro bosque están inlcuidos en el precio.</itemtext>
+				</listitem>
+			</bulletlist>
+			<contactdetails>true</contactdetails>
+		</text>
+		<pics>
+			<header type="jpg">background.holidays</header>
+		</pics>
+	</page>
+	<page id="12000">
+		<text>
+			<browsertitle lang="1">Fossane Agriculture</browsertitle>
+			<browsertitle lang="2">Fossane Landwirtschaft</browsertitle>
+			<browsertitle lang="3">Fossane Landbruk</browsertitle>
+			<browsertitle lang="4">Fossane Agriculture</browsertitle>
+			<browsertitle lang="5">Fossane Agricultura</browsertitle>
+			<heading>
+				<gifname lang="1">welcomeheading</gifname>
+				<gifname lang="2">willkommenheading</gifname>
+				<gifname lang="3">velkommenheading</gifname>
+				<gifname lang="4">bienvenusheading</gifname>
+				<gifname lang="5">bienvenidosheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize>Welcome to</pre-emphasize>
+					<emphasize>Fossane</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize>Willkommen zu</pre-emphasize>
+					<emphasize>Fossane</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize>Velkommen til garden</pre-emphasize>
+					<emphasize>Fossane</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize>Bienvenus à la ferme de</pre-emphasize>
+					<emphasize>Fossane</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize>Bienvenidos a la granja</pre-emphasize>
+					<emphasize>Fossane</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+			<introduction lang="1">The farm Fossane is legally identified as gardsnummer 39, bruksnummer 6, 9 and 12. The farm is run by Kari og Sven Egil Sørensen. </introduction>
+			<introduction lang="2">Die Farm Fossane ist behördlich eingetragen als gardsnummer 39, bruksnummer 6, 9 und 12. Die Farm wird von Kari und Sven Egil Sørensen betrieben. </introduction>
+			<introduction lang="3">Garden Fossane har gardsnummer 39, bruksnummer 6, 9 og 12. Han vert driven av Kari og Sven Egil Sørensen. </introduction>
+			<introduction lang="4">La ferme Fossane, est gérée par Kari et Sven Egil Sørensen </introduction>
+			<introduction lang="5">La granja Fossane tiene número de granja 39, número de uso 6, 9 y 12. Ha sido operada por Kari y Sven Egil Sørensen. </introduction>
+			<maintext lang="1">
+				<para>Fossane has about 20 acres of fields with fodder, as well as 10 acres of grazing fields. We also have large common areas together with other farmers in the mountains of Vormedalen. Fossane has appr. 120 acres of forest. There is about 70-80 sheep on the farm, as well as some geese. </para>
+				<para>Milk production was a major income source until the spring of 2000, when there was a voluntary dairy buy-out in Norway. The holiday houses has been a new niche throughout the 90s, and a brand, new hydroelectric powerplant as of January 2001 adds to the income as well. See also the Fossane Energy homepage. </para>
+			</maintext>
+			<maintext lang="2">
+				<para>Fossane hat ca. 80940 qm Felder für Futteranbau sowie 40470 qm als Weidefläche. Wir haben außerdem mit anderen Bauern gemeinsame Gebiete in den Bergen von Vormedalen. Fossane hat ca. 485640 qm Wald. Auf der Farm leben ca. 70 - 80 Schafe und einige Ziegen. </para>
+				<para>Milchproduktion war bis zum Frühjahr 2000 unsere Haupteinnahmequelle, bis wir sie innerhalb von Norwegen verkauften. In den 90er Jahren erschloss sich durch die Vermietung von Ferienhäusern eine neue Einkommensquelle sowie durch den Bau des neuen Wasserkraftwerkes. Siehe dazu auch unsere Fossane Energie Homepage. </para>
+			</maintext>
+			<maintext lang="3">
+				<para>Her er 80 da dyrka mark og ca. 40 da beiteareal i tillegg til fellesareal i Vormedalsheiane. Skogsarealet til Fossane er ca. 500 da. Dyra på garden er 70-80 vinterfora sauer, i tillegg til nokre gjess. </para>
+				<para>Inntil våren 2000 dreiv me med melkeproduksjon, men solgte då melkekvoten. Eit nytt satsingsområde har i staden vore gardsturismen gjennom heile 90-talet, i tillegg til det heilt nye kraftverket som starta januar 2001. Sjå heimesidene til Fossane Energi. </para>
+			</maintext>
+			<maintext lang="4">
+				<para>Fossane possède 20 ares environ de champs. De plus, nous partageons avec d'autres fermiers beaucoup de terre dans la montagne de Vormedalen. Fossane a environ 120 ares de forêt. Il y a 70-80 moutons sur la ferme, de même que quelques oies. </para>
+				<para>La production laitière était notre plus importante ressource économique jusqu'au printemps 2000 lorsqu'il y a eu, en Norvège, une vente volontaire de laiterie. Les maisons de vacances sont devenues une nouvelle niche durant les années -90, et la nouvelle centrale hydroélectrique est devenue une ressource économique depuis Janvier 2001. Regardez également le site de Fossane Energie. </para>
+			</maintext>
+			<maintext lang="5">
+				<para>Hay 80 áreas de terreno cultivado y ca de 40 áreas de terreno para pastar además del área común en las colinas de Vormedal. El área de bosques de Fossane es ca. de 500 ar. Hay 70-80 ovejas en la granja son 70-80 además de algunos gansos. </para>
+				<para>Hasta la primavera del 2000 trabajabamos nosotros con la producción de leche, pero vendimos nuestra cuota de leche. Nuestra nueva área de interés ha sido el turismo en la granja a través del los años 90 además de la nueva central hidroeléctrica que comenzó en Enero del 2001. Visite la página de Fossane Energía. </para>
+			</maintext>
+		</text>
+		<pics>
+			<header type="jpg">background.agriculture</header>
+			<introduction>
+				<UR type="jpg">p-garden</UR>
+			</introduction>
+		</pics>
+	</page>
+	<page id="13000">
+		<text>
+			<browsertitle lang="1">Fossane Minikraftverk</browsertitle>
+			<browsertitle lang="2">Fossane Minikraftverk</browsertitle>
+			<browsertitle lang="3">Fossane Minikraftverk</browsertitle>
+			<browsertitle lang="4">Fossane Minikraftverk</browsertitle>
+			<browsertitle lang="5">Fossane Mini Central Hidroeléctrica</browsertitle>
+			<heading>
+				<gifname lang="1">minikraftverkheading</gifname>
+				<gifname lang="2">minikraftverkheading</gifname>
+				<gifname lang="3">minikraftverkheading</gifname>
+				<gifname lang="4">minikraftverkheading</gifname>
+				<gifname lang="5">minicentralheading</gifname>
+				<alt-text lang="1">
+					<pre-emphasize/>
+					<emphasize>Fossane Minikraftverk</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="2">
+					<pre-emphasize/>
+					<emphasize>Fossane Minikraftverk</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="3">
+					<pre-emphasize/>
+					<emphasize>Fossane Minikraftverk</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="4">
+					<pre-emphasize/>
+					<emphasize>Fossane Minikraftverk</emphasize>
+					<post-emphasize/>
+				</alt-text>
+				<alt-text lang="5">
+					<pre-emphasize/>
+					<emphasize>Fossane Mini Central Hidroeléctrica</emphasize>
+					<post-emphasize/>
+				</alt-text>
+			</heading>
+			<introduction lang="1">Fossane Minikraftverk sold its first kilowatthour to its customers on January 15 2001. </introduction>
+			<introduction lang="2">Am 15. Januar 2001 verkaufte das Fossane Minikraftwerk seine erste Kilowattstunde an seine Kunden. </introduction>
+			<introduction lang="3">Den 15. januar 2001 selde Fossane Minikraftverk sin første kilowattime til kundane sine. </introduction>
+			<introduction lang="4">La petite centrale électrique de Fossane a vendu ses premières kilowattheures le 15 Janvier 2001. </introduction>
+			<introduction lang="5">El 15 de Enero del 2001 vendió Fossane Minikraftverk su primer kilovatio/hora a sus clientes. </introduction>
+			<maintext lang="1">
+				<para>The hydroelectric power plant is now running in old powerplant premises, after several years of planning and half a year of high-activity building. </para>
+				<para>This is not a new idea on the farm. Between 1950 and 1975 Kari's father ran a powerplant which supplied half the farms in the area with electricity through its own network. </para>
+				<para>Today the two induction (asynchronous) generators produce totally 150 kW. This is supplied via the network of Lyse Energi, and bought by our own customers. With our 1,3 GWh (1,3 million kWh) per year we can supply about 40 households. </para>
+				<para>Fossane borders to a waterfall which is part of the river Tøtlandsåna, so half the rights of the fall belongs to the farm. The other half is leased from our 4 neighbours on the other side. </para>
+				<para>Tøtlandsåna is a part of the river Vormo. This is a protected river, so The Norwegian Water Resources and Energy Directorate (NVE) put forward several conditions. At any given time, one can't use more than 15% of the average river flow of 4200 L/s, and the river flow can not go below 500 L/s. </para>
+			</maintext>
+			<maintext lang="2">
+				<para>Nach einigen Jahren Planung und einem anstrengendem halbem Jahr der Bauphase wird das Wasserkraftwerk nun endlich da betrieben, wo schon einst das alte Wasserkraftwerk stand. </para>
+				<para>Es ist keine neue Idee, Strom aus dem Wasserfall zu gewinnen. Zwischen 1950 und 1975 betrieb schon Kari's Vater ein Wasserkraftwerk, welches die Hälfte der Farmen in der Umgebung im eigenen Stromnetz mit Elektrizität belieferte. </para>
+				<para>Heute produzieren zwei Induktionsgeneratoren insgesamt 150 kW. Der Strom wird durch das Stromnetz von Lyse Energie zu unseren eigenen Abnehmer geliefert. Mit unseren 1,3 GWh (1,3 Millionen kWh) pro Jahr können wir bis zu 60 Haushalte mit Strom versorgen. </para>
+				<para>Fossane grenzt an einen Wasserfall, welcher ein Teil des Flusses Tøtlandsåna ist, und die Hälfte der Rechte am Wasserfalls sind in unserem Besitz. Die andere Hälfte ist an unseren 4 Nachbarn auf der anderen Seite des Flusses vermietet. </para>
+				<para>Tøtlandsåna ist ein Teil des Flusses Vormo. Da das ein geschützter Fluss ist, legt das Norwegische Wasserressource- und Energiedirektorat (NVE) bestimmte Bedingungen auf. Es dürfen nicht mehr als 15% der normalen Wasserkraft des Flusses benutzt werden, das sind 4200 l/s, und es muss immer eine Mindestwasserzufuhr von 500 l/s dem Fluss erhalten bleiben. </para>
+			</maintext>
+			<maintext lang="3">
+				<para>Etter fleire år med planlegging og eit halvt aktivt år med byggjing stod det nye kraftverket på Fossane klar til bruk i gamle lokaler. </para>
+				<para>Det er ikkje ein ny idé å vinna straum ut av vassfalla på denne garden. I åra 1950-75 vart det drive eit kraftverk i same lokala, Vormedalen Elektristetsverk, som leverte straum til halve bygda på eige straumnett. Far til Kari Sørensen var tilsynsmann ved dette kraftverket. </para>
+				<para>I dag produserer dei to nye, asynkrone generatorane tilsaman rundt 150 kW som blir sendt ut på Lyse Energi sitt straumnett, og kjøpt av våre eigne kundar. Tilsaman med 1,3 GWh (1,3 millionar kWh) kan vi tilby straum til rundt 40 hushaldningar til ein konkurransedyktig pris. </para>
+				<para>Fossane grensar til fossen som er ein del av Tøtlandsåna, og eig dermed halve fallretten. Den andre halvdelen leiger me av 4 naboar på andre sida. </para>
+				<para>Tøtlandsåna, som er ein del av Vormo-vassdraget, er eit verna vassdrag, og Noregs vassdrags- og energidirektorat (NVE) sette vilkår for utbygginga. Til ei kvar tid kan ein ikkje bruka meir enn 15% av normalvassføringa som er 4200 l/s, og ein må alltid ha ei minstevassføring på 500 l/s. </para>
+			</maintext>
+			<maintext lang="4">
+				<para>Après des années de planification et six mois de construction intensive, la centrale hydroélectrique fonctionne selon une méthode à l'ancienne. </para>
+				<para>L'idée n'est pas d'aujourd'hui ; entre 1950 et 1975 le père de Kari a géré une centrale électrique qui, à travers son propre réseau, a procuré l'électricité à la moitié des fermes de la région. </para>
+				<para>Aujourd'hui ce que l'on appelle les deux génératrices asynchrones produisent 150 kW. Ceci est transporté à nos clients à travers le réseau de Lyse Energi. Par nos 1,3 GWh (1,3 millions de kWh) l'année, nous couvrons la consommation électrique de 40 maisonnées. </para>
+				<para>Fossane est contiguë à une cascade qui fait partie de la rivière Tøtlandsåna. Nous disposons de la moitié des droits d'exploitation de la cascade et louons l'autre moitié de quatre voisins de l'autre côté. </para>
+				<para>Tøtlandsåna fait partie de la rivière Vormo qui est sous la protection du Direction Norvégienne des Ressources Aquatiques et de l'Energie : on ne peut jamais exploiter plus de quinze pour cent du flottement habituel de la rivière qui est de 4200 L/s, et le flottement ne peut pas être de moins de 500 L/s. </para>
+			</maintext>
+			<maintext lang="5">
+				<para>Después de varios años de planeamiento y un año de construcción está la nueva central hidroeléctrica lista para uso en el viejo local. </para>
+				<para>No es una idea nueva generar electricidad de las cascadas en esta granja. En los años 1950-75 se operó una central en el mismo lugar, Vormedalen Elektristestverk, la cual proveía electricidad a media población via su propia red de distribución. El padre de Kari Sørensen fué el iniciador de esa central. </para>
+				<para>Hoy en día producen los dos nuevos generadores asíncronos un total de cerca de 150kW el cual es enviada a la red de Lyse Energi, y comprado por nuestros propios clientes. Total con 1.3 GWh (1.3 millones de kWh) podemos afrecer electricidad a cerca de 40 casas a un precio competitivo. </para>
+				<para>Fossane limita con la cascada como una parte de Tøttlandsåna, y posee así media parte de los derechos de la cascada. La otra mitad lo arrendamos de 4 vecinos al otro lado. </para>
+				<para>Tøtlandsåna, la cual es una parte de la represa Vormo, es una represa protegida y la Dirección Noruega de Represas y Energia (NVE) define sus condiciones de desarrollo. En cualquier tiempo no se puede utilizar más del 15 % del agua el cual es 4200 l/s, y se debe mantener una circulación mínima de 500 l/s. </para>
+			</maintext>
+		</text>
+		<pics>
+			<header type="jpg">background.energy</header>
+			<introduction>
+				<UR type="jpg">p-energy</UR>
+			</introduction>
+			<para number="4">
+				<UL type="jpg">p-energy2</UL>
+			</para>
+		</pics>
+	</page>
+</fossane>

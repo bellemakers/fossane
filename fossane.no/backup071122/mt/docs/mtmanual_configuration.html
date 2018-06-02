@@ -1,0 +1,563 @@
+<html>
+<head>
+<title>CONFIGURATION SETTINGS</title>
+<link rel="stylesheet" href="doc-styles.css" type="text/css">
+</head>
+
+<body>
+<h3>Movable Type User Manual: CONFIGURATION SETTINGS</h3>
+<p><a href="mtmanual.html">&laquo; Table of Contents</a></p>
+
+
+<a name="__index__"></a>
+
+<ul>
+
+	<li><a href="#configuration settings">CONFIGURATION SETTINGS</a></li>
+</ul>
+<hr size="1" color="#CCCCCC">
+<p>
+<h1><a name="configuration settings"></a>CONFIGURATION SETTINGS</h1>
+<p>Movable Type's configuration file is called <i>mt.cfg</i> and is located in
+your main Movable Type directory (the directory where the <i>.cgi</i> scripts
+live). Following is a list of valid configuration options that can be
+used in <i>mt.cfg</i>, along with a description and the default setting for
+each option. These descriptions are also present in <i>mt.cfg</i> itself.</p>
+<ul>
+<li><strong><a name="item_CGIPath"></a>CGIPath</strong><br>
+
+<li><strong><a name="item_AdminCGIPath"></a>AdminCGIPath</strong><br>
+
+Movable Type uses the <i>CGIPath</i> and <i>AdminCGIPath</i> settings to construct
+links back to Movable Type CGI scripts. For example, the MT tag
+<code>&lt;$MTCGIPath$&gt;</code> is replaced with the value of the <i>CGIPath</i>
+setting. <i>AdminCGIPath</i> is used to construct links to <i>mt.cgi</i>, and
+<i>CGIPath</i> is used to construct links to all other CGI scripts.
+<p><i>AdminCGIPath</i> is optional. If you do not provide a value for it, it
+will default to the value of <i>CGIPath</i>. You may wish to use it if you want
+to place your <i>mt.cgi</i> in a separate directory than the other CGI scripts,
+or if you wish to use an SSL-enabled URL for your <i>mt.cgi</i> usage.</p>
+<p>Default value: none</p>
+<p>Examples:</p>
+<pre>CGIPath http://www.your-site.com/path/to/mt/
+AdminCGIPath https://www.your-site.com/path/to/mt/
+</pre><p></p>
+<li><strong><a name="item_DataSource"></a>DataSource</strong><br>
+
+The filesystem path to the <i>db</i> directory, where your MT database files are
+stored, if you're using the Berkeley DB data storage option.
+<p>Default value: <i>./db</i></p>
+<p>Example:</p>
+<pre>DataSource ./db
+</pre><p></p>
+<li><strong><a name="item_StaticWebPath"></a>StaticWebPath</strong><br>
+
+If you place all of your MT files in a cgi-bin directory, you will need to
+situate the static files (<i>docs</i>, <i>images</i>, <i>styles.css</i>) elsewhere, so
+that the webserver will not try to execute them. The
+<a href="./mtmanual_troubleshooting.html">Troubleshooting</a> section of the manual has
+more information.
+<p>Default value: none</p>
+<p>Example:</p>
+<pre>StaticWebPath /path/to/static-files/
+</pre><p></p>
+<li><strong><a name="item_TemplatePath"></a>TemplatePath</strong><br>
+
+The filesystem path to the <i>tmpl</i> directory, which contains the front-end
+templates used by the Movable Type application.
+<p>Default value: <i>./tmpl</i></p>
+<p>Example:</p>
+<pre>TemplatePath ./tmpl
+</pre><p></p>
+<li><strong><a name="item_MailTransfer"></a>MailTransfer</strong><br>
+
+If you would rather use SMTP than sendmail, you should set the MailTransfer
+config setting to 'smtp' (as below). Possible values for MailTransfer are:
+<code>smtp</code>, <code>sendmail</code>, and <code>debug</code> (which just writes out mail messages to
+STDERR, for debugging purposes).
+<p>Default value: <code>sendmail</code></p>
+<p>Example:</p>
+<pre>MailTransfer smtp
+</pre><p></p>
+<li><strong><a name="item_SendMailPath"></a>SendMailPath</strong><br>
+
+By default, Movable Type looks for sendmail in three locations:
+<i>/usr/lib/sendmail</i>, <i>/usr/sbin/sendmail</i>, and <i>/usr/ucblib/sendmail</i>. If
+your sendmail is in a different location, you can adjust the SendMailPath
+configuration setting.
+<p>Default value: any of the above</p>
+<p>Example:</p>
+<pre>SendMailPath /usr/sbin/sendmail
+</pre><p></p>
+<li><strong><a name="item_SMTPServer"></a>SMTPServer</strong><br>
+
+The address of your SMTP server, to be used along with <code>MailTransfer smtp</code>.
+<p>Default value: <code>localhost</code></p>
+<p>Example:</p>
+<pre>SMTPServer smtp.your-site.com
+</pre><p></p>
+<li><strong><a name="item_NoTempFiles"></a>NoTempFiles</strong><br>
+
+By default, when writing to an output file (for example, one of your index or
+archive pages), Movable Type will first write the data to a temp file, then
+rename that temp file. In the case that the process writing the data dies
+unexpectedly, this prevents the pages on your site from being erased. If you
+do not like this behavior (because it requires you to set directory
+permissions too liberally, for example), you can use <a href="#item_NoTempFiles"><code>NoTempFiles</code></a> to turn
+it off.
+<p>Default value: <code>0</code></p>
+<p>Example:</p>
+<pre>NoTempFiles 1
+</pre><p></p>
+<li><strong><a name="item_WeblogsPingURL"></a>WeblogsPingURL</strong><br>
+
+The URL used to send the XML-RPC <i>weblogs.com</i> ping.
+<p>Default value: <code>http://rpc.weblogs.com/RPC2</code></p>
+<p>Example:</p>
+<pre>WeblogsPingURL http://some.alternate.weblogs.com.server/path/
+</pre><p></p>
+<li><strong><a name="item_BlogsPingURL"></a>BlogsPingURL</strong><br>
+
+The URL used to send the XML-RPC <i>blo.gs</i> ping.
+<p>Default value: <code>http://ping.blo.gs/</code></p>
+<p>Example:</p>
+<pre>BlogsPingURL http://some.alternate.blo.gs.server/path/
+</pre><p></p>
+<li><strong><a name="item_MTPingURL"></a>MTPingURL</strong><br>
+
+The URL used to send the XML-RPC ping to <i>movabletype.org</i> (if you have a
+Recently Updated Key).
+<p>Default value: <code>http://www.movabletype.org/update/</code></p>
+<p>Example:</p>
+<pre>MTPingURL http://some.alternate.movabletype.org.server/path/
+</pre><p></p>
+<li><strong><a name="item_CGIMaxUpload"></a>CGIMaxUpload</strong><br>
+
+When uploading files through Movable Type's upload mechanism, a ceiling is put
+on the size of the files that can be uploaded to prevent denial-of-service
+attacks.
+<p>Default value: <code>1000000</code> (1MB)</p>
+<p>Example:</p>
+<pre>CGIMaxUpload 500000
+</pre><p></p>
+<li><strong><a name="item_DBUmask"></a>DBUmask</strong><br>
+
+<li><strong><a name="item_HTMLUmask"></a>HTMLUmask</strong><br>
+
+<li><strong><a name="item_UploadUmask"></a>UploadUmask</strong><br>
+
+<li><strong><a name="item_DirUmask"></a>DirUmask</strong><br>
+
+When creating files and directories, Movable Type uses umask settings to
+control the permissions set on the files. If you are running under cgiwrap
+or suexec, you should use a value of <code>0022</code> for all of these settings.
+<p>Default values: <code>0111</code> (DBUmask, HTMLUmask, UploadUmask), 0000 (DirUmask)</p>
+<p>Example:</p>
+<pre>DBUmask 0022
+</pre><p></p>
+<li><strong><a name="item_HTMLPerms"></a>HTMLPerms</strong><br>
+
+<li><strong><a name="item_UploadPerms"></a>UploadPerms</strong><br>
+
+In addition to controlling permissions via umask settings, you can also
+use the <i>HTMLPerms</i> and <i>UploadPerms</i> settings to control the default
+permissions for files created by the system (either as output files or
+uploaded files). The only real use of this is to turn on the executable bit
+of files created by the system--for example, if MT is generating PHP files
+that need to have the executable bit turned on, you could set <i>HTMLPerms</i>
+to <code>0777</code>.
+<p>Default value: <code>0666</code></p>
+<p>Example:</p>
+<pre>HTMLPerms 0777
+</pre><p></p>
+<li><strong><a name="item_TempDir"></a>TempDir</strong><br>
+
+When processing uploaded files, if Movable Type notices that the file you
+uploaded already exists, it will allow you to overwrite the original file, by
+first asking for your confirmation. To do this, MT needs to write the uploaded
+data to a temporary file. That temporary file is stored in the directory
+specified by the TempDir setting.
+<p>Default value: <code>/tmp</code></p>
+<p>Example:</p>
+<pre>TempDir /tmp/
+</pre><p></p>
+<li><strong><a name="item_EntriesPerRebuild"></a>EntriesPerRebuild</strong><br>
+
+When rebuilding individual archives, Movable Type splits up the rebuilding
+process into segments, where each segment consists of rebuilding N entries.
+The default value for N is 40, so by default, MT will rebuild 40 entries at
+a time, then move on to the next 40, etc. You can change that value globally
+here; for example, if you have a very stable server, you might wish to just
+get it all done with in one batch.
+<p>Default value: <code>40</code></p>
+<p>Example:</p>
+<pre>EntriesPerRebuild 100
+</pre><p></p>
+<li><strong><a name="item_ImportPath"></a>ImportPath</strong><br>
+
+The filesystem path to the <i>import</i> directory, which is used when importing
+entries and comments into the system--<i>import</i> is the directory where the
+files to be imported are placed.
+<p>Default value: <i>./import</i></p>
+<p>Example:</p>
+<pre>ImportPath ./import
+</pre><p></p>
+<li><strong><a name="item_UseNFSSafeLocking"></a>UseNFSSafeLocking</strong><br>
+
+By default Movable Type uses Perl's <i>flock()</i> function to lock your databases
+while reading and writing. On systems using NFS-mounted directories, however,
+Perl's <i>flock()</i> may fail, unless the <i>perl</i> executable has been built to
+use <i>fnctl(2)</i> instead of <i>flock(2)</i>; and even then, it is not certain that
+the locking will truly work.
+<p>Thus, if you have problems running Movable Type on systems using NFS, you can
+use the <i>UseNFSSafeLocking</i> directive to use simpler file locking that will
+work over NFS.</p>
+<p>Default value: <code>0</code> (don't use NFS-safe locking)</p>
+<p>Example:</p>
+<pre>UseNFSSafeLocking 1
+</pre><p></p>
+<li><strong><a name="item_NoLocking"></a>NoLocking</strong><br>
+
+On some Windows systems, neither <i>flock()</i> nor <i>link()</i> are available, so
+you can't use the default <i>flock()</i> locking, nor can you use the NFS-safe
+locking. In such cases, you can turn on the <i>NoLocking</i> option. Note that
+you should <strong>ONLY</strong> do this if your system supports nothing else--it is a
+last resort, because it increases the likelihood of database corruption.
+However, if you are the only person using the system (for example, if this is
+your personal server), this should not be as much of an issue.
+<p>Default value: <code>0</code> (use locking)</p>
+<p>Example:</p>
+<pre>NoLocking 1
+</pre><p></p>
+<li><strong><a name="item_NoHTMLEntities"></a>NoHTMLEntities</strong><br>
+
+By default Movable Type uses the Perl module <i>HTML::Entities</i> to encode
+characters into HTML entities, provided that you have this Perl module.
+However, in some circumstances, even if you have this module, you may
+not wish to use it for encoding; for example, if you are using a language
+that uses a different character encoding (Polish, Russian, etc). In that
+case, you should set the value of <i>NoHTMLEntities</i> to <code>1</code>.
+<p>Default value: <code>0</code> (use <i>HTML::Entities</i>, if it's available)</p>
+<p>Example:</p>
+<pre>NoHTMLEntities 1
+</pre><p></p>
+<li><strong><a name="item_NoCDATA"></a>NoCDATA</strong><br>
+
+By default, when encoding data for XML Movable Type checks whether your
+data looks like it contains any HTML tags or other unsafe-for-XML data,
+and if so, it encloses your data in CDATA tags. Some news aggregators
+have trouble with combinations of CDATA with other data, though, so if
+this is causing a problem for you, you can use <i>NoCDATA</i> to encode any
+special characters into entities.
+<p>Default value: <code>0</code> (use CDATA)</p>
+<p>Example:</p>
+<pre>NoCDATA 1
+</pre><p></p>
+<li><strong><a name="item_PingTimeout"></a>PingTimeout</strong><br>
+
+When sending pings--either TrackBack pings or update pings--Movable Type
+sets a timeout on the ping, so that it doesn't take too long and appear to
+freeze up the system. You can override the default setting of <code>15</code> seconds
+by setting a different value with the <i>PingTimeout</i> directive. The value
+is assumed to be in seconds.
+<p>Default value: <code>15</code></p>
+<p>Example:</p>
+<pre>PingTimeout 5
+</pre><p></p>
+<li><strong><a name="item_PingInterface"></a>PingInterface</strong><br>
+
+By default, outgoing Trackback and update pings are sent to the internet
+using the default network interface card (NIC) on the server running
+Movable Type. In some rare cases, it may be necessary or desirable to have
+the outbound ping traffic sent over a different network interface card or
+network connection. In these situations, enter the IP address of the
+network interface card that should be used to send the outgoing ping
+notifications.
+<p>You may specifiy only the IP address (xxx.xxx.xxx.xxx), or and IP address
+and port number (xxx.xxx.xxx.xxx:#). If no port number is specified, the
+outgoing ping will be sent from the specified IP address using the next
+available port number. If a port is specified, the outgoing ping will be
+sent from the specified IP address AND port number. This is useful when you
+need a consistent source IP:port address for firewall filtering of
+outbound connections.</p>
+<p><strong>Note:</strong> Don't specify a port unless it's absolutely necessary. If the
+port specified is already in use, the outgoing ping will fail without
+error.</p>
+<p>Default value: none</p>
+<p>Example:</p>
+<pre>PingInterface 192.168.10.5
+PingInterface 192.168.10.5:8080
+</pre><p></p>
+<li><strong><a name="item_PingProxy"></a>PingProxy</strong><br>
+
+In some cases, a proxy server must be used to gain access to the internet
+if the computer Movable Type is running on is behind a firewall or on an
+internal private network. By setting <i>PingProxy</i> to the full URL
+address of your proxy server, Movable Type will route all Trackback and
+update pings through the proxy server specified.
+<p>Default value: none</p>
+<p>Example:</p>
+<pre>PingProxy http://192.168.10.5:3128
+</pre><p></p>
+<li><strong><a name="item_PingNoProxy"></a>PingNoProxy</strong><br>
+
+If <i>PingProxy</i> above is set, Movable Type will route Trackback and update
+pings through the specified proxy EXCEPT for pings destined for the domains
+listed in <i>PingNoProxy</i>.
+<p>Default value: localhost, 127.0.0.1</p>
+<p>Example:</p>
+<pre>PingNoProxy internal.lan, example.tld
+</pre><p></p>
+<li><strong><a name="item_ImageDriver"></a>ImageDriver</strong><br>
+
+Specifies the image toolkit used to create thumbnails from uploaded images.
+By default, the ImageMagick library and Image::Magick Perl module are used;
+if your system does not have these, you can use the NetPBM tools instead
+(assuming that your system has these tools installed). Possible values for
+this setting are <i>ImageMagick</i> or <i>NetPBM</i>.
+<p>Default value: <code>ImageMagick</code></p>
+<p>Example:</p>
+<pre>ImageDriver NetPBM
+</pre><p></p>
+<li><strong><a name="item_NetPBMPath"></a>NetPBMPath</strong><br>
+
+By default, Movable Type looks for the NetPBM tools in three locations:
+<i>/usr/local/netpbm/bin</i>, <i>/usr/local/bin</i>, and <i>/usr/bin</i>. If your
+NetPBM tools are installed in a different location, you can adjust the
+NetPBMPath configuration setting. Note that this path should be the path
+to the directory containing the NetPBM binaries; for example, if your
+<i>pnmscale</i> binary is at <i>/home/foo/netpbm/bin/pnmscale</i>, you should
+set the value of NetPBMPath to <i>/home/foo/netpbm/bin</i>.
+<p>Default value: any of the above three locations</p>
+<p>Example:</p>
+<pre>NetPBMPath /home/foo/netpbm/bin
+</pre><p></p>
+<li><strong><a name="item_CommentScript"></a>CommentScript</strong><br>
+
+<li><strong><a name="item_TrackbackScript"></a>TrackbackScript</strong><br>
+
+<li><strong><a name="item_SearchScript"></a>SearchScript</strong><br>
+
+<li><strong><a name="item_XMLRPCScript"></a>XMLRPCScript</strong><br>
+
+<li><strong><a name="item_ViewScript"></a>ViewScript</strong><br>
+
+By default, the script that Movable Type uses for comments is called
+<i>mt-comments.cgi</i>, the TrackBack script is called <i>mt-tb.cgi</i>, the
+search engine script is called <i>mt-search.cgi</i>, the XML-RPC server
+script is called <i>mt-xmlrpc.cgi</i>, and the dynamic weblog view script is
+called <i>mt-view.cgi</i>. In
+some situations--for example, if you are running MT under mod_perl, or if
+your server requires that your Perl scripts have the extension <i>.pl</i>--you
+may need different names for these scripts. You can set the names that will
+be used throughout the default templates and Movable Type code by changing
+these values.
+<p>Default value: for CommentScript, <i>mt-comments.cgi</i>; for TrackbackScript,
+<i>mt-tb.cgi</i>; for SearchScript, <i>mt-search.cgi</i>; for XMLRPCScript,
+<i>mt-xmlrpc.cgi</i>; for ViewScript, <i>mt-view.cgi</i></p>
+<p>Example:</p>
+<pre>CommentScript comments
+TrackbackScript trackback
+SearchScript search
+XMLRPCScript xmlrpc
+ViewScript weblog
+</pre><p></p>
+<li><strong><a name="item_PublishCharset"></a>PublishCharset</strong><br>
+
+By default, the character encoding sent in the HTTP headers when you are
+using the system corresponds to the language you have chosen as your
+``Preferred Language'' in your user profile. If you would like to override
+that you can set PublishCharset to the character encoding to be used. Be
+aware, though, that this will override the setting for every user and
+every weblog in this MT installation. An example encoding might be
+<code>Shift_JIS</code>.
+<p>Default value: encoding corresponding to Preferred Language</p>
+<p>Example:</p>
+<pre>PublishCharset Shift_JIS
+</pre><p></p>
+<li><strong><a name="item_SafeMode"></a>SafeMode</strong><br>
+
+``Safe mode'' enables certain warnings about security and other issues,
+and turns off some small features and capabilities (for example, linking
+templates to files with .cgi and other extensions). Safe mode is on by
+default; you can turn it off by setting SafeMode to 0.
+<p>Default value: <code>1</code></p>
+<p>Example:</p>
+<pre>SafeMode 0
+</pre><p></p>
+<li><strong><a name="item_GlobalSanitizeSpec"></a>GlobalSanitizeSpec</strong><br>
+
+By default, Movable Type cleans up (``sanitizes'') any data submitted by
+visitors to your site. This is done to remove any code (HTML or otherwise)
+that could compromise the security of your site. The sanitization code works
+by only allowing certain HTML tags--any other tags, and all processing
+instructions (PHP, for example) are stripped. The GlobalSanitizeSpec
+setting, then, specifies the tags and attributes that are allowed.
+<p>Default value: <code>a href,b,br/,p,strong,em,ul,li,blockquote</code></p>
+<p>Example:</p>
+<pre>GlobalSanitizeSpec blockquote,div
+</pre><p></p>
+<li><strong><a name="item_GenerateTrackBackRSS"></a>GenerateTrackBackRSS</strong><br>
+
+By default, for each TrackBack item in your Movable Type system--either
+entry or category TrackBack items--an individual RSS feed will be 
+automatically created and managed, listing the TrackBack pings for that
+item. These pings are stored in your Local Archive Path. If you want to
+turn off this feature, you can set <i>GenerateTrackBackRSS</i> to <code>0</code>.
+The default setting is <code>1</code>, to generate RSS files for each TrackBack item.
+<p>Default value: <code>1</code></p>
+<p>Example:</p>
+<pre>GenerateTrackBackRSS 0
+</pre><p></p>
+<li><strong><a name="item_SearchTemplatePath"></a>SearchTemplatePath</strong><br>
+
+The filesystem path to the <i>search_templates</i> directory, which is where
+your search templates should be located. This setting defaults to
+<i>./search_templates</i>, which means that the <i>search_templates</i> directory
+is in the same directory as the <i>mt.cgi</i> file; you probably don't need
+to change this setting, unless you have moved your <i>search_templates</i>
+directory.
+<p>Default value: ./search_templates/</p>
+<p>Example:</p>
+<pre>SearchTemplatePath /home/foo/my/search_templates/
+</pre><p></p>
+<li><strong><a name="item_DefaultTemplate"></a>DefaultTemplate</strong><br>
+
+The filename of the default search template, located inside of your
+<i>search_templates</i> directory (see the SearchTemplatePath directive). If you
+define and use alternate templates (see below), you don't need to use
+the default template.
+<p>Default value: <i>default.tmpl</i>.</p>
+<p>Example:</p>
+<pre>DefaultTemplate my-template.tmpl
+</pre><p></p>
+<li><strong><a name="item_AltTemplate"></a>AltTemplate</strong><br>
+
+If you have multiple weblogs, or if you provide several different versions
+of your site, you may wish to use alternate templates to provide different
+versions of your search results, as well. See
+<a href="./mtmanual_public.html#alternate templates">Alternate Templates</a> in
+the manual for more details. You can define as many alternate templates
+as you want.
+<p>By default, the following alternate template is set up:</p>
+<pre>AltTemplate comments comments.tmpl
+</pre><p>This sets up the alternate template for the ``new comment search''.</p>
+<p>Example:</p>
+<pre>AltTemplate work work.tmpl
+</pre><p></p>
+<li><strong><a name="item_ExcludeBlogs"></a>ExcludeBlogs</strong><br>
+
+<li><strong><a name="item_IncludeBlogs"></a>IncludeBlogs</strong><br>
+
+To restrict the weblogs included in a search on your site, you can use the
+IncludeBlogs and ExcludeBlogs settings. IncludeBlogs lists the weblogs that
+will be included in the search, and ExcludeBlogs lists weblogs that will be
+excluded from the search. Do not try to use both--IncludeBlogs will
+override ExcludeBlogs. The default is to search all weblogs. Separate weblog
+IDs with commas.
+<p>Default value: none</p>
+<p>Examples:</p>
+<pre>ExcludeBlogs 1,3,4
+IncludeBlogs 2
+</pre><p></p>
+<li><strong><a name="item_RegexSearch"></a>RegexSearch</strong><br>
+
+<li><strong><a name="item_CaseSearch"></a>CaseSearch</strong><br>
+
+The following settings specify the defaults for searches on your site;
+they can be overridden either through hidden form inputs, or in form inputs
+set by your users. You should probably leave these settings at the defaults
+and allow your users to override them. RegexSearch is a regular-expression
+search, and CaseSearch is a case-sensitive search.
+<p>Default value: <code>0</code> for each setting</p>
+<p>Examples:</p>
+<pre>RegexSearch 1
+CaseSearch 1
+</pre><p></p>
+<li><strong><a name="item_SearchCutoff"></a>SearchCutoff</strong><br>
+
+<li><strong><a name="item_CommentSearchCutoff"></a>CommentSearchCutoff</strong><br>
+
+The default number of days to search on a regular search (SearchCutoff)
+or on a new comment search (CommentSearchCutoff).
+<p>The default for SearchCutoff is to search from the beginning of your weblog
+(all of your entries), and the default for CommentSearchCutoff is the last
+month of comments.</p>
+<p>Examples:</p>
+<pre>SearchCutoff 7
+CommentSearchCutoff 7
+</pre><p></p>
+<li><strong><a name="item_MaxResults"></a>MaxResults</strong><br>
+
+The maximum number of results to return in a search. If this is a straight
+search, the number of results is per-weblog--if you set MaxResults to <code>5</code>,
+for example, that would mean a maximum of <code>5</code> results for each weblog in your
+system. In a new comment search, this is the maximum number of entries
+with new comments.
+<p>Default value: no maximum (that is, return as many results as possible)</p>
+<p>Example:</p>
+<pre>MaxResults 5
+</pre><p></p>
+<li><strong><a name="item_ResultDisplay"></a>ResultDisplay</strong><br>
+
+The sort order for the search results. Using <code>ascend</code> will list the entries
+in chronological order (oldest entry at the top); using <code>descend</code> will
+list the entries in reverse chronological order (newest entry at the top).
+<p>Default value: <code>descend</code></p>
+<p>Example:</p>
+<pre>ResultDisplay ascend
+</pre><p></p>
+<li><strong><a name="item_SearchSortBy"></a>SearchSortBy</strong><br>
+
+The sort column for the search results. Using <code>created_on</code> will sort the
+entries by the authored on date; using <code>title</code> will sort the entries by
+title. This can be used with <i>ResultDisplay</i> to sort in either ascending
+or descending order.
+<p>Default value: <code>created_on</code></p>
+<p>Example:</p>
+<pre>SearchSortBy title
+</pre><p></p>
+<li><strong><a name="item_ExcerptWords"></a>ExcerptWords</strong><br>
+
+The number of words in the excerpt displayed when you use the
+<code>&lt;$MTEntryExcerpt$&gt;</code> tag inside of your search results. This setting
+is distinct from the ``Number of words in excerpt'' setting in your weblog
+configuration, because this setting is just used for excerpts in your
+search results.
+<p>Default value: <code>40</code></p>
+<p>Example:</p>
+<pre>ExcerptWords 100
+</pre><p></p>
+<li><strong><a name="item_SearchElement"></a>SearchElement</strong><br>
+
+By default, a search will search only through the entries in your weblog,
+not through the comments. A comment search is slower than an entry search,
+because there is more text to search through. You should probably leave
+this set to <code>entries</code>, and let your visitors override that setting if
+they wish to. Possible values are <code>entries</code>, <code>comments</code>, or <code>both</code>.
+<p>Default value: <code>entries</code></p>
+<p>Example:</p>
+<pre>SearchElement both
+</pre><p></p>
+<li><strong><a name="item_NoOverride"></a>NoOverride</strong><br>
+
+By default, the search engine allows most of the above configuration
+directives to be overridden by search templates. This has the side effect
+that users could also override those settings by changing values in the
+query string. In particular, this could be dangerous if you have some
+private weblogs--even if you use IncludeBlogs or ExcludeBlogs to 
+allow/deny certain weblogs to be searched, users could override that
+setting to search your private weblog. You can use NoOverride to provide
+a comma-separated list of configuration directives that cannot be
+overriden by either search templates or users. This means that only the
+settings made in mt.cfg will be used.
+<p>Default value: none</p>
+<p>Example:</p>
+<pre>NoOverride IncludeBlogs,ExcludeBlogs
+</pre><p></p></ul>
+
+<hr size="1" color="#CCCCCC">
+<span class="copyright">Copyright &copy; 2001-2003 Six Apart. All Rights Reserved.</span>
+</body>
+
+</html>

@@ -1,0 +1,178 @@
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Edit Comment"> | <TMPL_VAR NAME=BLOG_NAME> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+function doRemoveComment () {
+    var url = '<TMPL_VAR NAME=SCRIPT_URL>?__mode=delete_confirm&_type=comment&id=<TMPL_VAR NAME=ID>&blog_id=<TMPL_VAR NAME=BLOG_ID>';
+    window.open(url, 'confirm_delete', 'width=370,height=150');
+}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Logo and top nav -->
+
+<TMPL_INCLUDE NAME="logonav.tmpl">
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td align="left" rowspan="7" valign="top">
+<TMPL_INCLUDE NAME=mininav.tmpl>
+</td>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="0" height="10"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500"><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=menu&blog_id=<TMPL_VAR NAME=BLOG_ID>"> <MT_TRANS phrase="[_1] Editing Menu" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"> &gt;</a><font class="pagetitle"> <MT_TRANS phrase="Edit Comment"></font></td>
+</tr>
+
+<tr>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+<tr>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="15"></td>
+</tr>
+
+<tr>
+<td valign="top" width="500"><font class="instructional"> <MT_TRANS phrase="_USAGE_COMMENT"></font></td>
+</tr>
+
+<tr>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="0" height="15"></td>
+</tr>
+
+<tr>
+<td width="500" valign="top">
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+
+	<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+	<TMPL_IF NAME=NEW_OBJECT>
+	<TMPL_ELSE>
+	<input type="hidden" name="id" value="<TMPL_VAR NAME=ID>">
+	</TMPL_IF>
+	<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+	<input type="hidden" name="__mode" value="save">
+	<input type="hidden" name="_type" value="comment">
+	
+	<tr>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Entry"></font><br>
+	<TMPL_IF NAME=NO_ENTRY>[<MT_TRANS phrase="Entry no longer exists">]<TMPL_ELSE><a href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=entry&id=<TMPL_VAR NAME=ENTRY_ID>&blog_id=<TMPL_VAR NAME=BLOG_ID>"><TMPL_IF NAME=ENTRY_TITLE><TMPL_VAR NAME=ENTRY_TITLE><TMPL_ELSE>[<MT_TRANS phrase="No title">]</TMPL_IF></a></TMPL_IF><br></td>
+	</tr>
+	
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+		
+	<tr>
+	<td valign="top"><font class="title"><MT_TRANS phrase="IP Address"><br>
+	<strong><TMPL_IF NAME=IP><TMPL_VAR NAME=IP><TMPL_ELSE><MT_TRANS phrase="None"></TMPL_IF></strong></font><br></td>
+	</tr>
+	
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+		
+	<tr>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Author"></font><br>
+	<input name="author" value="<TMPL_VAR NAME=AUTHOR>"></td>
+	</tr>
+	
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Email Address"></font><br>
+	<input name="email" value="<TMPL_VAR NAME=EMAIL>"></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="title"><MT_TRANS phrase="URL"></font><br>
+	<input name="url" value="<TMPL_VAR NAME=URL>"></td></tr>
+
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Comment"></font><br>
+	<textarea rows="6" cols="50" name="text" wrap="virtual"><TMPL_VAR NAME=TEXT></textarea></td>
+	</tr>
+
+	<tr>
+	<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" align="right"><input class="button" type="button" onClick="window.location='<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=entry&id=<TMPL_VAR NAME=ENTRY_ID>&blog_id=<TMPL_VAR NAME=BLOG_ID>'" value="<MT_TRANS phrase="Cancel">">&nbsp;<input class="button" type="button" onclick="doRemoveComment()" value="<MT_TRANS phrase="Delete">">&nbsp;<input class="button" type="submit" value="<MT_TRANS phrase="Save">"></td>
+	</tr>
+
+	</form>
+
+	</td>
+	</tr>
+	</table>
+	
+</td>
+</tr>
+
+<tr>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+</table>
+
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="List &amp; Edit Entries"> | <TMPL_VAR NAME=BLOG_NAME> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+var va = new Array;
+va['status'] = new Array;
+va['status'][0] = new MTChoice('<MT_TRANS phrase="Draft">', 1);
+va['status'][1] = new MTChoice('<MT_TRANS phrase="Publish">', 2);
+va['author_id'] = new Array;
+<TMPL_LOOP NAME=AUTHOR_LOOP>
+va['author_id'][<TMPL_VAR NAME=AUTHOR_INDEX>] = new MTChoice('<TMPL_VAR NAME=AUTHOR_NAME>', <TMPL_VAR NAME=AUTHOR_ID>);
+</TMPL_LOOP>
+va['category_id'] = new Array;
+<TMPL_LOOP NAME=CATEGORY_LOOP>
+va['category_id'][<TMPL_VAR NAME=CATEGORY_INDEX>] = new MTChoice('<TMPL_VAR NAME=CATEGORY_LABEL>', <TMPL_VAR NAME=CATEGORY_ID>);
+</TMPL_LOOP>
+
+function MTChoice (label, id) {
+    this.label = label;
+    this.id = id;
+}
+
+function setMenu (f) {
+    var s = f.filter_val;
+    s.options[0] = new Option('<MT_TRANS phrase="Select">', '');
+    s.length = 1;
+    var w = f.filter.options[f.filter.selectedIndex].value;
+    if (va[w] == null) return;
+    var m = va[w];
+    for (i=0; i<m.length; i++)
+        s.options[i+1] = new Option(m[i].label, m[i].id);
+    s.length = m.length + 1;
+}
+
+function doRemoveEntries (f) {
+    var base = '<TMPL_VAR NAME=SCRIPT_URL>?__mode=delete_confirm&_type=entry&blog_id=<TMPL_VAR NAME=BLOG_ID><TMPL_IF NAME=IS_POWER_EDIT>&is_power_edit=1</TMPL_IF>';
+    var url = '';
+    var e = f.id;
+    if (!e) return;
+    if (e.value && e.checked)
+        url += '&id=' + e.value;
+    else
+        for (i=0; i<e.length; i++)
+            if (e[i].checked)
+                url += '&id=' + e[i].value;
+    if (!url) {
+        alert('<MT_TRANS phrase="You did not select any entries to delete.">');
+        return false;
+    }
+    url = base + url;
+    window.open(url, 'confirm_delete', 'width=370,height=150');
+}
+
+function doRebuild () {
+    window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=rebuild_confirm&blog_id=<TMPL_VAR NAME=BLOG_ID>', 'rebuild', 'width=400,height=200,resizable=yes');
+}
+
+//-->
+</script>
+
+</head>
+
+<body<TMPL_IF NAME=IS_POWER_EDIT> class="pop"</TMPL_IF>>
+
+<!-- Logo and top nav -->
+
+<TMPL_UNLESS NAME=IS_POWER_EDIT>
+<TMPL_INCLUDE NAME="logonav.tmpl">
+</TMPL_UNLESS>
+
+<!-- End logo and top nav -->
+
+<!-- Begin main content -->
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<TMPL_IF NAME=IS_POWER_EDIT>
+<tr>
+<td colspan="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="50"></td>
+</tr>
+</TMPL_IF>
+
+<tr>
+<td align="left" rowspan="<TMPL_IF NAME=IS_POWER_EDIT>3<TMPL_ELSE>5</TMPL_IF>" valign="top">
+<TMPL_UNLESS NAME=IS_POWER_EDIT>
+<TMPL_INCLUDE NAME=mininav.tmpl>
+<TMPL_ELSE>
+&nbsp;
+</TMPL_UNLESS>
+</td>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<TMPL_UNLESS NAME=IS_POWER_EDIT>
+
+<tr>
+<td valign="top" width="500"><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>"><MT_TRANS phrase="Main Menu"> &gt;</a><a class="title" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=menu&blog_id=<TMPL_VAR NAME=BLOG_ID>"> <MT_TRANS phrase="[_1] Editing Menu" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>"> &gt;</a><font class="pagetitle"> <MT_TRANS phrase="List &amp; Edit Entries"></a></font></td>
+</tr>
+
+<tr>
+<td valign="top" width="500" bgcolor="#CCCCCC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+</tr>
+
+</TMPL_UNLESS>
+
+<tr>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+</tr>
+
+<tr>
+
+<td valign="top">
+
+	<table border="0" cellspacing="0" cellpadding="0">
+
+	<tr>
+	<td valign="top"<TMPL_UNLESS NAME=IS_POWER_EDIT> width="500"</TMPL_UNLESS>><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+	</tr>
+
+	<tr>		
+	<td valign="top"<TMPL_UNLESS NAME=IS_POWER_EDIT> width="500"</TMPL_UNLESS>>
+
+		<table border="0" cellspacing="0" cellpadding="0">
+
+		<tr>
+		<td colspan="9" valign="top"><font class="instructional">
+<TMPL_IF NAME=IS_POWER_EDIT>
+		<MT_TRANS phrase="_USAGE_LIST_POWER" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>">
+<TMPL_ELSE>
+		<MT_TRANS phrase="_USAGE_LIST" params="<TMPL_VAR NAME=BLOG_NAME ESCAPE=HTML>">
+		(<a href="#" onclick="window.open('<TMPL_VAR NAME=SCRIPT_URL>?__mode=list_entries&blog_id=<TMPL_VAR NAME=BLOG_ID>&is_power_edit=1', 'batch', 'width=755,height=600,scrollbars=yes,resizable=yes')"><MT_TRANS phrase="Open power-editing mode"></a>)
+</TMPL_IF>
+		</font></td>
+		</tr>
+
+		<tr>
+		<td colspan="9" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+		</tr>
+
+<TMPL_IF NAME=SAVED>
+		<tr>
+		<td colspan="9"><p class="message"><MT_TRANS phrase="Your changes have been saved."> <TMPL_IF NAME=CAN_REBUILD><MT_TRANS phrase="_USAGE_REBUILD"></TMPL_IF></p></td>
+		</tr>
+</TMPL_IF>
+
+<TMPL_IF NAME=SAVED_DELETED>
+		<tr>
+		<td colspan="9"><p class="message"><MT_TRANS phrase="Your entry has been deleted from the database."> <TMPL_IF NAME=CAN_REBUILD><MT_TRANS phrase="_USAGE_REBUILD"></TMPL_IF></p></td>
+		</tr>
+</TMPL_IF>
+
+		<tr>
+		<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+		</tr>
+
+		<tr>
+
+		<form method="get" action="<TMPL_VAR NAME=SCRIPT_URL>">
+		<input type="hidden" name="__mode" value="list_entries">
+		<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+<TMPL_IF NAME=IS_POWER_EDIT>
+		<input type="hidden" name="is_power_edit" value="1">
+</TMPL_IF>
+		<td valign="top" colspan="9">
+
+			<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			<td colspan="6"><font class="pagetitle"><MT_TRANS phrase="Filter options"></font></td>
+			</tr>
+
+			<tr>
+			<td colspan="6"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+			</tr>
+
+	
+
+			<tr>
+			<td colspan="6"><font class="instructional"><MT_TRANS phrase="View the entries where the:"></font></td>
+			</tr>
+
+			<tr>
+			<td colspan="6"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+			</tr>
+						
+			<tr>
+			<td><select class="menu" name="filter" onChange="setMenu(this.form)">
+			<option value=""><MT_TRANS phrase="Select">
+			<option value="category_id"><MT_TRANS phrase="Category">
+			<option value="author_id"><MT_TRANS phrase="Author">
+			<option value="status"><MT_TRANS phrase="Post Status">
+			</select></td>
+			<td><font class="instructional">&nbsp; <MT_TRANS phrase="is"> &nbsp;</font></td>
+			<td><select class="category" name="filter_val">
+			<option value=""><MT_TRANS phrase="Select">
+			</select></td>
+			<td>&nbsp;&nbsp;<input class="button-small" type="submit" value="<MT_TRANS phrase="Go">"></td>
+			<td><font class="instructional">&nbsp; <MT_TRANS phrase="or"> &nbsp;</font></td>
+			<td><input class="button" type="button" value="<MT_TRANS phrase="Reset Filter">"  onclick="window.location='<TMPL_VAR NAME=SCRIPT_URL>?__mode=list_entries&blog_id=<TMPL_VAR NAME=BLOG_ID>'"></td>
+			</tr>
+
+			</table>
+
+		</td>
+		</tr>
+
+		</form>
+		</table>
+
+		<table border="0" cellspacing="0" cellpadding="2">
+<TMPL_IF NAME=IS_POWER_EDIT>
+		<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+		<input type="hidden" name="__mode" value="save_entries">
+		<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+		<input type="hidden" name="offset" value="<TMPL_VAR NAME=OFFSET>">
+		<input type="hidden" name="limit" value="<TMPL_VAR NAME=LIMIT>">
+		<input type="hidden" name="filter_args" value="<TMPL_VAR NAME=FILTER_ARGS>">
+<TMPL_ELSE>
+		<form>
+</TMPL_IF>
+
+		<tr>
+		<td colspan="11" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" width="150"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="150" height="1"></td>
+		<td valign="top" width="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="2" height="1"></td>
+		<td valign="top" width="100"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="100" height="1"></td>				
+		<td valign="top" width="7"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="7" height="1"></td>
+		<td valign="top" width="55"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="55" height="1"></td>
+		<td valign="top" width="5"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="5" height="1"></td>
+		<td valign="top" width="63"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="63" height="1"></td>
+		<td valign="top" width="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="2" height="1"></td>
+		<td valign="top" width="37"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="37" height="1"></td>
+		<td valign="top" width="2"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="2" height="1"></td>
+		<td valign="top" width="30"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="30" height="1"></td>
+		</tr>
+
+		<tr>
+		<td valign="top" width="150" bgcolor="#829FAC"><font class="title-no-padding"><MT_TRANS phrase="Title"></font></td>
+		<td valign="top" width="2" bgcolor="#829FAC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="2" height="1"></td>
+		<td valign="top" width="100" bgcolor="#829FAC"><font class="title-no-padding"><MT_TRANS phrase="Category"></font></td>
+		<td valign="top" width="7"  bgcolor="#829FAC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="7" height="1"></td>
+		<td valign="top" width="55" bgcolor="#829FAC"><font class="title-no-padding"><MT_TRANS phrase="Date"></font></td>
+		<td valign="top" width="5"  bgcolor="#829FAC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="5" height="1"></td>
+		<td valign="top" width="63" bgcolor="#829FAC"><font class="title-no-padding"><MT_TRANS phrase="Author"></font></td>
+		<td valign="top" width="2"  bgcolor="#829FAC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="2" height="1"></td>
+		<td valign="top" width="37"  bgcolor="#829FAC"><font class="title-no-padding"><MT_TRANS phrase="Status"></font></td>
+		<td valign="top" width="2" bgcolor="#829FAC"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="2" height="1"></td>
+		<td valign="top" width="30" bgcolor="#829FAC"><font class="title-no-padding"><MT_TRANS phrase="Delete"></font></td>
+		</tr>
+
+		<tr>
+		<td colspan="11" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="1"></td>
+		</tr>
+
+		<TMPL_LOOP NAME=OBJECT_LOOP>
+		<tr>
+		<td valign="top" width="150" bgcolor="#<TMPL_IF NAME=ENTRY_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><TMPL_IF NAME=HAS_EDIT_ACCESS><TMPL_IF NAME=IS_POWER_EDIT><input style="width: 150px; height: 20px;" name="title_<TMPL_VAR NAME=ID>" value="<TMPL_VAR NAME=TITLE ESCAPE=HTML>"><TMPL_ELSE><a class="list" href="<TMPL_VAR NAME=SCRIPT_URL>?__mode=view&_type=entry&id=<TMPL_VAR NAME=ID>&blog_id=<TMPL_VAR NAME=BLOG_ID>"><TMPL_VAR NAME=TITLE_SHORT></a></TMPL_IF><TMPL_ELSE><font class="title"><TMPL_VAR NAME=TITLE_SHORT></font></TMPL_IF></td>
+		<td valign="top" width="2" bgcolor="#<TMPL_IF NAME=ENTRY_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="2" height="1"></td>
+		<td valign="top" width="100" bgcolor="#<TMPL_IF NAME=ENTRY_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>">
+<TMPL_IF NAME=IS_EDITABLE>
+<select style="width: 100px;" name="category_id_<TMPL_VAR NAME=ID>">
+<option value=""><MT_TRANS phrase="None">
+<TMPL_LOOP NAME=ROW_CATEGORY_LOOP>
+<option value="<TMPL_VAR NAME=CATEGORY_ID>"<TMPL_IF NAME=CATEGORY_IS_SELECTED> selected</TMPL_IF>><TMPL_VAR NAME=CATEGORY_LABEL>
+</TMPL_LOOP>
+</select>
+<TMPL_ELSE>
+<font class="title"><TMPL_IF NAME=CATEGORY_NAME><TMPL_VAR NAME=CATEGORY_NAME><TMPL_ELSE>&nbsp;</TMPL_IF></font>
+</TMPL_IF>
+		</td>
+		<td valign="top" width="7" bgcolor="#<TMPL_IF NAME=ENTRY_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="7" height="1"></td>
+		<td valign="top" width="55" bgcolor="#<TMPL_IF NAME=ENTRY_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><TMPL_IF NAME=IS_EDITABLE><input name="created_on_<TMPL_VAR NAME=ID>" style="width: 150px; height: 20px;" value="<TMPL_VAR NAME=CREATED_ON_TIME_FORMATTED>"><TMPL_ELSE><font class="title"><TMPL_VAR NAME=CREATED_ON_FORMATTED></font></TMPL_IF></td>
+		<td valign="top" width="5" bgcolor="#<TMPL_IF NAME=ENTRY_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="5" height="1"></td>
+		<td valign="top" width="63" bgcolor="#<TMPL_IF NAME=ENTRY_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>">
+<TMPL_IF NAME=IS_EDITABLE>
+<select style="width: 100px;" name="author_id_<TMPL_VAR NAME=ID>">
+<option value=""><MT_TRANS phrase="None">
+<TMPL_LOOP NAME=ROW_AUTHOR_LOOP>
+<option value="<TMPL_VAR NAME=AUTHOR_ID>"<TMPL_IF NAME=AUTHOR_IS_SELECTED> selected</TMPL_IF>><TMPL_VAR NAME=AUTHOR_NAME>
+</TMPL_LOOP>
+</select>
+<TMPL_ELSE>
+<font class="title"><TMPL_VAR NAME=AUTHOR_NAME></font>
+</TMPL_IF>
+		</td>
+		<td valign="top" width="2" bgcolor="#<TMPL_IF NAME=ENTRY_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="2" height="1"></td>
+		<td valign="top" width="37" bgcolor="#<TMPL_IF NAME=ENTRY_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>">
+<TMPL_IF NAME=IS_EDITABLE>
+<select style="width: 100px;" name="status_<TMPL_VAR NAME=ID>">
+<option value="1"<TMPL_IF NAME=STATUS_DRAFT> selected</TMPL_IF>><MT_TRANS phrase="Draft">
+<option value="2"<TMPL_IF NAME=STATUS_PUBLISH> selected</TMPL_IF>><MT_TRANS phrase="Publish">
+</select>
+<TMPL_ELSE>
+<font class="title"><MT_TRANS phrase="<TMPL_VAR NAME=STATUS_TEXT>"></font>
+</TMPL_IF>
+		</td>
+		<td valign="top" width="2" bgcolor="#<TMPL_IF NAME=ENTRY_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="2" height="1"></td>
+		<td align="center" valign="top" width="30" bgcolor="#<TMPL_IF NAME=ENTRY_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><TMPL_IF NAME=HAS_EDIT_ACCESS><input type="checkbox" name="id" value="<TMPL_VAR NAME=ID>"></TMPL_IF></td>
+		</tr>
+
+		</TMPL_LOOP>
+
+		<tr>
+		<td colspan="11" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="3"></td>
+		</tr>
+
+		<tr>
+		<td colspan="5" align="left"><TMPL_IF NAME=IS_POWER_EDIT><input class="button" type="submit" value="<MT_TRANS phrase="Save">"><TMPL_ELSE>&nbsp;</TMPL_IF></td>
+		<td colspan="6" align="right"><input class="button" type="button" onClick="doRemoveEntries(this.form)" value="<MT_TRANS phrase="Delete">"></td>
+		</tr>
+
+		<tr>
+		<td colspan="11" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+		</tr>
+
+		<tr>
+		<td colspan="11" valign="top"><hr size="1" color="#CCCCCC"></td>
+		</tr>
+				
+		<tr>
+		<td colspan="11" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="5"></td>
+		</tr>
+
+		</form>
+		
+		<tr>
+		<td colspan="11"  valign="top" align="right">
+			<form>
+			<TMPL_IF NAME=PREV_OFFSET>
+			<input type="button" class="button" onclick="window.location='<TMPL_VAR NAME=SCRIPT_URL>?__mode=list_entries&blog_id=<TMPL_VAR NAME=BLOG_ID>&<TMPL_IF NAME=IS_POWER_EDIT>is_power_edit=1&</TMPL_IF>limit=' + this.form.limit.options[this.form.limit.selectedIndex].value + '&offset=<TMPL_VAR NAME=PREV_OFFSET_VAL><TMPL_VAR NAME=FILTER_ARGS>'" value="<MT_TRANS phrase="Previous [_1]" params="<TMPL_VAR NAME=LIMIT>">">
+			</TMPL_IF>
+			<select name="limit" onChange="window.location='<TMPL_VAR NAME=SCRIPT_URL>?__mode=list_entries&blog_id=<TMPL_VAR NAME=BLOG_ID>&<TMPL_IF NAME=IS_POWER_EDIT>is_power_edit=1&</TMPL_IF>limit=' + this.options[this.selectedIndex].value + '<TMPL_VAR NAME=FILTER_ARGS>'">
+			<option value="5"<TMPL_IF NAME=LIMIT_5> selected</TMPL_IF>><MT_TRANS phrase="[quant,_1,entry,entries]" params="5">
+			<option value="20"<TMPL_IF NAME=LIMIT_20> selected</TMPL_IF>><MT_TRANS phrase="[quant,_1,entry,entries]" params="20">
+			<option value="75"<TMPL_IF NAME=LIMIT_75> selected</TMPL_IF>><MT_TRANS phrase="[quant,_1,entry,entries]" params="75">
+			<option value="125"<TMPL_IF NAME=LIMIT_125> selected</TMPL_IF>><MT_TRANS phrase="[quant,_1,entry,entries]" params="125">
+			<option value="none"<TMPL_IF NAME=LIMIT_NONE> selected</TMPL_IF>><MT_TRANS phrase="all entries">
+			</select>
+			<TMPL_IF NAME=NEXT_OFFSET>
+			<input type="button" class="button" onclick="window.location='<TMPL_VAR NAME=SCRIPT_URL>?__mode=list_entries&blog_id=<TMPL_VAR NAME=BLOG_ID>&<TMPL_IF NAME=IS_POWER_EDIT>is_power_edit=1&</TMPL_IF>limit=' + this.form.limit.options[this.form.limit.selectedIndex].value + '&offset=<TMPL_VAR NAME=NEXT_OFFSET_VAL><TMPL_VAR NAME=FILTER_ARGS>'" value="<MT_TRANS phrase="Next [_1]" params="<TMPL_VAR NAME=LIMIT>">">
+			</TMPL_IF>
+			</form>
+		</td>
+		</tr>
+		</table>
+
+	</td>
+	</tr>
+	</table>
+
+</td>
+</tr>
+
+<tr>
+<TMPL_UNLESS NAME=IS_POWER_EDIT>
+<td width="115"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="115" height="1"></td>
+<TMPL_ELSE>
+<td width="20"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</TMPL_UNLESS>
+<td valign="top" width="500"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="500" height="1"></td>
+</tr>
+
+</table>
+<!-- End main content -->
+
+<!-- Begin copyright and version info -->
+<TMPL_INCLUDE NAME="copyright.tmpl">
+<!-- End copyright and version info -->
+
+</body>
+</html>

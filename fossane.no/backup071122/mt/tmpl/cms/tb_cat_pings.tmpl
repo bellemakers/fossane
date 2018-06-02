@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Categories"> | <TMPL_VAR NAME=BLOG_NAME> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+function doRemovePings (f) {
+    var base = '<TMPL_VAR NAME=SCRIPT_URL>?__mode=delete_confirm&_type=ping_cat&blog_id=<TMPL_VAR NAME=BLOG_ID>';
+    var url = '';
+    var e = f.ping_delete;
+    if (!e) return;
+    if (e.value && e.checked)
+        url += '&id=' + e.value;
+    else
+        for (i=0; i<e.length; i++)
+            if (e[i].checked)
+                url += '&id=' + e[i].value;
+    if (!url) {
+        alert('<MT_TRANS phrase="You did not select any pings to delete.">');
+        return false;
+    }
+    url = base + url;
+    window.open(url, 'confirm_delete', 'width=390,height=150');
+}
+
+//-->
+</script>
+
+</head>
+
+<body onload="window.focus()" class="pop">
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td colspan="4" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="50"></td>
+</tr>
+
+<tr>
+<td rowspan="<TMPL_IF NAME=SAVED_DELETED>9<TMPL_ELSE>7</TMPL_IF>" width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+<td colspan="2" valign="top">&nbsp;</td>
+<td rowspan="<TMPL_IF NAME=SAVED_DELETED>9<TMPL_ELSE>7</TMPL_IF>" width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td><font class="instructional"><MT_TRANS phrase="Click on the title to view the corresponding entry on the original site. To delete a ping, check the box to the right, then click the Delete Checked button."></font></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<TMPL_IF NAME=SAVED_DELETED>
+<tr>
+<td valign="top"><p class="message"><MT_TRANS phrase="You have successfully deleted the checked TrackBack pings from this category."></p></td>
+</tr>
+
+</TMPL_IF>
+
+<form>
+
+<tr>
+<td valign="top">
+	<table border="0" cellspacing="0" cellpadding="3">
+	
+	<tr>
+	<td valign="top" width="135"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="135" height="1"></td>
+	<td valign="top" width="135"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="135" height="1"></td>
+	<td valign="top" width="90"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="90" height="1"></td>
+	<td valign="top" width="40"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="40" height="1"></td>
+	</tr>
+
+	<tr>
+	<td valign="top" width="135" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Title"></font></td>
+	<td valign="top" width="135" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Date Added"></font></td>
+	<td valign="top" width="90" bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="IP Address"></font></td>
+	<td valign="top" width="40"  bgcolor="#8199A4"><font class="title-no-padding"><MT_TRANS phrase="Delete"></font></td>	
+	</tr>
+
+<TMPL_LOOP NAME=PING_LOOP>
+	<tr>
+	<td valign="top" width="135" bgcolor="#<TMPL_IF NAME=PING_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><a target="_blank" href="<TMPL_VAR NAME=PING_URL ESCAPE=HTML>"><TMPL_VAR NAME=PING_TITLE ESCAPE=HTML></a></td>
+	<td valign="top" width="135" bgcolor="#<TMPL_IF NAME=PING_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="instructional"><TMPL_VAR NAME=PING_CREATED></font></td>
+	<td valign="top" width="90" bgcolor="#<TMPL_IF NAME=PING_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><font class="instructional"><TMPL_VAR NAME=PING_IP></font></td>
+	<td valign="top" width="40" bgcolor="#<TMPL_IF NAME=PING_ODD>EEEEEE<TMPL_ELSE>FFFFFF</TMPL_IF>"><input type="checkbox" name="ping_delete" value="<TMPL_VAR NAME=PING_ID>"></td>
+	</tr>
+
+</TMPL_LOOP>
+
+	</table>
+</td>
+</tr>
+
+<tr>
+<td><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td align="center" valign="top"><input class="button" type="button" onclick="window.close()" value="<MT_TRANS phrase="Close">">&nbsp;<input class="button-big" type="button" onclick="doRemovePings(this.form)" value="<MT_TRANS phrase="Delete Checked">"></td>
+</tr>
+
+</form>
+</table>
+
+</body>
+</html>

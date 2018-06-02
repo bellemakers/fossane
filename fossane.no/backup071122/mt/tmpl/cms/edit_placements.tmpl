@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+
+<meta name="description" content="MOVABLE TYPE: Personal Publishing System" />
+<meta http-equiv="Content-Type" content="text/html; charset=<TMPL_VAR NAME=LANGUAGE_ENCODING>" />
+
+<title><MT_TRANS phrase="Edit Categories"> | MOVABLE TYPE</title>
+
+<link rel="stylesheet" href="<TMPL_VAR NAME=STATIC_URI>styles.css" type="text/css">
+
+<script language="JavaScript">
+<!--
+
+if ((!(navigator.appVersion.indexOf('MSIE') != -1) &&
+      (parseInt(navigator.appVersion)==4))) {
+    document.write("<STYLE TYPE=\"text/css\">");
+    document.write("BODY { margin-top: -8px; margin-left: -8px; }"); 
+    document.write("</style>");
+}
+
+var origWidth, origHeight;
+if ((navigator.appName == 'Netscape') &&
+    (parseInt(navigator.appVersion) == 4)) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+    window.onresize = restore;
+}
+
+function restore () {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+}
+
+function move (from, to) {
+    var fbox = new Array();
+    var tbox = new Array();
+    var lookup = new Array();
+
+    // Copy data from 'to' and 'from' boxes into 'tbox' and 'fbox'
+    // arrays; if an item in 'from' is selected, it gets moved into
+    // 'tbox'.'lookup' holds the values of each option.
+    for (i=0; i<to.length; i++) {
+        if (to.options[i].value == -1) continue;
+        lookup[to.options[i].text] = to.options[i].value;
+        tbox[i] = to.options[i].text;
+    }
+    for (i=0; i<from.length; i++) {
+        if (from.options[i].value == -1) continue;
+        lookup[from.options[i].text] = from.options[i].value;
+        if (from.options[i].selected)
+            tbox[tbox.length] = from.options[i].text;
+        else
+            fbox[fbox.length] = from.options[i].text;
+    }
+
+    // Sort both of the arrays, then fill up the selection boxes with
+    // the sorted values.
+    fbox.sort();
+    tbox.sort();
+    from.length = 0;
+    to.length = 0;
+
+    // This is stupid. Mac IE has a nasty bug where, if a multiple selection
+    // box is left empty, it seems to move the other selection box all over
+    // the screen. So if the 'from' box is going to be empty, we fill it with
+    // an empty option. We then check for this dummy option up above
+    // (value == -1) to get rid of it when we don't need it.
+    if (fbox.length == 0)
+        from[0] = new Option('', -1);
+    for (i=0; i<fbox.length; i++)
+        from[i] = new Option(fbox[i], lookup[fbox[i]]);
+    for (i=0; i<tbox.length; i++)
+        to[i] = new Option(tbox[i], lookup[tbox[i]]);
+}
+
+function select_all (s) {
+    for (i=0; i<s.length; i++)
+        s.options[i].selected = 1;
+}
+
+//-->
+</script>
+
+</head>
+
+<body class="pop" onload="window.focus()">
+
+<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>" onsubmit="select_all(this.category_id)">
+<input type="hidden" name="__mode" value="save_placements">
+<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>">
+<input type="hidden" name="entry_id" value="<TMPL_VAR NAME=ENTRY_ID>">
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+<td rowspan="<TMPL_IF NAME=SAVED>8<TMPL_ELSE>6</TMPL_IF>" width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+<td width="100%" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="50"></td>
+<td rowspan="<TMPL_IF NAME=SAVED>7<TMPL_ELSE>5</TMPL_IF>" width="20" valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="20" height="1"></td>
+</tr>
+
+<tr>
+<td width="100%" valign="top"><font class="instructional"><MT_TRANS phrase="_USAGE_PLACEMENTS"></font></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<TMPL_IF NAME=SAVED>
+<tr>
+<td width="100%" valign="top"><p class="message"><MT_TRANS phrase="The secondary categories for this entry have been updated. You will need to SAVE the entry for these changes to be reflected on your public site."></p></td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+</TMPL_IF>
+
+<tr>
+<td align="center">
+
+	<table border="0" cellspacing="2" cellpadding="0">
+
+	<tr>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Categories in your blog:"></font></td>
+	<td>&nbsp;</td>
+	<td valign="top"><font class="title"><MT_TRANS phrase="Secondary categories:"></font></td>
+	</tr>
+
+	<tr>
+	<td><select multiple size="15" name="category_selector" style="width: 175">
+<TMPL_LOOP NAME=CATEGORY_LOOP>
+	<option value="<TMPL_VAR NAME=CATEGORY_ID>"><TMPL_VAR NAME=CATEGORY_LABEL>
+</TMPL_LOOP>
+	</select></td>
+	<td align="center" valign="middle"><input onclick="move(this.form.category_selector, this.form.category_id)" type="button" value="&gt;&gt;">&nbsp;&nbsp;<input onclick="move(this.form.category_id, this.form.category_selector)" type="button" value="&lt;&lt;"></td>
+	<td><select size="15" multiple name="category_id" style="width: 175">
+<TMPL_LOOP NAME=PLACEMENT_LOOP>
+	<option value="<TMPL_VAR NAME=PLACE_CATEGORY_ID>"><TMPL_VAR NAME=PLACE_CATEGORY_LABEL>
+</TMPL_LOOP>
+	</select></td>
+	</tr>
+
+	</table>
+
+</td>
+</tr>
+
+<tr>
+<td valign="top"><img src="<TMPL_VAR NAME=STATIC_URI>images/spacer.gif" width="1" height="10"></td>
+</tr>
+
+<tr>
+<td align="center" valign="top"><input class="button" type="button" onClick="window.close()" value="<MT_TRANS phrase="Close">">&nbsp;<input class="button" type="submit" value="<MT_TRANS phrase="Save">"></td>
+</tr>
+
+</table>
+</form>
+
+</body>
+</html>
