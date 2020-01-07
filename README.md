@@ -1,6 +1,6 @@
 # fossane.no
 
-All tekst for nettstedet er lagret i fossane.xml. Denne kan redigeres med en tekst-editor, eller med et skreddersydd verktøy for XML-redigering, .eks. [Oxygen XML Editor](https://www.oxygenxml.com)
+All tekst for nettstedet er lagret i fossane.xml. Denne kan redigeres med en tekst-editor, eller med et skreddersydd verktøy for XML-redigering, f.eks. [Oxygen XML Editor](https://www.oxygenxml.com)
 
 Nettstedet 'batch'-genereres ved hjelp av XSLT. Hovedstilarket er fossane.xsl
 
