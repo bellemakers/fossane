@@ -18,3 +18,5 @@ old website fossane.no
 <li>copieer alles naar deze repository
 <li>kijk of bellemakers.github.io/fossane.no werkt.
 </ol>
+
+1 lijkt gelukt; https://bellemakers.github.io/fossane geeft 404: file not found :(
