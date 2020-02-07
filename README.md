@@ -9,3 +9,10 @@ Når en har gjort en endring, typisk i fossane.xml, så regenereres hele nettste
     java -jar saxon.jar fossane.xml fossane.xslt
 
 Genereringen tar noen sekunder. Når genereringen er gjennomført må en kjøre `git commit -am "endringsmelding" `og `git push`for at sidene skal bli synlige på Github Pages.
+
+MB: 07.02.2020:
+old website fossane.no
+<ol>
+<li>copieer alles naar deze repository
+<li>kijk of bellemakers.github.io/fossane.no werkt.
+</ol>
