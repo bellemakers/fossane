@@ -20,3 +20,10 @@ old website fossane.no
 </ol>
 
 1 lijkt gelukt; https://bellemakers.github.io/fossane geeft 404: file not found :(
+
+2 ook gelukt: in setting master aangepast.
+
+<ul>
+<li>engels (index.html in root) adres aangepast
+<li>duits (index.html in root/de) adres aangepast
+</ul>
