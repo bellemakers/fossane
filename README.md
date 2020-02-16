@@ -27,3 +27,7 @@ old website fossane.no
 <li>engels (index.html in root) adres aangepast
 <li>duits (index.html in root/de) adres aangepast
 </ul>
+
+https://bellemakers.github.io/fossane/nl/
+
+Gegevens van ons aangepast voor de hele Nederlands site (wijst naar onze emailadressen) en de updatedatum (14/02/2020)
